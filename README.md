@@ -1,5 +1,7 @@
 # Lucas' Turbo Missie
 
+**Spelen:** https://lucas-turbo-missie.exl999.workers.dev (op de tablet installeren: zie hieronder)
+
 Een tablet-website waarmee Lucas (5,5 jaar, niveau tussen groep 2 en groep 3) spelenderwijs oefent met **letters, woordjes lezen en rekenen**, samen met de blauwe egel en zijn vrienden. Zie [PLAN.md](PLAN.md) voor het volledige plan.
 
 Het is een zusje van [Lana's Gouden Missie](https://github.com/AlexBongers/LanaWebsiteLezenRekenen) en gebruikt dezelfde techniek (Vite, Svelte 5, TypeScript, PWA), maar is voor een kleuter en een jongen gemaakt: veel luisteren, grote knoppen, geen schrijven, en spellen met katapulten, ontploffingen en bouwen.
@@ -65,7 +67,7 @@ Eenmalig per computer: `npx -y @elevenlabs/cli@latest onboard init` (logt in en 
 Alles inspreken kost ongeveer 1.800 tekens. Een test bewaakt dat elke tekst, elk woord en elk getal tot 20 dat de app kan zeggen een opname heeft.
 
 ### Online zetten (Cloudflare)
-De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmalig `npx wrangler login`, daarna `npm run deploy`. Op de tablet: open het adres in Chrome en kies "App installeren". **Dit project is nog niet online gezet.**
+De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmalig `npx wrangler login`, daarna `npm run deploy`. De app staat op **https://lucas-turbo-missie.exl999.workers.dev**. Op de tablet: open het adres in Chrome (met wifi), kies het menu (⋮) → "App installeren" en open de app daarna één keer; dan wordt alles (ongeveer 2 MB, inclusief alle stem) opgeslagen en werkt hij ook offline.
 
 ### Opbouw
 ```
