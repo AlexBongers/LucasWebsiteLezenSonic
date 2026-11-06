@@ -1,0 +1,64 @@
+{
+  "_uitleg": "provider: 'elevenlabs'. stem: de id van de gekozen stem. tempo: 1.0 = normaal, hoger = vlotter (0.7 tot 1.2). versie: verhoog dit getal als je het tempo wijzigt; dan krijgen alle opnames nieuwe bestandsnamen. Daarna: npm run audio",
+  "provider": "elevenlabs",
+  "stem": "X47hgIK01mak7V68z9pH",
+  "stemNaam": "Milan",
+  "versie": 1,
+  "elevenlabs": {
+    "modelZinnen": "eleven_multilingual_v2",
+    "modelWoorden": "eleven_flash_v2_5",
+    "stabiliteit": 0.5,
+    "gelijkenis": 0.75,
+    "stijl": 0.3,
+    "tempo": {
+      "instructie": 0.95,
+      "woord": 0.85,
+      "zin": 0.9,
+      "getal": 0.9
+    },
+    "nederlandsAfdwingen": {
+      "_uitleg": "Teksten die het model anders soms Engels uitspreekt; die krijgen een model met Nederlands afgedwongen.",
+      "model": "eleven_v4",
+      "teksten": []
+    }
+  },
+  "google": {
+    "tempo": {
+      "instructie": 1.0,
+      "woord": 0.85,
+      "zin": 0.92,
+      "getal": 0.95
+    }
+  },
+  "azure": {
+    "tempo": {
+      "instructie": "-5%",
+      "woord": "-15%",
+      "zin": "-10%",
+      "getal": "-5%"
+    }
+  },
+  "proefstemmen": [
+    {
+      "provider": "elevenlabs",
+      "id": "X47hgIK01mak7V68z9pH",
+      "naam": "Milan (jong, vrolijk)"
+    },
+    {
+      "provider": "elevenlabs",
+      "id": "jfwdd64Nlhnj6vcFqRHZ",
+      "naam": "Koen (helder)"
+    },
+    {
+      "provider": "elevenlabs",
+      "id": "hLnc7y4d152WGG2BQlAY",
+      "naam": "Jaimie (direct)"
+    },
+    {
+      "provider": "elevenlabs",
+      "id": "vzp1VWf0thhcmt2UXGOY",
+      "naam": "Sebastiaan (jong)"
+    }
+  ],
+  "proefzin": "Hoi Lucas! Ik ben de stem van de egel. Zullen we samen de robots kapot maken?"
+}

@@ -1,0 +1,85 @@
+/**
+ * Alle spellen, per held (PLAN.md §4). Elk spel heeft zijn eigen niveau en laat zich
+ * door dezelfde ronde-planner vullen (herhaling, makkelijke opwarmer, eigen niveau).
+ */
+import type { Rnd } from '../engine/toeval';
+import {
+  bouwId, bouwUitId, FLITS_START, maakBouw, maakRing, maakSmash, maakSommen, maakTel, maakWoordRace, REKEN_MAX, ringId, ringUitId,
+  smashId, smashUitId, somId, somUitId, telId, telUitId, woordId, woordRaceUitId, TEL_MAX,
+  type BouwOpgave, type Kent, type RingOpgave, type SmashOpgave, type Som, type TelOpgave, type WoordRaceOpgave,
+} from '../engine/generator-lucas';
+
+export type HeldId = 'sonic' | 'tails' | 'knuckles';
+
+export type SpelId = 'ringrace' | 'woordrace' | 'smash' | 'bouwen' | 'katapult' | 'telbouw';
+
+/** Een spel is ook de vaardigheid waarvan het niveau wordt bijgehouden. */
+export type VaardigheidId = SpelId;
+
+/** Zo maakt en herbouwt een spel zijn opgaven (T = het soort opgave). */
+export type Opgaven<T> = {
+  maak: (niveau: number, aantal: number, kent: Kent, rnd?: Rnd) => T[];
+  herbouw: (id: string, niveau: number, kent: Kent) => T | null;
+  id: (t: T) => string;
+  /** Om dubbele te voorkomen (standaard hetzelfde als id). */
+  sleutel?: (t: T) => string;
+};
+
+export type SpelDef<T = unknown> = {
+  id: SpelId;
+  held: HeldId;
+  naam: string;
+  uitleg: string;
+  icoon: string;
+  /** Hoogste niveau (het eerste is 0). */
+  maxNiveau: number;
+  /** Rustigere regels voor omhoog/omlaag en strengere auditie (rekenen). */
+  rekenen?: boolean;
+  /** Voorvoegsel van de sleutels in de herhalingsdoosjes. */
+  prefix: string;
+  /** Flitsspellen onthouden hoe snel Lucas al kan lezen. */
+  flits?: boolean;
+  snel?: boolean;
+  opgaven: Opgaven<T>;
+};
+
+const def = <T>(d: SpelDef<T>) => d as SpelDef<unknown>;
+
+export const SPELLEN: SpelDef<unknown>[] = [
+  def<RingOpgave>({
+    id: 'ringrace', held: 'sonic', naam: 'Ring-race', uitleg: 'Welke letter flitste er?', icoon: '⚡', maxNiveau: 1, prefix: 'ring.', flits: true, snel: true,
+    opgaven: { maak: maakRing, herbouw: (id, _n, kent) => ringUitId(id, kent), id: (o) => ringId(o.letter) },
+  }),
+  def<WoordRaceOpgave>({
+    id: 'woordrace', held: 'sonic', naam: 'Woord-race', uitleg: 'Lees het woordje, kies het plaatje', icoon: '🏁', maxNiveau: 1, prefix: 'woord.', flits: true, snel: true,
+    opgaven: { maak: maakWoordRace, herbouw: (id, _n, kent) => woordRaceUitId(id, kent), id: (o) => woordId(o.woord) },
+  }),
+  def<SmashOpgave>({
+    id: 'smash', held: 'knuckles', naam: 'Letter-smash', uitleg: 'Sla de beginletter kapot', icoon: '💥', maxNiveau: 1, prefix: 'smash.', snel: true,
+    opgaven: { maak: maakSmash, herbouw: (id, n, kent) => smashUitId(id, n, kent), id: (o) => smashId(o.woord) },
+  }),
+  def<BouwOpgave>({
+    id: 'bouwen', held: 'knuckles', naam: 'Woord-bouwen', uitleg: 'Leg het woordje met stenen', icoon: '🧱', maxNiveau: 1, prefix: 'bouw.',
+    opgaven: { maak: maakBouw, herbouw: (id, n, kent) => bouwUitId(id, n, kent), id: (o) => bouwId(o.woord) },
+  }),
+  def<Som>({
+    id: 'katapult', held: 'tails', naam: 'Katapult-sommen', uitleg: 'Schiet de goede robot weg', icoon: '🎯', maxNiveau: REKEN_MAX, rekenen: true, prefix: 'som.', snel: true,
+    opgaven: { maak: (n, a, _k, rnd) => maakSommen(n, a, rnd), herbouw: (id) => somUitId(id), id: somId },
+  }),
+  def<TelOpgave>({
+    id: 'telbouw', held: 'tails', naam: 'Tel & Bouw', uitleg: 'Bouw een toren en laat hem ontploffen', icoon: '🏗️', maxNiveau: TEL_MAX, rekenen: true, prefix: 'tel.',
+    opgaven: { maak: (n, a, _k, rnd) => maakTel(n, a, rnd), herbouw: (id) => telUitId(id), id: telId },
+  }),
+];
+
+export const SPEL = Object.fromEntries(SPELLEN.map((s) => [s.id, s])) as Record<SpelId, SpelDef<unknown>>;
+export const spellenVan = (h: HeldId) => SPELLEN.filter((s) => s.held === h);
+
+/** Opgaven voor de auditie: 8 stuks die oplopen in moeilijkheid (het niveau per opgave). */
+export function auditieNiveaus(maxNiveau: number): number[] {
+  if (maxNiveau <= 1) return [0, 0, 0, 0, 1, 1, 1, 1];
+  if (maxNiveau <= 3) return [0, 0, 1, 1, 2, 2, 3, 3];
+  return [0, 0, 1, 2, 2, 3, 4, 4];
+}
+
+export { FLITS_START };

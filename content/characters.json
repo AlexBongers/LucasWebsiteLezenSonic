@@ -1,0 +1,26 @@
+{
+  "sonic": {
+    "naam": "Sonic",
+    "rol": "supersnelle egel",
+    "vak": "Lezen",
+    "uitleg": "Flitsen en racen",
+    "kleur": "#2563eb",
+    "intro": "Hoi! Ik ben Sonic. Zullen we samen racen?"
+  },
+  "tails": {
+    "naam": "Tails",
+    "rol": "bouwer en uitvinder",
+    "vak": "Rekenen",
+    "uitleg": "Schieten, bouwen en tellen",
+    "kleur": "#f59e0b",
+    "intro": "Hoi! Ik ben Tails. Zullen we samen bouwen en schieten?"
+  },
+  "knuckles": {
+    "naam": "Knuckles",
+    "rol": "supersterke vuisten",
+    "vak": "Letters en woorden",
+    "uitleg": "Smashen en bouwen",
+    "kleur": "#dc2626",
+    "intro": "Hoi! Ik ben Knuckles. Samen smashen we alle letters!"
+  }
+}

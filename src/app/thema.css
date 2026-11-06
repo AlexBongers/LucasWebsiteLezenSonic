@@ -1,0 +1,208 @@
+:root {
+  --nacht: #07235c;
+  --nacht-2: #0b2a6f;
+  --paars: #2563eb;
+  --paars-licht: #93c5fd;
+  --roze: #ef4444;
+  --turquoise: #22d3ee;
+  --goud: #fbbf24;
+  --goud-licht: #fde68a;
+  --goud-donker: #b45309;
+  --papier: #fffaf0;
+  --inkt: #0f2557;
+  --goed: #22c55e;
+  --font-titel: 'Fredoka', 'Andika', system-ui, sans-serif;
+  --font-lees: 'Andika', 'Fredoka', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--nacht);
+  color: #fff;
+  font-family: var(--font-titel);
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+#app {
+  height: 100dvh;
+  width: 100vw;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Glanzende gouden knop */
+.knop-goud {
+  min-height: 72px;
+  padding: 0 36px;
+  border-radius: 999px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #4a1d00;
+  background: linear-gradient(180deg, #fff3b0 0%, #fbbf24 45%, #f59e0b 100%);
+  box-shadow:
+    0 6px 0 #b45309,
+    0 10px 24px rgba(251, 191, 36, 0.45),
+    inset 0 2px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.knop-goud:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 #b45309, 0 4px 12px rgba(251, 191, 36, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Ronde glazen knop (terug, luidspreker) */
+.knop-rond {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s;
+}
+.knop-rond:active {
+  transform: scale(0.92);
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.4); opacity: 0; }
+  70% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes schud {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  20% { transform: translateX(-10px) rotate(-6deg); }
+  40% { transform: translateX(10px) rotate(6deg); }
+  60% { transform: translateX(-6px) rotate(-3deg); }
+  80% { transform: translateX(6px) rotate(3deg); }
+}
+@keyframes glans {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.goudtekst {
+  background: linear-gradient(90deg, #fde68a, #fbbf24, #fff7c2, #f59e0b, #fde68a);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: glans 4s linear infinite;
+  filter: drop-shadow(0 3px 0 rgba(120, 53, 15, 0.7)) drop-shadow(0 0 18px rgba(251, 191, 36, 0.45));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* ---------- Gedeelde opmaak voor de spellen ---------- */
+.spelvlak {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 290px 1fr;
+}
+.heldin-plek {
+  position: relative;
+  align-self: end;
+  justify-self: center;
+  padding-bottom: 16px;
+}
+.speelveld {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 8px 32px 28px 0;
+}
+.opdrachtkaart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 18px 48px;
+  border-radius: 32px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+  border: 3px solid rgba(253, 230, 138, 0.55);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  animation: pop-in 0.45s ease-out;
+}
+.leeswoord {
+  font-family: var(--font-lees);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  color: #fff;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.5);
+}
+.keuzerij {
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  max-width: 100%;
+}
+.keuzeknop {
+  display: grid;
+  place-items: center;
+  min-width: 180px;
+  min-height: 150px;
+  padding: 14px 24px;
+  border-radius: 28px;
+  font-family: var(--font-lees);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--inkt);
+  background: linear-gradient(180deg, #ffffff, #e0f2fe);
+  border: 4px solid #fff;
+  box-shadow: 0 7px 0 #1d4ed8, 0 12px 24px rgba(0, 0, 0, 0.35);
+  animation: pop-in 0.4s ease-out backwards;
+  transition: transform 0.1s, filter 0.3s, opacity 0.3s;
+}
+.keuzeknop:active {
+  transform: translateY(5px);
+  box-shadow: 0 2px 0 #1d4ed8;
+}
+.keuzeknop.fout {
+  animation: schud 0.5s ease-in-out;
+  filter: grayscale(0.85) brightness(0.7);
+  opacity: 0.5;
+}
+.keuzeknop.goed {
+  background: linear-gradient(180deg, #dcfce7, #86efac);
+  box-shadow: 0 7px 0 #15803d, 0 0 30px rgba(134, 239, 172, 0.9);
+}
+.verder-knop {
+  animation: pop-in 0.4s ease-out;
+}
+.hint-goud {
+  color: #fbbf24;
+  text-shadow: 0 0 18px rgba(251, 191, 36, 0.9);
+}

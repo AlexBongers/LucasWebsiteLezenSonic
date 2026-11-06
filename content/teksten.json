@@ -1,0 +1,66 @@
+{
+  "welkom": "Hoi Lucas! Kies je held!",
+  "complimenten": [
+    "Goed zo!",
+    "Super!",
+    "Boem! Gelukt!",
+    "Wat een held ben jij!",
+    "Yes! Weggeblazen!",
+    "Lekker bezig, Lucas!",
+    "Turbo!",
+    "Precies goed!"
+  ],
+  "bijna": [
+    "Bijna! Probeer het nog eens.",
+    "Oei, net niet. Kijk nog eens goed.",
+    "Bijna! Jij kunt dit!"
+  ],
+  "hetIs": "Het goede antwoord is",
+  "verder": "Tik op verder.",
+  "stoppen": "Wil je stoppen met dit spel?",
+  "afsluiten": "Wil je stoppen met spelen?",
+  "beloning": "Gelukt! Alle robots zijn kapot!",
+  "draaien": "Draai je tablet een kwartslag.",
+  "spelkeuze": "Welk spel wil je spelen?",
+  "auditie": {
+    "start": "Eerst een proefrondje! Het wordt steeds een beetje moeilijker. Fouten maken mag.",
+    "klaar": "Goed gedaan! Nu weet ik waar we beginnen."
+  },
+  "pauze": {
+    "tijd": "Wat heb je goed geoefend! Tijd voor een pauze.",
+    "tot": "Tot de volgende keer, Lucas!"
+  },
+  "ringrace": {
+    "start": "Kijk goed naar de flits. Welke letter zag je? Tik op de ring!",
+    "vraag": "Welke letter zag je?",
+    "nogEens": "Kijk nog eens goed. Daar is de letter weer."
+  },
+  "woordrace": {
+    "start": "Lees het woordje in de flits. Kies het goede plaatje!",
+    "vraag": "Welk plaatje hoort erbij?",
+    "nogEens": "Kijk nog eens goed. Daar is het woordje weer."
+  },
+  "smash": {
+    "start": "Ik zeg een woord. Sla de steen met de eerste letter kapot!",
+    "vraag": "Met welke letter begint",
+    "nogEens": "Luister nog eens goed."
+  },
+  "bouwen": {
+    "start": "Bouw het woord met de letterstenen. Tik de letters in de goede volgorde!",
+    "vraag": "Bouw het woord",
+    "hint": "Kijk, deze letter komt nu."
+  },
+  "katapult": {
+    "start": "Schiet de robot met het goede antwoord weg!",
+    "hint": "Tel de ringen. Dan weet je het antwoord."
+  },
+  "telbouw": {
+    "bouw": "Bouw een toren van",
+    "stenen": "stenen. Tik op plus voor een steen.",
+    "tel": "Hoeveel stenen staan er?",
+    "teVeel": "Dat zijn er te veel. Haal er een paar weg.",
+    "teWeinig": "Er moeten er nog een paar bij.",
+    "boem": "Boem!",
+    "klaar": "Tik op de bom als je klaar bent."
+  }
+}

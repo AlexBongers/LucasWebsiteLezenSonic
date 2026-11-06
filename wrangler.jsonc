@@ -1,0 +1,13 @@
+// Cloudflare Worker die de app uit dist/ serveert (Workers Static Assets).
+// Uitrollen: npm run deploy  (heeft CLOUDFLARE_API_TOKEN en CLOUDFLARE_ACCOUNT_ID nodig)
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lucas-turbo-missie",
+  "compatibility_date": "2026-11-05",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  "preview_urls": false
+}
