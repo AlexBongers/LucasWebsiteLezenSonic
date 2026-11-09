@@ -5,7 +5,7 @@
  */
 import stemInstellingen from '../../content/stem.json';
 import { audioSleutel, normaliseer, stemSleutel, type Spreeksoort } from './hash';
-import { audioContext } from './geluid';
+import { audioContext, duckMuziek } from './geluid';
 
 type Manifest = { stem: string; bestanden: string[] };
 
@@ -90,7 +90,6 @@ function spreekMetApparaat(tekst: string, soort: Spreeksoort, mijnBeurt: number,
 type Fragment = { buffer: AudioBuffer; start: number; duur: number; versterking: number };
 const fragmenten = new Map<string, Promise<Fragment | null>>();
 const DREMPEL = 0.012;
-const DOEL_PIEK = 0.8;
 
 function knipStilte(buffer: AudioBuffer): Fragment {
   const data = buffer.getChannelData(0);
@@ -98,10 +97,8 @@ function knipStilte(buffer: AudioBuffer): Fragment {
   while (begin < data.length && Math.abs(data[begin]) < DREMPEL) begin++;
   let eind = data.length - 1;
   while (eind > begin && Math.abs(data[eind]) < DREMPEL) eind--;
-  // Even hard maken: zachte opnames (bijv. een gefluisterd getal) worden versterkt.
-  let piek = 0;
-  for (let i = begin; i <= eind; i++) piek = Math.max(piek, Math.abs(data[i]));
-  const versterking = piek > 0 ? Math.min(8, Math.max(1, DOEL_PIEK / piek)) : 1;
+  // Het volume is al gelijkgetrokken bij het maken van de opnames (tools/maak-audio.ts): hier geen versterking meer.
+  const versterking = 1;
   if (eind <= begin) return { buffer, start: 0, duur: buffer.duration, versterking };
   const marge = Math.floor(buffer.sampleRate * 0.03);
   const van = Math.max(0, begin - marge);
@@ -197,6 +194,7 @@ function meld(tekst: string | null, soort: Spreeksoort = 'instructie') {
 
 export function stopSpreken() {
   beurt++;
+  duckMuziek(false);
   meld(null);
   if (huidigeAudio) {
     huidigeAudio.pause();
@@ -224,6 +222,7 @@ export async function spreek(tekst: string | string[], soort: Spreeksoort = 'ins
   const delen = (Array.isArray(tekst) ? tekst : [tekst]).map(normaliseer).filter(Boolean);
   const bestanden = delen.map((d) => bestandVoor(d, soort));
   meld(delen.join(' '), soort);
+  duckMuziek(true);
   if (bestanden.every((b): b is string => b !== null)) {
     // Alle stukjes alvast tegelijk laden, dan zonder pauze achter elkaar afspelen.
     const geladen = bestanden.map(laadFragment);
@@ -238,7 +237,10 @@ export async function spreek(tekst: string | string[], soort: Spreeksoort = 'ins
   } else {
     await spreekMetApparaat(delen.join(' '), soort, mijnBeurt, opVoortgang);
   }
-  if (mijnBeurt === beurt) meld(null, soort);
+  if (mijnBeurt === beurt) {
+    meld(null, soort);
+    duckMuziek(false);
+  }
 }
 
 /** Zet een som om naar losse stukjes om uit te spreken. */

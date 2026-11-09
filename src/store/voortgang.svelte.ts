@@ -26,6 +26,10 @@ export type Sessie = {
 export type Voortgang = {
   versie: 1;
   ringen: number;
+  /** Turbokristallen verzameld met dagmissies (maximaal 7). */
+  kristallen: number;
+  /** Hoeveel dagmissies zijn er gespeeld? */
+  missies: number;
   vaardigheden: Record<VaardigheidId, Vaardigheid>;
   /** Voor de flitsspellen: hoe lang het woord of de letter in beeld blijft (milliseconden). */
   flitstijd: number;
@@ -46,6 +50,8 @@ export type Voortgang = {
     opgavenPerSessie: number;
     apparaatStem: string | null;
     effecten: boolean;
+    /** Zachte achtergrondmuziek. */
+    muziek: boolean;
   };
 };
 
@@ -55,6 +61,8 @@ export function standaardVoortgang(): Voortgang {
   return {
     versie: 1,
     ringen: 0,
+    kristallen: 0,
+    missies: 0,
     vaardigheden: perSpel(() => ({ niveau: 0, recent: [] as boolean[] })),
     flitstijd: FLITS_START,
     sessies: [],
@@ -69,6 +77,7 @@ export function standaardVoortgang(): Voortgang {
       opgavenPerSessie: 6,
       apparaatStem: null,
       effecten: true,
+      muziek: true,
     },
   };
 }

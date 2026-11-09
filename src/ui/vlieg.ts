@@ -1,6 +1,8 @@
 /** Gouden ringen die van een plek naar de ringenteller vliegen. */
 const NOOT_SVG = `<svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="15" fill="none" stroke="#fbbf24" stroke-width="8"/><circle cx="20" cy="20" r="15" fill="none" stroke="#fff7c2" stroke-width="1.5"/></svg>`;
 
+import { speelRing } from '../audio/geluid';
+
 export function vliegRingen(aantal: number, van: Element | null | undefined, naar: Element | null | undefined) {
   if (!naar || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const doel = naar.getBoundingClientRect();
@@ -26,6 +28,10 @@ export function vliegRingen(aantal: number, van: Element | null | undefined, naa
       ],
       { duration: 850, delay: i * 110, easing: 'cubic-bezier(.5,0,.4,1)', fill: 'backwards' },
     );
-    anim.onfinish = () => el.remove();
+    anim.onfinish = () => {
+      el.remove();
+      // Elke ring die aankomt klinkt als een ring.
+      speelRing();
+    };
   }
 }

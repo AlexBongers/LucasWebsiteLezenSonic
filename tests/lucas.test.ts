@@ -175,3 +175,98 @@ describe('alles wordt door de ingesproken stem gezegd', () => {
     for (const w of ['plus', 'min', 'is']) expect(lijst.has(`getal|${w}`)).toBe(true);
   });
 });
+
+import { jachtUitId, maakJacht, maakMeer, maakPatronen, maakSplits, meerAntwoord, meerUitId, patroonUitId, splitsUitId, PATROON_PLAATJES, VERWARBAAR } from '../src/engine/generator-lucas';
+
+describe('Meer-race', () => {
+  it('altijd een duidelijk verschil, binnen het niveau, en het antwoord klopt', () => {
+    const rnd = zaadRnd(20);
+    const grens = [6, 10, 20];
+    for (let n = 0; n <= 2; n++) {
+      for (const o of maakMeer(n, 30, rnd)) {
+        expect(o.a).not.toBe(o.b);
+        expect(Math.max(o.a, o.b)).toBeLessThanOrEqual(grens[n]);
+        expect(Math.abs(o.a - o.b)).toBeGreaterThanOrEqual(n === 0 ? 2 : 1);
+        const goed = meerAntwoord(o) === 'links' ? o.a : o.b;
+        const andere = meerAntwoord(o) === 'links' ? o.b : o.a;
+        expect(o.vraag === 'meer' ? goed > andere : goed < andere).toBe(true);
+        if (n === 0) expect(o.vraag).toBe('meer');
+      }
+    }
+  });
+  it('terug van id', () => {
+    expect(meerUitId('meer.ringen.minder.7-3')).toEqual({ vorm: 'ringen', vraag: 'minder', a: 7, b: 3 });
+    expect(meerUitId('rommel')).toBeNull();
+  });
+});
+
+describe('Patroon-race', () => {
+  it('het antwoord volgt het patroon en de keuzes zijn verschillend', () => {
+    const rnd = zaadRnd(21);
+    for (let n = 0; n <= 2; n++) {
+      for (const o of maakPatronen(n, 12, rnd)) {
+        // Twee volle herhalingen plus één stap; de reeks moet kloppen met de vorm.
+        expect(o.reeks).toHaveLength(o.vorm.length * 2 + 1);
+        const letters = [...new Set(o.vorm.split(''))];
+        const sym = (l: string) => PATROON_PLAATJES[o.plaatjes[letters.indexOf(l)]];
+        o.reeks.forEach((p, i) => expect(p).toBe(sym(o.vorm[i % o.vorm.length])));
+        expect(o.antwoord).toBe(sym(o.vorm[(o.vorm.length * 2 + 1) % o.vorm.length]));
+        expect(o.keuzes).toContain(o.antwoord);
+        expect(new Set(o.keuzes).size).toBe(3);
+        expect(new Set(o.plaatjes).size).toBe(o.plaatjes.length);
+      }
+    }
+  });
+  it('terug van id', () => {
+    expect(patroonUitId('patroon.AB.0.1')!.reeks).toEqual(['🔴', '🔵', '🔴', '🔵', '🔴']);
+    expect(patroonUitId('patroon.AB.0.1')!.antwoord).toBe('🔵');
+    expect(patroonUitId('x')).toBeNull();
+  });
+});
+
+describe('Splits-bom', () => {
+  it('b = totaal − a, binnen het niveau, het antwoord staat tussen de keuzes', () => {
+    const rnd = zaadRnd(22);
+    const grens = [5, 10, 20];
+    for (let n = 0; n <= 2; n++) {
+      for (const o of maakSplits(n, 20, rnd)) {
+        expect(o.a + o.b).toBe(o.totaal);
+        expect(o.totaal).toBeLessThanOrEqual(grens[n]);
+        expect(o.a).toBeGreaterThanOrEqual(1);
+        expect(o.b).toBeGreaterThanOrEqual(1);
+        expect(o.keuzes).toContain(o.b);
+        expect(uniek(o.keuzes)).toBe(true);
+        for (const k of o.keuzes) expect(k).toBeLessThanOrEqual(o.totaal);
+      }
+    }
+  });
+  it('terug van id', () => {
+    expect(splitsUitId('splits.9.4')!.b).toBe(5);
+  });
+});
+
+describe('Letter-jacht', () => {
+  it('het juiste aantal gezochte letters tussen de stenen, alleen bekende letters', () => {
+    const alles = maakKent([...STANDAARD_KENT, 'b', 'd']);
+    for (let n = 0; n <= 2; n++) {
+      for (const o of maakJacht(n, 8, alles, zaadRnd(23 + n))) {
+        expect(o.tegels).toHaveLength(n === 0 ? 6 : 9);
+        expect(o.doelen).toHaveLength(n === 0 ? 3 : 4);
+        for (const i of o.doelen) expect(o.tegels[i]).toBe(o.letter);
+        expect(o.tegels.filter((t) => t === o.letter)).toHaveLength(o.doelen.length);
+        for (const t of o.tegels) expect(alles.has(t)).toBe(true);
+      }
+    }
+  });
+  it('niveau 3: lettervriendjes staan tussen de stenen', () => {
+    const bd = maakKent([...STANDAARD_KENT, 'b', 'd']);
+    const bs = maakJacht(2, 60, bd, zaadRnd(30)).filter((o) => o.letter === 'b');
+    expect(bs.length).toBeGreaterThan(0);
+    for (const o of bs) expect(o.tegels).toContain('d');
+    expect(VERWARBAAR.some((p) => p.includes('b') && p.includes('d'))).toBe(true);
+  });
+  it('terug van id', () => {
+    expect(jachtUitId('jacht.m', 0, kent)!.letter).toBe('m');
+    expect(jachtUitId('jacht.z', 0, kent)).toBeNull();
+  });
+});

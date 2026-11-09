@@ -16,6 +16,8 @@
     titel = 'Gelukt!',
     melding,
     pauze = false,
+    missie = null,
+    opVerder,
     opNogEens,
     opTerug,
     opPauze = opTerug,
@@ -31,6 +33,9 @@
     /** Speeltijd om: alleen nog een knop naar het pauzescherm. */
     pauze?: boolean;
     opPauze?: () => void;
+    /** Bij een dagmissie: welk spel is dit (stap) van hoeveel? */
+    missie?: { stap: number; totaal: number } | null;
+    opVerder?: () => void;
     opNogEens: () => void;
     opTerug: () => void;
   } = $props();
@@ -42,7 +47,7 @@
     speelFanfare();
     grootFeest();
     void (async () => {
-      await spreek(melding ? teksten.auditie.klaar : teksten.beloning);
+      await spreek(missie ? teksten.missie.volgende : melding ? teksten.auditie.klaar : teksten.beloning);
       if (pauze) await spreek(teksten.pauze.tijd);
     })();
   });
@@ -81,7 +86,16 @@
       <div class="omhoog">🎉 Level omhoog! Jij wordt steeds sterker!</div>
     {/if}
 
-    {#if pauze}
+    {#if missie}
+      <div class="stappen" aria-label="Missie: spel {missie.stap + 1} van {missie.totaal}">
+        {#each Array.from({ length: missie.totaal }) as _, i}
+          <span class="stap" class:klaar={i <= missie.stap}>{i <= missie.stap ? '⭐' : '○'}</span>
+        {/each}
+      </div>
+      <div class="knoppen">
+        <button class="knop-goud groot" onclick={opVerder}>{missie.stap + 1 < missie.totaal ? 'Volgende spel ➜' : 'Pak je kristal! 💎'}</button>
+      </div>
+    {:else if pauze}
       <div class="pauze">☕ Tijd voor een pauze!</div>
       <div class="knoppen">
         <button class="knop-goud" onclick={opPauze}>Klaar voor vandaag 👋</button>
@@ -155,6 +169,18 @@
     font-size: 26px;
     font-weight: 600;
     animation: pop-in 0.6s ease-out 1s backwards;
+  }
+  .stappen {
+    display: flex;
+    gap: 14px;
+    font-size: 40px;
+    animation: pop-in 0.6s ease-out 1s backwards;
+  }
+  .stap:not(.klaar) {
+    opacity: 0.4;
+  }
+  .groot {
+    min-width: 340px;
   }
   .pauze {
     font-size: 30px;

@@ -1,4 +1,4 @@
-import { speelPoef } from '../audio/geluid';
+import { speelBoem, speelKatapult } from '../audio/geluid';
 import { glitterOp } from './feest';
 
 const STER = `<svg viewBox="-50 -50 100 100" width="100%" height="100%"><defs><radialGradient id="bm"><stop offset="0" stop-color="#fff"/><stop offset="0.35" stop-color="#fde047"/><stop offset="0.75" stop-color="#f97316"/><stop offset="1" stop-color="#dc2626"/></radialGradient></defs><polygon points="0,-48 10,-22 36,-34 26,-8 50,0 26,8 36,34 10,22 0,48 -10,22 -36,34 -26,8 -50,0 -26,-8 -36,-34 -10,-22" fill="url(#bm)" stroke="#7c2d12" stroke-width="2.5" stroke-linejoin="round"/></svg>`;
@@ -9,9 +9,10 @@ const STER = `<svg viewBox="-50 -50 100 100" width="100%" height="100%"><defs><r
  */
 export function boem(el: Element | null | undefined, grootte = 220) {
   if (!el) return;
-  speelPoef();
+  speelBoem();
   glitterOp(el);
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  schud(grootte > 180 ? 9 : 5);
   const r = el.getBoundingClientRect();
   const cx = r.left + r.width / 2;
   const cy = r.top + r.height / 2;
@@ -59,9 +60,29 @@ export function boem(el: Element | null | undefined, grootte = 220) {
   }
 }
 
+/** Het hele scherm schudt even mee met een knal. */
+export function schud(sterkte = 8) {
+  const podium = document.querySelector('.buhne');
+  if (!podium) return;
+  const huidig = getComputedStyle(podium).transform;
+  const basis = huidig === 'none' ? '' : huidig;
+  podium.animate(
+    [
+      { transform: `${basis} translate(0, 0)` },
+      { transform: `${basis} translate(${-sterkte}px, ${sterkte * 0.6}px)` },
+      { transform: `${basis} translate(${sterkte}px, ${-sterkte * 0.5}px)` },
+      { transform: `${basis} translate(${-sterkte * 0.6}px, ${-sterkte * 0.4}px)` },
+      { transform: `${basis} translate(${sterkte * 0.4}px, ${sterkte * 0.3}px)` },
+      { transform: `${basis} translate(0, 0)` },
+    ],
+    { duration: 330, easing: 'ease-out' },
+  );
+}
+
 /** Een steen die in een boog van de ene naar de andere plek vliegt (voor de katapult). */
 export function werp(van: Element | null | undefined, naar: Element | null | undefined, duur = 650): Promise<void> {
   if (!van || !naar) return Promise.resolve();
+  speelKatapult();
   const a = van.getBoundingClientRect();
   const b = naar.getBoundingClientRect();
   const x0 = a.left + a.width / 2 - 20;

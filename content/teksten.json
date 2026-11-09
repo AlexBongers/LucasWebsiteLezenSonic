@@ -8,12 +8,22 @@
     "Yes! Weggeblazen!",
     "Lekker bezig, Lucas!",
     "Turbo!",
-    "Precies goed!"
+    "Precies goed!",
+    "Wauw, wat snel!",
+    "Dat was een knal!",
+    "Jij bent een kanjer!",
+    "Wat een turbo!",
+    "Bam! Raak!",
+    "Jij kunt dit!",
+    "Echt super gedaan!",
+    "Kijk eens, wat een kracht!"
   ],
   "bijna": [
     "Bijna! Probeer het nog eens.",
     "Oei, net niet. Kijk nog eens goed.",
-    "Bijna! Jij kunt dit!"
+    "Bijna! Jij kunt dit!",
+    "Nog een keertje, dan lukt het!",
+    "Dat was dichtbij! Probeer het maar weer."
   ],
   "hetIs": "Het goede antwoord is",
   "verder": "Tik op verder.",
@@ -62,5 +72,38 @@
     "teWeinig": "Er moeten er nog een paar bij.",
     "boem": "Boem!",
     "klaar": "Tik op de bom als je klaar bent."
+  },
+  "meer": {
+    "start": "Welke kant heeft het meeste? Tik erop!",
+    "meerRingen": "Welke kant heeft meer ringen?",
+    "minderRingen": "Welke kant heeft minder ringen?",
+    "groter": "Welk getal is groter?",
+    "kleiner": "Welk getal is kleiner?",
+    "hint": "Tel de ringen maar eens."
+  },
+  "patroon": {
+    "start": "Kijk goed naar het patroon. Wat komt hierna?",
+    "vraag": "Wat komt hierna?",
+    "hint": "Kijk, dit stukje komt steeds terug."
+  },
+  "splits": {
+    "start": "Maak de bom veilig! Er moeten genoeg ringen in.",
+    "vraag1": "De bom heeft",
+    "vraag2": "ringen nodig. Er zijn er al",
+    "vraag3": "Hoeveel ringen moeten er nog bij?",
+    "hint": "Tel de lege plekjes.",
+    "klaar": "De bom is veilig!"
+  },
+  "jacht": {
+    "start": "Sla alle stenen met dezelfde letter kapot!",
+    "vraag": "Zoek alle letters van",
+    "hint": "Kijk goed, ze lichten op.",
+    "klaar": "Alles kapot!"
+  },
+  "missie": {
+    "start": "Dagmissie! Speel drie spelletjes en win een turbokristal.",
+    "volgende": "Goed gedaan! Op naar het volgende spel.",
+    "klaar": "Missie gelukt! Je hebt een turbokristal!",
+    "alle": "Wat een held! Alle kristallen zijn van jou. Nu ben je een superheld!"
   }
 }

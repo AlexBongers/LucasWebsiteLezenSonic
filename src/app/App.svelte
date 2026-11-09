@@ -9,14 +9,16 @@
   import Ouderhoek from './Ouderhoek.svelte';
   import Einde from './Einde.svelte';
   import SpelKeuze from './SpelKeuze.svelte';
-  import { SPEL, type SpelId } from '../games/spellen';
+  import KristalScherm from './KristalScherm.svelte';
+  import { SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
+  import { WERELD_VAN } from '../ui/werelden';
   import characters from '../../content/characters.json';
   import teksten from '../../content/teksten.json';
-  import { laadVoortgang, vg, type HeldinId } from '../store/voortgang.svelte';
+  import { bewaar, laadVoortgang, vg, type HeldinId } from '../store/voortgang.svelte';
   import { laadStemManifest, spreek, stopSpreken, zetApparaatStem } from '../audio/stem';
-  import { ontgrendelGeluid, zetEffectenAan } from '../audio/geluid';
+  import { ontgrendelGeluid, pauzeerGeluid, speelWhoosh, startMuziek, stopMuziek, zetEffectenAan } from '../audio/geluid';
 
-  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'ouder' | 'einde';
+  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'kristal' | 'ouder' | 'einde';
   let scherm = $state<Scherm>('start');
   let heldin = $state<HeldinId>('sonic');
   let spel = $state<SpelId>('ringrace');
@@ -25,9 +27,14 @@
   /** Begin van deze speelbeurt (voor de pauze na 10, 15 of 20 minuten). */
   let speelStart = $state(Date.now());
 
+  /** De dagmissie: drie spelletjes, een van elke held. */
+  type Missie = { spellen: SpelId[]; stap: number };
+  let missie = $state<Missie | null>(null);
+  let nieuwKristal = $state(0);
+
   function pauzeNodig() {
     const min = vg.instellingen.sessieMinuten;
-    return min > 0 && Date.now() - speelStart >= min * 60_000;
+    return !missie && min > 0 && Date.now() - speelStart >= min * 60_000;
   }
 
   /** Alles staat op een vast podium van 1280 x 800 dat meeschaalt met het scherm. */
@@ -42,6 +49,20 @@
   let vraagAfsluiten = $state(false);
 
   let accent = $derived(scherm === 'level' || scherm === 'spellen' ? characters[heldin].kleur : '#3b82f6');
+  /** Elke held heeft zijn eigen wereld: de heuvel, de werkplaats of de ruïnes. */
+  let wereld = $derived(scherm === 'level' || scherm === 'spellen' ? WERELD_VAN[heldin as HeldId] : 'heuvel');
+
+  // Een snelle veeg tussen schermen (snelheidsstrepen).
+  let veeg = $state(0);
+  let vorigScherm: Scherm = 'start';
+  $effect(() => {
+    const nu = scherm;
+    if (nu !== vorigScherm) {
+      if (vorigScherm !== 'start' || nu !== 'keuze') speelWhoosh();
+      veeg++;
+      vorigScherm = nu;
+    }
+  });
 
   onMount(() => {
     void laadVoortgang().then(() => {
@@ -49,7 +70,6 @@
       zetEffectenAan(vg.instellingen.effecten);
     });
     void laadStemManifest();
-
     meet();
     addEventListener('resize', meet);
     window.visualViewport?.addEventListener('resize', meet);
@@ -66,13 +86,20 @@
       history.pushState({ app: true }, '');
       if (scherm === 'level') vraagStop = true;
       else if (scherm === 'ouder' || scherm === 'spellen') scherm = 'keuze';
+      else if (scherm === 'kristal') scherm = 'keuze';
       else if (scherm === 'keuze') vraagAfsluiten = true;
     };
     addEventListener('popstate', opTerugknop);
 
     const opZichtbaar = () => {
-      if (document.visibilityState === 'visible' && scherm !== 'start' && scherm !== 'einde') void houdSchermAan();
-      if (document.visibilityState === 'hidden') stopSpreken();
+      if (document.visibilityState === 'visible') {
+        pauzeerGeluid(false);
+        if (scherm !== 'start' && scherm !== 'einde') void houdSchermAan();
+      }
+      if (document.visibilityState === 'hidden') {
+        stopSpreken();
+        pauzeerGeluid(true);
+      }
     };
     document.addEventListener('visibilitychange', opZichtbaar);
 
@@ -94,6 +121,7 @@
 
   async function begin() {
     ontgrendelGeluid();
+    if (vg.instellingen.muziek) startMuziek();
     // Volledig scherm en liggend vastzetten op de achtergrond: nooit wachten,
     // want op sommige apparaten komt er geen antwoord en dan zou de app blijven hangen.
     void (async () => {
@@ -114,20 +142,64 @@
   }
 
   function kies(h: HeldinId) {
+    missie = null;
     heldin = h;
     scherm = 'spellen';
   }
 
   function kiesSpel(s: SpelId) {
+    missie = null;
     spel = s;
     heldin = SPEL[s].held;
     scherm = 'level';
+  }
+
+  // ---------- Dagmissie ----------
+  /** Per held een spel; liever een spel dat nog weinig gespeeld is. */
+  function kiesMissieSpellen(): SpelId[] {
+    return (['sonic', 'tails', 'knuckles'] as HeldId[]).map((h) => {
+      const van = SPELLEN.filter((x) => x.held === h);
+      const gespeeld = (id: SpelId) => vg.sessies.filter((x) => x.spel === id).length + Math.random() * 1.5;
+      return van.sort((a, b) => gespeeld(a.id) - gespeeld(b.id))[0].id;
+    });
+  }
+
+  function startMissie() {
+    stopSpreken();
+    missie = { spellen: kiesMissieSpellen(), stap: 0 };
+    zetMissieSpel();
+    scherm = 'level';
+    void spreek(teksten.missie.start);
+  }
+
+  function zetMissieSpel() {
+    if (!missie) return;
+    spel = missie.spellen[missie.stap];
+    heldin = SPEL[spel].held;
+  }
+
+  /** Na een spel van de missie: het volgende, of het kristal als ze alle drie klaar zijn. */
+  function missieVerder() {
+    if (!missie) return;
+    stopSpreken();
+    if (missie.stap + 1 < missie.spellen.length) {
+      missie = { ...missie, stap: missie.stap + 1 };
+      zetMissieSpel();
+      return;
+    }
+    missie = null;
+    vg.missies++;
+    vg.kristallen = Math.min(7, vg.kristallen + 1);
+    nieuwKristal = vg.kristallen;
+    void bewaar();
+    scherm = 'kristal';
   }
 
   /** Stoppen met spelen: uit volledig scherm, scherm mag weer uit, naar het eindscherm. */
   function afsluiten() {
     vraagAfsluiten = false;
     stopSpreken();
+    stopMuziek();
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
     wakeLock?.release().catch(() => {});
     wakeLock = null;
@@ -144,18 +216,22 @@
   function naarKeuze() {
     stopSpreken();
     vraagStop = false;
+    missie = null;
     scherm = 'keuze';
   }
 
-  /** Terug naar het spelmenu van dezelfde heldin. */
+  /** Terug naar het spelmenu van dezelfde heldin (of na een mislukte missie naar de keuze). */
   function naarSpellen() {
     stopSpreken();
     vraagStop = false;
-    scherm = 'spellen';
+    if (missie) {
+      missie = null;
+      scherm = 'keuze';
+    } else scherm = 'spellen';
   }
 </script>
 
-<Achtergrond {accent} />
+<Achtergrond {accent} {wereld} />
 
 <div class="buhne" style="transform: translate(-50%, -50%) scale({schaal})">
   {#key scherm + (scherm === 'level' ? spel : '')}
@@ -163,15 +239,29 @@
       {#if scherm === 'start'}
         <Start opStart={begin} />
       {:else if scherm === 'keuze'}
-        <HeldinKeuze opKies={kies} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
+        <HeldinKeuze opKies={kies} opMissie={startMissie} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
       {:else if scherm === 'spellen'}
         <SpelKeuze {heldin} opKies={kiesSpel} opTerug={naarKeuze} />
       {:else if scherm === 'level'}
-        <Level {spel} opTerug={naarSpellen} opStop={() => (vraagStop = true)} {pauzeNodig} opPauze={naarEinde} />
+        <Level
+          {spel}
+          missie={missie ? { stap: missie.stap, totaal: missie.spellen.length } : null}
+          opVerder={missieVerder}
+          opTerug={naarSpellen}
+          opStop={() => (vraagStop = true)}
+          {pauzeNodig}
+          opPauze={naarEinde}
+        />
+      {:else if scherm === 'kristal'}
+        <KristalScherm nummer={nieuwKristal} opSluit={naarKeuze} />
       {:else if scherm === 'einde'}
         <Einde sinds={speelStart} opOpnieuw={() => (scherm = 'start')} />
       {/if}
     </div>
+  {/key}
+
+  {#key veeg}
+    {#if veeg > 1}<div class="veeg" aria-hidden="true"></div>{/if}
   {/key}
 
   {#if vraagStop}
@@ -200,6 +290,22 @@
     width: 1280px;
     height: 800px;
     transform-origin: center;
+  }
+  .veeg {
+    position: absolute;
+    inset: -10%;
+    z-index: 60;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(105deg, transparent 0 34px, rgba(255, 255, 255, 0.55) 34px 38px, transparent 38px 90px),
+      linear-gradient(105deg, rgba(37, 99, 235, 0.9), rgba(251, 191, 36, 0.8));
+    clip-path: polygon(0 0, 0 0, -12% 100%, -12% 100%);
+    animation: wipe 0.55s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  }
+  @keyframes wipe {
+    0% { clip-path: polygon(-10% 0, -10% 0, -22% 100%, -22% 100%); opacity: 1; }
+    45% { clip-path: polygon(-10% 0, 120% 0, 108% 100%, -22% 100%); opacity: 1; }
+    100% { clip-path: polygon(112% 0, 122% 0, 110% 100%, 100% 100%); opacity: 1; }
   }
   .laag {
     position: absolute;

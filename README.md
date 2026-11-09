@@ -6,26 +6,35 @@ Een tablet-website waarmee Lucas (5,5 jaar, niveau tussen groep 2 en groep 3) sp
 
 Het is een zusje van [Lana's Gouden Missie](https://github.com/AlexBongers/LanaWebsiteLezenRekenen) en gebruikt dezelfde techniek (Vite, Svelte 5, TypeScript, PWA), maar is voor een kleuter en een jongen gemaakt: veel luisteren, grote knoppen, geen schrijven, en spellen met katapulten, ontploffingen en bouwen.
 
-## Wat zit er in (fase 0, 1 en 2)
+## Wat zit er in
 
-Na het kiezen van een held kiest Lucas een spel. De snelle spellen staan bovenaan.
+Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle spellen staan bovenaan.
 
 | Held | Spel | Wat oefent het |
 |---|---|---|
 | **Sonic** | ⚡ Ring-race | Een letter flitst in een gouden ring. Welke zag je? De flitstijd wordt korter als het goed gaat. |
 | | 🏁 Woord-race | Een woordje flitst (kat, vis, maan). Kies het plaatje dat erbij hoort. |
-| **Tails** | 🎯 Katapult-sommen | Een som met ringen. Schiet de robot met het goede antwoord weg met de katapult. Plus tot 5, tot 10, min, door elkaar, tot 20. |
+| | ⚖️ Meer-race | Twee stapels ringen: welke kant heeft er meer (of minder, of evenveel)? |
+| | 🔴 Patroon-race | Rood, blauw, rood, blauw, ... wat komt hierna? |
+| **Tails** | 🎯 Katapult-sommen | Een som met ringen. Schiet de robot met het goede antwoord weg met de katapult. |
 | | 🏗️ Tel & Bouw | Bouw een toren van n stenen en laat hem ontploffen. Of tel hoeveel stenen er staan. Elke steen wordt hardop geteld. |
+| | 💣 Splits-bom | Een bom met n ringen is verstopt achter twee deurtjes. Hoeveel zitten er achter het andere deurtje? Maak de bom veilig. |
 | **Knuckles** | 💥 Letter-smash | De stem zegt een woord. Sla de steen met de beginletter kapot. |
 | | 🧱 Woord-bouwen | Er staat een plaatje. Leg het woordje met letterstenen in de goede volgorde. |
+| | 🔨 Letter-jacht | Een rij stenen met letters. Sla ze allemaal kapot die gelijk zijn aan de letter bovenin. |
+
+**Dagmissie.** Drie spellen achter elkaar, een van elke held, vier opgaven per spel. Gelukt? Dan krijgt Lucas een **turbokristal** (regenboogkleuren). Bij het zevende kristal wordt hij **superheld**.
+
+**Drie werelden** met eigen achtergrond (groene heuvels, stad bij nacht, grot met kristallen), **chiptune-muziek** (aan en uit te zetten; de muziek wordt zachter als de stem praat) en veel geluidseffecten, allemaal zelf gemaakt met Web Audio.
 
 Verder:
 - **Alles wordt voorgelezen** door een Nederlandse jongensstem (ElevenLabs, Milan). Er is geen tabletstem nodig; de teksten zijn vooraf ingesproken en werken offline.
+- **Alle opnames zijn even hard en gecontroleerd.** Bij het maken worden ze op dezelfde luidheid gebracht (-16 LUFS), en elke opname wordt teruggeluisterd met spraakherkenning. Klinkt een woord of getal niet zoals bedoeld, dan wordt het opnieuw gemaakt (zie "De stem").
 - **Proefrondje:** elk spel begint met 8 opgaven die steeds moeilijker worden. Daarmee kiest de site het startniveau.
 - **Niveau per spel.** Rekenen gaat pas een stapje omhoog bij 9 van de 10 goed. Er zijn nooit moeilijkere opgaven dan zijn niveau, wel extra makkelijke.
 - **Herhalingsdoosjes:** wat niet meteen goed ging, komt later terug (volgende keer, na 1, 3, 7 en 14 dagen).
 - **Hint bij een fout, antwoord bij de tweede fout.** Nooit een straf: de opgave komt later terug.
-- **Gouden ringen** vliegen naar de teller, met "3 op rij!"-combo's en ontploffingen.
+- **Gouden ringen** vliegen naar de teller, met "3 op rij!"-combo's, ontploffingen en een schuddend scherm.
 - **Rustmoment** na 10 minuten (instelbaar).
 - **Ouderhoek** (houd het slotje linksboven 3 seconden vast en los de keersom op): niveau per spel, overzicht van wat lastig is (bijv. b en d), herhalingsdoosjes, instellingen, proefstemmen en back-up.
 - **De letters die Lucas kent bepaal jij** in de ouderhoek. De spellen gebruiken alleen die letters en alleen woordjes die hij daarmee kan lezen. Standaard staan de eerste twaalf letters aan (m r v s a i e o k p t n).
@@ -62,19 +71,24 @@ Eenmalig per computer: `npx -y @elevenlabs/cli@latest onboard init` (logt in en 
 | `npm run audio` | Spreekt alle ontbrekende teksten in en ruimt oude opnames op. |
 | `npm run audio -- --proef` | Maakt proefstemmen (Milan, Koen, Jaimie, Sebastiaan) voor de ouderhoek. |
 | `npm run audio -- --opnieuw` | Spreekt alles opnieuw in (na een tempowijziging, verhoog dan `versie` in `stem.json`). |
+| `npm run audio -- --alleen=kat` | Spreekt alleen de teksten opnieuw in die "kat" bevatten (handig als een uitspraak niet klopt). |
 | `npm run audio -- --stemmen` | Zoekt Nederlandse vrouwenstemmen in de ElevenLabs-bibliotheek. Pas het filter in het script aan voor mannen. |
 
-Alles inspreken kost ongeveer 1.800 tekens. Een test bewaakt dat elke tekst, elk woord en elk getal tot 20 dat de app kan zeggen een opname heeft.
+**Zo worden opnames gemaakt** (`tools/maak-audio.ts`): woorden en getallen worden in een draagzin opgenomen ("Het woord is kat") en met woordtijden eruit geknipt, zodat de uitspraak natuurlijk klinkt. Daarna luistert `scribe_v1` mee; komt er iets anders uit dan bedoeld, dan volgt een nieuwe poging met een ander model of een andere seed. De stilte wordt weggesneden, de luidheid gelijkgetrokken en er komt een zachte begrenzer overheen (`tools/audio/dsp.ts`). Twijfelgevallen staan in `tools/audio-controle.json`.
+
+Alles inspreken kost ongeveer 3.000 tekens, met controle iets meer. Een test bewaakt dat elke tekst, elk woord en elk getal tot 20 dat de app kan zeggen een opname heeft.
 
 ### Online zetten (Cloudflare)
 De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmalig `npx wrangler login`, daarna `npm run deploy`. De app staat op **https://lucas-turbo-missie.exl999.workers.dev**. Op de tablet: open het adres in Chrome (met wifi), kies het menu (⋮) → "App installeren" en open de app daarna één keer; dan wordt alles (ongeveer 2 MB, inclusief alle stem) opgeslagen en werkt hij ook offline.
 
 ### Opbouw
 ```
-src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, ouderhoek
+src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, ouderhoek
 src/art/      Held (Sonic, Tails, Knuckles) en Robot
 src/engine/   letters en woorden, sommen, niveau, doosjes, planning
-src/games/    de zes spellen en hun gemeenschappelijke regels (Ronde)
-src/audio/    stem en geluidseffecten
+src/games/    de tien spellen, de dagmissie en hun gemeenschappelijke regels (Ronde)
+src/audio/    stem, geluidseffecten en muziek
+src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest
+tools/audio/  opnames: luidheid, stiltes, MP3 en uitspraakcontrole
 src/store/    voortgang op de tablet
 ```

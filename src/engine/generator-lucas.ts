@@ -332,3 +332,140 @@ export function nieuweFlitstijd(huidig: number, goed: boolean): number {
   const nieuw = goed ? huidig * 0.92 : huidig * 1.25;
   return Math.round(Math.min(FLITS_MAX, Math.max(FLITS_MIN, nieuw)));
 }
+
+// ------------------------------------------------------------------ Meer-race (welke kant heeft meer of minder?)
+export type MeerOpgave = { a: number; b: number; vraag: 'meer' | 'minder'; vorm: 'ringen' | 'cijfers' };
+export const meerId = (o: MeerOpgave) => `meer.${o.vorm}.${o.vraag}.${o.a}-${o.b}`;
+export const MEER_MAX = 2;
+
+/** Welke kant is goed? */
+export function meerAntwoord(o: MeerOpgave): 'links' | 'rechts' {
+  const links = o.vraag === 'meer' ? o.a > o.b : o.a < o.b;
+  return links ? 'links' : 'rechts';
+}
+
+export function maakMeer(niveau: number, aantal: number, rnd: Rnd = standaardRnd): MeerOpgave[] {
+  const uit: MeerOpgave[] = [];
+  const gezien = new Set<string>();
+  for (let p = 0; uit.length < aantal && p < aantal * 80; p++) {
+    const hoog = niveau === 0 ? 6 : niveau === 1 ? 10 : 20;
+    const a = getal(1, hoog, rnd);
+    const b = getal(1, hoog, rnd);
+    if (a === b || Math.abs(a - b) < (niveau === 0 ? 2 : 1)) continue;
+    const o: MeerOpgave = { a, b, vraag: niveau === 0 || rnd() < 0.5 ? 'meer' : 'minder', vorm: niveau < 2 ? 'ringen' : 'cijfers' };
+    const k = meerId(o);
+    if (gezien.has(k)) continue;
+    gezien.add(k);
+    uit.push(o);
+  }
+  return uit;
+}
+
+export function meerUitId(id: string): MeerOpgave | null {
+  const m = /^meer\.(ringen|cijfers)\.(meer|minder)\.(\d+)-(\d+)$/.exec(id);
+  return m ? { vorm: m[1] as MeerOpgave['vorm'], vraag: m[2] as MeerOpgave['vraag'], a: Number(m[3]), b: Number(m[4]) } : null;
+}
+
+// ------------------------------------------------------------------ Patroon-race (wat komt hierna?)
+export const PATROON_PLAATJES = ['🔴', '🔵', '🟡', '🟢', '⭐', '💣', '🤖', '⚡'];
+export const PATROON_VORMEN: Record<number, string[]> = { 0: ['AB'], 1: ['AAB', 'ABB', 'ABC'], 2: ['AABB', 'ABAC', 'ABCB', 'AABC'] };
+export const PATROON_MAX = 2;
+export type PatroonOpgave = { vorm: string; plaatjes: number[]; reeks: string[]; antwoord: string; keuzes: string[] };
+
+/** Twee volle herhalingen en daarna nog één stap; het antwoord is de volgende. */
+function bouwPatroon(vorm: string, plaatjes: number[], rnd: Rnd): PatroonOpgave {
+  const letters = [...new Set(vorm.split(''))];
+  const sym = (l: string) => PATROON_PLAATJES[plaatjes[letters.indexOf(l)]];
+  const alles = Array.from({ length: vorm.length * 2 + 1 }, (_, i) => sym(vorm[i % vorm.length]));
+  const antwoord = sym(vorm[(vorm.length * 2 + 1) % vorm.length]);
+  const gebruikt = new Set(alles);
+  const af = schud(PATROON_PLAATJES.filter((p) => p !== antwoord), rnd);
+  // Eerst een plaatje dat in het patroon zit (verleidelijk), dan een willekeurig ander.
+  const keuzes = schud([antwoord, ...[...af.filter((p) => gebruikt.has(p)), ...af.filter((p) => !gebruikt.has(p))].slice(0, 2)], rnd);
+  return { vorm, plaatjes, reeks: alles, antwoord, keuzes };
+}
+
+export const patroonId = (o: { vorm: string; plaatjes: number[] }) => `patroon.${o.vorm}.${o.plaatjes.join('.')}`;
+
+export function maakPatronen(niveau: number, aantal: number, rnd: Rnd = standaardRnd): PatroonOpgave[] {
+  const vormen = PATROON_VORMEN[Math.min(niveau, PATROON_MAX)];
+  const uit: PatroonOpgave[] = [];
+  const gezien = new Set<string>();
+  for (let p = 0; uit.length < aantal && p < aantal * 80; p++) {
+    const vorm = vormen[Math.floor(rnd() * vormen.length)];
+    const letters = new Set(vorm.split('')).size;
+    const plaatjes = schud(PATROON_PLAATJES.map((_, i) => i), rnd).slice(0, letters);
+    const o = bouwPatroon(vorm, plaatjes, rnd);
+    const k = patroonId(o);
+    if (gezien.has(k)) continue;
+    gezien.add(k);
+    uit.push(o);
+  }
+  return uit;
+}
+
+export function patroonUitId(id: string, rnd: Rnd = standaardRnd): PatroonOpgave | null {
+  const m = /^patroon\.([ABC]+)\.([\d.]+)$/.exec(id);
+  return m ? bouwPatroon(m[1], m[2].split('.').map(Number), rnd) : null;
+}
+
+// ------------------------------------------------------------------ Splits-bom (hoeveel moet er nog bij?)
+export type SplitsOpgave = { totaal: number; a: number; b: number; keuzes: number[] };
+export const splitsId = (o: { totaal: number; a: number }) => `splits.${o.totaal}.${o.a}`;
+export const SPLITS_MAX = 2;
+
+function bouwSplits(totaal: number, a: number, rnd: Rnd): SplitsOpgave {
+  const b = totaal - a;
+  const kand = [b + 1, b - 1, b + 2, b - 2, a, totaal].filter((x) => x !== b && x >= 0 && x <= totaal);
+  const af = [...new Set(kand)];
+  const keuzes = schud([b, ...[...schud(af.slice(0, 2), rnd), ...schud(af.slice(2), rnd)].slice(0, 2)], rnd);
+  return { totaal, a, b, keuzes };
+}
+
+export function maakSplits(niveau: number, aantal: number, rnd: Rnd = standaardRnd): SplitsOpgave[] {
+  const [van, tot] = niveau === 0 ? [2, 5] : niveau === 1 ? [4, 10] : [11, 20];
+  const uit: SplitsOpgave[] = [];
+  const gezien = new Set<string>();
+  for (let p = 0; uit.length < aantal && p < aantal * 80; p++) {
+    const totaal = getal(van, tot, rnd);
+    const a = niveau === 2 && rnd() < 0.5 ? 10 : getal(1, totaal - 1, rnd);
+    const k = splitsId({ totaal, a });
+    if (gezien.has(k)) continue;
+    gezien.add(k);
+    uit.push(bouwSplits(totaal, a, rnd));
+  }
+  return uit;
+}
+
+export function splitsUitId(id: string, rnd: Rnd = standaardRnd): SplitsOpgave | null {
+  const m = /^splits\.(\d+)\.(\d+)$/.exec(id);
+  return m ? bouwSplits(Number(m[1]), Number(m[2]), rnd) : null;
+}
+
+// ------------------------------------------------------------------ Letter-jacht (sla alle stenen met dezelfde letter kapot)
+export type JachtOpgave = { letter: string; woord: string; emoji: string; tegels: string[]; doelen: number[] };
+export const jachtId = (letter: string) => `jacht.${letter}`;
+export const JACHT_MAX = 2;
+
+function bouwJacht(l: LetterInfo, niveau: number, letters: string[], rnd: Rnd): JachtOpgave {
+  const totaal = niveau === 0 ? 6 : 9;
+  const aantalDoel = niveau === 0 ? 3 : 4;
+  const lijkt = niveau > 1 ? VERWARBAAR.filter((p) => p.includes(l.letter)).flatMap((p) => p.filter((x) => x !== l.letter && letters.includes(x))) : [];
+  const anderen = [...schud(lijkt, rnd), ...schud(letters.filter((x) => x !== l.letter && !lijkt.includes(x)), rnd)];
+  // Niet te veel verschillende storende letters: twee of drie, die vaker voorkomen.
+  const pool = anderen.slice(0, niveau === 0 ? 2 : 3);
+  const tegels = [...Array(aantalDoel).fill(l.letter), ...Array.from({ length: totaal - aantalDoel }, (_, i) => pool[i % pool.length])];
+  const gemengd = schud(tegels, rnd);
+  return { letter: l.letter, woord: l.woord, emoji: l.emoji, tegels: gemengd, doelen: gemengd.map((t, i) => (t === l.letter ? i : -1)).filter((i) => i >= 0) };
+}
+
+export function maakJacht(niveau: number, aantal: number, kent: Kent, rnd: Rnd = standaardRnd): JachtOpgave[] {
+  const bekend = bekendeLetters(kent);
+  const letters = bekend.map((l) => l.letter);
+  return neem(bekend, aantal, (l) => l.letter, rnd).map((l) => bouwJacht(l, niveau, letters, rnd));
+}
+
+export function jachtUitId(id: string, niveau: number, kent: Kent, rnd: Rnd = standaardRnd): JachtOpgave | null {
+  const info = LETTERS.find((l) => l.letter === id.replace(/^jacht\./, ''));
+  return info && kent.has(info.letter) ? bouwJacht(info, niveau, bekendeLetters(kent).map((l) => l.letter), rnd) : null;
+}

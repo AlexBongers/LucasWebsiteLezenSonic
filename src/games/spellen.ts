@@ -4,6 +4,9 @@
  */
 import type { Rnd } from '../engine/toeval';
 import {
+  jachtId, jachtUitId, maakJacht, maakMeer, maakPatronen, maakSplits, meerId, meerUitId, patroonId, patroonUitId, splitsId, splitsUitId,
+  MEER_MAX, PATROON_MAX, SPLITS_MAX, JACHT_MAX,
+  type JachtOpgave, type MeerOpgave, type PatroonOpgave, type SplitsOpgave,
   bouwId, bouwUitId, FLITS_START, maakBouw, maakRing, maakSmash, maakSommen, maakTel, maakWoordRace, REKEN_MAX, ringId, ringUitId,
   smashId, smashUitId, somId, somUitId, telId, telUitId, woordId, woordRaceUitId, TEL_MAX,
   type BouwOpgave, type Kent, type RingOpgave, type SmashOpgave, type Som, type TelOpgave, type WoordRaceOpgave,
@@ -11,7 +14,7 @@ import {
 
 export type HeldId = 'sonic' | 'tails' | 'knuckles';
 
-export type SpelId = 'ringrace' | 'woordrace' | 'smash' | 'bouwen' | 'katapult' | 'telbouw';
+export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits';
 
 /** Een spel is ook de vaardigheid waarvan het niveau wordt bijgehouden. */
 export type VaardigheidId = SpelId;
@@ -54,6 +57,14 @@ export const SPELLEN: SpelDef<unknown>[] = [
     id: 'woordrace', held: 'sonic', naam: 'Woord-race', uitleg: 'Lees het woordje, kies het plaatje', icoon: '🏁', maxNiveau: 1, prefix: 'woord.', flits: true, snel: true,
     opgaven: { maak: maakWoordRace, herbouw: (id, _n, kent) => woordRaceUitId(id, kent), id: (o) => woordId(o.woord) },
   }),
+  def<MeerOpgave>({
+    id: 'meer', held: 'sonic', naam: 'Meer-race', uitleg: 'Welke kant heeft meer?', icoon: '⚖️', maxNiveau: MEER_MAX, rekenen: true, prefix: 'meer.', snel: true,
+    opgaven: { maak: (n, a, _k, rnd) => maakMeer(n, a, rnd), herbouw: (id) => meerUitId(id), id: meerId },
+  }),
+  def<PatroonOpgave>({
+    id: 'patroon', held: 'sonic', naam: 'Patroon-race', uitleg: 'Wat komt hierna?', icoon: '🔴', maxNiveau: PATROON_MAX, prefix: 'patroon.', snel: true,
+    opgaven: { maak: (n, a, _k, rnd) => maakPatronen(n, a, rnd), herbouw: (id) => patroonUitId(id), id: patroonId },
+  }),
   def<SmashOpgave>({
     id: 'smash', held: 'knuckles', naam: 'Letter-smash', uitleg: 'Sla de beginletter kapot', icoon: '💥', maxNiveau: 1, prefix: 'smash.', snel: true,
     opgaven: { maak: maakSmash, herbouw: (id, n, kent) => smashUitId(id, n, kent), id: (o) => smashId(o.woord) },
@@ -61,6 +72,10 @@ export const SPELLEN: SpelDef<unknown>[] = [
   def<BouwOpgave>({
     id: 'bouwen', held: 'knuckles', naam: 'Woord-bouwen', uitleg: 'Leg het woordje met stenen', icoon: '🧱', maxNiveau: 1, prefix: 'bouw.',
     opgaven: { maak: maakBouw, herbouw: (id, n, kent) => bouwUitId(id, n, kent), id: (o) => bouwId(o.woord) },
+  }),
+  def<JachtOpgave>({
+    id: 'jacht', held: 'knuckles', naam: 'Letter-jacht', uitleg: 'Sla alle gelijke letters kapot', icoon: '🔨', maxNiveau: JACHT_MAX, prefix: 'jacht.', snel: true,
+    opgaven: { maak: maakJacht, herbouw: (id, n, kent) => jachtUitId(id, n, kent), id: (o) => jachtId(o.letter) },
   }),
   def<Som>({
     id: 'katapult', held: 'tails', naam: 'Katapult-sommen', uitleg: 'Schiet de goede robot weg', icoon: '🎯', maxNiveau: REKEN_MAX, rekenen: true, prefix: 'som.', snel: true,
@@ -72,13 +87,21 @@ export const SPELLEN: SpelDef<unknown>[] = [
   }),
 ];
 
+SPELLEN.push(
+  def<SplitsOpgave>({
+    id: 'splits', held: 'tails', naam: 'Splits-bom', uitleg: 'Maak de bom veilig', icoon: '💣', maxNiveau: SPLITS_MAX, rekenen: true, prefix: 'splits.',
+    opgaven: { maak: (n, a, _k, rnd) => maakSplits(n, a, rnd), herbouw: (id) => splitsUitId(id), id: splitsId },
+  }),
+);
+
 export const SPEL = Object.fromEntries(SPELLEN.map((s) => [s.id, s])) as Record<SpelId, SpelDef<unknown>>;
 export const spellenVan = (h: HeldId) => SPELLEN.filter((s) => s.held === h);
 
 /** Opgaven voor de auditie: 8 stuks die oplopen in moeilijkheid (het niveau per opgave). */
 export function auditieNiveaus(maxNiveau: number): number[] {
   if (maxNiveau <= 1) return [0, 0, 0, 0, 1, 1, 1, 1];
-  if (maxNiveau <= 3) return [0, 0, 1, 1, 2, 2, 3, 3];
+  if (maxNiveau === 2) return [0, 0, 0, 1, 1, 2, 2, 2];
+  if (maxNiveau === 3) return [0, 0, 1, 1, 2, 2, 3, 3];
   return [0, 0, 1, 2, 2, 3, 4, 4];
 }
 

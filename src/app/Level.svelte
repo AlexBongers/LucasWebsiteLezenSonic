@@ -8,6 +8,10 @@
   import Bouwen from '../games/Bouwen.svelte';
   import Katapult from '../games/Katapult.svelte';
   import TelBouw from '../games/TelBouw.svelte';
+  import Meer from '../games/Meer.svelte';
+  import Patroon from '../games/Patroon.svelte';
+  import Splits from '../games/Splits.svelte';
+  import Jacht from '../games/Jacht.svelte';
   import SchildBalk from '../ui/SchildBalk.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
   import Beloning from './Beloning.svelte';
@@ -29,8 +33,13 @@
     opStop,
     pauzeNodig = () => false,
     opPauze = opTerug,
+    missie = null,
+    opVerder = () => {},
   }: {
     spel: SpelId;
+    /** Bij een dagmissie: korte rondes zonder proefrondje, en daarna door naar het volgende spel. */
+    missie?: { stap: number; totaal: number } | null;
+    opVerder?: () => void;
     opTerug: () => void;
     opStop: () => void;
     /** Is de speeltijd om? Dan volgt na deze ronde een pauze. */
@@ -64,13 +73,13 @@
   function plan() {
     const kent = maakKent(vg.instellingen.letters);
     niveau = vg.vaardigheden[spel].niveau;
-    auditie = !vg.auditie[spel];
+    auditie = !vg.auditie[spel] && !missie;
     const o = def.opgaven;
     const maak = (n: number, aantal: number) => o.maak(n, aantal, kent);
     opgaven = auditie
       ? planAuditie(auditieNiveaus(def.maxNiveau), maak, o.id)
       : planSessie({
-          aantal: vg.instellingen.opgavenPerSessie,
+          aantal: missie ? 4 : vg.instellingen.opgavenPerSessie,
           niveau,
           maxNiveau: def.maxNiveau,
           herhaling: aanDeBeurt(vg.herhaling, def.prefix, Date.now()),
@@ -177,7 +186,7 @@
     else opStop();
   }
 
-  const SPELCOMP = { ringrace: Race, woordrace: Race, smash: Smash, bouwen: Bouwen, katapult: Katapult, telbouw: TelBouw } as const;
+  const SPELCOMP = { ringrace: Race, woordrace: Race, meer: Meer, patroon: Patroon, smash: Smash, bouwen: Bouwen, jacht: Jacht, katapult: Katapult, telbouw: TelBouw, splits: Splits } as const;
   // svelte-ignore state_referenced_locally
   const Spel = SPELCOMP[spel];
 </script>
@@ -191,6 +200,7 @@
     </button>
     <div class="balk"><SchildBalk waarde={voortgang} /></div>
     {#if auditie}<div class="auditie" style="--kleur:{characters[held].kleur}">⭐ Proefrondje</div>{/if}
+    {#if missie}<div class="auditie" style="--kleur:{characters[held].kleur}">🎯 Missie {missie.stap + 1}/{missie.totaal}</div>{/if}
     <div bind:this={tellerEl}><RingTeller aantal={vg.ringen} /></div>
   </header>
 
@@ -211,7 +221,7 @@
   </main>
 
   {#if uitslag}
-    <Beloning heldin={held} {...uitslag} noten={verdiend} opNogEens={nogEens} {opTerug} {opPauze} />
+    <Beloning heldin={held} {...uitslag} noten={verdiend} {missie} {opVerder} opNogEens={nogEens} {opTerug} {opPauze} />
   {/if}
 </div>
 

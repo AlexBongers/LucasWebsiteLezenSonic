@@ -1,30 +1,34 @@
 /**
- * Maakt mp3-bestanden van alle teksten met een stemgenerator (Google, ElevenLabs of Microsoft Azure).
+ * Maakt mp3-bestanden van alle teksten met ElevenLabs, en controleert en verbetert ze:
+ *  1. De opname wordt teruggetranscribeerd. Klopt het niet met de bedoelde tekst (verkeerde uitspraak,
+ *     bijv. "kat" klinkt als "kom"), dan wordt het opnieuw geprobeerd met een ander model of een andere seed.
+ *  2. Stilte aan begin en eind wordt weggeknipt.
+ *  3. Elke opname wordt op dezelfde luidheid gezet (-16 LUFS) met een zachte begrenzer.
  *
- *   npm run audio:proef            laat zien wat er gemaakt gaat worden (kost niets)
- *   npm run audio -- --proef       maakt proefstemmen in public/audio/proef/ (laat Lana kiezen!)
- *   npm run audio -- --stemmen     zoekt Nederlandse vrouwenstemmen in de ElevenLabs-bibliotheek
- *   npm run audio                  maakt alle ontbrekende bestanden + audio-manifest.json
- *   npm run audio -- --opnieuw     spreekt alles opnieuw in (na het wijzigen van het tempo)
- *   npm run audio -- --afdwingen   spreekt de teksten uit 'nederlandsAfdwingen' (stem.json) opnieuw in
+ *   npm run audio:proef                 laat zien wat er ingesproken gaat worden (kost niets)
+ *   npm run audio                       maakt alle ontbrekende opnames + audio-manifest.json
+ *   npm run audio -- --alleen=kat       spreekt alleen teksten opnieuw in die "kat" bevatten
+ *   npm run audio -- --opnieuw          spreekt alles opnieuw in
+ *   npm run audio -- --proef            maakt proefstemmen in public/audio/proef/
  *
- * Sleutels: GOOGLE_TTS_API_KEY, ELEVENLABS_API_KEY of AZURE_SPEECH_KEY (+ AZURE_SPEECH_REGION),
- * als omgevingsvariabele of in .env.local / .env (zie .env.example).
- * ElevenLabs koppelen: npx -y @elevenlabs/cli@latest onboard init
- * Provider, stem en tempo staan in content/stem.json.
+ * Sleutel: ELEVENLABS_API_KEY in .env.local (npx -y @elevenlabs/cli@latest onboard init).
+ * Stem, tempo en proefstemmen staan in content/stem.json. De uitslag van elke controle staat in tools/audio-controle.json.
  */
-import { existsSync, mkdirSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Readable } from 'node:stream';
 import { ElevenLabsClient } from '@elevenlabs/elevenlabs-js';
 import stemInfo from '../content/stem.json';
 import { alleTeksten } from '../src/audio/alle-teksten';
-import { audioSleutel, normaliseer, stemSleutel, type Spreeksoort } from '../src/audio/hash';
 import { getalInWoorden } from '../src/audio/getallen';
+import { audioSleutel, normaliseer, stemSleutel, type Spreeksoort } from '../src/audio/hash';
+import { gelijkenis, isGoed } from './audio/controle';
+import { DOEL_LUFS, gelijkTrekken, luidheid, maakWav, naarMp3, pcmNaarFloat, piek, SAMPLERATE, trimEnFade } from './audio/dsp';
 
 const MAP = join(import.meta.dirname, '..', 'public', 'audio');
 const TTS = join(MAP, 'tts');
 const PROEF = join(MAP, 'proef');
+const CONTROLE = join(import.meta.dirname, 'audio-controle.json');
 
 for (const bestand of ['.env.local', '.env']) {
   try {
@@ -34,219 +38,219 @@ for (const bestand of ['.env.local', '.env']) {
   }
 }
 
-type Provider = 'google' | 'elevenlabs' | 'azure';
-const args = new Set(process.argv.slice(2));
+const args = process.argv.slice(2);
+const vlag = (naam: string) => args.includes(`--${naam}`);
+const waarde = (naam: string) => args.find((a) => a.startsWith(`--${naam}=`))?.slice(naam.length + 3);
 
-async function metHerhaling(doe: () => Promise<Response>): Promise<Buffer> {
-  for (let poging = 1; poging <= 5; poging++) {
-    const r = await doe();
-    if (r.ok) return Buffer.from(await r.arrayBuffer());
-    if (r.status === 429 || r.status >= 500) {
-      await new Promise((res) => setTimeout(res, 1000 * 2 ** poging));
-      continue;
-    }
-    throw new Error(`fout ${r.status}: ${(await r.text()).slice(0, 400)}`);
-  }
-  throw new Error('de dienst blijft "te druk" zeggen; probeer het later nog eens.');
-}
-
-// ---------- Google Cloud Text-to-Speech ----------
-let googleTempoWerkt = true;
-
-async function google(tekst: string, stem: string, soort: Spreeksoort): Promise<Buffer> {
-  const sleutel = process.env.GOOGLE_TTS_API_KEY;
-  if (!sleutel) throw new Error('GOOGLE_TTS_API_KEY ontbreekt (zie .env.example).');
-  const vraag = async (metTempo: boolean) => {
-    const r = await fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${sleutel}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        input: { text: normaliseer(tekst) },
-        voice: { languageCode: 'nl-NL', name: stem },
-        audioConfig: { audioEncoding: 'MP3', ...(metTempo ? { speakingRate: stemInfo.google.tempo[soort] } : {}) },
-      }),
-    });
-    return r;
-  };
-  for (let poging = 1; poging <= 5; poging++) {
-    let r = await vraag(googleTempoWerkt);
-    if (r.status === 400 && googleTempoWerkt) {
-      // Sommige stemmen kennen geen tempo-instelling; dan zonder.
-      const fout = await r.text();
-      if (/speaking.?rate|pace/i.test(fout)) {
-        googleTempoWerkt = false;
-        r = await vraag(false);
-      } else throw new Error(`fout 400: ${fout.slice(0, 400)}`);
-    }
-    if (r.ok) {
-      const data = (await r.json()) as { audioContent: string };
-      return Buffer.from(data.audioContent, 'base64');
-    }
-    if (r.status === 429 || r.status >= 500) {
-      await new Promise((res) => setTimeout(res, 1000 * 2 ** poging));
-      continue;
-    }
-    throw new Error(`fout ${r.status}: ${(await r.text()).slice(0, 400)}`);
-  }
-  throw new Error('Google blijft "te druk" zeggen; probeer het later nog eens.');
-}
-
-// ---------- ElevenLabs ----------
-// De SDK leest ELEVENLABS_API_KEY uit de omgeving (geladen uit .env.local of .env).
-let elevenClient: ElevenLabsClient | null = null;
+let client: ElevenLabsClient | null = null;
 function eleven() {
-  if (!process.env.ELEVENLABS_API_KEY) {
-    throw new Error('ELEVENLABS_API_KEY ontbreekt: draai `npx -y @elevenlabs/cli@latest onboard init`.');
-  }
-  return (elevenClient ??= new ElevenLabsClient());
+  if (!process.env.ELEVENLABS_API_KEY) throw new Error('ELEVENLABS_API_KEY ontbreekt: draai `npx -y @elevenlabs/cli@latest onboard init`.');
+  return (client ??= new ElevenLabsClient());
 }
 
-async function streamNaarBuffer(stream: ReadableStream<Uint8Array>): Promise<Buffer> {
-  const delen: Buffer[] = [];
-  for await (const deel of Readable.fromWeb(stream as import('node:stream/web').ReadableStream<Uint8Array>)) {
-    delen.push(Buffer.from(deel));
+// ---------------------------------------------------------------- Opnemen
+type Poging = { naam: string; model: string; nl: boolean; seed: number; stabiliteit: number; tempo: boolean };
+
+const e = stemInfo.elevenlabs;
+const V4 = 'eleven_v4';
+
+/** Per soort een rijtje pogingen: het eerste dat klopt wint. Losse woorden en getallen krijgen eerst Nederlands afgedwongen. */
+function pogingen(soort: Spreeksoort): Poging[] {
+  if (soort === 'woord' || soort === 'getal') {
+    return [
+      { naam: 'v4-nl', model: V4, nl: true, seed: 11, stabiliteit: 0.5, tempo: false },
+      { naam: 'flash-nl', model: e.modelWoorden, nl: true, seed: 12, stabiliteit: 0.5, tempo: true },
+      { naam: 'v4-nl-robuust', model: V4, nl: true, seed: 13, stabiliteit: 1, tempo: false },
+      { naam: 'multi', model: e.modelZinnen, nl: false, seed: 14, stabiliteit: 0.5, tempo: true },
+      { naam: 'v4-nl-4', model: V4, nl: true, seed: 15, stabiliteit: 0.5, tempo: false },
+    ];
   }
-  return Buffer.concat(delen);
+  return [
+    { naam: 'multi', model: e.modelZinnen, nl: false, seed: 21, stabiliteit: e.stabiliteit, tempo: true },
+    { naam: 'v4-nl', model: V4, nl: true, seed: 22, stabiliteit: 0.5, tempo: false },
+    { naam: 'multi-2', model: e.modelZinnen, nl: false, seed: 23, stabiliteit: e.stabiliteit, tempo: true },
+  ];
 }
 
-async function elevenlabs(tekst: string, stem: string, soort: Spreeksoort): Promise<Buffer> {
-  const e = stemInfo.elevenlabs;
-  // Losse woorden: Flash-model met Nederlands afgedwongen (anders klinkt "maan" soms Engels).
-  // Getallen: als woord uitgeschreven via het zinnenmodel (het Flash-model fluisterde ze soms).
-  const kort = soort === 'woord';
-  const forceer = ((e.nederlandsAfdwingen?.teksten ?? []) as string[]).includes(normaliseer(tekst));
-  const modelId = forceer ? e.nederlandsAfdwingen.model : kort ? e.modelWoorden : e.modelZinnen;
-  const v4 = /eleven_v4/.test(modelId);
-  if (soort === 'getal' && /^\d+$/.test(tekst.trim())) tekst = getalInWoorden(Number(tekst));
-  for (let poging = 1; poging <= 5; poging++) {
+/** De tekst die echt naar de stem gaat: een getal als woord ("zevenenveertig"). */
+function spreekTekst(tekst: string, soort: Spreeksoort): string {
+  const t = normaliseer(tekst);
+  return soort === 'getal' && /^\d+$/.test(t) ? getalInWoorden(Number(t)) : t;
+}
+
+async function metHerhaling<T>(doe: () => Promise<T>): Promise<T> {
+  for (let n = 1; ; n++) {
     try {
-      const audio = await eleven().textToSpeech.convert(stem, {
-        text: normaliseer(tekst),
-        modelId,
-        outputFormat: 'mp3_44100_64',
-        ...(kort || forceer ? { languageCode: 'nl' } : {}),
-        // Eleven v4 kent alleen stabiliteit en gelijkenis (geen stijl of tempo).
-        voiceSettings: v4
-          ? { stability: e.stabiliteit, similarityBoost: e.gelijkenis }
-          : {
-              stability: e.stabiliteit,
-              similarityBoost: e.gelijkenis,
-              style: e.stijl,
-              useSpeakerBoost: true,
-              speed: e.tempo[soort],
-            },
-      });
-      return await streamNaarBuffer(audio);
+      return await doe();
     } catch (err) {
       const status = (err as { statusCode?: number }).statusCode ?? 0;
-      if ((status === 429 || status >= 500) && poging < 5) {
-        await new Promise((res) => setTimeout(res, 1000 * 2 ** poging));
+      if ((status === 429 || status >= 500) && n < 5) {
+        await new Promise((r) => setTimeout(r, 1500 * 2 ** n));
         continue;
       }
       throw err;
     }
   }
-  throw new Error('ElevenLabs blijft "te druk" zeggen; probeer het later nog eens.');
 }
 
-async function zoekNederlandseStemmen() {
-  const { voices } = await eleven().voices.getShared({
-    language: 'nl',
-    gender: 'female',
-    pageSize: 40,
-    sort: 'usage_character_count_1y',
-  });
-  for (const v of voices) {
-    console.log(`${v.name}  [${v.accent}, ${v.age}, ${v.descriptive}, ${v.useCase}]  gebruikt door ${v.clonedByCount}`);
-    console.log(`   voice_id=${v.voiceId}  owner=${v.publicOwnerId}`);
-    if (v.description) console.log(`   ${v.description.replace(/\s+/g, ' ').slice(0, 160)}`);
+async function neemOp(tekst: string, stem: string, soort: Spreeksoort, p: Poging): Promise<Float32Array> {
+  const voiceSettings = p.model === V4
+    ? { stability: p.stabiliteit, similarityBoost: e.gelijkenis }
+    : { stability: p.stabiliteit, similarityBoost: e.gelijkenis, style: e.stijl, useSpeakerBoost: true, speed: p.tempo ? e.tempo[soort] : 1 };
+  const stroom = await metHerhaling(() =>
+    eleven().textToSpeech.convert(stem, {
+      text: soort in DRAGER ? `${DRAGER[soort]} ${spreekTekst(tekst, soort)}.` : spreekTekst(tekst, soort),
+      modelId: p.model,
+      outputFormat: 'pcm_24000',
+      seed: p.seed,
+      ...(p.nl ? { languageCode: 'nl' } : {}),
+      voiceSettings,
+    }),
+  );
+  const delen: Buffer[] = [];
+  for await (const d of Readable.fromWeb(stroom as import('node:stream/web').ReadableStream<Uint8Array>)) delen.push(Buffer.from(d));
+  return pcmNaarFloat(Buffer.concat(delen));
+}
+
+type Woord = { text: string; start?: number; end?: number; type?: string };
+
+async function luister(samples: Float32Array): Promise<{ tekst: string; woorden: Woord[] }> {
+  const r = (await metHerhaling(() =>
+    eleven().speechToText.convert({ file: new Blob([new Uint8Array(maakWav(samples))], { type: 'audio/wav' }), modelId: 'scribe_v1', languageCode: 'nld' }),
+  )) as { text?: string; words?: Woord[] };
+  return { tekst: (r.text ?? '').trim(), woorden: (r.words ?? []).filter((w) => (w.type ?? 'word') === 'word') };
+}
+
+/**
+ * Losse woorden en getallen worden in een korte zin ingesproken ("Het woord is kat."): zo weet de stem dat het
+ * Nederlands is en klinkt het natuurlijk. Daarna wordt het woord eruit geknipt met de woordtijden van de transcriptie.
+ */
+const DRAGER: Partial<Record<Spreeksoort, string>> = { woord: 'Het woord is', getal: 'Het getal is' };
+const dragerWoorden = (soort: Spreeksoort) => (DRAGER[soort] ?? '').split(' ').filter(Boolean).length;
+
+/** Knipt het eigenlijke woord uit de opname met de zin. Geeft null als de woordtijden niet kloppen. */
+function knipWoord(samples: Float32Array, woorden: Woord[], soort: Spreeksoort): { samples: Float32Array; gehoord: string } | null {
+  const n = dragerWoorden(soort);
+  if (woorden.length <= n) return null;
+  const staart = woorden.slice(n);
+  const begin = staart[0].start;
+  const eind = staart[staart.length - 1].end;
+  if (begin === undefined || eind === undefined || eind <= begin) return null;
+  const van = Math.max(0, Math.floor((begin - 0.06) * SAMPLERATE));
+  const tot = Math.min(samples.length, Math.ceil((eind + 0.1) * SAMPLERATE));
+  return { samples: samples.slice(van, tot), gehoord: staart.map((w) => w.text).join(' ') };
+}
+
+// ---------------------------------------------------------------- Controle-uitslag bewaren
+type Uitslag = { tekst: string; soort: string; ok: boolean; poging: string; pogingen: number; gehoord: string; lufs: number; piek: number; seconden: number };
+const controle: Record<string, Uitslag> = existsSync(CONTROLE) ? JSON.parse(readFileSync(CONTROLE, 'utf8')) : {};
+const bewaarControle = () => writeFileSync(CONTROLE, JSON.stringify(controle, null, 1) + '\n');
+
+/** Neemt een tekst op, controleert hem en probeert zo nodig opnieuw. Geeft de beste versie terug. */
+async function maakOpname(tekst: string, stem: string, soort: Spreeksoort, sleutel: string, zonderControle: boolean) {
+  const lijst = pogingen(soort);
+  const bedoeld = spreekTekst(tekst, soort);
+  let beste: { samples: Float32Array; gehoord: string; score: number; naam: string; n: number } | null = null;
+  for (let i = 0; i < lijst.length; i++) {
+    const ruw = await neemOp(tekst, stem, soort, lijst[i]);
+    let samples = ruw;
+    let gehoord = '';
+    if (soort in DRAGER) {
+      // Zonder controle weten we de woordtijden niet; dan wordt de hele zin bewaard, dus altijd controleren.
+      const { tekst: volledig, woorden } = await luister(ruw);
+      const knip = knipWoord(ruw, woorden, soort);
+      const drager = woorden.slice(0, dragerWoorden(soort)).map((w) => w.text).join(' ');
+      const dragerOk = gelijkenis(DRAGER[soort]!, drager) >= 0.8;
+      if (!knip || !dragerOk) {
+        // Zin niet goed verstaan of geen tijden: tel deze poging als mislukt.
+        if (!beste) beste = { samples: trimEnFade(ruw), gehoord: volledig, score: 0, naam: lijst[i].naam, n: i + 1 };
+        continue;
+      }
+      samples = trimEnFade(knip.samples);
+      gehoord = knip.gehoord;
+    } else {
+      samples = trimEnFade(ruw);
+      if (!zonderControle) gehoord = (await luister(samples)).tekst;
+    }
+    const score = zonderControle && !(soort in DRAGER) ? 1 : gelijkenis(bedoeld, gehoord);
+    if (!beste || score > beste.score) beste = { samples, gehoord, score, naam: lijst[i].naam, n: i + 1 };
+    if (zonderControle && !(soort in DRAGER)) break;
+    if (isGoed(bedoeld, gehoord)) {
+      beste = { samples, gehoord, score, naam: lijst[i].naam, n: i + 1 };
+      break;
+    }
+  }
+  const b = beste!;
+  const { samples, was, wordt } = gelijkTrekken(b.samples);
+  writeFileSync(join(TTS, `${sleutel}.mp3`), naarMp3(samples));
+  controle[sleutel] = {
+    tekst, soort, ok: (zonderControle && !(soort in DRAGER)) || isGoed(bedoeld, b.gehoord), poging: b.naam, pogingen: b.n, gehoord: b.gehoord,
+    lufs: Math.round(wordt * 10) / 10, piek: Math.round(piek(samples) * 100) / 100, seconden: Math.round((samples.length / SAMPLERATE) * 100) / 100,
+  };
+  void was;
+}
+
+// ---------------------------------------------------------------- Opdrachten
+async function maakProefstemmen() {
+  mkdirSync(PROEF, { recursive: true });
+  for (const p of stemInfo.proefstemmen) {
+    process.stdout.write(`Proefstem ${p.naam} … `);
+    try {
+      const s = await neemOp(stemInfo.proefzin, p.id, 'instructie', pogingen('instructie')[0]);
+      writeFileSync(join(PROEF, `${p.provider}-${p.id}.mp3`), naarMp3(gelijkTrekken(trimEnFade(s)).samples));
+      console.log('klaar');
+    } catch (err) {
+      console.log(`mislukt: ${(err as Error).message}`);
+    }
   }
 }
 
-// ---------- Azure ----------
-function escape(t: string) {
-  return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-async function azure(tekst: string, stem: string, soort: Spreeksoort): Promise<Buffer> {
-  const sleutel = process.env.AZURE_SPEECH_KEY;
-  const regio = process.env.AZURE_SPEECH_REGION ?? 'westeurope';
-  if (!sleutel) throw new Error('AZURE_SPEECH_KEY ontbreekt (zie .env.example).');
-  const binnen = `<prosody rate="${stemInfo.azure.tempo[soort]}">${escape(normaliseer(tekst))}</prosody>`;
-  const taal = stem.includes('Multilingual') ? `<lang xml:lang="nl-NL">${binnen}</lang>` : binnen;
-  const ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="nl-NL"><voice name="${stem}">${taal}</voice></speak>`;
-  return metHerhaling(() =>
-    fetch(`https://${regio}.tts.speech.microsoft.com/cognitiveservices/v1`, {
-      method: 'POST',
-      headers: {
-        'Ocp-Apim-Subscription-Key': sleutel,
-        'Content-Type': 'application/ssml+xml',
-        'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3',
-        'User-Agent': 'gouden-missie',
-      },
-      body: ssml,
+async function parallel<T>(lijst: T[], aantal: number, doe: (t: T, i: number) => Promise<void>) {
+  let volgende = 0;
+  await Promise.all(
+    Array.from({ length: Math.min(aantal, lijst.length) }, async () => {
+      while (volgende < lijst.length) {
+        const i = volgende++;
+        await doe(lijst[i], i);
+      }
     }),
   );
 }
 
-function spreekIn(provider: Provider, tekst: string, stem: string, soort: Spreeksoort) {
-  if (provider === 'google') return google(tekst, stem, soort);
-  return provider === 'azure' ? azure(tekst, stem, soort) : elevenlabs(tekst, stem, soort);
-}
-
-const SLEUTELS: Record<Provider, string> = {
-  google: 'GOOGLE_TTS_API_KEY',
-  elevenlabs: 'ELEVENLABS_API_KEY',
-  azure: 'AZURE_SPEECH_KEY',
-};
-
-// ---------- Opdrachten ----------
-async function maakProefstemmen() {
-  mkdirSync(PROEF, { recursive: true });
-  for (const p of stemInfo.proefstemmen) {
-    const provider = p.provider as Provider;
-    if (!process.env[SLEUTELS[provider]]) continue;
-    process.stdout.write(`Proefstem ${p.naam} … `);
-    try {
-      writeFileSync(join(PROEF, `${provider}-${p.id}.mp3`), await spreekIn(provider, stemInfo.proefzin, p.id, 'instructie'));
-      console.log('klaar');
-    } catch (e) {
-      console.log(`mislukt: ${(e as Error).message}`);
-    }
-  }
-  console.log('\nLuister in de Ouderhoek → Stem. Zet de gekozen stem in content/stem.json en draai: npm run audio');
-}
-
-async function maakAlles(droog: boolean) {
+async function maakAlles() {
   mkdirSync(TTS, { recursive: true });
-  const provider = stemInfo.provider as Provider;
   const stem = stemInfo.stem;
   const sleutelStem = stemSleutel(stemInfo);
-  const taken = alleTeksten().map((t) => ({ ...t, sleutel: audioSleutel(t.tekst, t.soort, sleutelStem) }));
-  // --opnieuw: alles opnieuw inspreken (bijv. na het wijzigen van alleen het tempo).
-  // --afdwingen: de teksten uit nederlandsAfdwingen opnieuw inspreken.
-  const afdwingen = new Set<string>(args.has('--afdwingen') ? ((stemInfo.elevenlabs.nederlandsAfdwingen?.teksten ?? []) as string[]) : []);
-  const nieuw = args.has('--opnieuw')
-    ? taken
-    : taken.filter((t) => afdwingen.has(normaliseer(t.tekst)) || !existsSync(join(TTS, `${t.sleutel}.mp3`)));
-  const tekens = nieuw.reduce((n, t) => n + t.tekst.length, 0);
+  const alle = alleTeksten().map((t) => ({ ...t, sleutel: audioSleutel(t.tekst, t.soort, sleutelStem) }));
+  const alleen = waarde('alleen');
+  const gekozen = alle.filter((t) =>
+    alleen ? t.tekst.toLowerCase().includes(alleen.toLowerCase()) : vlag('opnieuw') || !existsSync(join(TTS, `${t.sleutel}.mp3`)),
+  );
+  const tekens = gekozen.reduce((n, t) => n + t.tekst.length, 0);
+  console.log(`Stem: ${stemInfo.stemNaam ?? stem}. ${alle.length} teksten, waarvan ${gekozen.length} om te maken (${tekens} tekens, de controle kan er meer kosten).`);
 
-  console.log(`Provider: ${provider}, stem: ${stem}`);
-  console.log(`${taken.length} teksten, waarvan ${nieuw.length} nieuw (${tekens} tekens).`);
-  if (droog) {
-    nieuw.slice(0, 12).forEach((t) => console.log(`  [${t.soort}] ${t.tekst}`));
-    if (nieuw.length > 12) console.log(`  … en nog ${nieuw.length - 12}`);
+  if (vlag('dry-run')) {
+    gekozen.slice(0, 12).forEach((t) => console.log(`  [${t.soort}] ${t.tekst}`));
+    if (gekozen.length > 12) console.log(`  … en nog ${gekozen.length - 12}`);
     return;
   }
 
   let klaar = 0;
-  for (const t of nieuw) {
-    writeFileSync(join(TTS, `${t.sleutel}.mp3`), await spreekIn(provider, t.tekst, stem, t.soort));
+  await parallel(gekozen, 3, async (t) => {
+    try {
+      await maakOpname(t.tekst, stem, t.soort, t.sleutel, vlag('zonder-controle'));
+    } catch (err) {
+      console.log(`  mislukt: ${t.tekst} (${(err as Error).message.slice(0, 80)})`);
+    }
     klaar++;
-    if (klaar % 25 === 0 || klaar === nieuw.length) console.log(`  ${klaar}/${nieuw.length}`);
-  }
+    if (klaar % 20 === 0 || klaar === gekozen.length) {
+      console.log(`  ${klaar}/${gekozen.length}`);
+      bewaarControle();
+    }
+  });
+  bewaarControle();
 
-  const bestanden = taken.map((t) => t.sleutel).filter((k) => existsSync(join(TTS, `${k}.mp3`)));
+  const bestanden = alle.map((t) => t.sleutel).filter((k) => existsSync(join(TTS, `${k}.mp3`)));
   writeFileSync(join(MAP, 'audio-manifest.json'), JSON.stringify({ stem: sleutelStem, bestanden }));
   // Oude opnames (andere stem of versie) opruimen.
   const houd = new Set(bestanden);
@@ -259,8 +263,14 @@ async function maakAlles(droog: boolean) {
   }
   if (weg) console.log(`${weg} oude opnames verwijderd.`);
   console.log(`audio-manifest.json bijgewerkt (${bestanden.length} bestanden).`);
+
+  const twijfel = Object.entries(controle).filter(([k, u]) => houd.has(k) && !u.ok);
+  const lufs = Object.entries(controle).filter(([k]) => houd.has(k)).map(([, u]) => u.lufs);
+  console.log(`Luidheid van de opnames: ${Math.min(...lufs)} tot ${Math.max(...lufs)} LUFS (doel ${DOEL_LUFS}).`);
+  console.log(twijfel.length ? `Nog ${twijfel.length} opnames waarvan de uitspraak niet zeker klopt (zie tools/audio-controle.json):` : 'Alle uitspraken kloppen volgens de controle.');
+  for (const [, u] of twijfel.slice(0, 25)) console.log(`  "${u.tekst}" klinkt als "${u.gehoord}" (${u.poging})`);
+  void luidheid;
 }
 
-if (args.has('--stemmen')) await zoekNederlandseStemmen();
-else if (args.has('--proef')) await maakProefstemmen();
-else await maakAlles(args.has('--dry-run'));
+if (vlag('proef')) await maakProefstemmen();
+else await maakAlles();

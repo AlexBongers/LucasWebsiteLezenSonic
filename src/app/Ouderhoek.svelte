@@ -21,6 +21,10 @@
     bouwen: ['1 · woordjes van drie klanken leggen', '2 · vier of meer klanken, met stenen te veel'],
     katapult: ['1 · plus tot 5', '2 · plus tot 10', '3 · min tot 10', '4 · plus en min door elkaar tot 10', '5 · tot 20 zonder over het tiental'],
     telbouw: ['1 · bouwen tot 10', '2 · tellen tot 10', '3 · bouwen tot 20', '4 · tellen tot 20'],
+    meer: ['1 · ringen vergelijken tot 6', '2 · ringen tot 10, ook minder', '3 · getallen tot 20, groter en kleiner'],
+    patroon: ['1 · rood, blauw, rood, blauw (AB)', '2 · AAB, ABB en ABC', '3 · patronen van vier'],
+    splits: ['1 · bom tot 5', '2 · bom tot 10', '3 · bom tot 20'],
+    jacht: ['1 · zes stenen, drie gezocht', '2 · negen stenen, vier gezocht', '3 · negen stenen met lettervriendjes (b en d)'],
   };
 
   let stemmen: SpeechSynthesisVoice[] = $state([]);
