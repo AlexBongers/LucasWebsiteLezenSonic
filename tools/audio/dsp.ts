@@ -7,7 +7,7 @@ import lamejs from '@breezystack/lamejs';
 
 export const SAMPLERATE = 24000;
 /** Alle opnames komen op deze luidheid (LUFS, geïntegreerd). */
-export const DOEL_LUFS = -16;
+export const DOEL_LUFS = -18;
 /** Hoogste piek na het gelijktrekken (0,89 is ongeveer -1 dBFS). */
 export const MAX_PIEK = 0.89;
 

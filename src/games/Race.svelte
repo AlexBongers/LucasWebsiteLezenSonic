@@ -64,7 +64,7 @@
       opRingen(ronde.goed(), podiumEl);
       // De stem zegt het woord erbij: bij een letter het beginwoord ("maan" bij de m).
       await spreek(letters ? (o as RingOpgave).woord : (o as WoordRaceOpgave).woord, 'woord');
-      await spreek(compliment());
+      await spreek(compliment('sonic'));
       await wacht(200);
       volgende();
     } else {

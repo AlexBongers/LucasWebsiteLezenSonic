@@ -5,6 +5,7 @@
   import { speelFanfare } from '../audio/geluid';
   import { grootFeest } from '../ui/feest';
   import teksten from '../../content/teksten.json';
+  import { beloning } from '../games/teksten';
   import type { HeldinId } from '../store/voortgang.svelte';
 
   let {
@@ -47,7 +48,7 @@
     speelFanfare();
     grootFeest();
     void (async () => {
-      await spreek(missie ? teksten.missie.volgende : melding ? teksten.auditie.klaar : teksten.beloning);
+      await spreek(missie ? teksten.missie.volgende : melding ? teksten.auditie.klaar : beloning());
       if (pauze) await spreek(teksten.pauze.tijd);
     })();
   });

@@ -24,10 +24,10 @@ export function ontgrendelGeluid() {
     compressor.release.value = 0.2;
     compressor.connect(ctx.destination);
     effBus = ctx.createGain();
-    effBus.gain.value = 0.9;
+    effBus.gain.value = 0.62;
     effBus.connect(compressor);
     muziekBus = ctx.createGain();
-    muziekBus.gain.value = 1;
+    muziekBus.gain.value = 0.7;
     muziekBus.connect(compressor);
   }
   if (ctx.state === 'suspended') void ctx.resume();
@@ -262,7 +262,7 @@ export function startMuziek() {
   muziekWens = true;
   if (!ctx || !muziekBus || muziekTimer) return;
   volgendeStap = ctx.currentTime + 0.1;
-  muziekBus.gain.value = ducken ? 0.25 : 1;
+  muziekBus.gain.value = ducken ? 0.18 : 0.7;
   muziekTimer = setInterval(planStappen, 90);
 }
 
@@ -288,13 +288,13 @@ export function duckMuziek(zacht: boolean) {
     if (onduckTimer) clearTimeout(onduckTimer);
     onduckTimer = null;
     ducken = true;
-    muziekBus.gain.setTargetAtTime(0.22, ctx.currentTime, 0.06);
+    muziekBus.gain.setTargetAtTime(0.16, ctx.currentTime, 0.06);
   } else {
     if (onduckTimer) clearTimeout(onduckTimer);
     // Even wachten: er komt vaak meteen een volgende zin.
     onduckTimer = setTimeout(() => {
       ducken = false;
-      if (ctx && muziekBus) muziekBus.gain.setTargetAtTime(1, ctx.currentTime, 0.4);
+      if (ctx && muziekBus) muziekBus.gain.setTargetAtTime(0.7, ctx.currentTime, 0.4);
     }, 500);
   }
 }

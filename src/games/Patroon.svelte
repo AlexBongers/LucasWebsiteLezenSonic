@@ -41,7 +41,7 @@
       speelGoed();
       glitterOp(vraagEl ?? null);
       opRingen(ronde.goed(), knopEls[i]);
-      await spreek(compliment());
+      await spreek(compliment('sonic'));
       await wacht(300);
       volgende();
     } else {

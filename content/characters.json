@@ -5,7 +5,19 @@
     "vak": "Lezen",
     "uitleg": "Flitsen en racen",
     "kleur": "#2563eb",
-    "intro": "Hoi! Ik ben Sonic. Zullen we samen racen?"
+    "intro": "Hoi! Ik ben Sonic. Zullen we samen racen?",
+    "complimenten": [
+      "Supersnel, Lucas!",
+      "Dat ging als de wind!",
+      "Wat een snelheid!",
+      "Jij kunt bijna net zo snel als ik!",
+      "Zoef! Weer goed!",
+      "Lucas, jij bent turbo!",
+      "Dat was snel gezien!",
+      "Yes! Samen zijn we niet te stoppen!",
+      "Wauw, dat was snel, Lucas!",
+      "Jij racet er zo doorheen!"
+    ]
   },
   "tails": {
     "naam": "Tails",
@@ -13,7 +25,19 @@
     "vak": "Rekenen",
     "uitleg": "Schieten, bouwen en tellen",
     "kleur": "#f59e0b",
-    "intro": "Hoi! Ik ben Tails. Zullen we samen bouwen en schieten?"
+    "intro": "Hoi! Ik ben Tails. Zullen we samen bouwen en schieten?",
+    "complimenten": [
+      "Slim bedacht, Lucas!",
+      "Mijn uitvinding werkt, dankzij jou!",
+      "Wat een slimme som!",
+      "Precies uitgerekend, Lucas!",
+      "Dat klopt helemaal!",
+      "Lucas, jij bent een echte uitvinder!",
+      "Goed gerekend!",
+      "Kijk, de som klopt!",
+      "Samen bouwen we alles, Lucas!",
+      "Wat denk jij slim na, Lucas!"
+    ]
   },
   "knuckles": {
     "naam": "Knuckles",
@@ -21,6 +45,18 @@
     "vak": "Letters en woorden",
     "uitleg": "Smashen en bouwen",
     "kleur": "#dc2626",
-    "intro": "Hoi! Ik ben Knuckles. Samen smashen we alle letters!"
+    "intro": "Hoi! Ik ben Knuckles. Samen smashen we alle letters!",
+    "complimenten": [
+      "Wat een kracht, Lucas!",
+      "Knal! Kapot!",
+      "Dat was een mokerslag!",
+      "Lucas, jij slaat ze er zo uit!",
+      "Sterk gedaan!",
+      "Zo sterk als ik!",
+      "Bam! Daar ging hij!",
+      "Lucas, jij bent supersterk!",
+      "Goed gesmasht!",
+      "Dat was een enorme knal!"
+    ]
   }
 }

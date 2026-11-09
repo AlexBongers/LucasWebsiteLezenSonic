@@ -12,7 +12,7 @@
   import { spreek } from '../audio/stem';
   import { speelBijna, speelGoed } from '../audio/geluid';
   import { boem } from '../ui/boem';
-  import { teksten, compliment, bijna, wacht } from './teksten';
+  import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
   import type { SpelProps } from './types';
 
@@ -33,6 +33,7 @@
 
   onMount(() => {
     (async () => {
+      { const z = rondeStart(); if (z) await spreek(z); }
       await spreek(teksten.jacht.start);
       await vraag();
     })();
@@ -77,7 +78,7 @@
     speelGoed();
     opRingen(ronde.goed(), veldEl);
     await spreek(teksten.jacht.klaar);
-    await spreek(compliment());
+    await spreek(compliment('knuckles'));
     await wacht(250);
     volgende();
   }

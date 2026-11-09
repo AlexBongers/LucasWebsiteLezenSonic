@@ -1,2004 +1,3500 @@
 {
- "057c92a5f2da81": {
-  "tekst": "kat",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "kat",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 0.43
- },
- "077c1ce3aa2349": {
-  "tekst": "hoed",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "Hoed",
-  "lufs": -16,
-  "piek": 0.83,
-  "seconden": 0.54
- },
- "004954933aaf31": {
-  "tekst": "maan",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "maan",
-  "lufs": -16,
-  "piek": 0.86,
-  "seconden": 0.49
- },
- "090355ace65fdc": {
-  "tekst": "vork",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "vork",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.54
- },
- "0cc140b2bb74bf": {
+ "0eee36cd67c9a0": {
   "tekst": "Goed zo!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Goed zo",
-  "lufs": -16,
-  "piek": 0.83,
+  "lufs": -18,
+  "piek": 0.69,
   "seconden": 0.6
  },
- "04dadeeed65122": {
+ "0161cc095b633f": {
   "tekst": "Super!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Super",
-  "lufs": -16,
-  "piek": 0.77,
+  "lufs": -18,
+  "piek": 0.62,
   "seconden": 0.49
  },
- "14b78da44489ec": {
+ "15d9696242b12e": {
   "tekst": "Hoi Lucas! Kies je held!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Hoi Lucas, kies je held",
-  "lufs": -16.3,
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 1.12
  },
- "07160d508f8896": {
+ "172213df0135c1": {
   "tekst": "Wat een held ben jij!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Wat een held ben jij",
-  "lufs": -16.1,
+  "lufs": -18,
   "piek": 0.89,
   "seconden": 1.06
  },
- "1422a8f241bf57": {
+ "12429007e51a53": {
   "tekst": "Boem! Gelukt!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Boem, gelukt",
-  "lufs": -16,
-  "piek": 0.76,
-  "seconden": 1.22
+  "lufs": -18,
+  "piek": 0.6,
+  "seconden": 1.23
  },
- "12a36a51363fad": {
+ "011a1bc7e5a3ee": {
   "tekst": "Lekker bezig, Lucas!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Lekker bezig Lucas",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 1.18
  },
- "0708a6f8cdb9a9": {
-  "tekst": "Yes! Weggeblazen!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 2,
-  "gehoord": "Yes! Weggeblazen",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 1.89
- },
- "0ad8eb4f835630": {
+ "0780af37760303": {
   "tekst": "Precies goed!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Precies goed",
-  "lufs": -16,
-  "piek": 0.84,
+  "lufs": -18,
+  "piek": 0.7,
   "seconden": 0.76
  },
- "04aeaf15a644f7": {
+ "120de5bbaae065": {
+  "tekst": "Yes! Weggeblazen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Yes! Weggeblazen",
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 1.87
+ },
+ "08e842f72d810c": {
   "tekst": "Turbo!",
   "soort": "instructie",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 2,
   "gehoord": "Turbo",
-  "lufs": -16,
-  "piek": 0.82,
+  "lufs": -18,
+  "piek": 0.58,
   "seconden": 0.68
  },
- "126306261551c4": {
+ "1e1ae2ea7c4e13": {
   "tekst": "Wauw, wat snel!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Wauw, wat snel",
-  "lufs": -16,
-  "piek": 0.8,
+  "gehoord": "Wauw, wat snel!",
+  "lufs": -18,
+  "piek": 0.64,
   "seconden": 1.1
  },
- "13c6e8a7bb21a1": {
-  "tekst": "Dat was een knal!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Dat was een knal",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.89
- },
- "0d760e6413860b": {
+ "01a70bc2e51368": {
   "tekst": "Jij bent een kanjer!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Jij bent een kanjer",
-  "lufs": -16.3,
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 0.96
  },
- "041f74dfcc96b7": {
+ "0a213b38625e28": {
+  "tekst": "Dat was een knal!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat was een knal",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 0.89
+ },
+ "0742d0ca6c0eac": {
   "tekst": "Wat een turbo!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Wat een turbo",
-  "lufs": -16,
-  "piek": 0.85,
+  "lufs": -18,
+  "piek": 0.72,
   "seconden": 0.95
  },
- "0b73f0697b16a9": {
+ "190a44b5b38463": {
   "tekst": "Jij kunt dit!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Jij kunt dit",
-  "lufs": -16,
-  "piek": 0.87,
+  "lufs": -18,
+  "piek": 0.79,
   "seconden": 0.77
  },
- "1b125dad902e82": {
+ "06da4b40b0ebe3": {
   "tekst": "Echt super gedaan!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Echt super gedaan",
-  "lufs": -16.1,
+  "lufs": -18,
   "piek": 0.89,
   "seconden": 0.94
  },
- "0ba7284b37259c": {
+ "1ce75e4a377648": {
+  "tekst": "Fantastisch!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Fantastisch",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.86
+ },
+ "0417b5fce19f55": {
   "tekst": "Bam! Raak!",
   "soort": "instructie",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 2,
   "gehoord": "Bam! Raak",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 1.43
+  "lufs": -18,
+  "piek": 0.79,
+  "seconden": 1.42
  },
- "1da482b808e6a2": {
-  "tekst": "Bijna! Probeer het nog eens.",
+ "125a520e726653": {
+  "tekst": "Geweldig!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Bijna. Probeer het nog eens",
-  "lufs": -16.3,
-  "piek": 0.89,
-  "seconden": 1.47
+  "gehoord": "Geweldig",
+  "lufs": -18,
+  "piek": 0.64,
+  "seconden": 0.66
  },
- "103e6464fd024d": {
-  "tekst": "Bijna! Jij kunt dit!",
+ "0c286df7820122": {
+  "tekst": "Wauw, knap gedaan!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Bijna. Jij kunt dit",
-  "lufs": -16.2,
-  "piek": 0.88,
-  "seconden": 1.36
+  "gehoord": "Wauw, knap gedaan",
+  "lufs": -18,
+  "piek": 0.73,
+  "seconden": 1.17
  },
- "1d3c165d69044e": {
-  "tekst": "Oei, net niet. Kijk nog eens goed.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Oei, net niet. Kijk nog eens goed",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 2.09
- },
- "1f23390d2ecb61": {
+ "01869c0771d613": {
   "tekst": "Kijk eens, wat een kracht!",
   "soort": "instructie",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 2,
   "gehoord": "Kijk eens wat een kracht",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 2.19
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 2.07
  },
- "06b19e71aab796": {
+ "1805f26f9fcd6b": {
+  "tekst": "Helemaal goed!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Helemaal goed",
+  "lufs": -18,
+  "piek": 0.59,
+  "seconden": 0.84
+ },
+ "1861e8bfd10164": {
+  "tekst": "Wat een snelheid!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat een snelheid",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.91
+ },
+ "16d943451d9c7f": {
+  "tekst": "Ja hoor, die klopt!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ja hoor, die klopt",
+  "lufs": -18,
+  "piek": 0.81,
+  "seconden": 1.18
+ },
+ "0eb0968024a15d": {
+  "tekst": "Gouden antwoord!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Gouden antwoord",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 0.76
+ },
+ "1201db6f7128bc": {
+  "tekst": "Zo doe je dat!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Zo doe je dat",
+  "lufs": -18,
+  "piek": 0.8,
+  "seconden": 0.77
+ },
+ "1a3e56a09cbcf3": {
+  "tekst": "Poef! Kapot!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Poef, kapot",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.18
+ },
+ "10f08ce15f2095": {
+  "tekst": "Wat een slimme zet!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat een slimme zet",
+  "lufs": -18,
+  "piek": 0.89,
+  "seconden": 1.03
+ },
+ "114296a38fc59b": {
+  "tekst": "Hoppa! Goed zo!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hoppa, goed zo",
+  "lufs": -18,
+  "piek": 0.66,
+  "seconden": 1.15
+ },
+ "181894f97fc154": {
+  "tekst": "Superturbo!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Super turbo",
+  "lufs": -18,
+  "piek": 0.71,
+  "seconden": 0.84
+ },
+ "0fa0cf14a068ea": {
+  "tekst": "Raak!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Raak",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.74
+ },
+ "0d7e0c28b7844f": {
+  "tekst": "Dat was supersnel!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat was supersnel",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 1.01
+ },
+ "1599fe3f58c683": {
+  "tekst": "Netjes!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Netjes",
+  "lufs": -18,
+  "piek": 0.8,
+  "seconden": 0.65
+ },
+ "158736bbb1449d": {
+  "tekst": "Briljant!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Briljant",
+  "lufs": -18,
+  "piek": 0.74,
+  "seconden": 0.54
+ },
+ "1b9c16ea0be008": {
+  "tekst": "Dat ging als een raket!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat ging als een raket",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.05
+ },
+ "145b6905798727": {
+  "tekst": "Dat ging lekker!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat ging lekker",
+  "lufs": -18.1,
+  "piek": 0.87,
+  "seconden": 0.75
+ },
+ "1cdef56acb533f": {
+  "tekst": "Bijna! Probeer het nog eens.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Bijna. Probeer het nog eens",
+  "lufs": -18.1,
+  "piek": 0.87,
+  "seconden": 1.47
+ },
+ "0c55bcc150d2a6": {
+  "tekst": "Oei, net niet. Kijk nog eens goed.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Oei, net niet. Kijk nog eens goed",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 2.09
+ },
+ "14a48c0fd4bca4": {
+  "tekst": "Bijna! Jij kunt dit!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Bijna. Jij kunt dit",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.36
+ },
+ "09f58cb30e07e4": {
   "tekst": "Nog een keertje, dan lukt het!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Nog een keertje, dan lukt het",
-  "lufs": -16.1,
+  "lufs": -18,
   "piek": 0.89,
   "seconden": 1.45
  },
- "1d9091b144b10c": {
+ "16a4fd7f511fed": {
   "tekst": "Dat was dichtbij! Probeer het maar weer.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Dat was dichtbij. Probeer het maar weer",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.81,
   "seconden": 1.94
  },
- "011c9df385cf1b": {
+ "0a54c8eccb95a1": {
+  "tekst": "Oei, net mis! Kijk nog eens.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Oei, net mis. Kijk nog eens",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.68
+ },
+ "0ffede45b292d9": {
+  "tekst": "Bijna goed! Je zit er dichtbij.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Bijna goed. Je zit er dichtbij",
+  "lufs": -18.5,
+  "piek": 0.89,
+  "seconden": 1.91
+ },
+ "02da1a3dd9b640": {
+  "tekst": "Hmm, nog niet helemaal. Nog een keer!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hmm, nog niet helemaal. Nog een keer",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 2.48
+ },
+ "1b479aca28ede1": {
+  "tekst": "Geeft niks. Probeer het nog eens.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Geeft niks. Probeer het nog eens",
+  "lufs": -18,
+  "piek": 0.89,
+  "seconden": 1.99
+ },
+ "1b0c7dd9f67123": {
+  "tekst": "Rustig aan, kijk nog eens goed.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Rustig aan, kijk nog eens goed",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.37
+ },
+ "1c28c430f501ef": {
+  "tekst": "Ai, die was lastig. Nog een keer!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ai, die was lastig. Nog een keer",
+  "lufs": -18,
+  "piek": 0.89,
+  "seconden": 2.12
+ },
+ "041c603e8becb2": {
+  "tekst": "Net niet! Nog een kans.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Net niet nog een kans",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.23
+ },
+ "188f4a7f9b4fdb": {
+  "tekst": "Niet erg! Fouten maken hoort erbij.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Niet erg. Fouten maken hoort erbij",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.25
+ },
+ "107d6a0cba7475": {
+  "tekst": "Oeps! Probeer het nog eens.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Oeps, probeer het nog eens",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.3
+ },
+ "07013399ed9c03": {
   "tekst": "Het goede antwoord is",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Het goede antwoord is",
-  "lufs": -16.1,
-  "piek": 0.87,
+  "lufs": -18,
+  "piek": 0.79,
   "seconden": 1.08
  },
- "1c944bfde45ca2": {
-  "tekst": "Tik op verder.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Tik op verder",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.86
- },
- "107b3850960bbb": {
-  "tekst": "Wil je stoppen met dit spel?",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Wil je stoppen met dit spel?",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 1.32
- },
- "18dfedbef9d17e": {
+ "1f8c34cc80ee1c": {
   "tekst": "Wil je stoppen met spelen?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Wil je stoppen met spelen?",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.87,
   "seconden": 1.27
  },
- "0bf16548feade4": {
-  "tekst": "Gelukt! Alle robots zijn kapot!",
+ "1d403a5e4f96a7": {
+  "tekst": "Wil je stoppen met dit spel?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Gelukt! Alle robots zijn kapot",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 1.87
+  "gehoord": "Wil je stoppen met dit spel?",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.32
  },
- "1709bf143c101d": {
+ "0cbe48e4e0d203": {
+  "tekst": "Tik op verder.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Tik op verder",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 1
+ },
+ "0404594173427c": {
   "tekst": "Welk spel wil je spelen?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Welk spel wil je spelen?",
-  "lufs": -16.1,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 1.12
  },
- "07d790111a7400": {
+ "1df3bb21a62548": {
   "tekst": "Draai je tablet een kwartslag.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Draai je tablet een kwartslag",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 1.52
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 1.53
  },
- "17dac3432370d0": {
+ "03381e9447b7ca": {
   "tekst": "Eerst een proefrondje! Het wordt steeds een beetje moeilijker. Fouten maken mag.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Eerst een proefrondje. Het wordt steeds een beetje moeilijker. Fouten maken mag",
-  "lufs": -16.8,
+  "lufs": -18.5,
   "piek": 0.89,
   "seconden": 4.35
  },
- "1c86559a54f3f8": {
+ "1607fa553997ed": {
   "tekst": "Wat heb je goed geoefend! Tijd voor een pauze.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Wat heb je goed geoefend. Tijd voor een pauze",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.86,
   "seconden": 2.45
  },
- "17a2568272799e": {
+ "0324061d8746e7": {
   "tekst": "Goed gedaan! Nu weet ik waar we beginnen.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Goed gedaan. Nu weet ik waar we beginnen",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.81,
   "seconden": 2.15
  },
- "1f4da4a881af3d": {
+ "1e51d6b07a3598": {
   "tekst": "Tot de volgende keer, Lucas!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Tot de volgende keer, Lucas",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 1.41
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.43
  },
- "02a92861797bd6": {
-  "tekst": "Welke letter zag je?",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Welke letter zag je?",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 0.96
- },
- "1952130c5f081d": {
+ "10b31faabd14a9": {
   "tekst": "Kijk goed naar de flits. Welke letter zag je? Tik op de ring!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Kijk goed naar de flits. Welke letter zag je? Tik op de ring",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.88,
   "seconden": 3.52
  },
- "1e89ce4fd63a01": {
+ "04a90a98e985e8": {
+  "tekst": "Welke letter zag je?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Welke letter zag je?",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.96
+ },
+ "0b575a8b6a7e3a": {
   "tekst": "Kijk nog eens goed. Daar is de letter weer.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Kijk nog eens goed, daar is de letter weer",
-  "lufs": -16.5,
+  "lufs": -18.2,
   "piek": 0.89,
   "seconden": 2.03
  },
- "07b537c558fce1": {
-  "tekst": "Welk plaatje hoort erbij?",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Welk plaatje hoort erbij?",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 1.16
- },
- "126a774bdc9e2b": {
+ "11c2ea0c436a2f": {
   "tekst": "Lees het woordje in de flits. Kies het goede plaatje!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Lees het woordje in de flits. Kies het goede plaatje",
-  "lufs": -16.5,
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 2.97
  },
- "0ffaa0d9d868a2": {
+ "07de94ed088e64": {
+  "tekst": "Welk plaatje hoort erbij?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Welk plaatje hoort erbij?",
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 1.16
+ },
+ "0823ab124c9232": {
   "tekst": "Kijk nog eens goed. Daar is het woordje weer.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Kijk nog eens goed, daar is het woordje weer",
-  "lufs": -16.4,
+  "lufs": -18.2,
   "piek": 0.89,
   "seconden": 2.03
  },
- "03fde56375c774": {
-  "tekst": "Ik zeg een woord. Sla de steen met de eerste letter kapot!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Ik zeg een woord sla de steen met de eerste letter kapot",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 3.17
- },
- "16e26b7352734f": {
+ "0101e9b9052e2a": {
   "tekst": "Met welke letter begint",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Met welke letter begint",
-  "lufs": -16.3,
-  "piek": 0.89,
+  "lufs": -18.1,
+  "piek": 0.88,
   "seconden": 1.2
  },
- "17683796b62249": {
+ "0a60fbbf3b39ec": {
   "tekst": "Luister nog eens goed.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Luister nog eens goed",
-  "lufs": -16.5,
+  "lufs": -18.2,
   "piek": 0.89,
   "seconden": 1.03
  },
- "1e6f176944a653": {
-  "tekst": "Bouw het woord met de letterstenen. Tik de letters in de goede volgorde!",
+ "1e872567cc093b": {
+  "tekst": "Ik zeg een woord. Sla de steen met de eerste letter kapot!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Bouw het woord met de letterstenen. Tik de letters in de goede volgorde",
-  "lufs": -16.4,
-  "piek": 0.89,
-  "seconden": 4.37
+  "gehoord": "Ik zeg een woord sla de steen met de eerste letter kapot",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 3.17
  },
- "1c250670051554": {
-  "tekst": "Kijk, deze letter komt nu.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Kijk, deze letter komt nu",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 1.29
- },
- "09eb26a6a32a5c": {
+ "150b1e33379b50": {
   "tekst": "Bouw het woord",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Bouw het woord",
-  "lufs": -16,
-  "piek": 0.85,
+  "lufs": -18,
+  "piek": 0.72,
   "seconden": 0.78
  },
- "12aa1eb73665ba": {
-  "tekst": "Schiet de robot met het goede antwoord weg!",
+ "07d96f4b97926b": {
+  "tekst": "Bouw het woord met de letterstenen. Tik de letters in de goede volgorde!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Schiet de robot met het goede antwoord weg",
-  "lufs": -16.2,
+  "gehoord": "Bouw het woord met de letterstenen. Tik de letters in de goede volgorde",
+  "lufs": -18.2,
   "piek": 0.89,
-  "seconden": 1.91
+  "seconden": 4.37
  },
- "021837e49c24c8": {
+ "0728aaf269b3fa": {
+  "tekst": "Kijk, deze letter komt nu.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kijk, deze letter komt nu",
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 1.29
+ },
+ "13eb8e98723a54": {
   "tekst": "Tel de ringen. Dan weet je het antwoord.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Tel de ringen, dan weet je het antwoord",
-  "lufs": -16.3,
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 1.98
  },
- "1dca32488aa56b": {
+ "12fd7ba0e4f2b2": {
+  "tekst": "Schiet de robot met het goede antwoord weg!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Schiet de robot met het goede antwoord weg",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.92
+ },
+ "07e75884289217": {
   "tekst": "Bouw een toren van",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Bouw een toren van",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.85,
   "seconden": 1.19
  },
- "103584fc36c328": {
+ "0de47e93a53ee8": {
   "tekst": "stenen. Tik op plus voor een steen.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Stenen. Tik op plus voor een steen",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18.1,
+  "piek": 0.88,
   "seconden": 2.32
  },
- "1f29a8e37be46a": {
+ "063376fa97f64f": {
   "tekst": "Hoeveel stenen staan er?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Hoeveel stenen staan er?",
-  "lufs": -16,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.84,
   "seconden": 1.16
  },
- "165dc0272a826e": {
+ "173646f5b9ddc3": {
   "tekst": "Dat zijn er te veel. Haal er een paar weg.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Dat zijn er te veel. Haal er een paar weg",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.87,
   "seconden": 2.09
  },
- "1f827fc2d10b17": {
+ "1efcb6c44a1257": {
   "tekst": "Er moeten er nog een paar bij.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Er moeten er nog een paar bij",
-  "lufs": -16.1,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.81,
   "seconden": 1.28
  },
- "1894ce99f56eb3": {
+ "0f348bfcee4772": {
   "tekst": "Tik op de bom als je klaar bent.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Tik op de bom als je klaar bent",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 1.56
  },
- "07c965951f97ff": {
-  "tekst": "Welke kant heeft het meeste? Tik erop!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Welke kant heeft het meeste? Tik erop",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 2.15
- },
- "0184e974d7f4bc": {
+ "17dea8946a1c70": {
   "tekst": "Welke kant heeft meer ringen?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Welke kant heeft meer ringen?",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18.1,
+  "piek": 0.88,
   "seconden": 1.19
  },
- "04b979fc9b8d9e": {
+ "1f744f32034d71": {
+  "tekst": "Welke kant heeft het meeste? Tik erop!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Welke kant heeft het meeste? Tik erop",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 2.15
+ },
+ "08219945a96e76": {
+  "tekst": "Boem!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Boem",
+  "lufs": -18,
+  "piek": 0.63,
+  "seconden": 0.66
+ },
+ "0055a30bc48365": {
   "tekst": "Welke kant heeft minder ringen?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Welke kant heeft minder ringen?",
-  "lufs": -16.3,
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 1.4
  },
- "1a4a51cfd1b403": {
-  "tekst": "Boem!",
-  "soort": "instructie",
-  "ok": false,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Bojem",
-  "lufs": -16,
-  "piek": 0.73,
-  "seconden": 0.49
- },
- "119be90a367c2f": {
-  "tekst": "Welk getal is groter?",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Welk getal is groter?",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 1.23
- },
- "0eb0a82046fa0c": {
-  "tekst": "Tel de ringen maar eens.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Tel de ringen maar eens",
-  "lufs": -16.3,
-  "piek": 0.89,
-  "seconden": 1.15
- },
- "1222ab27b24fdd": {
+ "1e6c9e0d3fb87d": {
   "tekst": "Welk getal is kleiner?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Welk getal is kleiner?",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.84,
   "seconden": 1.09
  },
- "109e89d8d89468": {
-  "tekst": "Kijk goed naar het patroon. Wat komt hierna?",
+ "1ac425b8f957e2": {
+  "tekst": "Welk getal is groter?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Kijk goed naar het patroon. Wat komt hierna?",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 2.27
+  "gehoord": "Welk getal is groter?",
+  "lufs": -18,
+  "piek": 0.81,
+  "seconden": 1.23
  },
- "08e2fc06f7d1fa": {
+ "1a4fb37fbd29f2": {
+  "tekst": "Tel de ringen maar eens.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Tel de ringen maar eens",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.15
+ },
+ "05807f9bbdca36": {
   "tekst": "Wat komt hierna?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Wat komt hierna?",
-  "lufs": -16.1,
+  "lufs": -18,
   "piek": 0.89,
   "seconden": 1.02
  },
- "076ab05043c9e7": {
+ "1d4bc0cea2c710": {
+  "tekst": "Kijk goed naar het patroon. Wat komt hierna?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kijk goed naar het patroon. Wat komt hierna?",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.27
+ },
+ "0242f93636f8bc": {
   "tekst": "Kijk, dit stukje komt steeds terug.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Kijk, dit stukje komt steeds terug",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.81,
   "seconden": 1.77
  },
- "03faa43653b6b1": {
-  "tekst": "De bom heeft",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "De bom heeft",
-  "lufs": -16,
-  "piek": 0.86,
-  "seconden": 0.87
- },
- "01a9eaf0cd1850": {
+ "0407e1da03abcf": {
   "tekst": "Maak de bom veilig! Er moeten genoeg ringen in.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Maak de bom veilig. Er moeten genoeg ringen in",
-  "lufs": -16.2,
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 2.56
  },
- "1fb6f263d50db6": {
+ "0edb8010cebaf9": {
+  "tekst": "De bom heeft",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "De bom heeft",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.87
+ },
+ "02951de9de1557": {
   "tekst": "ringen nodig. Er zijn er al",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Dingen nodig. Er zijn er al",
-  "lufs": -16.1,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.82,
   "seconden": 1.58
  },
- "126a05c610264a": {
+ "18e5d32c69e050": {
   "tekst": "Hoeveel ringen moeten er nog bij?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Hoeveel ringen moeten er nog bij?",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.86,
   "seconden": 1.49
  },
- "037da4e626e521": {
+ "05cfe964667361": {
   "tekst": "Tel de lege plekjes.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Tel de lege plekjes",
-  "lufs": -16,
-  "piek": 0.86,
+  "lufs": -18,
+  "piek": 0.75,
   "seconden": 1.19
  },
- "1935551b9d5222": {
+ "1fc53e274060b2": {
   "tekst": "De bom is veilig!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "De bom is veilig",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 0.98
  },
- "173b99f71fdbf3": {
-  "tekst": "Sla alle stenen met dezelfde letter kapot!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Sla alle stenen met dezelfde letter kapot",
-  "lufs": -16.3,
-  "piek": 0.89,
-  "seconden": 2.26
- },
- "00b43d3fe3ad90": {
+ "17eee9a947cfab": {
   "tekst": "Zoek alle letters van",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "zoek alle letters van",
-  "lufs": -16.4,
-  "piek": 0.89,
+  "lufs": -18.1,
+  "piek": 0.87,
   "seconden": 1.21
  },
- "1479f6c9b3dd0e": {
-  "tekst": "Alles kapot!",
+ "0b95be39c6e588": {
+  "tekst": "Sla alle stenen met dezelfde letter kapot!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "alles kapot",
-  "lufs": -16.9,
-  "piek": 0.89,
-  "seconden": 0.67
+  "gehoord": "Sla alle stenen met dezelfde letter kapot",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 2.26
  },
- "180218414d1802": {
+ "0da6cd40d7f423": {
   "tekst": "Kijk goed, ze lichten op.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Kijk goed, ze lichten op",
-  "lufs": -16.1,
+  "lufs": -18,
   "piek": 0.89,
   "seconden": 1.07
  },
- "137cf6a0488df8": {
+ "0ee2b62086da4a": {
+  "tekst": "Alles kapot!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Alles kapot",
+  "lufs": -18.4,
+  "piek": 0.89,
+  "seconden": 0.67
+ },
+ "146d87aa3fc0fb": {
   "tekst": "Goed gedaan! Op naar het volgende spel.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Goed gedaan! Op naar het volgende spel",
-  "lufs": -16,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.86,
   "seconden": 2.3
  },
- "1c731f8f5aa8bf": {
-  "tekst": "Missie gelukt! Je hebt een turbokristal!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Missie gelukt! Je hebt een turbokristal",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 2.11
- },
- "01e63480a36d82": {
+ "153d1b436fc81a": {
   "tekst": "Dagmissie! Speel drie spelletjes en win een turbokristal.",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Dagmissie: speel drie spelletjes en win een turbo kristal",
-  "lufs": -16.2,
+  "gehoord": "Dagmissie: speel drie spelletjes en win een turbokristal",
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 3.28
  },
- "1c2b8906124895": {
-  "tekst": "Hoi! Ik ben Sonic. Zullen we samen racen?",
+ "06c20166c0aaa9": {
+  "tekst": "Missie gelukt! Je hebt een turbokristal!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
-  "gehoord": "Hoi, ik ben Sonic. Zullen we samen racen?",
-  "lufs": -16.4,
+  "gehoord": "Missie gelukt. Je hebt een turbo kristal",
+  "lufs": -18.3,
   "piek": 0.89,
-  "seconden": 2.06
+  "seconden": 2.11
  },
- "099b0f30da4638": {
+ "046019394970eb": {
+  "tekst": "Top, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Top Lucas",
+  "lufs": -18,
+  "piek": 0.49,
+  "seconden": 0.7
+ },
+ "0b36eb328d1556": {
   "tekst": "Wat een held! Alle kristallen zijn van jou. Nu ben je een superheld!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Wat een held! Alle kristallen zijn van jou. Nu ben je een superheld",
-  "lufs": -16.3,
+  "lufs": -18.1,
   "piek": 0.89,
   "seconden": 4.09
  },
- "16ce0937215d11": {
+ "0a5bf1501cb530": {
+  "tekst": "Goed zo, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Goed zo, Lucas",
+  "lufs": -18,
+  "piek": 0.63,
+  "seconden": 1
+ },
+ "153b2a0f6bfebb": {
+  "tekst": "Wauw Lucas, wat knap!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wauw Lucas, wat knap",
+  "lufs": -18,
+  "piek": 0.82,
+  "seconden": 1.15
+ },
+ "1683f3bf521955": {
+  "tekst": "Lucas, jij bent een held!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij bent een held",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.13
+ },
+ "0d1434f0a2e741": {
+  "tekst": "Lucas, dat was perfect!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, dat was perfect",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.11
+ },
+ "1a94417f30bbf1": {
+  "tekst": "Wat ben jij slim, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat ben jij slim, Lucas",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.28
+ },
+ "089242c2ab5286": {
+  "tekst": "Goed gezien, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Goed gezien Lucas",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.14
+ },
+ "0ec79a308f1771": {
+  "tekst": "Lucas, je bent geweldig!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, je bent geweldig",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.14
+ },
+ "18a6bdc7b70ac3": {
+  "tekst": "Yes Lucas, raak!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Yes Lucas raak",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.81
+ },
+ "12025a8ab95e96": {
+  "tekst": "Super gedaan, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Super gedaan Lucas",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.23
+ },
+ "00cd7d11609a4d": {
+  "tekst": "Hoera voor Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hoera voor Lucas",
+  "lufs": -18,
+  "piek": 0.8,
+  "seconden": 1.11
+ },
+ "1bad6efafd9819": {
+  "tekst": "Lucas, je bent een echte turbo-held!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, je bent een echte turbo held",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.2
+ },
+ "053668f46e3eb6": {
+  "tekst": "Netjes, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Netjes Lucas",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.04
+ },
+ "1ce41bba177e9e": {
+  "tekst": "Lucas, wat gaat dat goed!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, wat gaat dat goed?",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 1.17
+ },
+ "1560c60a525b40": {
+  "tekst": "Knap hoor, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Knap hoor Lucas",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.06
+ },
+ "1d275d196ef909": {
+  "tekst": "Lucas, jij bent supersnel!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij bent supersnel",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 1.33
+ },
+ "0aab5c4870e65e": {
+  "tekst": "Precies goed, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Precies goed Lucas",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 1.09
+ },
+ "03eceb52265e72": {
+  "tekst": "Daar is Lucas weer met een goed antwoord!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Daar is Lucas weer met een goed antwoord",
+  "lufs": -18,
+  "piek": 0.81,
+  "seconden": 1.64
+ },
+ "1cf4913b483022": {
+  "tekst": "Boem! Dat was Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Boem, dat was Lucas",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 1.57
+ },
+ "100fa3793d86c0": {
+  "tekst": "Lucas rockt!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Lucas rockt",
+  "lufs": -18,
+  "piek": 0.73,
+  "seconden": 1.44
+ },
+ "0203967095beef": {
+  "tekst": "Wat een kanjer ben jij, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat een kanjer ben jij Lucas",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.59
+ },
+ "00f9fe3c76c45c": {
+  "tekst": "Lucas, jij bent niet te stoppen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij bent niet te stoppen",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 1.49
+ },
+ "171c2212916734": {
+  "tekst": "Bam, Lucas! Weer goed!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Bam Lucas weer goed",
+  "lufs": -18.1,
+  "piek": 0.87,
+  "seconden": 0.99
+ },
+ "1ab6a5410a17ce": {
+  "tekst": "Jij bent een topper, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Jij bent een topper, Lucas",
+  "lufs": -18,
+  "piek": 0.89,
+  "seconden": 1.32
+ },
+ "19ad16c9686cd4": {
+  "tekst": "Lucas, dat deed je zomaar even!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, dat deed je zomaar even",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.44
+ },
+ "1fae64d3a4f897": {
+  "tekst": "Lucas, je bent echt een kampioen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, je bent echt een kampioen",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.91
+ },
+ "1b1fc30821d340": {
+  "tekst": "Lucas, wat een turbo!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, wat een turbo",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.23
+ },
+ "0a61abf77a8c34": {
+  "tekst": "Dat was een knaller, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat was een knaller, Lucas",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.31
+ },
+ "18f2c30b6084e7": {
+  "tekst": "Geweldig, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Geweldig Lucas",
+  "lufs": -18,
+  "piek": 0.8,
+  "seconden": 1.08
+ },
+ "1ca08ecb79de7b": {
+  "tekst": "Ja Lucas, zo gaat dat!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ja Lucas, zo gaat dat",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.16
+ },
+ "09f2d917705e4d": {
+  "tekst": "Lucas, dat kan niemand beter!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, dat kan niemand beter",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.3
+ },
+ "0feb28b287a632": {
+  "tekst": "Wat een kracht, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat een kracht, Lucas",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.18
+ },
+ "175779a6cd8568": {
+  "tekst": "Lucas, jij bent een kei!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij bent een kei",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 1.26
+ },
+ "1545c3779fed96": {
+  "tekst": "Lucas, je maakt ze allemaal kapot!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, je maakt ze allemaal kapot",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.9
+ },
+ "02be8eff914a7f": {
+  "tekst": "Nog een poging, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Nog een poging, Lucas",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.25
+ },
+ "0ab7f0cf28ec4a": {
+  "tekst": "Bijna, Lucas! Nog een keer proberen.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Bijna Lucas. Nog een keer proberen",
+  "lufs": -18.3,
+  "piek": 0.89,
+  "seconden": 2.01
+ },
+ "1c6a596358dd8a": {
+  "tekst": "Lucas, dat ging zo makkelijk!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, dat ging zo makkelijk",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 1.43
+ },
+ "1392fe93eacc3c": {
+  "tekst": "Geeft niks, Lucas. Probeer het nog eens.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Geeft niks Lucas, probeer het nog eens",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.12
+ },
+ "18be86170f1e46": {
+  "tekst": "Oei Lucas, net mis! Kijk nog eens goed.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Oei Lucas, net mis. Kijk nog eens goed",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.68
+ },
+ "0d17fcfb71170a": {
+  "tekst": "Kijk nog even goed, Lucas.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kijk nog even goed Lucas",
+  "lufs": -18.5,
+  "piek": 0.89,
+  "seconden": 1.14
+ },
+ "1de2efeaad2d95": {
+  "tekst": "Lucas, je bent er bijna!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, je bent er bijna",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.19
+ },
+ "1555c3c487a6af": {
+  "tekst": "Probeer het nog eens, Lucas. Jij kunt het!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Probeer het nog eens Lucas. Jij kunt het",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.38
+ },
+ "0e00c99e5deeeb": {
+  "tekst": "Rustig aan, Lucas. Je kunt het.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Rustig aan Lucas, je kunt het",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.6
+ },
+ "119a5c565a77b9": {
+  "tekst": "Hmm, Lucas, nog niet helemaal. Nog een keer!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hmm, Lucas, nog niet helemaal. Nog een keer",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 2.59
+ },
+ "16fbaed03ce209": {
+  "tekst": "Bijna raak, Lucas! Nog een keer.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Bijna raak Lucas. Nog een keer",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 1.83
+ },
+ "1e41b8e0587844": {
+  "tekst": "Ai, die was lastig, Lucas. Je doet het goed!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ai, die was lastig Lucas. Je doet het goed",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 2.11
+ },
+ "0c8f231ba74f0c": {
+  "tekst": "Nog niet, Lucas, maar je gaat het halen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Nog niet Lucas, maar je gaat het halen",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 2
+ },
+ "03a9a02c041dae": {
+  "tekst": "Lucas, dat was dichtbij!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas dat was dichtbij",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.16
+ },
+ "01d61e42fa294f": {
+  "tekst": "Drie op rij!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Drie op rij",
+  "lufs": -18,
+  "piek": 0.71,
+  "seconden": 0.85
+ },
+ "112ed8c41509c0": {
+  "tekst": "Hé Lucas, net niet! Kijk nog een keertje.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hé Lucas, net niet. Kijk nog een keertje",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 2
+ },
+ "1275cfceca3fa1": {
+  "tekst": "Lucas, fouten maken hoort erbij. Probeer maar weer!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas: fouten maken hoort erbij. Probeer maar weer",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 3.34
+ },
+ "1914516da9c1e0": {
+  "tekst": "Wauw, drie goed!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wauw, drie goed",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.96
+ },
+ "1f79d951d94089": {
+  "tekst": "Drie op rij, Lucas! Lekker bezig!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Drie op rij Lucas. Lekker bezig",
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 1.85
+ },
+ "155c149f847f72": {
+  "tekst": "Drie goed achter elkaar, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Drie goed achter elkaar, Lucas",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.4
+ },
+ "18f629b3481a43": {
+  "tekst": "Vijf op rij, Lucas! Turbo!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Vijf op rij Lucas Turbo",
+  "lufs": -18,
+  "piek": 0.89,
+  "seconden": 1.34
+ },
+ "10c7c988181935": {
+  "tekst": "Vijf op rij!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Vijf op rij",
+  "lufs": -18,
+  "piek": 0.82,
+  "seconden": 0.86
+ },
+ "15cb6808e48b01": {
+  "tekst": "Wauw Lucas, vijf goed achter elkaar!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wauw Lucas, vijf goed achter elkaar",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 2.14
+ },
+ "0365a24ce22068": {
+  "tekst": "Acht op rij!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Acht op rij",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.88
+ },
+ "1ddf2d5bd59932": {
+  "tekst": "Vijf op rij! Je bent niet te stoppen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Vijf op rij. Je bent niet te stoppen",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.12
+ },
+ "166f7b1b0b292d": {
+  "tekst": "Acht op rij, Lucas! Wat een snelheid!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Acht op rij Lucas, wat een snelheid",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 2.21
+ },
+ "1dad3ad39a925c": {
+  "tekst": "Lucas, acht goed! Supersnel!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas Achtgoed supersnel",
+  "lufs": -18.3,
+  "piek": 0.89,
+  "seconden": 1.44
+ },
+ "0fd98926935501": {
+  "tekst": "Twaalf op rij!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Twaalf op rij",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 0.83
+ },
+ "062fb3205140fd": {
+  "tekst": "Twaalf op rij, Lucas! Wat een superheld!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Twaalf op rij Lucas, wat een superheld",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 2.56
+ },
+ "1d74acc235ae46": {
+  "tekst": "Twaalf op rij! Dat kan alleen Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "12 op rij. Dat kan alleen Lucas",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.12
+ },
+ "155b4deaf74060": {
+  "tekst": "Lucas, twaalf goed achter elkaar! Ongelooflijk!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas 12 goed achter elkaar. Ongelooflijk",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 3.54
+ },
+ "05929e0eb50526": {
+  "tekst": "Gelukt! Alle opgaven zijn klaar!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Gelukt! Alle opgaven zijn klaar",
+  "lufs": -18,
+  "piek": 0.8,
+  "seconden": 1.96
+ },
+ "0f12eb0714ca7d": {
+  "tekst": "Boem! Je bent klaar, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Boem, je bent klaar Lucas",
+  "lufs": -18,
+  "piek": 0.79,
+  "seconden": 1.41
+ },
+ "120c5f8d7e2f38": {
+  "tekst": "Wat een ronde, Lucas! Goed gedaan!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat een ronde Lucas. Goed gedaan",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.93
+ },
+ "0115656abe0649": {
+  "tekst": "Gelukt, Lucas! Wat een held!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Gelukt Lucas, wat een held",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.67
+ },
+ "0b711fd359c753": {
+  "tekst": "Klaar! Je hebt hard gewerkt, Lucas.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Klaar. Je hebt hard gewerkt, Lucas",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 2.13
+ },
+ "1486bbd1878b4b": {
+  "tekst": "Super, Lucas! Zo kom je steeds verder!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Super Lucas, zo kom je steeds verder",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 2.14
+ },
+ "00cc26ecb40a99": {
+  "tekst": "Lucas, dat was een topronde!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, dat was een top ronde",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 1.45
+ },
+ "181af083d37ad6": {
+  "tekst": "Hoera! Weer een ronde klaar!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hoera, weer een ronde klaar",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.49
+ },
+ "1b9176fe0cf9e6": {
+  "tekst": "Daar gaan we, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Daar gaan we Lucas",
+  "lufs": -18,
+  "piek": 0.66,
+  "seconden": 1.08
+ },
+ "1b7946c12b54ed": {
+  "tekst": "Klaar voor de start, Lucas?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Klaar voor de start Lucas?",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.27
+ },
+ "02538b7ba1868b": {
+  "tekst": "Kom op Lucas, jij kunt dit!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kom op Lucas, jij kunt dit",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.24
+ },
+ "0fc86201fc0b62": {
+  "tekst": "Hier komt een nieuwe ronde!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hier komt een nieuwe ronde",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.19
+ },
+ "09b19c24e38a8a": {
+  "tekst": "Turbo aan, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Turbo aan Lucas",
+  "lufs": -18,
+  "piek": 0.66,
+  "seconden": 1.05
+ },
+ "1384d7b92b2abf": {
+  "tekst": "Lucas, laat maar zien wat je kunt!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas laat maar zien wat je kunt",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.95
+ },
+ "15879ca3e46d3c": {
+  "tekst": "Ren door de poort met de eerste letter van het woord! Tik op een poort.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ren door de poort met de eerste letter van het woord. Tik op een poort",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 3.76
+ },
+ "101e42222ec86b": {
+  "tekst": "Ren door de poort met het goede antwoord! Tik op een poort.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ren door de poort met het goede antwoord. Tik op een poort",
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 3.29
+ },
+ "1bf8fa2f37f0a3": {
+  "tekst": "Ik zeg een woord. Sla het blok met de eerste letter uit de toren!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ik zeg een woord. Sla het blok met de eerste letter uit de toren",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 3.49
+ },
+ "01c64633c728db": {
+  "tekst": "Hoeveel blokken zijn het?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hoeveel blokken zijn het?",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 1.06
+ },
+ "17f2236b3fd08c": {
+  "tekst": "Kijk naar de toren. Tel de blokken mee!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kijk naar de toren. Tel de blokken mee",
+  "lufs": -18,
+  "piek": 0.89,
+  "seconden": 2.42
+ },
+ "1bd593b2de00d6": {
+  "tekst": "Kijk, ik tel nog een keer.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kijk, ik tel nog een keer",
+  "lufs": -18,
+  "piek": 0.74,
+  "seconden": 1.29
+ },
+ "005620713a18de": {
+  "tekst": "Hoi! Ik ben Sonic. Zullen we samen racen?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Hoi, ik ben Sonic. Zullen we samen racen?",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 2.06
+ },
+ "1780d0241ace2b": {
   "tekst": "Hoi! Ik ben Tails. Zullen we samen bouwen en schieten?",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Hoi, ik ben Tils. Zullen we samen bouwen en schieten?",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.86,
   "seconden": 3.61
  },
- "0032a8a500dcbb": {
-  "tekst": "maan",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "maan",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.52
- },
- "1705e2a6b5c3c0": {
+ "1d61fb19b6f52f": {
   "tekst": "Hoi! Ik ben Knuckles. Samen smashen we alle letters!",
   "soort": "instructie",
   "ok": true,
   "poging": "multi",
   "pogingen": 1,
   "gehoord": "Hoi, ik ben knokkels. Samen smashen we alle letters",
-  "lufs": -16.3,
-  "piek": 0.89,
+  "lufs": -18.1,
+  "piek": 0.88,
   "seconden": 3.74
  },
- "0df3cf83c42625": {
+ "12e18e960bb726": {
+  "tekst": "Supersnel, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Supersnel Lucas",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 1.18
+ },
+ "1af021ee70823c": {
+  "tekst": "Dat ging als de wind!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat ging als de wind",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 0.85
+ },
+ "1c3d0cfb27f757": {
+  "tekst": "Jij kunt bijna net zo snel als ik!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Jij kunt bijna net zo snel als ik",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 1.57
+ },
+ "038d8fbb32cb01": {
+  "tekst": "Zoef! Weer goed!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Zoef, weer goed",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 1.16
+ },
+ "145d22cff9f3cb": {
+  "tekst": "Lucas, jij bent turbo!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij bent Turbo",
+  "lufs": -18.1,
+  "piek": 0.87,
+  "seconden": 1.29
+ },
+ "1a4d3123ac342f": {
+  "tekst": "Yes! Samen zijn we niet te stoppen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Yes! Samen zijn we niet te stoppen",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 2.11
+ },
+ "171ca6fadf5631": {
+  "tekst": "Dat was snel gezien!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat was snel gezien",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.01
+ },
+ "08211194ff0564": {
+  "tekst": "Slim bedacht, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Slim bedacht Lucas",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 1.1
+ },
+ "1d6671409d88d2": {
+  "tekst": "Jij racet er zo doorheen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Jij racet er zo doorheen",
+  "lufs": -18,
+  "piek": 0.82,
+  "seconden": 1.17
+ },
+ "1fa8832a89e9a7": {
+  "tekst": "Wauw, dat was snel, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wauw, dat was snel Lucas",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 1.31
+ },
+ "15fe7a90e90c8f": {
+  "tekst": "Wat een slimme som!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat een slimme som",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.02
+ },
+ "10f6511446c33c": {
+  "tekst": "Precies uitgerekend, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Precies uitgerekend Lucas",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.34
+ },
+ "0b3bb8dd60cbd7": {
+  "tekst": "Mijn uitvinding werkt, dankzij jou!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Mijn uitvinding werkt dankzij jou",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.01
+ },
+ "00990e36fe2a20": {
+  "tekst": "Dat klopt helemaal!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat klopt helemaal",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.07
+ },
+ "1d61196454039e": {
+  "tekst": "Goed gerekend!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Goed gerekend",
+  "lufs": -18,
+  "piek": 0.7,
+  "seconden": 0.83
+ },
+ "190bc2207727b8": {
+  "tekst": "Lucas, jij bent een echte uitvinder!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij bent een echte uitvinder",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 2.26
+ },
+ "1dd6d19e9faca2": {
+  "tekst": "Kijk, de som klopt!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kijk, de som klopt",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.03
+ },
+ "1d02383f43860f": {
+  "tekst": "Samen bouwen we alles, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Samen bouwen we alles Lucas",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 1.53
+ },
+ "1c73aaaeb65595": {
+  "tekst": "Wat denk jij slim na, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wat denk jij slim na, Lucas?",
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 1.56
+ },
+ "1c3e32bf227416": {
+  "tekst": "Dat was een mokerslag!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat was een mokerslag",
+  "lufs": -18,
+  "piek": 0.71,
+  "seconden": 1.11
+ },
+ "064cfe75762ab5": {
+  "tekst": "Lucas, jij slaat ze er zo uit!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij slaat ze er zo uit",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.41
+ },
+ "00fe14b0a8ef4c": {
+  "tekst": "Knal! Kapot!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Knal kapot",
+  "lufs": -18,
+  "piek": 0.69,
+  "seconden": 0.8
+ },
+ "0e51c130e72158": {
+  "tekst": "Zo sterk als ik!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Zo sterk als ik",
+  "lufs": -18,
+  "piek": 0.73,
+  "seconden": 0.96
+ },
+ "1a9c3d74abf186": {
+  "tekst": "Sterk gedaan!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Sterk gedaan",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 0.89
+ },
+ "014588d80ec6a4": {
+  "tekst": "Bam! Daar ging hij!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Bam, daar ging hij",
+  "lufs": -18,
+  "piek": 0.63,
+  "seconden": 1.41
+ },
+ "1eaf56ad834979": {
+  "tekst": "Goed gesmasht!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Goed gesmasht",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 0.92
+ },
+ "1ac6904959f0f4": {
+  "tekst": "Lucas, jij bent supersterk!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Lucas, jij bent supersterk",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.3
+ },
+ "07ed9915113559": {
+  "tekst": "Dat was een enorme knal!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dat was een enorme knal",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.09
+ },
+ "16489ff158a4a2": {
+  "tekst": "maan",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "maan",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.5
+ },
+ "0a247753c1b13a": {
   "tekst": "roos",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "roos",
-  "lufs": -16,
-  "piek": 0.86,
+  "lufs": -18,
+  "piek": 0.66,
   "seconden": 0.72
  },
- "19817b8c75aa2a": {
+ "0c0ab3b09f6650": {
   "tekst": "vis",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "vis",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.54
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 0.52
  },
- "1e89b979428cd8": {
-  "tekst": "appel",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "appel",
-  "lufs": -16.5,
-  "piek": 0.89,
-  "seconden": 0.5
- },
- "13ed445f9590db": {
+ "04cc866cefe885": {
   "tekst": "sok",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "sok",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 0.46
+ },
+ "032943e65b0eca": {
+  "tekst": "appel",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "appel",
+  "lufs": -18,
+  "piek": 0.86,
   "seconden": 0.48
  },
- "00d5a2768f2d3a": {
+ "0e4b31b7b147f7": {
   "tekst": "inktvis",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "inktvis",
-  "lufs": -16.2,
+  "lufs": -18.1,
   "piek": 0.89,
-  "seconden": 0.76
+  "seconden": 0.78
  },
- "101ca4e98da464": {
+ "0e219e44e0be6a": {
   "tekst": "emmer",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "emmer",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 0.44
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.4
  },
- "04ddf0fe10fbbd": {
+ "1c30a1bd8222f4": {
   "tekst": "olifant",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "olifant",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.83,
   "seconden": 0.63
  },
- "163c2474b69e7e": {
+ "15a3bedaa3f7f3": {
   "tekst": "kat",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "kat",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.85,
   "seconden": 0.43
  },
- "1fe69d52b875dc": {
-  "tekst": "tent",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "tent",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 0.51
- },
- "108541a097bb66": {
+ "014bb718628f01": {
   "tekst": "pizza",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "pizza",
-  "lufs": -16,
-  "piek": 0.85,
+  "lufs": -18,
+  "piek": 0.81,
   "seconden": 0.57
  },
- "01f38f9d64826b": {
+ "179137cb48956d": {
+  "tekst": "tent",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "tent",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 0.53
+ },
+ "136496f7401dda": {
   "tekst": "neus",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "neus",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.68
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 0.66
  },
- "15dd87a4aaf9dc": {
+ "1b282300e22091": {
   "tekst": "bal",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "bal",
-  "lufs": -16,
-  "piek": 0.75,
+  "lufs": -18,
+  "piek": 0.62,
   "seconden": 0.49
  },
- "1ea3059295c991": {
+ "07e3679a240763": {
   "tekst": "draak",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "draak",
-  "lufs": -16,
-  "piek": 0.86,
-  "seconden": 0.67
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 0.66
  },
- "034efaba924b49": {
+ "0bdb12bb4c41b1": {
   "tekst": "hond",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "hond",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18.1,
+  "piek": 0.88,
   "seconden": 0.54
  },
- "137bed401a9301": {
+ "1323f7fc10a3a6": {
   "tekst": "lamp",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "lamp",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.37
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 0.35
  },
- "1d5afd6fec4370": {
+ "0fcbca0ad68e3a": {
   "tekst": "zon",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "zon",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.48
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 0.44
  },
- "15dd24e1e1ddcd": {
-  "tekst": "jas",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "jas",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 0.56
- },
- "086d42c018f500": {
-  "tekst": "fiets",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "fiets",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.54
- },
- "1a4222b83582c2": {
+ "005aefbd6df4b4": {
   "tekst": "wolk",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "wolk",
-  "lufs": -16,
-  "piek": 0.85,
+  "lufs": -18,
+  "piek": 0.58,
   "seconden": 0.54
  },
- "1a1cbf090e166b": {
+ "1c4cbd1db2b4ee": {
+  "tekst": "jas",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "jas",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 0.58
+ },
+ "0462b6de5240c0": {
+  "tekst": "fiets",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "fiets",
+  "lufs": -18,
+  "piek": 0.82,
+  "seconden": 0.54
+ },
+ "02696ee25f3832": {
   "tekst": "gitaar",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "gitaar",
-  "lufs": -16,
-  "piek": 0.85,
-  "seconden": 0.76
+  "lufs": -18,
+  "piek": 0.65,
+  "seconden": 0.72
  },
- "0fd5421fb9cfb8": {
-  "tekst": "pan",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "pan",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 0.37
- },
- "080edf658be9f3": {
+ "11ce6c86a5caff": {
   "tekst": "kip",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "kip",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.39
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.41
  },
- "0e05bd66121190": {
+ "06cac4d88ea800": {
+  "tekst": "pan",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "pan",
+  "lufs": -18,
+  "piek": 0.74,
+  "seconden": 0.4
+ },
+ "1a5e8653df8814": {
   "tekst": "pen",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "pen",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.84,
   "seconden": 0.44
  },
- "1ff22e0479801e": {
-  "tekst": "pot",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "pot",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.44
- },
- "1e9a5e0a0690ab": {
+ "013724d57eaabc": {
   "tekst": "pet",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "pet",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.45
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.46
  },
- "0afe7b8bc921b6": {
+ "04e5af5de4c35b": {
+  "tekst": "pot",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "pot",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.42
+ },
+ "096a08733bccb9": {
   "tekst": "man",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "man",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.79,
   "seconden": 0.4
  },
- "1ce8c9574a56cd": {
-  "tekst": "tas",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "tas",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.47
- },
- "18445d6b7a5e1a": {
+ "0a772c445c639c": {
   "tekst": "tak",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "tak",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 0.43
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 0.42
  },
- "0c919448abcdc6": {
+ "18601aaad76dd4": {
+  "tekst": "tas",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "tas",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 0.51
+ },
+ "1bcdddfbafdf4b": {
   "tekst": "rok",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "rok",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.5
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 0.54
  },
- "05e37d5ffa8777": {
+ "0a1d051a6a2670": {
   "tekst": "kom",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "kom",
-  "lufs": -16,
-  "piek": 0.85,
+  "lufs": -18,
+  "piek": 0.76,
   "seconden": 0.4
  },
- "0a76a571b54b49": {
+ "022c50a487438d": {
   "tekst": "bus",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "bus",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 0.54
  },
- "1fa94b7b47a3a4": {
-  "tekst": "bed",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "bed",
-  "lufs": -16,
-  "piek": 0.89,
-  "seconden": 0.48
- },
- "1755ae18afa64e": {
-  "tekst": "bos",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "bos",
-  "lufs": -16.1,
-  "piek": 0.87,
-  "seconden": 0.58
- },
- "19ca9831b2d7b1": {
+ "1210fd01682c91": {
   "tekst": "vos",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "vos",
-  "lufs": -16,
-  "piek": 0.84,
+  "lufs": -18,
+  "piek": 0.76,
   "seconden": 0.56
  },
- "17d766e88f5582": {
+ "1d0e0d81ed796b": {
+  "tekst": "bed",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "bed",
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 0.48
+ },
+ "045db459e36bbb": {
+  "tekst": "bos",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "bos",
+  "lufs": -18,
+  "piek": 0.74,
+  "seconden": 0.56
+ },
+ "03343022467fac": {
   "tekst": "lam",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "lam",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.41
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 0.4
  },
- "1b92dd25014257": {
+ "097ef0bd5a4417": {
   "tekst": "lip",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "lip",
-  "lufs": -16,
-  "piek": 0.89,
-  "seconden": 0.44
+  "lufs": -18,
+  "piek": 0.68,
+  "seconden": 0.48
  },
- "1ad41fa65076c4": {
+ "13404fb10448c8": {
   "tekst": "rat",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "rat",
-  "lufs": -16.1,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 0.44
  },
- "0a515f4759c92c": {
+ "091d3964e028d7": {
   "tekst": "ram",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "ram",
-  "lufs": -16,
-  "piek": 0.82,
-  "seconden": 0.48
+  "lufs": -18,
+  "piek": 0.68,
+  "seconden": 0.46
  },
- "1fb68b0e881d3a": {
+ "14b32afaf66385": {
   "tekst": "dak",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "dak",
-  "lufs": -16.1,
-  "piek": 0.87,
-  "seconden": 0.45
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 0.44
  },
- "09f894f6025ca7": {
+ "07b38665900d81": {
   "tekst": "post",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "post",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.79,
   "seconden": 0.56
  },
- "02f0869381fb1a": {
-  "tekst": "kerk",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "kerk",
-  "lufs": -16,
-  "piek": 0.85,
-  "seconden": 0.54
- },
- "14a9f5a79d4ddb": {
-  "tekst": "mand",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "mand",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.52
- },
- "11c660fc7c5c92": {
+ "15d29b06cf00c0": {
   "tekst": "kers",
   "soort": "woord",
   "ok": true,
   "poging": "flash-nl",
   "pogingen": 2,
   "gehoord": "kers",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.87,
   "seconden": 0.54
  },
- "1d08681403f66c": {
+ "184d875a5b6cc5": {
+  "tekst": "kerk",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "kerk",
+  "lufs": -18,
+  "piek": 0.73,
+  "seconden": 0.55
+ },
+ "003562fd1fa984": {
+  "tekst": "mand",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "mand",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.5
+ },
+ "1502fa7fd26172": {
   "tekst": "hand",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "hand",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 0.53
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.52
  },
- "1060b0f344631f": {
+ "178c096607f543": {
   "tekst": "vork",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "vork",
-  "lufs": -16,
-  "piek": 0.86,
-  "seconden": 0.54
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 0.56
  },
- "01905f3c1ee779": {
+ "009a99e90ceea5": {
   "tekst": "bril",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "bril",
-  "lufs": -16,
-  "piek": 0.68,
+  "lufs": -18,
+  "piek": 0.55,
   "seconden": 0.56
  },
- "1c4ebfcc3fb986": {
+ "0cb71635cc88e5": {
   "tekst": "ster",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "ster",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.48
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.5
  },
- "1f1806f780cb0a": {
+ "14e7eaf0e8cf94": {
   "tekst": "klok",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "klok",
-  "lufs": -16,
-  "piek": 0.86,
-  "seconden": 0.5
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 0.52
  },
- "0b7f3e689ea3ae": {
+ "02a1b01902a17b": {
   "tekst": "vlag",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "vlag",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 0.52
+  "lufs": -18,
+  "piek": 0.74,
+  "seconden": 0.58
  },
- "050217e98afb21": {
+ "177bbbab17a046": {
   "tekst": "aap",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "aap",
-  "lufs": -16,
-  "piek": 0.78,
+  "lufs": -18,
+  "piek": 0.59,
   "seconden": 0.3
  },
- "1c0feea1b7f554": {
+ "0d382de6aea999": {
   "tekst": "eend",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "eend",
-  "lufs": -16,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.87,
   "seconden": 0.52
  },
- "145592ee1f21f0": {
+ "0f6725e49b067d": {
   "tekst": "oog",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "oog",
-  "lufs": -16,
-  "piek": 0.83,
+  "lufs": -18,
+  "piek": 0.77,
   "seconden": 0.48
  },
- "164849aa2587a5": {
+ "0a4c7261f1620a": {
   "tekst": "krab",
   "soort": "woord",
   "ok": false,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "krap",
-  "lufs": -16,
-  "piek": 0.84,
-  "seconden": 0.43
+  "lufs": -18,
+  "piek": 0.81,
+  "seconden": 0.41
  },
- "08b059d58b821c": {
+ "0199121362311b": {
   "tekst": "oor",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "oor",
-  "lufs": -16,
-  "piek": 0.63,
-  "seconden": 0.42
+  "lufs": -18,
+  "piek": 0.46,
+  "seconden": 0.4
  },
- "01c7c506f48da6": {
+ "1aad6baa59dd99": {
   "tekst": "kaas",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "kaas",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.62
- },
- "137e2f719dad5d": {
-  "tekst": "boom",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "boom",
-  "lufs": -16,
+  "lufs": -18,
   "piek": 0.83,
-  "seconden": 0.5
+  "seconden": 0.6
  },
- "19991818a4d0df": {
+ "0bde1a269d9e22": {
   "tekst": "boot",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "boot",
-  "lufs": -16.1,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.81,
   "seconden": 0.52
  },
- "192e1dd2d23450": {
+ "05b8141000f9da": {
+  "tekst": "boom",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "boom",
+  "lufs": -18,
+  "piek": 0.72,
+  "seconden": 0.51
+ },
+ "1af6e1860b7a99": {
   "tekst": "vuur",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "vuur",
-  "lufs": -16,
-  "piek": 0.75,
+  "lufs": -18,
+  "piek": 0.52,
   "seconden": 0.48
  },
- "002c2df856a46f": {
+ "0d5a0a81ed34f0": {
   "tekst": "muis",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "muis",
-  "lufs": -16.1,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.83,
   "seconden": 0.6
  },
- "03ae14b6d1ec6f": {
+ "0a9491171decbb": {
   "tekst": "hoed",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "hoed",
-  "lufs": -16,
-  "piek": 0.81,
-  "seconden": 0.49
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 0.48
  },
- "1f2ba841b56bee": {
+ "0b1fd680139c03": {
   "tekst": "boek",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "boek",
-  "lufs": -16.2,
-  "piek": 0.89,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 0.43
  },
- "1eb4b0e3c29deb": {
-  "tekst": "bij",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "bij",
-  "lufs": -16,
-  "piek": 0.85,
-  "seconden": 0.45
- },
- "01f106e991bf69": {
+ "1622664de9fb05": {
   "tekst": "pijl",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "pijl",
-  "lufs": -16,
-  "piek": 0.83,
-  "seconden": 0.48
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.5
  },
- "086f2ddb7d2ce1": {
-  "tekst": "trein",
+ "1f8eafc670db0d": {
+  "tekst": "bij",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
-  "gehoord": "trein",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.58
+  "gehoord": "bij",
+  "lufs": -18,
+  "piek": 0.61,
+  "seconden": 0.45
  },
- "064d3505240c8c": {
-  "tekst": "mier",
-  "soort": "woord",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "mier",
-  "lufs": -16,
-  "piek": 0.75,
-  "seconden": 0.6
- },
- "1f887d0bdc91a6": {
+ "0c9bce0a2ea11b": {
   "tekst": "deur",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "deur",
-  "lufs": -16,
-  "piek": 0.77,
-  "seconden": 0.56
+  "lufs": -18,
+  "piek": 0.52,
+  "seconden": 0.48
  },
- "1d27fba0077ae1": {
-  "tekst": "huis",
+ "010dc8e60931fd": {
+  "tekst": "mier",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
-  "gehoord": "huis",
-  "lufs": -16,
-  "piek": 0.81,
-  "seconden": 0.6
+  "gehoord": "mier",
+  "lufs": -18,
+  "piek": 0.59,
+  "seconden": 0.66
  },
- "00a2d5209af1c0": {
+ "0ba84d45b90f12": {
+  "tekst": "trein",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "trein",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 0.56
+ },
+ "15a0e95df9a421": {
   "tekst": "koe",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "koe",
-  "lufs": -16,
-  "piek": 0.84,
+  "lufs": -18,
+  "piek": 0.63,
   "seconden": 0.33
  },
- "169c2a9650ce29": {
+ "04025ef568d81d": {
+  "tekst": "huis",
+  "soort": "woord",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "huis",
+  "lufs": -18,
+  "piek": 0.73,
+  "seconden": 0.63
+ },
+ "0d635cce0db9fa": {
   "tekst": "voet",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "voet",
-  "lufs": -16.1,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.84,
   "seconden": 0.44
  },
- "0c2af7abdb83ab": {
+ "1b4647c07d9202": {
   "tekst": "bloem",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "bloem",
-  "lufs": -16,
-  "piek": 0.67,
-  "seconden": 0.52
+  "lufs": -18,
+  "piek": 0.64,
+  "seconden": 0.54
  },
- "1643bb14f2dadf": {
+ "131dcc8f088dba": {
   "tekst": "stoel",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "stoel",
-  "lufs": -16,
-  "piek": 0.71,
-  "seconden": 0.5
+  "lufs": -18,
+  "piek": 0.61,
+  "seconden": 0.52
  },
- "001db571e66108": {
+ "109d78c81dc6b2": {
   "tekst": "raam",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "raam",
-  "lufs": -16,
-  "piek": 0.87,
+  "lufs": -18,
+  "piek": 0.8,
   "seconden": 0.61
  },
- "02450ddd034481": {
+ "04d7c6ba2cf54b": {
   "tekst": "kaars",
   "soort": "woord",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "kaars",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.64
+  "lufs": -18,
+  "piek": 0.73,
+  "seconden": 0.66
  },
- "157cdabc40e2af": {
+ "0302057364ec7d": {
   "tekst": "0",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "nul",
-  "lufs": -16,
-  "piek": 0.79,
-  "seconden": 0.44
+  "lufs": -18,
+  "piek": 0.53,
+  "seconden": 0.48
  },
- "0a070699e628cd": {
+ "1151001102de5b": {
   "tekst": "1",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "één",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.41
+  "lufs": -18,
+  "piek": 0.64,
+  "seconden": 0.38
  },
- "1fab9761c81c2e": {
+ "12e61526cbef7a": {
   "tekst": "2",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "twee",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.44
+  "lufs": -18,
+  "piek": 0.8,
+  "seconden": 0.46
  },
- "03fa745d83a50e": {
+ "06c23896b9cef2": {
   "tekst": "3",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "drie",
-  "lufs": -16,
-  "piek": 0.81,
+  "lufs": -18,
+  "piek": 0.7,
   "seconden": 0.44
  },
- "159148206cd7da": {
+ "1b4048640e1606": {
   "tekst": "4",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "vier",
-  "lufs": -16,
-  "piek": 0.78,
-  "seconden": 0.48
+  "lufs": -18,
+  "piek": 0.65,
+  "seconden": 0.46
  },
- "031ae3c3848122": {
+ "083e7addb6752e": {
   "tekst": "5",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "vijf",
-  "lufs": -16.1,
-  "piek": 0.88,
-  "seconden": 0.44
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 0.47
  },
- "0567325b2bd149": {
-  "tekst": "7",
-  "soort": "getal",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "zeven",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.61
- },
- "03808a25355bcb": {
+ "1caacdccd269d9": {
   "tekst": "6",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "zes",
-  "lufs": -16.2,
-  "piek": 0.89,
-  "seconden": 0.52
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 0.5
  },
- "0468e08bf32a56": {
+ "053f205120ab4f": {
+  "tekst": "7",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "zeven",
+  "lufs": -18,
+  "piek": 0.8,
+  "seconden": 0.57
+ },
+ "118c6c6beb14f4": {
   "tekst": "8",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "acht",
-  "lufs": -16.1,
-  "piek": 0.88,
+  "lufs": -18,
+  "piek": 0.84,
   "seconden": 0.3
  },
- "18b7ca64b4234e": {
+ "1596ea254c7251": {
   "tekst": "9",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "negen",
-  "lufs": -16,
-  "piek": 0.8,
-  "seconden": 0.58
+  "lufs": -18,
+  "piek": 0.67,
+  "seconden": 0.64
  },
- "1d34af51da563e": {
-  "tekst": "10",
-  "soort": "getal",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "tien",
-  "lufs": -16,
-  "piek": 0.75,
-  "seconden": 0.39
- },
- "129a7e7ff3f553": {
+ "054d6738d071e6": {
   "tekst": "11",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "elf",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.47
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.48
  },
- "1523d80ebd1087": {
+ "0fe47a52630bdd": {
+  "tekst": "10",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "tien",
+  "lufs": -18,
+  "piek": 0.57,
+  "seconden": 0.37
+ },
+ "1b6a2ba6646396": {
   "tekst": "12",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "12",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.45
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 0.47
  },
- "1f597c8aea6122": {
-  "tekst": "13",
-  "soort": "getal",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 1,
-  "gehoord": "13",
-  "lufs": -16.3,
-  "piek": 0.89,
-  "seconden": 0.53
- },
- "066566d0e2d5b0": {
+ "13fc77d319ca4d": {
   "tekst": "14",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "14",
-  "lufs": -16,
-  "piek": 0.85,
-  "seconden": 0.66
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 0.69
  },
- "0661c97dbc9999": {
+ "1cf0a87119e2b5": {
+  "tekst": "13",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "13",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 0.53
+ },
+ "0a17999f3bced3": {
   "tekst": "15",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "15",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.65
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 0.69
  },
- "0d452da05bd366": {
+ "0e634057b4801c": {
   "tekst": "16",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "16",
-  "lufs": -16.1,
-  "piek": 0.89,
-  "seconden": 0.7
+  "lufs": -18.1,
+  "piek": 0.87,
+  "seconden": 0.68
  },
- "172b7129a17221": {
+ "12a1729d470beb": {
   "tekst": "17",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "17",
-  "lufs": -16,
-  "piek": 0.88,
-  "seconden": 0.76
+  "lufs": -18,
+  "piek": 0.79,
+  "seconden": 0.78
  },
- "116131ff903b20": {
+ "13589374dd30ec": {
   "tekst": "18",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "18",
-  "lufs": -16.1,
+  "lufs": -18.1,
   "piek": 0.88,
-  "seconden": 0.55
+  "seconden": 0.5
  },
- "000db541cb91b8": {
+ "175c5408f1f411": {
   "tekst": "19",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "19",
-  "lufs": -16,
-  "piek": 0.87,
-  "seconden": 0.82
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.76
  },
- "0ee4baa8af7331": {
+ "13ff1025e5a58f": {
   "tekst": "20",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "20",
-  "lufs": -16,
-  "piek": 0.85,
+  "lufs": -18,
+  "piek": 0.79,
   "seconden": 0.68
  },
- "15a1144e974be9": {
+ "109b22de995b5c": {
   "tekst": "plus",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "plus",
-  "lufs": -16.1,
-  "piek": 0.87,
+  "lufs": -18,
+  "piek": 0.78,
   "seconden": 0.5
  },
- "1d5405702e5a5e": {
+ "1f8accbfde0ace": {
   "tekst": "min",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "min",
-  "lufs": -16,
-  "piek": 0.72,
+  "lufs": -18,
+  "piek": 0.66,
   "seconden": 0.38
  },
- "1b33d73a39cbdb": {
+ "0a72d23a6eeb5e": {
   "tekst": "is",
   "soort": "getal",
   "ok": true,
   "poging": "v4-nl",
   "pogingen": 1,
   "gehoord": "is",
-  "lufs": -16,
-  "piek": 0.86,
-  "seconden": 0.42
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 0.44
+ },
+ "108d30f2686b4f": {
+  "tekst": "Wauw, acht op rij! Je bent een held!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wauw, acht op rij. Je bent een held",
+  "lufs": -18,
+  "piek": 0.63,
+  "seconden": 2.07
  }
 }

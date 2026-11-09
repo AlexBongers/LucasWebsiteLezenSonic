@@ -12,6 +12,10 @@
   import Patroon from '../games/Patroon.svelte';
   import Splits from '../games/Splits.svelte';
   import Jacht from '../games/Jacht.svelte';
+  import Tunnel from '../games/Tunnel.svelte';
+  import TorenSmash from '../games/TorenSmash.svelte';
+  import TorenBoem from '../games/TorenBoem.svelte';
+  import { webglKan } from '../ui/drie-d';
   import SchildBalk from '../ui/SchildBalk.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
   import Beloning from './Beloning.svelte';
@@ -25,6 +29,7 @@
   import { bewaar, vg } from '../store/voortgang.svelte';
   import { stopSpreken } from '../audio/stem';
   import { speelCombo } from '../audio/geluid';
+  import { zetCombo } from '../games/teksten';
   import { vliegRingen } from '../ui/vlieg';
 
   let {
@@ -116,6 +121,7 @@
       clearTimeout(comboTimer);
       combo = reeks;
       speelCombo();
+      zetCombo(reeks);
       verdiend += 1;
       setTimeout(() => (vg.ringen += 1), 800);
       comboTimer = setTimeout(() => (combo = null), 1800);
@@ -186,7 +192,9 @@
     else opStop();
   }
 
-  const SPELCOMP = { ringrace: Race, woordrace: Race, meer: Meer, patroon: Patroon, smash: Smash, bouwen: Bouwen, jacht: Jacht, katapult: Katapult, telbouw: TelBouw, splits: Splits } as const;
+  const SPELCOMP = { ringrace: Race, woordrace: Race, meer: Meer, patroon: Patroon, smash: Smash, bouwen: Bouwen, jacht: Jacht, katapult: Katapult, telbouw: TelBouw, splits: Splits,
+    // 3D-spellen: zonder WebGL nemen ze hun 2D-broertje
+    tunnel: webglKan() ? Tunnel : Smash, tunnelsom: webglKan() ? Tunnel : Katapult, torensmash: webglKan() ? TorenSmash : Smash, torenboem: webglKan() ? TorenBoem : TelBouw } as const;
   // svelte-ignore state_referenced_locally
   const Spel = SPELCOMP[spel];
 </script>

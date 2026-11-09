@@ -3,7 +3,7 @@
   "provider": "elevenlabs",
   "stem": "X47hgIK01mak7V68z9pH",
   "stemNaam": "Milan",
-  "versie": 2,
+  "versie": 3,
   "elevenlabs": {
     "modelZinnen": "eleven_multilingual_v2",
     "modelWoorden": "eleven_flash_v2_5",

@@ -270,3 +270,52 @@ describe('Letter-jacht', () => {
     expect(jachtUitId('jacht.z', 0, kent)).toBeNull();
   });
 });
+
+describe('aanmoedigingen', () => {
+  it('hebben genoeg afwisseling en noemen Lucas bij naam', async () => {
+    const { default: t } = await import('../content/teksten.json');
+    const { default: c } = await import('../content/characters.json');
+    expect(t.complimenten.length + t.complimentenLucas.length).toBeGreaterThanOrEqual(60);
+    expect(t.bijna.length + t.bijnaLucas.length).toBeGreaterThanOrEqual(25);
+    expect(t.complimentenLucas.filter((z) => z.includes('Lucas')).length).toBe(t.complimentenLucas.length);
+    expect(t.bijnaLucas.filter((z) => z.includes('Lucas')).length).toBe(t.bijnaLucas.length);
+    for (const h of Object.values(c)) expect(h.complimenten.length).toBeGreaterThanOrEqual(8);
+    for (const n of ['3', '5', '8', '12']) expect((t.combo as Record<string, string[]>)[n].length).toBeGreaterThanOrEqual(3);
+  });
+  it('de zak geeft nooit twee keer dezelfde zin achter elkaar en gebruikt eerst alles', async () => {
+    const { uitZak } = await import('../src/games/teksten');
+    const lijst = ['a', 'b', 'c', 'd'];
+    const gezien: string[] = [];
+    for (let i = 0; i < 40; i++) gezien.push(uitZak('test', lijst));
+    for (let i = 1; i < gezien.length; i++) expect(gezien[i]).not.toBe(gezien[i - 1]);
+    for (let i = 0; i + 4 <= 40; i += 4) expect(new Set(gezien.slice(i, i + 4)).size).toBe(4);
+  });
+});
+
+import { drieKeuzes } from '../src/games/keuze';
+
+describe('de 3D-spellen', () => {
+  const kent = maakKent(['m', 'r', 'v', 's', 'a', 'i', 'e', 'o', 'k', 'p', 't', 'n']);
+  for (const id of ['tunnel', 'tunnelsom', 'torensmash', 'torenboem'] as const) {
+    it(`${id}: elke opgave is uit zijn id te herbouwen en heeft het goede antwoord erbij`, async () => {
+      const { SPEL } = await import('../src/games/spellen');
+      const def = SPEL[id];
+      for (let n = 0; n <= def.maxNiveau; n++) {
+        const lijst = def.opgaven.maak(n, 8, kent, zaadRnd(5 + n));
+        expect(lijst.length).toBeGreaterThan(0);
+        for (const o of lijst) {
+          const sleutel = def.opgaven.id(o);
+          expect(sleutel.startsWith(def.prefix)).toBe(true);
+          expect(def.opgaven.herbouw(sleutel, n, kent)).not.toBeNull();
+          const x = o as { keuzes?: (string | number)[]; letter?: string; antwoord?: number; n?: number };
+          const goed = x.letter ?? x.antwoord ?? x.n;
+          if (x.keuzes) {
+            const drie = drieKeuzes(x.keuzes, goed as string | number);
+            expect(drie).toContain(goed);
+            expect(drie.length).toBe(3);
+          }
+        }
+      }
+    });
+  }
+});

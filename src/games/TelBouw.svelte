@@ -61,7 +61,7 @@
     boem(bron, 300);
     opRingen(ronde.goed(), bron);
     await spreek(String(o.n), 'getal');
-    await spreek(compliment());
+    await spreek(compliment('tails'));
     await wacht(250);
     volgende();
   }

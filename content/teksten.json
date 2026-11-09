@@ -16,20 +16,46 @@
     "Bam! Raak!",
     "Jij kunt dit!",
     "Echt super gedaan!",
-    "Kijk eens, wat een kracht!"
+    "Kijk eens, wat een kracht!",
+    "Fantastisch!",
+    "Geweldig!",
+    "Wauw, knap gedaan!",
+    "Poef! Kapot!",
+    "Helemaal goed!",
+    "Wat een snelheid!",
+    "Ja hoor, die klopt!",
+    "Gouden antwoord!",
+    "Zo doe je dat!",
+    "Wat een slimme zet!",
+    "Raak!",
+    "Hoppa! Goed zo!",
+    "Superturbo!",
+    "Dat ging als een raket!",
+    "Dat was supersnel!",
+    "Netjes!",
+    "Briljant!",
+    "Dat ging lekker!"
   ],
   "bijna": [
     "Bijna! Probeer het nog eens.",
     "Oei, net niet. Kijk nog eens goed.",
     "Bijna! Jij kunt dit!",
     "Nog een keertje, dan lukt het!",
-    "Dat was dichtbij! Probeer het maar weer."
+    "Dat was dichtbij! Probeer het maar weer.",
+    "Oei, net mis! Kijk nog eens.",
+    "Bijna goed! Je zit er dichtbij.",
+    "Hmm, nog niet helemaal. Nog een keer!",
+    "Geeft niks. Probeer het nog eens.",
+    "Rustig aan, kijk nog eens goed.",
+    "Ai, die was lastig. Nog een keer!",
+    "Net niet! Nog een kans.",
+    "Niet erg! Fouten maken hoort erbij.",
+    "Oeps! Probeer het nog eens."
   ],
   "hetIs": "Het goede antwoord is",
   "verder": "Tik op verder.",
   "stoppen": "Wil je stoppen met dit spel?",
   "afsluiten": "Wil je stoppen met spelen?",
-  "beloning": "Gelukt! Alle robots zijn kapot!",
   "draaien": "Draai je tablet een kwartslag.",
   "spelkeuze": "Welk spel wil je spelen?",
   "auditie": {
@@ -105,5 +131,117 @@
     "volgende": "Goed gedaan! Op naar het volgende spel.",
     "klaar": "Missie gelukt! Je hebt een turbokristal!",
     "alle": "Wat een held! Alle kristallen zijn van jou. Nu ben je een superheld!"
+  },
+  "complimentenLucas": [
+    "Top, Lucas!",
+    "Goed zo, Lucas!",
+    "Wauw Lucas, wat knap!",
+    "Lucas, jij bent een held!",
+    "Yes Lucas, raak!",
+    "Lucas, dat was perfect!",
+    "Wat ben jij slim, Lucas!",
+    "Goed gezien, Lucas!",
+    "Lucas, je bent geweldig!",
+    "Super gedaan, Lucas!",
+    "Hoera voor Lucas!",
+    "Lucas, je bent een echte turbo-held!",
+    "Netjes, Lucas!",
+    "Lucas, wat gaat dat goed!",
+    "Knap hoor, Lucas!",
+    "Lucas rockt!",
+    "Lucas, jij bent supersnel!",
+    "Precies goed, Lucas!",
+    "Boem! Dat was Lucas!",
+    "Daar is Lucas weer met een goed antwoord!",
+    "Wat een kanjer ben jij, Lucas!",
+    "Lucas, jij bent niet te stoppen!",
+    "Bam, Lucas! Weer goed!",
+    "Lucas, dat deed je zomaar even!",
+    "Jij bent een topper, Lucas!",
+    "Lucas, je bent echt een kampioen!",
+    "Dat was een knaller, Lucas!",
+    "Lucas, wat een turbo!",
+    "Geweldig, Lucas!",
+    "Lucas, dat kan niemand beter!",
+    "Ja Lucas, zo gaat dat!",
+    "Lucas, jij bent een kei!",
+    "Wat een kracht, Lucas!",
+    "Lucas, je maakt ze allemaal kapot!",
+    "Lucas, dat ging zo makkelijk!"
+  ],
+  "bijnaLucas": [
+    "Nog een poging, Lucas!",
+    "Bijna, Lucas! Nog een keer proberen.",
+    "Geeft niks, Lucas. Probeer het nog eens.",
+    "Oei Lucas, net mis! Kijk nog eens goed.",
+    "Kijk nog even goed, Lucas.",
+    "Lucas, je bent er bijna!",
+    "Probeer het nog eens, Lucas. Jij kunt het!",
+    "Hmm, Lucas, nog niet helemaal. Nog een keer!",
+    "Rustig aan, Lucas. Je kunt het.",
+    "Bijna raak, Lucas! Nog een keer.",
+    "Ai, die was lastig, Lucas. Je doet het goed!",
+    "Lucas, dat was dichtbij!",
+    "Nog niet, Lucas, maar je gaat het halen!",
+    "Lucas, fouten maken hoort erbij. Probeer maar weer!",
+    "Hé Lucas, net niet! Kijk nog een keertje."
+  ],
+  "combo": {
+    "3": [
+      "Drie op rij!",
+      "Drie op rij, Lucas! Lekker bezig!",
+      "Wauw, drie goed!",
+      "Drie goed achter elkaar, Lucas!"
+    ],
+    "5": [
+      "Vijf op rij!",
+      "Vijf op rij, Lucas! Turbo!",
+      "Wauw Lucas, vijf goed achter elkaar!",
+      "Vijf op rij! Je bent niet te stoppen!"
+    ],
+    "8": [
+      "Acht op rij!",
+      "Acht op rij, Lucas! Wat een snelheid!",
+      "Lucas, acht goed! Supersnel!",
+      "Wauw, acht op rij! Je bent een held!"
+    ],
+    "12": [
+      "Twaalf op rij!",
+      "Twaalf op rij, Lucas! Wat een superheld!",
+      "Lucas, twaalf goed achter elkaar! Ongelooflijk!",
+      "Twaalf op rij! Dat kan alleen Lucas!"
+    ]
+  },
+  "beloningen": [
+    "Gelukt! Alle opgaven zijn klaar!",
+    "Boem! Je bent klaar, Lucas!",
+    "Wat een ronde, Lucas! Goed gedaan!",
+    "Gelukt, Lucas! Wat een held!",
+    "Klaar! Je hebt hard gewerkt, Lucas.",
+    "Super, Lucas! Zo kom je steeds verder!",
+    "Lucas, dat was een topronde!",
+    "Hoera! Weer een ronde klaar!"
+  ],
+  "rondeStart": [
+    "Daar gaan we, Lucas!",
+    "Klaar voor de start, Lucas?",
+    "Kom op Lucas, jij kunt dit!",
+    "Hier komt een nieuwe ronde!",
+    "Turbo aan, Lucas!",
+    "Lucas, laat maar zien wat je kunt!"
+  ],
+  "tunnel": {
+    "start": "Ren door de poort met de eerste letter van het woord! Tik op een poort."
+  },
+  "tunnelsom": {
+    "start": "Ren door de poort met het goede antwoord! Tik op een poort."
+  },
+  "torensmash": {
+    "start": "Ik zeg een woord. Sla het blok met de eerste letter uit de toren!"
+  },
+  "torenboem": {
+    "start": "Kijk naar de toren. Tel de blokken mee!",
+    "tel": "Hoeveel blokken zijn het?",
+    "hint": "Kijk, ik tel nog een keer."
   }
 }

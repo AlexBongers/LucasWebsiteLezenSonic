@@ -27,6 +27,7 @@ export function alleTeksten(): TeSpreken[] {
 
   strings(teksten).forEach((t) => voeg(t, 'instructie'));
   Object.values(characters).forEach((c) => voeg(c.intro, 'instructie'));
+  strings(Object.values(characters).map((c) => c.complimenten)).forEach((t) => voeg(t, 'instructie'));
 
   // Beginwoorden van de letters en alle woordjes (ook als de stem het woord na afloop herhaalt)
   LETTERS.forEach((l) => voeg(l.woord, 'woord'));

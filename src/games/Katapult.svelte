@@ -13,7 +13,7 @@
   import { somDelen, spreek } from '../audio/stem';
   import { speelBijna, speelGoed } from '../audio/geluid';
   import { boem, werp } from '../ui/boem';
-  import { teksten, compliment, bijna, wacht } from './teksten';
+  import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
   import type { SpelProps } from './types';
 
@@ -36,6 +36,7 @@
 
   onMount(() => {
     (async () => {
+      { const z = rondeStart(); if (z) await spreek(z); }
       await spreek(teksten.katapult.start);
       await zegSom();
     })();
@@ -58,7 +59,7 @@
       boem(robotEls[i]);
       opRingen(ronde.goed(), robotEls[i]);
       await spreek(somDelen(som.a, som.op, som.b, som.antwoord), 'getal');
-      await spreek(compliment());
+      await spreek(compliment('tails'));
       await wacht(250);
       volgende();
     } else {

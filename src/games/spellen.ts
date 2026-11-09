@@ -14,7 +14,7 @@ import {
 
 export type HeldId = 'sonic' | 'tails' | 'knuckles';
 
-export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits';
+export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem';
 
 /** Een spel is ook de vaardigheid waarvan het niveau wordt bijgehouden. */
 export type VaardigheidId = SpelId;
@@ -91,6 +91,45 @@ SPELLEN.push(
   def<SplitsOpgave>({
     id: 'splits', held: 'tails', naam: 'Splits-bom', uitleg: 'Maak de bom veilig', icoon: '💣', maxNiveau: SPLITS_MAX, rekenen: true, prefix: 'splits.',
     opgaven: { maak: (n, a, _k, rnd) => maakSplits(n, a, rnd), herbouw: (id) => splitsUitId(id), id: splitsId },
+  }),
+);
+
+// ------------------------------------------------------------------ 3D-spellen
+// Ze hebben hun eigen herhalingsdoosjes (eigen voorvoegsel) en gebruiken de opgaven van hun 2D-broertjes.
+const metVoorvoegsel = (van: string, naar: string) => (id: string) => id.replace(new RegExp(`^${van}`), naar);
+
+SPELLEN.push(
+  def<SmashOpgave>({
+    id: 'tunnel', held: 'sonic', naam: 'Turbo-tunnel 3D', uitleg: 'Ren door de poort met de beginletter', icoon: '🌀', maxNiveau: 1, prefix: 'tunnel.', snel: true,
+    opgaven: {
+      maak: maakSmash,
+      herbouw: (id, n, kent) => smashUitId(metVoorvoegsel('tunnel\\.', 'smash.')(id), n, kent),
+      id: (o) => `tunnel.${o.woord}`,
+    },
+  }),
+  def<Som>({
+    id: 'tunnelsom', held: 'tails', naam: 'Reken-tunnel 3D', uitleg: 'Ren door de poort met het antwoord', icoon: '🚀', maxNiveau: REKEN_MAX, rekenen: true, prefix: 'tsom.', snel: true,
+    opgaven: {
+      maak: (n, a, _k, rnd) => maakSommen(n, a, rnd),
+      herbouw: (id) => somUitId(metVoorvoegsel('tsom\\.', '')(id)),
+      id: (s) => `tsom.${somId(s)}`,
+    },
+  }),
+  def<SmashOpgave>({
+    id: 'torensmash', held: 'knuckles', naam: 'Toren-smash 3D', uitleg: 'Sla het goede blok uit de toren', icoon: '🗼', maxNiveau: 1, prefix: 'toren.', snel: true,
+    opgaven: {
+      maak: maakSmash,
+      herbouw: (id, n, kent) => smashUitId(metVoorvoegsel('toren\\.', 'smash.')(id), n, kent),
+      id: (o) => `toren.${o.woord}`,
+    },
+  }),
+  def<TelOpgave>({
+    id: 'torenboem', held: 'tails', naam: 'Toren-boem 3D', uitleg: 'Tel de blokken en laat de toren ontploffen', icoon: '🧨', maxNiveau: 1, rekenen: true, prefix: 'boem.',
+    opgaven: {
+      maak: (n, a, _k, rnd) => maakTel(n === 0 ? 1 : 3, a, rnd),
+      herbouw: (id) => telUitId(`tel.tel.${id.replace(/^boem\./, '')}`),
+      id: (o) => `boem.${o.n}`,
+    },
   }),
 );
 

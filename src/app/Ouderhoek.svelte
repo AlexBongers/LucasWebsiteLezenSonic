@@ -24,6 +24,10 @@
     meer: ['1 · ringen vergelijken tot 6', '2 · ringen tot 10, ook minder', '3 · getallen tot 20, groter en kleiner'],
     patroon: ['1 · rood, blauw, rood, blauw (AB)', '2 · AAB, ABB en ABC', '3 · patronen van vier'],
     splits: ['1 · bom tot 5', '2 · bom tot 10', '3 · bom tot 20'],
+    tunnel: ['1 · letters die hij kent', '2 · ook de lastige letters'],
+    tunnelsom: ['1 · plus tot 5', '2 · plus tot 10', '3 · min tot 10', '4 · plus en min door elkaar', '5 · tot 20'],
+    torensmash: ['1 · letters die hij kent', '2 · ook de lastige letters'],
+    torenboem: ['1 · torens tot 10 blokken', '2 · torens tot 20 blokken'],
     jacht: ['1 · zes stenen, drie gezocht', '2 · negen stenen, vier gezocht', '3 · negen stenen met lettervriendjes (b en d)'],
   };
 

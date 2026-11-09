@@ -16,12 +16,18 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | 🏁 Woord-race | Een woordje flitst (kat, vis, maan). Kies het plaatje dat erbij hoort. |
 | | ⚖️ Meer-race | Twee stapels ringen: welke kant heeft er meer (of minder, of evenveel)? |
 | | 🔴 Patroon-race | Rood, blauw, rood, blauw, ... wat komt hierna? |
+| | 🌀 **Turbo-tunnel 3D** | Sonic rent door een 3D-wereld naar drie poorten. De stem zegt een woord; ren door de poort met de eerste letter. |
 | **Tails** | 🎯 Katapult-sommen | Een som met ringen. Schiet de robot met het goede antwoord weg met de katapult. |
 | | 🏗️ Tel & Bouw | Bouw een toren van n stenen en laat hem ontploffen. Of tel hoeveel stenen er staan. Elke steen wordt hardop geteld. |
+| | 🚀 **Reken-tunnel 3D** | Tails rent door een 3D-wereld naar drie poorten. Ren door de poort met het antwoord van de som. |
+| | 🧨 **Toren-boem 3D** | Blokken vallen op elkaar en de stem telt mee. Hoeveel blokken? Goed antwoord, dan ontploft de toren. |
 | | 💣 Splits-bom | Een bom met n ringen is verstopt achter twee deurtjes. Hoeveel zitten er achter het andere deurtje? Maak de bom veilig. |
 | **Knuckles** | 💥 Letter-smash | De stem zegt een woord. Sla de steen met de beginletter kapot. |
 | | 🧱 Woord-bouwen | Er staat een plaatje. Leg het woordje met letterstenen in de goede volgorde. |
+| | 🗼 **Toren-smash 3D** | Een draaiende toren van letterblokken. Tik op het blok met de beginletter, Knuckles slaat het eruit. |
 | | 🔨 Letter-jacht | Een rij stenen met letters. Sla ze allemaal kapot die gelijk zijn aan de letter bovenin. |
+
+De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
 
 **Dagmissie.** Drie spellen achter elkaar, een van elke held, vier opgaven per spel. Gelukt? Dan krijgt Lucas een **turbokristal** (regenboogkleuren). Bij het zevende kristal wordt hij **superheld**.
 
@@ -29,7 +35,7 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 
 Verder:
 - **Alles wordt voorgelezen** door een Nederlandse jongensstem (ElevenLabs, Milan). Er is geen tabletstem nodig; de teksten zijn vooraf ingesproken en werken offline.
-- **Alle opnames zijn even hard en gecontroleerd.** Bij het maken worden ze op dezelfde luidheid gebracht (-16 LUFS), en elke opname wordt teruggeluisterd met spraakherkenning. Klinkt een woord of getal niet zoals bedoeld, dan wordt het opnieuw gemaakt (zie "De stem").
+- **Alle opnames zijn even hard en gecontroleerd.** Bij het maken worden ze op dezelfde luidheid gebracht (-18 LUFS), en elke opname wordt teruggeluisterd met spraakherkenning. Klinkt een woord of getal niet zoals bedoeld, dan wordt het opnieuw gemaakt (zie "De stem").
 - **Proefrondje:** elk spel begint met 8 opgaven die steeds moeilijker worden. Daarmee kiest de site het startniveau.
 - **Niveau per spel.** Rekenen gaat pas een stapje omhoog bij 9 van de 10 goed. Er zijn nooit moeilijkere opgaven dan zijn niveau, wel extra makkelijke.
 - **Herhalingsdoosjes:** wat niet meteen goed ging, komt later terug (volgende keer, na 1, 3, 7 en 14 dagen).
@@ -79,16 +85,16 @@ Eenmalig per computer: `npx -y @elevenlabs/cli@latest onboard init` (logt in en 
 Alles inspreken kost ongeveer 3.000 tekens, met controle iets meer. Een test bewaakt dat elke tekst, elk woord en elk getal tot 20 dat de app kan zeggen een opname heeft.
 
 ### Online zetten (Cloudflare)
-De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmalig `npx wrangler login`, daarna `npm run deploy`. De app staat op **https://lucas-turbo-missie.exl999.workers.dev**. Op de tablet: open het adres in Chrome (met wifi), kies het menu (⋮) → "App installeren" en open de app daarna één keer; dan wordt alles (ongeveer 2 MB, inclusief alle stem) opgeslagen en werkt hij ook offline.
+De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmalig `npx wrangler login`, daarna `npm run deploy`. De app staat op **https://lucas-turbo-missie.exl999.workers.dev**. Op de tablet: open het adres in Chrome (met wifi), kies het menu (⋮) → "App installeren" en open de app daarna één keer; dan wordt alles (ongeveer 5 MB, inclusief alle stem) opgeslagen en werkt hij ook offline.
 
 ### Opbouw
 ```
 src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, ouderhoek
 src/art/      Held (Sonic, Tails, Knuckles) en Robot
 src/engine/   letters en woorden, sommen, niveau, doosjes, planning
-src/games/    de tien spellen, de dagmissie en hun gemeenschappelijke regels (Ronde)
+src/games/    de veertien spellen, de dagmissie en hun gemeenschappelijke regels (Ronde)
 src/audio/    stem, geluidseffecten en muziek
-src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest
+src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest en drie-d.ts (3D-basis)
 tools/audio/  opnames: luidheid, stiltes, MP3 en uitspraakcontrole
 src/store/    voortgang op de tablet
 ```

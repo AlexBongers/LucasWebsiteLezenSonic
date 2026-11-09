@@ -128,8 +128,9 @@
     padding: 18px 22px;
     border-radius: 30px;
     text-align: left;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+    background: linear-gradient(160deg, color-mix(in srgb, var(--kleur) 38%, #0b1640), color-mix(in srgb, var(--kleur) 18%, #0b1640));
     border: 3px solid color-mix(in srgb, var(--kleur) 70%, white);
+    backdrop-filter: blur(4px);
     box-shadow: 0 0 26px color-mix(in srgb, var(--kleur) 45%, transparent), 0 8px 0 rgba(0, 0, 0, 0.25);
     animation: pop-in 0.45s ease-out backwards;
     transition: transform 0.15s, opacity 0.3s;

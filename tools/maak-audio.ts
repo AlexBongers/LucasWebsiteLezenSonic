@@ -264,6 +264,10 @@ async function maakAlles() {
   if (weg) console.log(`${weg} oude opnames verwijderd.`);
   console.log(`audio-manifest.json bijgewerkt (${bestanden.length} bestanden).`);
 
+  // Uitslagen van opnames die niet meer bestaan opruimen
+  for (const k of Object.keys(controle)) if (!houd.has(k)) delete controle[k];
+  bewaarControle();
+
   const twijfel = Object.entries(controle).filter(([k, u]) => houd.has(k) && !u.ok);
   const lufs = Object.entries(controle).filter(([k]) => houd.has(k)).map(([, u]) => u.lufs);
   console.log(`Luidheid van de opnames: ${Math.min(...lufs)} tot ${Math.max(...lufs)} LUFS (doel ${DOEL_LUFS}).`);
