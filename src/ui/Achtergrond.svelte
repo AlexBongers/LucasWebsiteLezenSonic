@@ -4,6 +4,7 @@
    *  heuvel:     zonnige groene heuvels met schaakbordgrond (Sonic)
    *  werkplaats: zonsondergang boven een vliegveld met tandwielen en een windmolen (Tails)
    *  ruines:     jungle-tempel in de schemering met een drijvend eiland en vuurvliegjes (Knuckles)
+   *  ruimte:     sterren, planeten en een maanbodem (uit de winkel, voor alle helden)
    */
   import type { Wereld } from './werelden';
 
@@ -28,6 +29,18 @@
   const palmen = [4, 31, 63, 90];
   const vonken = Array.from({ length: 14 }, (_, i) => ({ x: (i * 37 + 5) % 100, duur: 7 + (i % 5) * 2, vertraging: -((i * 1.7) % 11), maat: 4 + (i % 3) * 2 }));
   const vliegjes = Array.from({ length: 18 }, (_, i) => ({ x: (i * 29 + 7) % 100, y: 38 + ((i * 17) % 52), duur: 5 + (i % 4) * 2, vertraging: -((i * 1.3) % 9) }));
+  const sterren = Array.from({ length: 70 }, (_, i) => ({
+    x: (i * 37 + 11) % 100,
+    y: (i * 53 + 7) % 78,
+    maat: 2 + (i % 4),
+    duur: 2 + (i % 5) * 0.8,
+    vertraging: -((i * 0.7) % 5),
+  }));
+  const vallend = [
+    { y: 12, duur: 7, vertraging: -1 },
+    { y: 30, duur: 11, vertraging: -6 },
+    { y: 5, duur: 9, vertraging: -3.5 },
+  ];
   const tandwiel = (r: number, tanden: number) => {
     const p: string[] = [];
     for (let i = 0; i < tanden * 2; i++) {
@@ -136,7 +149,7 @@
           <rect y="40" width="1280" height="160" fill="url(#plaat)" />
           <rect y="26" width="1280" height="18" fill="url(#strepen)" stroke="#0a1540" stroke-width="3" />
         </svg>
-      {:else}
+      {:else if wereld === 'ruines'}
         <div class="lucht ruine-lucht"></div>
         <div class="maan"></div>
         <svg class="berg" viewBox="0 0 1280 300" preserveAspectRatio="none" aria-hidden="true">
@@ -172,6 +185,27 @@
         </svg>
         <svg class="liaan l1" viewBox="0 0 60 300" aria-hidden="true"><path d="M30 0 C10 60 50 100 28 170 C14 210 40 250 30 300" fill="none" stroke="#2f8f3e" stroke-width="7" stroke-linecap="round" /><circle cx="22" cy="80" r="7" fill="#4ade80" /><circle cx="36" cy="150" r="7" fill="#4ade80" /><circle cx="28" cy="230" r="7" fill="#4ade80" /></svg>
         <svg class="liaan l2" viewBox="0 0 60 300" aria-hidden="true"><path d="M30 0 C50 50 10 110 32 180 C46 220 22 260 30 300" fill="none" stroke="#2f8f3e" stroke-width="7" stroke-linecap="round" /><circle cx="40" cy="70" r="7" fill="#4ade80" /><circle cx="24" cy="160" r="7" fill="#4ade80" /></svg>
+      {:else if wereld === 'ruimte'}
+        <div class="lucht ruimte-lucht"></div>
+        {#each sterren as st}
+          <i class="ster" style="left:{st.x}%; top:{st.y}%; width:{st.maat}px; height:{st.maat}px; animation-duration:{st.duur}s; animation-delay:{st.vertraging}s"></i>
+        {/each}
+        {#each vallend as v}
+          <i class="vallend" style="top:{v.y}%; animation-duration:{v.duur}s; animation-delay:{v.vertraging}s"></i>
+        {/each}
+        <div class="planeet ringplaneet"><span class="ringetje"></span></div>
+        <div class="planeet roodplaneet"></div>
+        <div class="planeet maanplaneet"></div>
+        <svg class="raket" viewBox="0 0 60 120" aria-hidden="true">
+          <path d="M30 4 C48 28 48 70 42 92 H18 C12 70 12 28 30 4 Z" fill="#f8fafc" stroke="#0a1540" stroke-width="4" stroke-linejoin="round" />
+          <circle cx="30" cy="42" r="9" fill="#38bdf8" stroke="#0a1540" stroke-width="4" />
+          <path d="M18 78 L4 100 L18 94 Z M42 78 L56 100 L42 94 Z" fill="#ef4444" stroke="#0a1540" stroke-width="4" stroke-linejoin="round" />
+          <path class="vlam" d="M22 94 Q30 128 38 94 Z" fill="#fbbf24" stroke="#ea580c" stroke-width="3" />
+        </svg>
+        <svg class="maanbodem" viewBox="0 0 1280 200" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 200 V70 Q120 30 260 62 T560 56 T860 66 T1280 40 V200 Z" fill="#475569" stroke="#0a1540" stroke-width="4" />
+          <ellipse cx="200" cy="120" rx="46" ry="14" fill="#334155" /><ellipse cx="640" cy="104" rx="62" ry="16" fill="#334155" /><ellipse cx="1010" cy="130" rx="40" ry="12" fill="#334155" />
+        </svg>
       {/if}
       <div class="vloer"></div>
     </div>
@@ -204,6 +238,109 @@
     background:
       radial-gradient(ellipse 70% 50% at 50% 100%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%),
       linear-gradient(180deg, #0a3a9e 0%, #1565d8 45%, #4aa8f5 80%, #8ed0ff 100%);
+  }
+  .ruimte-lucht {
+    background:
+      radial-gradient(ellipse 60% 45% at 78% 22%, rgba(168, 85, 247, 0.35), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 18% 70%, rgba(56, 189, 248, 0.25), transparent 70%),
+      linear-gradient(180deg, #050816 0%, #0f1a4a 55%, #2a1b66 100%);
+  }
+  .ster {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px #fff;
+    animation: fonkel 3s ease-in-out infinite;
+  }
+  @keyframes fonkel {
+    0%, 100% { opacity: 0.25; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+  .vallend {
+    position: absolute;
+    left: 100%;
+    width: 130px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, transparent, #fff);
+    transform: rotate(-24deg);
+    animation: vallen 8s linear infinite;
+  }
+  @keyframes vallen {
+    0% { transform: translate(0, 0) rotate(-24deg); opacity: 0; }
+    5% { opacity: 1; }
+    30% { transform: translate(-1500px, 700px) rotate(-24deg); opacity: 0; }
+    100% { transform: translate(-1500px, 700px) rotate(-24deg); opacity: 0; }
+  }
+  .planeet {
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid #0a1540;
+  }
+  .ringplaneet {
+    right: 7%;
+    top: 9%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 32% 30%, #fde68a, #f59e0b 60%, #b45309);
+    animation: zweef 9s ease-in-out infinite;
+  }
+  .ringetje {
+    position: absolute;
+    left: -42px;
+    top: 56px;
+    width: 230px;
+    height: 36px;
+    border-radius: 50%;
+    border: 7px solid #fcd34d;
+    border-left-color: rgba(252, 211, 77, 0.35);
+    transform: rotate(-16deg);
+  }
+  .roodplaneet {
+    left: 6%;
+    top: 22%;
+    width: 78px;
+    height: 78px;
+    background: radial-gradient(circle at 30% 30%, #fca5a5, #ef4444 60%, #7f1d1d);
+    animation: zweef 7s ease-in-out infinite reverse;
+  }
+  .maanplaneet {
+    left: 44%;
+    top: 7%;
+    width: 52px;
+    height: 52px;
+    background: radial-gradient(circle at 30% 30%, #fff, #cbd5e1 60%, #64748b);
+    animation: zweef 11s ease-in-out infinite;
+  }
+  @keyframes zweef {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  .raket {
+    position: absolute;
+    left: 20%;
+    top: 40%;
+    width: 52px;
+    transform: rotate(38deg);
+    animation: raket 16s linear infinite;
+  }
+  .vlam {
+    transform-origin: 30px 94px;
+    animation: vlam 0.18s ease-in-out infinite alternate;
+  }
+  @keyframes vlam {
+    to { transform: scaleY(1.35); }
+  }
+  @keyframes raket {
+    0% { transform: translate(-200px, 60px) rotate(38deg); }
+    100% { transform: translate(1300px, -380px) rotate(38deg); }
+  }
+  .maanbodem {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 22%;
   }
   .werk-lucht {
     background: linear-gradient(180deg, #2b2a7a 0%, #6d3fa0 32%, #d9567e 62%, #ff9a5a 88%, #ffd08a 100%);

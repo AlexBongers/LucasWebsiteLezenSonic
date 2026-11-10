@@ -161,6 +161,29 @@ export function speelCombo() {
   [784, 988, 1175, 1568].forEach((f, i) => toon(f, i * 0.07, 0.22, 'square', 0.07));
 }
 
+/** Een bliksem die inslaat: snelle glijdende zaag met een zoemend naklinkje. */
+export function speelBliksem() {
+  if (!aan()) return;
+  toon(1800, 0, 0.16, 'sawtooth', 0.05, undefined, 300);
+  toon(2400, 0.05, 0.14, 'square', 0.04, undefined, 500);
+  toon(880, 0.16, 0.3, 'triangle', 0.09);
+  toon(1320, 0.24, 0.4, 'sine', 0.08);
+}
+
+/** Iets gekocht in de winkel: kassa-belletje en een vrolijk loopje. */
+export function speelKoop() {
+  if (!aan()) return;
+  [1319, 1568, 2093].forEach((f, i) => toon(f, i * 0.07, 0.3, 'triangle', 0.1));
+  toon(2637, 0.28, 0.5, 'sine', 0.09);
+}
+
+/** Een extra leven helpt: zacht hartje dat aanslaat. */
+export function speelHart() {
+  if (!aan()) return;
+  toon(523, 0, 0.14, 'sine', 0.14);
+  toon(784, 0.1, 0.3, 'sine', 0.14);
+}
+
 // ---------------------------------------------------------------- Muziek
 const BPM = 132;
 const STAP = 60 / BPM / 2; // een achtste noot

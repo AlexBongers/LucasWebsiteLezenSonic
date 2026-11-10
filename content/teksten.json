@@ -243,5 +243,122 @@
     "start": "Kijk naar de toren. Tel de blokken mee!",
     "tel": "Hoeveel blokken zijn het?",
     "hint": "Kijk, ik tel nog een keer."
+  },
+  "winkel": {
+    "welkom": "Welkom in de Turbo-winkel, Lucas! Tik op iets om het te horen.",
+    "heeft": "Je hebt",
+    "bliksem": "bliksem in je zakje.",
+    "bliksems": "bliksems in je zakje.",
+    "geen": "Je hebt nog geen bliksems. Speel een spelletje, dan verdien je er!",
+    "kost": "Dat kost",
+    "krijgt": "Je krijgt",
+    "bliksemJuich": "bliksem!",
+    "bliksemsJuich": "bliksems!",
+    "nog": "Nog",
+    "nogEen": "Nog één bliksem sparen, Lucas!",
+    "nogSparen": "bliksems sparen, Lucas!",
+    "gekocht": [
+      "Gekocht! Wat leuk, Lucas!",
+      "Yes! Dat is van jou, Lucas!",
+      "Top gekocht, Lucas!",
+      "Dat is nu van jou!"
+    ],
+    "aan": "Aangezet!",
+    "uit": "Uitgezet.",
+    "vol": "Je hebt er al genoeg van, Lucas!",
+    "bezit": "Dit is al van jou.",
+    "hartGebruikt": [
+      "Dat kostte niets! Je extra leven hielp. Probeer het nog eens.",
+      "Je extra leven heeft je gered, Lucas! Kijk nog eens goed.",
+      "Oei, maar je extra leven helpt! Nog een keer."
+    ],
+    "tabs": {
+      "power": "Powerups",
+      "maatje": "Maatjes",
+      "ring": "Ringen",
+      "feest": "Feestjes",
+      "wereld": "Werelden",
+      "held": "Helden"
+    },
+    "artikelen": {
+      "hart": {
+        "naam": "Extra leven",
+        "uitleg": "Een foutje? Dat kost niets! Je reeks blijft heel.",
+        "aan": "Extra leven aan! Je mag één foutje maken."
+      },
+      "dubbel": {
+        "naam": "Dubbele ringen",
+        "uitleg": "Alle ringen tellen dubbel in deze ronde.",
+        "aan": "Dubbele ringen aan! Nu krijg je er twee keer zoveel."
+      },
+      "vuur": {
+        "naam": "Vuurstart",
+        "uitleg": "Je begint al met een reeks van twee. Nog één goed en je hebt een combo!",
+        "aan": "Vuurstart! Nog één goed, dan heb je een combo."
+      },
+      "traag": {
+        "naam": "Trage flits",
+        "uitleg": "De flits blijft langer in beeld. Fijn bij de race-spellen.",
+        "aan": "Trage flits aan! Nu blijft de flits langer."
+      },
+      "kuiken": {
+        "naam": "Kuikentje",
+        "uitleg": "Een klein geel maatje dat met je meekijkt."
+      },
+      "vos": {
+        "naam": "Vosje",
+        "uitleg": "Een slim oranje maatje dat met je meekijkt."
+      },
+      "draak": {
+        "naam": "Draakje",
+        "uitleg": "Een groen draakje dat met je meekijkt."
+      },
+      "eenhoorn": {
+        "naam": "Eenhoorn",
+        "uitleg": "Een magische eenhoorn die met je meekijkt."
+      },
+      "zilver": {
+        "naam": "Zilveren ringen",
+        "uitleg": "Al je ringen worden zilver."
+      },
+      "roze": {
+        "naam": "Roze ringen",
+        "uitleg": "Al je ringen worden roze."
+      },
+      "regenboog": {
+        "naam": "Regenboogringen",
+        "uitleg": "Je ringen hebben alle kleuren van de regenboog."
+      },
+      "bliksemfeest": {
+        "naam": "Bliksemfeest",
+        "uitleg": "Bij een feestje regent het bliksems."
+      },
+      "hartjes": {
+        "naam": "Hartjesfeest",
+        "uitleg": "Bij een feestje regent het hartjes."
+      },
+      "vuurwerk": {
+        "naam": "Vuurwerk",
+        "uitleg": "Bij een feestje knalt het vuurwerk."
+      },
+      "ruimte": {
+        "naam": "Ruimtewereld",
+        "uitleg": "Al je spelletjes spelen zich af tussen de sterren en de planeten."
+      },
+      "super": {
+        "naam": "Supersnelle helden",
+        "uitleg": "Sonic, Tails en Knuckles worden goud en stralen als superhelden."
+      }
+    }
+  },
+  "patroonbaan": {
+    "start": "Kijk goed naar de baan. Sonic rent erover! Wat komt hierna?"
+  },
+  "bouwmuur": {
+    "start": "Help Knuckles de muur bouwen! Tik de letterblokken in de goede volgorde.",
+    "klaar": "De muur staat!"
+  },
+  "bomsplits": {
+    "start": "Help Tails! Maak de grote bom veilig met ringen."
   }
 }

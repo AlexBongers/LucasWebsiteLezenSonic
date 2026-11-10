@@ -5,6 +5,9 @@
   import { speelFanfare } from '../audio/geluid';
   import { grootFeest } from '../ui/feest';
   import teksten from '../../content/teksten.json';
+  import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import { vg } from '../store/voortgang.svelte';
+  import { speelBliksem } from '../audio/geluid';
   import { beloning } from '../games/teksten';
   import type { HeldinId } from '../store/voortgang.svelte';
 
@@ -13,6 +16,7 @@
     goed,
     totaal,
     noten,
+    bliksems = 0,
     omhoog,
     titel = 'Gelukt!',
     melding,
@@ -22,11 +26,14 @@
     opNogEens,
     opTerug,
     opPauze = opTerug,
+    opWinkel,
   }: {
     heldin: HeldinId;
     goed: number;
     totaal: number;
     noten: number;
+    /** Hoeveel bliksems verdiend met deze ronde. */
+    bliksems?: number;
     omhoog: boolean;
     titel?: string;
     /** Extra regel, bijv. het startniveau na de auditie. */
@@ -39,6 +46,8 @@
     opVerder?: () => void;
     opNogEens: () => void;
     opTerug: () => void;
+    /** Naar de Turbo-winkel. */
+    opWinkel?: () => void;
   } = $props();
 
   let sterren = $derived(totaal === 0 ? 3 : goed / totaal >= 0.85 ? 3 : goed / totaal >= 0.6 ? 2 : 1);
@@ -49,6 +58,12 @@
     grootFeest();
     void (async () => {
       await spreek(missie ? teksten.missie.volgende : melding ? teksten.auditie.klaar : beloning());
+      if (bliksems > 0) {
+        speelBliksem();
+        await spreek(teksten.winkel.krijgt);
+        await spreek(String(bliksems), 'getal');
+        await spreek(bliksems === 1 ? teksten.winkel.bliksemJuich : teksten.winkel.bliksemsJuich);
+      }
       if (pauze) await spreek(teksten.pauze.tijd);
     })();
   });
@@ -80,6 +95,9 @@
     </div>
 
     <div class="noten">+{noten} gouden ringen</div>
+    {#if bliksems > 0}
+      <div class="bliksem-winst"><span>+{bliksems} {bliksems === 1 ? 'bliksem' : 'bliksems'}</span><BliksemTeller aantal={vg.bliksems} klein /></div>
+    {/if}
     {#if melding}
       <div class="omhoog">{melding}</div>
     {/if}
@@ -104,6 +122,9 @@
     {:else}
       <div class="knoppen">
         <button class="knop-goud ander" onclick={opTerug}>Ander spel</button>
+        {#if opWinkel && vg.bliksems > 0}
+          <button class="knop-goud winkel" onclick={opWinkel}>🛒 Winkel</button>
+        {/if}
         <button class="knop-goud" onclick={opNogEens}>Nog een keer! ✨</button>
       </div>
     {/if}
@@ -162,6 +183,21 @@
     font-weight: 700;
     color: #fde68a;
     text-shadow: 0 0 16px rgba(251, 191, 36, 0.8);
+  }
+  .bliksem-winst {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 34px;
+    font-weight: 700;
+    color: #fde047;
+    text-shadow: 0 0 16px rgba(253, 224, 71, 0.8);
+    animation: pop-in 0.6s ease-out 0.8s backwards;
+  }
+  .winkel {
+    background: linear-gradient(180deg, #c4b5fd, #7c3aed);
+    box-shadow: 0 6px 0 #3b0f7a;
+    color: #fff;
   }
   .omhoog {
     padding: 6px 22px;

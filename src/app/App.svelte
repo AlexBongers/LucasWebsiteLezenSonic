@@ -10,6 +10,9 @@
   import Einde from './Einde.svelte';
   import SpelKeuze from './SpelKeuze.svelte';
   import KristalScherm from './KristalScherm.svelte';
+  import Winkel from './Winkel.svelte';
+  import { verdien } from '../store/winkel.svelte';
+  import { BLIKSEMS_KRISTAL } from '../games/winkel';
   import { SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
   import { WERELD_VAN } from '../ui/werelden';
   import characters from '../../content/characters.json';
@@ -18,7 +21,7 @@
   import { laadStemManifest, spreek, stopSpreken, zetApparaatStem } from '../audio/stem';
   import { ontgrendelGeluid, pauzeerGeluid, speelWhoosh, startMuziek, stopMuziek, zetEffectenAan } from '../audio/geluid';
 
-  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'kristal' | 'ouder' | 'einde';
+  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'kristal' | 'ouder' | 'einde' | 'winkel';
   let scherm = $state<Scherm>('start');
   let heldin = $state<HeldinId>('sonic');
   let spel = $state<SpelId>('ringrace');
@@ -50,7 +53,9 @@
 
   let accent = $derived(scherm === 'level' || scherm === 'spellen' ? characters[heldin].kleur : '#3b82f6');
   /** Elke held heeft zijn eigen wereld: de heuvel, de werkplaats of de ruïnes. */
-  let wereld = $derived(scherm === 'level' || scherm === 'spellen' ? WERELD_VAN[heldin as HeldId] : 'heuvel');
+  let wereld = $derived(
+    vg.winkel.gekozen.wereld === 'ruimte' ? 'ruimte' : scherm === 'level' || scherm === 'spellen' ? WERELD_VAN[heldin as HeldId] : 'heuvel',
+  );
 
   // Een snelle veeg tussen schermen (snelheidsstrepen).
   let veeg = $state(0);
@@ -65,6 +70,8 @@
   });
 
   onMount(() => {
+    // Alleen tijdens het ontwikkelen: handig om in de browser mee te testen.
+    if (import.meta.env.DEV) (window as unknown as { __vg: typeof vg }).__vg = vg;
     void laadVoortgang().then(() => {
       zetApparaatStem(vg.instellingen.apparaatStem);
       zetEffectenAan(vg.instellingen.effecten);
@@ -85,7 +92,7 @@
       }
       history.pushState({ app: true }, '');
       if (scherm === 'level') vraagStop = true;
-      else if (scherm === 'ouder' || scherm === 'spellen') scherm = 'keuze';
+      else if (scherm === 'ouder' || scherm === 'spellen' || scherm === 'winkel') scherm = 'keuze';
       else if (scherm === 'kristal') scherm = 'keuze';
       else if (scherm === 'keuze') vraagAfsluiten = true;
     };
@@ -191,6 +198,7 @@
     vg.missies++;
     vg.kristallen = Math.min(7, vg.kristallen + 1);
     nieuwKristal = vg.kristallen;
+    verdien(BLIKSEMS_KRISTAL);
     void bewaar();
     scherm = 'kristal';
   }
@@ -211,6 +219,13 @@
     wakeLock?.release().catch(() => {});
     wakeLock = null;
     scherm = 'einde';
+  }
+
+  function naarWinkel() {
+    stopSpreken();
+    vraagStop = false;
+    missie = null;
+    scherm = 'winkel';
   }
 
   function naarKeuze() {
@@ -239,7 +254,7 @@
       {#if scherm === 'start'}
         <Start opStart={begin} />
       {:else if scherm === 'keuze'}
-        <HeldinKeuze opKies={kies} opMissie={startMissie} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
+        <HeldinKeuze opKies={kies} opMissie={startMissie} opWinkel={naarWinkel} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
       {:else if scherm === 'spellen'}
         <SpelKeuze {heldin} opKies={kiesSpel} opTerug={naarKeuze} />
       {:else if scherm === 'level'}
@@ -248,10 +263,13 @@
           missie={missie ? { stap: missie.stap, totaal: missie.spellen.length } : null}
           opVerder={missieVerder}
           opTerug={naarSpellen}
+          opWinkel={naarWinkel}
           opStop={() => (vraagStop = true)}
           {pauzeNodig}
           opPauze={naarEinde}
         />
+      {:else if scherm === 'winkel'}
+        <Winkel opSluit={naarKeuze} />
       {:else if scherm === 'kristal'}
         <KristalScherm nummer={nieuwKristal} opSluit={naarKeuze} />
       {:else if scherm === 'einde'}

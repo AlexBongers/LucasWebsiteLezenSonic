@@ -6,6 +6,7 @@
  */
 import type { Gepland, Resultaat } from '../engine/sessie';
 import type { SpelProps } from './types';
+import { meldHartGebruikt, uitrusting } from './uitrusting.svelte';
 
 export class Ronde<T> {
   rij: (Gepland<T> & { herhaling: boolean })[] = $state([]);
@@ -15,6 +16,8 @@ export class Ronde<T> {
   klaar = $state(false);
   private resultaten: Resultaat[] = [];
   private eersteFout: string | undefined;
+  /** Een extra leven heeft de eerste fout van deze opgave opgevangen. */
+  private beschermd = false;
 
   constructor(
     opgaven: Gepland<T>[],
@@ -37,13 +40,21 @@ export class Ronde<T> {
     if (!item.herhaling && !this.onthuld) {
       this.resultaten.push({ id: item.id, niveau: item.niveau, bron: item.bron, goed: this.pogingen === 0, gekozen: this.eersteFout });
     }
-    return this.pogingen === 0 ? 2 : 1;
+    return this.pogingen === 0 || this.beschermd ? 2 : 1;
   }
 
   /** Fout antwoord. 'hint' na de eerste fout, 'onthuld' na de tweede. */
   fout(gekozen?: string): 'hint' | 'onthuld' {
     const item = this.rij[this.index];
-    if (this.pogingen === 0) this.eersteFout = gekozen;
+    if (this.pogingen === 0) {
+      this.eersteFout = gekozen;
+      // Een extra leven: de fout telt nog wel mee voor het leren, maar kost geen ringen en geen reeks.
+      if (uitrusting.hart > 0) {
+        uitrusting.hart--;
+        this.beschermd = true;
+        meldHartGebruikt();
+      }
+    }
     this.pogingen++;
     if (this.pogingen < 2) return 'hint';
     this.onthuld = true;
@@ -68,6 +79,7 @@ export class Ronde<T> {
     this.pogingen = 0;
     this.onthuld = false;
     this.eersteFout = undefined;
+    this.beschermd = false;
     return true;
   }
 }

@@ -14,7 +14,7 @@ import {
 
 export type HeldId = 'sonic' | 'tails' | 'knuckles';
 
-export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem';
+export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem' | 'patroonbaan' | 'bouwmuur' | 'bomsplits';
 
 /** Een spel is ook de vaardigheid waarvan het niveau wordt bijgehouden. */
 export type VaardigheidId = SpelId;
@@ -129,6 +129,33 @@ SPELLEN.push(
       maak: (n, a, _k, rnd) => maakTel(n === 0 ? 1 : 3, a, rnd),
       herbouw: (id) => telUitId(`tel.tel.${id.replace(/^boem\./, '')}`),
       id: (o) => `boem.${o.n}`,
+    },
+  }),
+);
+
+SPELLEN.push(
+  def<PatroonOpgave>({
+    id: 'patroonbaan', held: 'sonic', naam: 'Patroon-baan 3D', uitleg: 'Wat komt er op het laatste platform?', icoon: '🌈', maxNiveau: PATROON_MAX, prefix: 'pbaan.', snel: true,
+    opgaven: {
+      maak: (n, a, _k, rnd) => maakPatronen(n, a, rnd),
+      herbouw: (id) => patroonUitId(id.replace(/^pbaan\./, '')),
+      id: (o) => `pbaan.${patroonId(o)}`,
+    },
+  }),
+  def<BouwOpgave>({
+    id: 'bouwmuur', held: 'knuckles', naam: 'Muur-bouwer 3D', uitleg: 'Bouw het woord met grote letterblokken', icoon: '🏰', maxNiveau: 1, prefix: 'muur.',
+    opgaven: {
+      maak: maakBouw,
+      herbouw: (id, n, kent) => bouwUitId(id.replace(/^muur\./, ''), n, kent),
+      id: (o) => `muur.${bouwId(o.woord)}`,
+    },
+  }),
+  def<SplitsOpgave>({
+    id: 'bomsplits', held: 'tails', naam: 'Splits-bom 3D', uitleg: 'Maak de grote bom veilig met ringen', icoon: '🛠️', maxNiveau: SPLITS_MAX, rekenen: true, prefix: 'bsplits.',
+    opgaven: {
+      maak: (n, a, _k, rnd) => maakSplits(n, a, rnd),
+      herbouw: (id) => splitsUitId(id.replace(/^bsplits\./, '')),
+      id: (o) => `bsplits.${splitsId(o)}`,
     },
   }),
 );

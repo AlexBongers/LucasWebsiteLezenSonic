@@ -1,6 +1,9 @@
 <script lang="ts">
-  /** Gouden ringen, met een sprongetje als er bij komen. */
+  /** Gouden ringen (of een kleur uit de winkel), met een sprongetje als er bij komen. */
+  import { vg } from '../store/voortgang.svelte';
+  import { RING_FILTER } from '../games/winkel';
   let { aantal }: { aantal: number } = $props();
+  let kleur = $derived(vg.winkel.gekozen.ring);
   let pop = $state(false);
   let vorige: number | null = null;
   $effect(() => {
@@ -14,7 +17,7 @@
 </script>
 
 <div class="ringen" class:pop aria-label="{aantal} gouden ringen">
-  <svg viewBox="0 0 40 40" aria-hidden="true">
+  <svg viewBox="0 0 40 40" aria-hidden="true" class:regenboog={kleur === 'regenboog'} style:filter={RING_FILTER[kleur] ?? 'none'}>
     <defs>
       <linearGradient id="ring-goud" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#fff7c2" />
@@ -48,5 +51,14 @@
   }
   .pop svg {
     animation: pop-in 0.5s ease-out;
+  }
+  .regenboog {
+    animation: regenboog 3s linear infinite;
+  }
+  .pop .regenboog {
+    animation: pop-in 0.5s ease-out, regenboog 3s linear infinite;
+  }
+  @keyframes regenboog {
+    to { filter: hue-rotate(360deg); }
   }
 </style>

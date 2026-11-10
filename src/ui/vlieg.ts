@@ -2,6 +2,8 @@
 const NOOT_SVG = `<svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="15" fill="none" stroke="#fbbf24" stroke-width="8"/><circle cx="20" cy="20" r="15" fill="none" stroke="#fff7c2" stroke-width="1.5"/></svg>`;
 
 import { speelRing } from '../audio/geluid';
+import { vg } from '../store/voortgang.svelte';
+import { RING_FILTER } from '../games/winkel';
 
 export function vliegRingen(aantal: number, van: Element | null | undefined, naar: Element | null | undefined) {
   if (!naar || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -14,9 +16,11 @@ export function vliegRingen(aantal: number, van: Element | null | undefined, naa
   for (let i = 0; i < Math.min(aantal, 6); i++) {
     const el = document.createElement('div');
     el.innerHTML = NOOT_SVG;
+    const kleur = vg.winkel.gekozen.ring;
+    const tint = kleur === 'regenboog' ? `hue-rotate(${Math.floor(Math.random() * 360)}deg)` : (RING_FILTER[kleur] ?? 'none');
     Object.assign(el.style, {
       position: 'fixed', left: '0', top: '0', zIndex: '70', pointerEvents: 'none',
-      filter: 'drop-shadow(0 0 8px rgba(251,191,36,0.9))',
+      filter: `${tint === 'none' ? '' : tint + ' '}drop-shadow(0 0 8px rgba(251,191,36,0.9))`,
     });
     document.body.appendChild(el);
     const dx = (Math.random() - 0.5) * 160;

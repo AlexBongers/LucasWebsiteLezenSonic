@@ -10,6 +10,8 @@
   import stemInfo from '../../content/stem.json';
   import { SPELLEN, type SpelId } from '../games/spellen';
   import characters from '../../content/characters.json';
+  import { ARTIKEL } from '../games/winkel';
+  import { verdien } from '../store/winkel.svelte';
 
   let { opSluit }: { opSluit: () => void } = $props();
 
@@ -28,6 +30,9 @@
     tunnelsom: ['1 · plus tot 5', '2 · plus tot 10', '3 · min tot 10', '4 · plus en min door elkaar', '5 · tot 20'],
     torensmash: ['1 · letters die hij kent', '2 · ook de lastige letters'],
     torenboem: ['1 · torens tot 10 blokken', '2 · torens tot 20 blokken'],
+    patroonbaan: ['1 · rood, blauw, rood, blauw (AB)', '2 · AAB, ABB en ABC', '3 · patronen van vier'],
+    bouwmuur: ['1 · woordjes van drie klanken leggen', '2 · vier of meer klanken, met blokken te veel'],
+    bomsplits: ['1 · bom tot 5', '2 · bom tot 10', '3 · bom tot 20'],
     jacht: ['1 · zes stenen, drie gezocht', '2 · negen stenen, vier gezocht', '3 · negen stenen met lettervriendjes (b en d)'],
   };
 
@@ -198,6 +203,20 @@
           {/each}
         </ul>
       {/if}
+    </section>
+
+    <section>
+      <h2>Turbo-winkel</h2>
+      <p class="uitleg">
+        Lucas verdient bliksems met rondes (1 tot 3) en dagmissies (5) en koopt er powerups, maatjes en meer mee. Er wordt nooit echt geld uitgegeven.
+        Nu in kas: <strong>{vg.bliksems}</strong> · totaal verdiend: {vg.bliksemsTotaal} · uitgegeven: {vg.winkel.uitgegeven}.
+        {#if vg.winkel.bezit.length}Hij heeft: {vg.winkel.bezit.map((id) => ARTIKEL[id]?.icoon ?? id).join(' ')}{/if}
+      </p>
+      <div class="rij">
+        <button class="klein" onclick={() => verdien(5)}>⚡ Geef 5 bliksems (beloning)</button>
+        <button class="klein" onclick={() => verdien(20)}>⚡ Geef 20 bliksems</button>
+        <button class="klein" onclick={() => { vg.winkel.voorraad = {}; vg.winkel.bezit = []; vg.winkel.gekozen = { maatje: '', ring: '', feest: '', wereld: '', held: '' }; bewaar(); }}>Winkel leegmaken</button>
+      </div>
     </section>
 
     <section>

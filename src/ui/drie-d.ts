@@ -356,15 +356,25 @@ export function ringenWolk(scene: Scene, pos: Vector3, n = 6): Group {
 }
 
 // ------------------------------------------------------------------ De renner
-export type Renner = { groep: Group; update: (t: number, rent: boolean) => void };
+export type Renner = {
+  groep: Group;
+  update: (t: number, rent: boolean) => void;
+  armen: Mesh[];
+  hoofd: Mesh;
+};
 
-/** Sonic of Tails van achteren gezien, rennend over de baan (kijkrichting is -z). */
-export function maakRenner(wie: 'sonic' | 'tails'): Renner {
+/**
+ * Sonic, Tails of Knuckles, gebouwd van bollen en blokjes. Hij kijkt naar -z (je ziet hem van achteren),
+ * maar heeft ook een gezicht: draai de groep een halve slag om hem van voren te laten zien.
+ * Met `goud` is hij een superheld uit de winkel.
+ */
+export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false): Renner {
   const groep = new Group();
   const sonic = wie === 'sonic';
-  const huid = sonic ? 0x2563eb : 0xf59e0b;
+  const knuckles = wie === 'knuckles';
+  const huid = goud ? 0xfacc15 : sonic ? 0x2563eb : knuckles ? 0xdc2626 : 0xf59e0b;
   const licht = sonic ? 0x60a5fa : 0xfde68a;
-  const schoen = 0xdc2626;
+  const schoen = knuckles ? 0x65a30d : 0xdc2626;
 
   const lijf = bol(0.62, huid, [1, 1.05, 0.95]);
   lijf.position.y = 1.0;
@@ -373,8 +383,35 @@ export function maakRenner(wie: 'sonic' | 'tails'): Renner {
   hoofd.position.set(0, 1.72, 0.02);
   groep.add(hoofd);
 
+  // Gezicht (aan de voorkant, -z)
+  const snuit = bol(0.34, 0xfbd5a8, [1, 0.8, 0.8]);
+  snuit.position.set(0, 1.6, -0.58);
+  groep.add(snuit);
+  for (const x of [-0.25, 0.25]) {
+    const oog = bol(0.2, 0xffffff, [1, 1.2, 0.6]);
+    oog.position.set(x, 1.88, -0.58);
+    groep.add(oog);
+    const pupil = bol(0.1, sonic ? 0x16a34a : knuckles ? 0x7c3aed : 0x2563eb, [1, 1.2, 0.6]);
+    pupil.position.set(x * 0.9, 1.88, -0.76);
+    groep.add(pupil);
+  }
+  const neus = bol(0.1, 0x0f172a);
+  neus.position.set(0, 1.7, -0.9);
+  groep.add(neus);
+
   // Oren en stekels / staarten
-  if (sonic) {
+  if (knuckles) {
+    // Dreadlocks achter op het hoofd en een wit halvemaantje op zijn borst
+    for (const [x, y, rz] of [[-0.3, 2.0, 0.4], [0, 2.15, 0], [0.3, 2.0, -0.4]] as const) {
+      const k = kegel(0.2, 0.9, huid);
+      k.position.set(x, y, 0.45);
+      k.rotation.set(1.1, 0, rz);
+      groep.add(k);
+    }
+    const maan = bol(0.36, 0xffffff, [1.3, 0.55, 0.4]);
+    maan.position.set(0, 1.2, -0.52);
+    groep.add(maan);
+  } else if (sonic) {
     for (const [x, y, z, rx, rz] of [
       [0, 1.95, -0.55, -1.0, 0],
       [-0.42, 1.78, -0.58, -0.9, 0.5],
@@ -437,7 +474,16 @@ export function maakRenner(wie: 'sonic' | 'tails'): Renner {
   for (const x of [-0.75, 0.75]) {
     const arm = cilinder(0.13, 0.65, huid);
     arm.position.set(x, 1.15, 0);
-    const hand = bol(0.22, 0xffffff);
+    // Knuckles heeft grote vuisten met witte stekels
+    const hand = bol(knuckles ? 0.34 : 0.22, knuckles ? huid : 0xffffff);
+    if (knuckles) {
+      for (let i = 0; i < 3; i++) {
+        const sp = kegel(0.06, 0.22, 0xffffff, 0.1);
+        sp.position.set((i - 1) * 0.17, -0.02, -0.3);
+        sp.rotation.x = -1.4;
+        hand.add(sp);
+      }
+    }
     hand.position.set(0, -0.4, 0);
     arm.add(hand);
     groep.add(arm);
@@ -452,6 +498,8 @@ export function maakRenner(wie: 'sonic' | 'tails'): Renner {
 
   return {
     groep,
+    armen,
+    hoofd,
     update(t, rent) {
       const snel = rent ? 12 : 5;
       const slag = Math.sin(t * snel);

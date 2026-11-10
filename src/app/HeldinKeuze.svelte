@@ -2,6 +2,8 @@
   import Heldin from '../art/Held.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
   import Kristal from '../ui/Kristal.svelte';
+  import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import Maatje from '../ui/Maatje.svelte';
   import OuderSlot from './OuderSlot.svelte';
   import characters from '../../content/characters.json';
   import { AANTAL_KRISTALLEN, KRISTAL_KLEUREN } from '../games/kristallen';
@@ -11,9 +13,10 @@
   let {
     opKies,
     opMissie,
+    opWinkel,
     opOuder,
     opStoppen,
-  }: { opKies: (h: HeldinId) => void; opMissie: () => void; opOuder: () => void; opStoppen: () => void } = $props();
+  }: { opKies: (h: HeldinId) => void; opMissie: () => void; opWinkel: () => void; opOuder: () => void; opStoppen: () => void } = $props();
 
   const volgorde: HeldinId[] = ['sonic', 'tails', 'knuckles'];
   let gekozen: HeldinId | null = $state(null);
@@ -68,6 +71,12 @@
       {/if}
     </div>
     <button class="knop-goud missieknop" onclick={opMissie}>🎯 Start de missie!</button>
+    <button class="winkelknop" onclick={() => { speelTik(); opWinkel(); }} aria-label="Turbo-winkel">
+      <span class="w-icoon">🛒</span>
+      <span class="w-tekst">Winkel</span>
+      <BliksemTeller aantal={vg.bliksems} klein />
+    </button>
+    {#if vg.winkel.gekozen.maatje}<Maatje grootte={46} />{/if}
   </div>
 
   <div class="kaarten">
@@ -182,6 +191,26 @@
     padding: 0 28px;
     font-size: 28px;
     animation: puls 1.8s ease-in-out infinite;
+  }
+  .winkelknop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 64px;
+    padding: 0 14px 0 16px;
+    border-radius: 999px;
+    font-size: 26px;
+    font-weight: 700;
+    background: linear-gradient(180deg, #8b5cf6, #5b21b6);
+    border: 3px solid #ddd6fe;
+    box-shadow: 0 6px 0 #3b0f7a, 0 0 22px rgba(167, 139, 250, 0.6);
+  }
+  .winkelknop:active {
+    transform: translateY(4px);
+  }
+  .w-icoon {
+    font-size: 30px;
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
   }
   .kaarten {
     flex: 1;

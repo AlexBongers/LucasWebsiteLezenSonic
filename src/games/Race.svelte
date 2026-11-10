@@ -15,6 +15,7 @@
   import { vg } from '../store/voortgang.svelte';
   import { teksten, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { flitsMaal } from './uitrusting.svelte';
   import type { SpelProps } from './types';
 
   type Opgave = RingOpgave | WoordRaceOpgave;
@@ -47,7 +48,7 @@
   async function flits(duur: number) {
     speelTik();
     fase = 'flits';
-    await wacht(duur);
+    await wacht(duur * flitsMaal());
     fase = 'kiezen';
     void spreek(tekst.vraag);
   }

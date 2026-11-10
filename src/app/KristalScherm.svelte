@@ -8,6 +8,10 @@
   import { spreek } from '../audio/stem';
   import { grootFeest } from '../ui/feest';
   import teksten from '../../content/teksten.json';
+  import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import { vg } from '../store/voortgang.svelte';
+  import { BLIKSEMS_KRISTAL } from '../games/winkel';
+  import { speelBliksem } from '../audio/geluid';
 
   let { nummer, opSluit }: { nummer: number; opSluit: () => void } = $props();
 
@@ -20,7 +24,14 @@
     speelKristal();
     setTimeout(speelFanfare, 700);
     grootFeest();
-    void spreek(alle ? teksten.missie.alle : teksten.missie.klaar);
+    void (async () => {
+      await spreek(alle ? teksten.missie.alle : teksten.missie.klaar);
+      // En de bliksems die erbij horen.
+      speelBliksem();
+      await spreek(teksten.winkel.krijgt);
+      await spreek(String(BLIKSEMS_KRISTAL), 'getal');
+      await spreek(teksten.winkel.bliksemsJuich);
+    })();
   });
 </script>
 
@@ -35,6 +46,7 @@
   </div>
 
   <p class="telling">Turbokristal <strong>{nummer}</strong> van {AANTAL_KRISTALLEN}!</p>
+  <div class="extra"><span>+{BLIKSEMS_KRISTAL} bliksems</span><BliksemTeller aantal={vg.bliksems} klein /></div>
 
   <div class="rij">
     {#each KRISTAL_KLEUREN as k, i}
@@ -54,6 +66,15 @@
 </div>
 
 <style>
+  .extra {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fde047;
+    animation: pop-in 0.6s ease-out 1s backwards;
+  }
   .scherm {
     position: absolute;
     inset: 0;

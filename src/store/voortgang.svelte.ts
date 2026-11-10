@@ -23,9 +23,26 @@ export type Sessie = {
   auditie?: boolean;
 };
 
+/** Wat Lucas in de Turbo-winkel heeft: voorraad powerups, wat hij bezit en wat hij aan heeft staan. */
+export type Winkel = {
+  /** Powerups die hij nog kan gebruiken ("hart", "dubbel", "vuur"). */
+  voorraad: Record<string, number>;
+  /** Artikelen die hij voor altijd heeft (maatjes, ringen, feesten, werelden, helden). */
+  bezit: string[];
+  /** Per soort wat er aan staat ('' = standaard). */
+  gekozen: { maatje: string; ring: string; feest: string; wereld: string; held: string };
+  /** Hoeveel bliksems zijn er in totaal uitgegeven? */
+  uitgegeven: number;
+};
+
 export type Voortgang = {
   versie: 1;
   ringen: number;
+  /** Bliksemschichten: sparen voor de Turbo-winkel. */
+  bliksems: number;
+  /** Alle bliksems die hij ooit verdiend heeft. */
+  bliksemsTotaal: number;
+  winkel: Winkel;
   /** Turbokristallen verzameld met dagmissies (maximaal 7). */
   kristallen: number;
   /** Hoeveel dagmissies zijn er gespeeld? */
@@ -61,6 +78,9 @@ export function standaardVoortgang(): Voortgang {
   return {
     versie: 1,
     ringen: 0,
+    bliksems: 0,
+    bliksemsTotaal: 0,
+    winkel: { voorraad: {}, bezit: [], gekozen: { maatje: '', ring: '', feest: '', wereld: '', held: '' }, uitgegeven: 0 },
     kristallen: 0,
     missies: 0,
     vaardigheden: perSpel(() => ({ niveau: 0, recent: [] as boolean[] })),
@@ -94,6 +114,13 @@ function samenvoegen(basis: Voortgang, data: Partial<Voortgang>): Voortgang {
     vaardigheden: { ...basis.vaardigheden, ...(data.vaardigheden ?? {}) },
     auditie: { ...basis.auditie, ...(data.auditie ?? {}) },
     stats: { ...basis.stats, ...(data.stats ?? {}) },
+    winkel: {
+      ...basis.winkel,
+      ...(data.winkel ?? {}),
+      voorraad: { ...(data.winkel?.voorraad ?? {}) },
+      bezit: [...(data.winkel?.bezit ?? [])],
+      gekozen: { ...basis.winkel.gekozen, ...(data.winkel?.gekozen ?? {}) },
+    },
     instellingen: { ...basis.instellingen, ...(data.instellingen ?? {}) },
   };
 }

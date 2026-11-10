@@ -8,6 +8,7 @@
    * stemming: 'rust' (zacht wiegen), 'dans', 'juich' (springen), 'denk' (hoofd schuin)
    */
   import type { HeldId } from '../games/spellen';
+  import { vg } from '../store/voortgang.svelte';
 
   let {
     wie,
@@ -22,13 +23,15 @@
   } as const;
 
   let s = $derived(STIJL[wie]);
+  /** Superhelden uit de winkel: goud met een gloed. */
+  let goud = $derived(vg.winkel.gekozen.held === 'super');
   const id = `h${Math.random().toString(36).slice(2, 8)}`;
   let zingt = $derived(stemming === 'juich' || stemming === 'dans');
   const PEACH = '#fbd5a8';
   const PEACH_SCHADUW = '#eab07a';
 </script>
 
-<svg class="held {stemming}" viewBox="-6 -6 212 282" style="height:{hoogte * s.schaal}px" role="img" aria-label={wie}>
+<svg class="held {stemming}" class:goud viewBox="-6 -6 212 282" style="height:{hoogte * s.schaal}px" role="img" aria-label={wie}>
   <defs>
     <radialGradient id="{id}-huid" cx="0.35" cy="0.3" r="0.9">
       <stop offset="0" stop-color={s.licht} />
@@ -207,6 +210,9 @@
   .held {
     overflow: visible;
     filter: drop-shadow(0 8px 18px rgba(0, 0, 40, 0.45));
+  }
+  .held.goud {
+    filter: sepia(1) saturate(4.5) hue-rotate(-10deg) brightness(1.15) drop-shadow(0 0 18px rgba(253, 224, 71, 0.95));
   }
   .lijf {
     transform-origin: 100px 262px;

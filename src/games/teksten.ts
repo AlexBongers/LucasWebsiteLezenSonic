@@ -1,6 +1,7 @@
 import teksten from '../../content/teksten.json';
 import characters from '../../content/characters.json';
 import { schud } from '../engine/toeval';
+import { neemHartGebruikt } from './uitrusting.svelte';
 
 export { teksten };
 
@@ -53,6 +54,8 @@ export function compliment(wie?: Wie): string {
 /** Na een fout: afwisselend algemeen en met Lucas' naam. */
 let bijnaTeller = 0;
 export function bijna(): string {
+  // Een extra leven heeft de fout opgevangen: dat mag hij horen.
+  if (neemHartGebruikt()) return uitZak('hart', teksten.winkel.hartGebruikt);
   bijnaTeller++;
   return bijnaTeller % 2 === 0 ? uitZak('bijna-lucas', teksten.bijnaLucas) : uitZak('bijna', teksten.bijna);
 }

@@ -19,6 +19,7 @@
   import { MeshBasicMaterial, PlaneGeometry, BoxGeometry, SphereGeometry, Fog } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { vg } from '../store/voortgang.svelte';
   import { drieKeuzes } from './keuze';
   import type { SpelProps } from './types';
 
@@ -162,7 +163,7 @@
     }
 
     // De renner
-    renner = maakRenner(letters ? 'sonic' : 'tails');
+    renner = maakRenner(letters ? 'sonic' : 'tails', vg.winkel.gekozen.held === 'super');
     renner.groep.rotation.y = 0;
     scene.add(renner.groep);
 

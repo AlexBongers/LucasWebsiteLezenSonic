@@ -16,18 +16,34 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | 🏁 Woord-race | Een woordje flitst (kat, vis, maan). Kies het plaatje dat erbij hoort. |
 | | ⚖️ Meer-race | Twee stapels ringen: welke kant heeft er meer (of minder, of evenveel)? |
 | | 🔴 Patroon-race | Rood, blauw, rood, blauw, ... wat komt hierna? |
+| | 🌈 **Patroon-baan 3D** | Sonic rent over een zwevende baan met een patroon. Wat komt er op het laatste platform? Kies het plaatje en hij rent door. |
 | | 🌀 **Turbo-tunnel 3D** | Sonic rent door een 3D-wereld naar drie poorten. De stem zegt een woord; ren door de poort met de eerste letter. |
 | **Tails** | 🎯 Katapult-sommen | Een som met ringen. Schiet de robot met het goede antwoord weg met de katapult. |
 | | 🏗️ Tel & Bouw | Bouw een toren van n stenen en laat hem ontploffen. Of tel hoeveel stenen er staan. Elke steen wordt hardop geteld. |
 | | 🚀 **Reken-tunnel 3D** | Tails rent door een 3D-wereld naar drie poorten. Ren door de poort met het antwoord van de som. |
 | | 🧨 **Toren-boem 3D** | Blokken vallen op elkaar en de stem telt mee. Hoeveel blokken? Goed antwoord, dan ontploft de toren. |
+| | 🛠️ **Splits-bom 3D** | Een grote bom met een krans van ringplekken. Een deel is gevuld: hoeveel moeten er nog bij? Tails gooit de ringen erin. Een fout getal laat zien waarom het niet past. |
 | | 💣 Splits-bom | Een bom met n ringen is verstopt achter twee deurtjes. Hoeveel zitten er achter het andere deurtje? Maak de bom veilig. |
 | **Knuckles** | 💥 Letter-smash | De stem zegt een woord. Sla de steen met de beginletter kapot. |
 | | 🧱 Woord-bouwen | Er staat een plaatje. Leg het woordje met letterstenen in de goede volgorde. |
 | | 🗼 **Toren-smash 3D** | Een draaiende toren van letterblokken. Tik op het blok met de beginletter, Knuckles slaat het eruit. |
+| | 🏰 **Muur-bouwer 3D** | Boven een muur zweeft een plaatje. Tik de grote letterblokken in de goede volgorde: Knuckles slaat ze op hun plek en de muur danst. |
 | | 🔨 Letter-jacht | Een rij stenen met letters. Sla ze allemaal kapot die gelijk zijn aan de letter bovenin. |
 
 De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
+
+**Bliksems en de Turbo-winkel.** Met elke ronde verdient Lucas 1 tot 3 ⚡ bliksems (net als de sterren), en met een dagmissie 5. In de **Turbo-winkel** (knop naast de dagmissie) koopt hij er dingen mee. Er wordt nooit echt geld uitgegeven. Alles heeft een stem die vertelt wat het is en wat het kost.
+
+| Soort | Wat | Prijs |
+|---|---|---|
+| Powerups (opgebruiken, tik tijdens het spel op de knop bovenin) | ❤️ **Extra leven**: een foutje kost geen ringen en geen reeks (het telt nog wel mee voor het leren). ✨ **Dubbele ringen** voor één ronde. 🔥 **Vuurstart**: begin met een reeks van twee. 🐢 **Trage flits**: de flits blijft langer in beeld. | 3 tot 4 |
+| Maatjes (voor altijd) | 🐥 kuikentje, 🦊 vosje, 🐲 draakje, 🦄 eenhoorn: kijkt mee in het spel en in het menu | 6 tot 18 |
+| Ringen | 🥈 zilver, 🩷 roze, 🌈 regenboog | 8 tot 14 |
+| Feest | ⚡ bliksemfeest, 💖 hartjesfeest, 🎆 vuurwerk | 10 tot 14 |
+| Wereld | 🪐 ruimtewereld voor alle spellen | 20 |
+| Helden | 🌟 supersnelle gouden helden (ook in de 3D-spellen) | 25 |
+
+Papa of mama kan in de ouderhoek bliksems geven als beloning, de winkel leegmaken en zien wat Lucas heeft gekocht. Prijzen en artikelen staan in `src/games/winkel.ts`, de teksten in `content/teksten.json` onder `winkel`.
 
 **Dagmissie.** Drie spellen achter elkaar, een van elke held, vier opgaven per spel. Gelukt? Dan krijgt Lucas een **turbokristal** (regenboogkleuren). Bij het zevende kristal wordt hij **superheld**.
 
@@ -89,12 +105,12 @@ De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmal
 
 ### Opbouw
 ```
-src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, ouderhoek
+src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, winkel, ouderhoek
 src/art/      Held (Sonic, Tails, Knuckles) en Robot
 src/engine/   letters en woorden, sommen, niveau, doosjes, planning
-src/games/    de veertien spellen, de dagmissie en hun gemeenschappelijke regels (Ronde)
+src/games/    de zeventien spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)
 src/audio/    stem, geluidseffecten en muziek
-src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest en drie-d.ts (3D-basis)
+src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest, drie-d.ts (3D-basis) en drie-d-vormen.ts
 tools/audio/  opnames: luidheid, stiltes, MP3 en uitspraakcontrole
-src/store/    voortgang op de tablet
+src/store/    voortgang en winkel op de tablet
 ```

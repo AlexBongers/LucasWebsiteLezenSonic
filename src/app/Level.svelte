@@ -15,6 +15,9 @@
   import Tunnel from '../games/Tunnel.svelte';
   import TorenSmash from '../games/TorenSmash.svelte';
   import TorenBoem from '../games/TorenBoem.svelte';
+  import PatroonBaan from '../games/PatroonBaan.svelte';
+  import MuurBouwer from '../games/MuurBouwer.svelte';
+  import BomSplits from '../games/BomSplits.svelte';
   import { webglKan } from '../ui/drie-d';
   import SchildBalk from '../ui/SchildBalk.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
@@ -27,10 +30,17 @@
   import { maakKent } from '../engine/generator-lucas';
   import { auditieNiveaus, SPEL, type SpelId } from '../games/spellen';
   import { bewaar, vg } from '../store/voortgang.svelte';
-  import { stopSpreken } from '../audio/stem';
-  import { speelCombo } from '../audio/geluid';
+  import { spreek, stopSpreken } from '../audio/stem';
+  import { speelBliksem, speelCombo, speelHart } from '../audio/geluid';
   import { zetCombo } from '../games/teksten';
   import { vliegRingen } from '../ui/vlieg';
+  import { onDestroy } from 'svelte';
+  import Uitrusting from '../ui/Uitrusting.svelte';
+  import Maatje from '../ui/Maatje.svelte';
+  import { nieuweRonde, uitrusting } from '../games/uitrusting.svelte';
+  import { ARTIKEL, bliksemsVoorRonde } from '../games/winkel';
+  import { pakPowerup, verdien } from '../store/winkel.svelte';
+  import teksten from '../../content/teksten.json';
 
   let {
     spel,
@@ -40,11 +50,14 @@
     opPauze = opTerug,
     missie = null,
     opVerder = () => {},
+    opWinkel = () => {},
   }: {
     spel: SpelId;
     /** Bij een dagmissie: korte rondes zonder proefrondje, en daarna door naar het volgende spel. */
     missie?: { stap: number; totaal: number } | null;
     opVerder?: () => void;
+    /** Naar de Turbo-winkel (vanuit het eindscherm). */
+    opWinkel?: () => void;
     opTerug: () => void;
     opStop: () => void;
     /** Is de speeltijd om? Dan volgt na deze ronde een pauze. */
@@ -59,6 +72,10 @@
   let ronde = $state(0);
   let voortgang = $state(0);
   let verdiend = $state(0);
+  let verdiendBliksems = $state(0);
+  /** Een korte melding midden boven in beeld, bijv. bij het aanzetten van een powerup. */
+  let toast = $state('');
+  let toastTimer: ReturnType<typeof setTimeout> | undefined;
   let start = Date.now();
   let afgerond = false;
   let uitslag: {
@@ -106,7 +123,9 @@
   let comboTimer: ReturnType<typeof setTimeout> | undefined;
   const COMBO = [3, 5, 8, 12];
 
-  function opRingen(n: number, bron?: Element | null) {
+  function opRingen(basis: number, bron?: Element | null) {
+    // Dubbele ringen uit de winkel: alles telt twee keer.
+    const n = uitrusting.dubbel ? basis * 2 : basis;
     vliegRingen(n, bron, tellerEl);
     verdiend += n;
     // De teller springt pas op als de ringen aankomen.
@@ -115,8 +134,8 @@
       void bewaar();
     }, 800);
     // Reeks van meteen-goede antwoorden (2 ringen = bij de eerste poging goed).
-    if (n === 2) reeks++;
-    else if (n === 1) reeks = 0;
+    if (basis === 2) reeks++;
+    else if (basis === 1) reeks = 0;
     if (COMBO.includes(reeks)) {
       clearTimeout(comboTimer);
       combo = reeks;
@@ -127,6 +146,46 @@
       comboTimer = setTimeout(() => (combo = null), 1800);
     }
   }
+
+  // ---------- Powerups uit de winkel ----------
+  function meld(tekst: string) {
+    toast = tekst;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => (toast = ''), 2400);
+  }
+
+  /** Lucas tikt op een powerup in de balk. */
+  function gebruik(id: string) {
+    if (afgerond) return;
+    if (id === 'dubbel' && uitrusting.dubbel) return;
+    if (id === 'traag' && uitrusting.traag) return;
+    if (!pakPowerup(id)) return;
+    if (id === 'hart') {
+      uitrusting.hart++;
+      speelHart();
+    } else if (id === 'dubbel') {
+      uitrusting.dubbel = true;
+      speelBliksem();
+    } else if (id === 'traag') {
+      uitrusting.traag = true;
+      speelBliksem();
+    } else if (id === 'vuur') {
+      // Meteen een reeks van twee: nog één goed en het is een combo.
+      reeks = Math.max(reeks, 2);
+      speelBliksem();
+    }
+    const t = (teksten.winkel.artikelen as unknown as Record<string, { naam: string; aan: string }>)[id];
+    meld(`${ARTIKEL[id].icoon} ${t.naam}!`);
+    void spreek(t.aan);
+  }
+
+  // Een extra leven dat niet nodig was gaat terug in het zakje; de rest van de ronde is voorbij.
+  onDestroy(() => {
+    if (uitrusting.hart > 0) vg.winkel.voorraad.hart = (vg.winkel.voorraad.hart ?? 0) + uitrusting.hart;
+    uitrusting.hart = 0;
+    nieuweRonde();
+    void bewaar();
+  });
 
   // ---------- Ronde klaar ----------
   function opKlaar(resultaten: Resultaat[]) {
@@ -156,10 +215,13 @@
       vg.vaardigheden[spel] = verwerkSessie(vg.vaardigheden[spel], eigen, def.maxNiveau, def.rekenen ? REKEN_REGELS : undefined);
     }
 
-    const bonus = 5;
+    const bonus = uitrusting.dubbel ? 10 : 5;
     vg.ringen += bonus;
     verdiend += bonus;
     const goed = resultaten.filter((r) => r.goed).length;
+    // Bliksems om voor te sparen.
+    verdiendBliksems = bliksemsVoorRonde(goed, resultaten.length);
+    verdien(verdiendBliksems);
     vg.sessies = [
       ...vg.sessies.slice(-199),
       { datum: new Date().toISOString(), held, spel, goed, totaal: resultaten.length, ringen: verdiend, seconden: Math.round((nu - start) / 1000), auditie },
@@ -179,6 +241,8 @@
     reeks = 0;
     voortgang = 0;
     verdiend = 0;
+    verdiendBliksems = 0;
+    nieuweRonde();
     start = Date.now();
     plan();
     ronde++;
@@ -194,7 +258,8 @@
 
   const SPELCOMP = { ringrace: Race, woordrace: Race, meer: Meer, patroon: Patroon, smash: Smash, bouwen: Bouwen, jacht: Jacht, katapult: Katapult, telbouw: TelBouw, splits: Splits,
     // 3D-spellen: zonder WebGL nemen ze hun 2D-broertje
-    tunnel: webglKan() ? Tunnel : Smash, tunnelsom: webglKan() ? Tunnel : Katapult, torensmash: webglKan() ? TorenSmash : Smash, torenboem: webglKan() ? TorenBoem : TelBouw } as const;
+    tunnel: webglKan() ? Tunnel : Smash, tunnelsom: webglKan() ? Tunnel : Katapult, torensmash: webglKan() ? TorenSmash : Smash, torenboem: webglKan() ? TorenBoem : TelBouw,
+    patroonbaan: webglKan() ? PatroonBaan : Patroon, bouwmuur: webglKan() ? MuurBouwer : Bouwen, bomsplits: webglKan() ? BomSplits : Splits } as const;
   // svelte-ignore state_referenced_locally
   const Spel = SPELCOMP[spel];
 </script>
@@ -209,8 +274,14 @@
     <div class="balk"><SchildBalk waarde={voortgang} /></div>
     {#if auditie}<div class="auditie" style="--kleur:{characters[held].kleur}">⭐ Proefrondje</div>{/if}
     {#if missie}<div class="auditie" style="--kleur:{characters[held].kleur}">🎯 Missie {missie.stap + 1}/{missie.totaal}</div>{/if}
+    <Uitrusting opGebruik={gebruik} />
+    {#if vg.winkel.gekozen.maatje}<Maatje grootte={46} />{/if}
     <div bind:this={tellerEl}><RingTeller aantal={vg.ringen} /></div>
   </header>
+
+  {#if toast}
+    {#key toast}<div class="toast">{toast}</div>{/key}
+  {/if}
 
   {#if combo}
     {#key combo}
@@ -229,7 +300,7 @@
   </main>
 
   {#if uitslag}
-    <Beloning heldin={held} {...uitslag} noten={verdiend} {missie} {opVerder} opNogEens={nogEens} {opTerug} {opPauze} />
+    <Beloning heldin={held} {...uitslag} noten={verdiend} bliksems={verdiendBliksems} {missie} {opVerder} opNogEens={nogEens} {opTerug} {opPauze} {opWinkel} />
   {/if}
 </div>
 
@@ -281,6 +352,28 @@
     text-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
     animation: combo 1.8s ease-out forwards;
     pointer-events: none;
+  }
+  .toast {
+    position: absolute;
+    left: 50%;
+    top: 84px;
+    z-index: 25;
+    padding: 8px 28px;
+    border-radius: 999px;
+    font-size: 34px;
+    font-weight: 700;
+    color: #3b1d00;
+    background: linear-gradient(180deg, #fff7c2, #fbbf24);
+    box-shadow: 0 0 34px rgba(253, 224, 71, 0.9), 0 6px 0 #92400e;
+    pointer-events: none;
+    animation: toast 2.4s ease-out forwards;
+  }
+  @keyframes toast {
+    0% { transform: translateX(-50%) scale(0.3); opacity: 0; }
+    12% { transform: translateX(-50%) scale(1.12); opacity: 1; }
+    20% { transform: translateX(-50%) scale(1); }
+    85% { transform: translateX(-50%) scale(1); opacity: 1; }
+    100% { transform: translateX(-50%) translateY(-24px); opacity: 0; }
   }
   .vuur {
     animation: pop-in 0.5s ease-out;
