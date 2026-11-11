@@ -10,11 +10,10 @@ export const heeft = (id: string) => vg.winkel.bezit.includes(id);
 export const voorraad = (id: string) => vg.winkel.voorraad[id] ?? 0;
 export const isAan = (soort: Soort, id: string) => (vg.winkel.gekozen as Record<string, string>)[soort] === id;
 
-/** Bliksems erbij (na een ronde, een kristal of van papa of mama). */
+/** Gouden ringen erbij (een kristal, een volle plakboekbladzijde, of van papa of mama). */
 export function verdien(n: number) {
   if (n <= 0) return;
-  vg.bliksems += n;
-  vg.bliksemsTotaal += n;
+  vg.ringen += n;
   void bewaar();
 }
 
@@ -24,8 +23,8 @@ export function koop(id: string): KoopUitslag {
   if (a.soort === 'power') {
     if (voorraad(id) >= MAX_VOORRAAD) return 'vol';
   } else if (a.soort !== 'sticker' && heeft(id)) return 'al-van-hem';
-  if (vg.bliksems < a.prijs) return 'te-weinig';
-  vg.bliksems -= a.prijs;
+  if (vg.ringen < a.prijs) return 'te-weinig';
+  vg.ringen -= a.prijs;
   vg.winkel.uitgegeven += a.prijs;
   if (a.soort === 'power') vg.winkel.voorraad[id] = voorraad(id) + 1;
   else if (a.soort === 'sticker') {

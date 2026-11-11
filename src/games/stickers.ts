@@ -21,11 +21,13 @@ export const bladzijdeVan = (woord: string) => BLADZIJDEN.find((b) => b.woorden.
 /** Kans op een glimmende sticker. */
 export const GLIM_KANS = 1 / 6;
 /** Bonus voor een volle bladzijde. */
-export const BLIKSEMS_VOLLE_BLADZIJDE = 5;
+export const RINGEN_VOLLE_BLADZIJDE = 40;
+/** Ringen voor een dubbele sticker. */
+export const RINGEN_DUBBEL = 5;
 
 /**
  * Kies een sticker: meestal een die hij nog niet heeft (dan blijft het spannend),
- * soms een dubbele (die levert een bliksem op).
+ * soms een dubbele (die levert ringen op).
  */
 export function kiesSticker(heeft: (w: string) => boolean, rnd: () => number = Math.random): string {
   const nieuw = ALLE_STICKERS.filter((w) => !heeft(w));

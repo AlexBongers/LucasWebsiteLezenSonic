@@ -5,7 +5,7 @@
    */
   import { onMount } from 'svelte';
   import StickerKaart from '../ui/StickerKaart.svelte';
-  import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import RingTeller from '../ui/RingTeller.svelte';
   import { spreek, stopSpreken } from '../audio/stem';
   import { speelTik } from '../audio/geluid';
   import { BLADZIJDEN, ALLE_STICKERS } from '../games/stickers';
@@ -55,7 +55,7 @@
     <h1>📒 Mijn plakboek</h1>
     <div class="telling">{aantalVerzameld()} / {ALLE_STICKERS.length}</div>
     <button class="winkel" onclick={opWinkel} aria-label="Stickers kopen in de winkel">🎁 Zakjes</button>
-    <BliksemTeller aantal={vg.bliksems} klein />
+    <RingTeller aantal={vg.ringen} />
   </header>
 
   <nav class="tabs">

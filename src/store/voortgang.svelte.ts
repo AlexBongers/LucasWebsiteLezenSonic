@@ -41,8 +41,10 @@ export type Winkel = {
 export type Voortgang = {
   versie: 1;
   ringen: number;
-  /** Bliksemschichten: sparen voor de Turbo-winkel. */
+  /** Oud: bliksems (sinds versie 2 van de munt zijn ringen het enige geld). */
   bliksems: number;
+  /** Versie van het geld: 2 = alles met gouden ringen. */
+  munt?: number;
   /** Alle bliksems die hij ooit verdiend heeft. */
   bliksemsTotaal: number;
   winkel: Winkel;
@@ -85,6 +87,7 @@ export function standaardVoortgang(): Voortgang {
     ringen: 0,
     bliksems: 0,
     bliksemsTotaal: 0,
+    munt: 2,
     winkel: { voorraad: {}, bezit: [], gekozen: { maatje: '', ring: '', feest: '', wereld: '', held: '' }, uitgegeven: 0, kleding: { sonic: geenKleding(), tails: geenKleding(), knuckles: geenKleding() } },
     plakboek: { stickers: {}, glim: [], vol: [] },
     kristallen: 0,
@@ -141,10 +144,21 @@ function samenvoegen(basis: Voortgang, data: Partial<Voortgang>): Voortgang {
   };
 }
 
+/** Van twee munten naar één: oude bliksems worden ringen (1 bliksem = 8 ringen). */
+function zetMuntOm(data: Partial<Voortgang>) {
+  if ((data.munt ?? 1) >= 2) return;
+  vg.ringen += (data.bliksems ?? 0) * 8;
+  vg.bliksems = 0;
+  vg.munt = 2;
+}
+
 export async function laadVoortgang() {
   try {
     const data = await get<Partial<Voortgang>>(SLEUTEL);
-    if (data) Object.assign(vg, samenvoegen(standaardVoortgang(), data));
+    if (data) {
+      Object.assign(vg, samenvoegen(standaardVoortgang(), data));
+      zetMuntOm(data);
+    }
   } catch {
     // Opslag niet beschikbaar (bijv. privévenster): dan alleen voor deze keer.
   }
@@ -168,6 +182,7 @@ export async function importeer(json: string) {
     throw new Error('Dit is geen back-up van Lucas’ Turbo Missie.');
   }
   Object.assign(vg, samenvoegen(standaardVoortgang(), data));
+  zetMuntOm(data);
   await bewaar();
 }
 

@@ -1,15 +1,17 @@
 <script lang="ts">
   /**
-   * De Turbo-winkel. Lucas spaart bliksems met spelen en koopt er powerups, maatjes, ringkleuren,
+   * De Turbo-winkel. Lucas spaart gouden ringen met spelen en koopt er powerups, maatjes, ringkleuren,
    * feesteffecten, een ruimtewereld en gouden helden mee. De stem vertelt wat alles is en wat het kost.
    */
   import { onMount } from 'svelte';
-  import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import RingTeller from '../ui/RingTeller.svelte';
+  import RingPrijs from '../ui/RingPrijs.svelte';
+  import { spreekbaarBedrag } from '../games/geld';
   import Maatje from '../ui/Maatje.svelte';
   import NieuweSticker from '../ui/NieuweSticker.svelte';
   import { openZakje, type StickerWinst } from '../store/plakboek.svelte';
   import { spreek, stopSpreken } from '../audio/stem';
-  import { speelBijna, speelKoop, speelBliksem, speelTik } from '../audio/geluid';
+  import { speelBijna, speelKoop, speelRing, speelTik } from '../audio/geluid';
   import { glitterOp } from '../ui/feest';
   import { ARTIKEL, ARTIKELEN, MAX_VOORRAAD, RING_FILTER, SOORTEN, artikelenVan, type Artikel, type Soort } from '../games/winkel';
   import { uitZak } from '../games/teksten';
@@ -33,21 +35,20 @@
   let zakjeWinst: StickerWinst[] | null = $state(null);
 
   let lijst = $derived(artikelenVan(tab));
-  let genoeg = $derived(vg.bliksems >= gekozen.prijs);
+  let genoeg = $derived(vg.ringen >= gekozen.prijs);
   let bezit = $derived(gekozen.soort !== 'power' && heeft(gekozen.id));
   let vol = $derived(gekozen.soort === 'power' && voorraad(gekozen.id) >= MAX_VOORRAAD);
 
-  /** "Je hebt vier bliksems." Een getal en een woordje achter elkaar. */
-  async function zegSaldo(mijn: number) {
-    if (vg.bliksems === 0) {
-      await spreek(winkel.geen);
-      return;
-    }
-    await spreek(winkel.heeft);
+  /** "Nog 15 ringen sparen, Lucas!" (afgerond op 5 boven de 20). */
+  async function zegNogSparen(nog: number, mijn: number) {
+    const bedrag = spreekbaarBedrag(nog);
+    if (nog <= 1) return void (await spreek(winkel.nogEen));
+    if (!bedrag) return void (await spreek(winkel.sparen));
+    await spreek(winkel.nog);
     if (mijn !== beurt) return;
-    await spreek(String(vg.bliksems), 'getal');
+    await spreek(bedrag, 'getal');
     if (mijn !== beurt) return;
-    await spreek(vg.bliksems === 1 ? winkel.bliksem : winkel.bliksems);
+    await spreek(winkel.nogSparen);
   }
 
   async function zegPrijs(prijs: number, mijn: number) {
@@ -55,15 +56,14 @@
     if (mijn !== beurt) return;
     await spreek(String(prijs), 'getal');
     if (mijn !== beurt) return;
-    await spreek(prijs === 1 ? winkel.bliksem : winkel.bliksems);
+    await spreek(winkel.ringen);
   }
 
   onMount(() => {
     const mijn = ++beurt;
     void (async () => {
       await spreek(winkel.welkom);
-      if (mijn !== beurt) return;
-      await zegSaldo(mijn);
+      void mijn;
     })();
     return () => {
       beurt++;
@@ -106,15 +106,7 @@
       speelBijna();
       schud = a.id;
       setTimeout(() => (schud = null), 500);
-      const nog = a.prijs - vg.bliksems;
-      if (nog === 1) await spreek(winkel.nogEen);
-      else {
-        await spreek(winkel.nog);
-        if (mijn !== beurt) return;
-        await spreek(String(nog), 'getal');
-        if (mijn !== beurt) return;
-        await spreek(winkel.nogSparen);
-      }
+      await zegNogSparen(a.prijs - vg.ringen, mijn);
       return;
     }
     if (uitslag === 'vol') {
@@ -132,7 +124,7 @@
       zakjeWinst = openZakje(a.id);
       return;
     }
-    setTimeout(speelBliksem, 250);
+    setTimeout(speelRing, 250);
     glitterOp(detailEl ?? null);
     await spreek(uitZak('gekocht', winkel.gekocht));
   }
@@ -149,10 +141,10 @@
         <path d="M15 5 L8 12 L15 19" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
-    <h1><span class="bolt">⚡</span> Turbo-winkel</h1>
+    <h1><span class="bolt">🛒</span> Turbo-winkel</h1>
     <div class="rechts">
       {#if vg.winkel.gekozen.maatje}<Maatje grootte={46} />{/if}
-      <BliksemTeller aantal={vg.bliksems} />
+      <RingTeller aantal={vg.ringen} />
     </div>
   </header>
 
@@ -195,9 +187,11 @@
         {:else if heeft(a.id)}
           <span class="status van-hem">{aan ? '✔ Aan' : 'Van jou'}</span>
         {/if}
-        <span class="prijs" class:duur={vg.bliksems < a.prijs && (a.soort === 'power' || !heeft(a.id))} class:weg={a.soort !== 'power' && heeft(a.id)}>
-          <span class="b">⚡</span>{a.prijs}
-        </span>
+        {#if !(a.soort !== 'power' && a.soort !== 'sticker' && heeft(a.id))}
+          <RingPrijs prijs={a.prijs} duur={vg.ringen < a.prijs} />
+        {:else}
+          <span class="weg-plek"></span>
+        {/if}
       </button>
     {/each}
   </div>
@@ -225,7 +219,7 @@
       {:else if vol}
         Vol!
       {:else}
-        Kopen <span class="b">⚡</span>{gekozen.prijs}
+        Kopen <RingPrijs prijs={gekozen.prijs} />
       {/if}
     </button>
   </div>
@@ -362,23 +356,8 @@
   .status.voorraad {
     color: #fde68a;
   }
-  .prijs {
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    padding: 2px 16px;
-    border-radius: 999px;
-    font-size: 28px;
-    font-weight: 700;
-    color: #3b1d00;
-    background: linear-gradient(180deg, #fff7c2, #fbbf24);
-    box-shadow: 0 3px 0 #92400e;
-  }
-  .prijs.duur {
-    filter: grayscale(0.85) brightness(0.8);
-  }
-  .prijs.weg {
-    visibility: hidden;
+  .weg-plek {
+    height: 34px;
   }
   .detail {
     display: flex;
@@ -415,9 +394,6 @@
   }
   .d-knop.duur {
     filter: grayscale(0.7) brightness(0.85);
-  }
-  .b {
-    color: #b45309;
   }
   @keyframes kaart-in {
     from { transform: translateY(30px) scale(0.9); opacity: 0; }

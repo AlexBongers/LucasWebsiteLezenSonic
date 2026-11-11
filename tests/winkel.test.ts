@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { zaadRnd } from '../src/engine/toeval';
 import { maakKent } from '../src/engine/generator-lucas';
-import { ARTIKELEN, MAX_VOORRAAD, bliksemsVoorRonde, artikelenVan, SOORTEN } from '../src/games/winkel';
+import { ARTIKELEN, MAX_VOORRAAD, artikelenVan, SOORTEN } from '../src/games/winkel';
 import { koop, pakPowerup, verdien, wissel, heeft, voorraad } from '../src/store/winkel.svelte';
 import { standaardVoortgang, vg } from '../src/store/voortgang.svelte';
 import { Ronde } from '../src/games/ronde.svelte';
@@ -26,41 +26,48 @@ describe('de Turbo-winkel', () => {
     for (const s of SOORTEN) expect(artikelenVan(s.soort).length).toBeGreaterThan(0);
   });
 
-  it('bliksems verdienen: 1 tot 3 per ronde, afhankelijk van hoeveel goed was', () => {
-    expect(bliksemsVoorRonde(6, 6)).toBe(3);
-    expect(bliksemsVoorRonde(4, 6)).toBe(2);
-    expect(bliksemsVoorRonde(1, 6)).toBe(1);
-    expect(bliksemsVoorRonde(0, 0)).toBe(3);
-    verdien(3);
-    expect(vg.bliksems).toBe(3);
-    expect(vg.bliksemsTotaal).toBe(3);
+  it('alles kost gouden ringen, en de stem kan elke prijs uitspreken', async () => {
+    const { SPAAR_GETALLEN } = await import('../src/audio/alle-teksten');
+    const { KLEDING } = await import('../src/games/kleding');
+    for (const p of [...ARTIKELEN, ...KLEDING].map((x) => x.prijs)) expect(SPAAR_GETALLEN).toContain(p);
+    verdien(30);
+    expect(vg.ringen).toBe(30);
   });
 
-  it('een powerup kopen kost bliksems en komt in de voorraad; te weinig bliksems kan niet', () => {
+  it('oude bliksems worden omgezet in ringen (1 bliksem = 8 ringen)', async () => {
+    const { importeer } = await import('../src/store/voortgang.svelte');
+    const oud = { ...JSON.parse(JSON.stringify(standaardVoortgang())), ringen: 100, bliksems: 5 } as Record<string, unknown>;
+    delete oud.munt;
+    await importeer(JSON.stringify(oud));
+    expect(vg.ringen).toBe(140);
+    expect(vg.bliksems).toBe(0);
+  });
+
+  it('een powerup kopen kost ringen en komt in de voorraad; te weinig ringen kan niet', () => {
     expect(koop('hart')).toBe('te-weinig');
     expect(voorraad('hart')).toBe(0);
-    verdien(10);
+    verdien(30);
     expect(koop('hart')).toBe('gekocht');
-    expect(vg.bliksems).toBe(7);
+    expect(vg.ringen).toBe(5);
     expect(voorraad('hart')).toBe(1);
     expect(pakPowerup('hart')).toBe(true);
     expect(pakPowerup('hart')).toBe(false);
   });
 
   it('de voorraad van een powerup is begrensd', () => {
-    verdien(100);
+    verdien(1000);
     for (let i = 0; i < MAX_VOORRAAD; i++) expect(koop('hart')).toBe('gekocht');
     expect(koop('hart')).toBe('vol');
-    expect(vg.bliksems).toBe(100 - MAX_VOORRAAD * 3);
+    expect(vg.ringen).toBe(1000 - MAX_VOORRAAD * 25);
   });
 
   it('een maatje koop je één keer, staat meteen aan en kun je aan- en uitzetten', () => {
-    verdien(30);
+    verdien(240);
     expect(koop('vos')).toBe('gekocht');
     expect(heeft('vos')).toBe(true);
     expect(vg.winkel.gekozen.maatje).toBe('vos');
     expect(koop('vos')).toBe('al-van-hem');
-    expect(vg.bliksems).toBe(20);
+    expect(vg.ringen).toBe(160);
     expect(wissel('vos')).toBe(false);
     expect(vg.winkel.gekozen.maatje).toBe('');
     expect(wissel('vos')).toBe(true);
@@ -75,7 +82,6 @@ describe('de Turbo-winkel', () => {
     delete oud.winkel;
     delete oud.bliksems;
     await importeer(JSON.stringify(oud));
-    expect(vg.bliksems).toBe(0);
     expect(vg.winkel.bezit).toEqual([]);
     expect(vg.winkel.gekozen.ring).toBe('');
   });
@@ -169,16 +175,16 @@ describe('het plakboek', () => {
     for (const b of BLADZIJDEN) expect((teksten.plakboek.bladzijden as Record<string, string>)[b.id]).toBeTruthy();
   });
 
-  it('een sticker verdienen: eerst vooral nieuwe, een dubbele levert een bliksem op', async () => {
+  it('een sticker verdienen: eerst vooral nieuwe, een dubbele levert ringen op', async () => {
     const { geefSticker, aantalVerzameld } = await import('../src/store/plakboek.svelte');
     const rnd = zaadRnd(4);
     for (let i = 0; i < 30; i++) geefSticker({ rnd });
     expect(aantalVerzameld()).toBeGreaterThan(18);
     const dubbele = Object.values(vg.plakboek.stickers).reduce((a, n) => a + n, 0) - aantalVerzameld();
-    expect(vg.bliksems).toBeGreaterThanOrEqual(dubbele - vg.plakboek.glim.length);
+    expect(vg.ringen).toBeGreaterThanOrEqual((dubbele - vg.plakboek.glim.length) * 5);
   });
 
-  it('een volle bladzijde geeft 5 bliksems extra, één keer', async () => {
+  it('een volle bladzijde geeft 40 ringen extra, één keer', async () => {
     const { geefSticker } = await import('../src/store/plakboek.svelte');
     const { BLADZIJDEN } = await import('../src/games/stickers');
     const dieren = BLADZIJDEN[0].woorden;
@@ -196,7 +202,7 @@ describe('het plakboek', () => {
     const glim = openZakje('glimzakje');
     expect(glim.length).toBe(2);
     expect(glim[0].glim).toBe(true);
-    vg.bliksems = 9;
+    vg.ringen = 70;
     expect(koop('zakje')).toBe('gekocht');
     expect(koop('zakje')).toBe('te-weinig');
   });
@@ -231,9 +237,9 @@ describe('de kleedkamer', () => {
   it('kopen trekt het meteen aan; daarna past het ook op een andere held', async () => {
     const { koopKleding, wisselKleding } = await import('../src/store/kleedkamer.svelte');
     expect(koopKleding('kroon', 'sonic')).toBe('te-weinig');
-    vg.bliksems = 20;
+    vg.ringen = 120;
     expect(koopKleding('kroon', 'sonic')).toBe('gekocht');
-    expect(vg.bliksems).toBe(8);
+    expect(vg.ringen).toBe(20);
     expect(vg.winkel.kleding.sonic.hoofd).toBe('kroon');
     expect(koopKleding('kroon', 'tails')).toBe('al-van-hem');
     expect(wisselKleding('kroon', 'tails')).toBe(true);

@@ -2,7 +2,6 @@
   import Heldin from '../art/Held.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
   import Kristal from '../ui/Kristal.svelte';
-  import BliksemTeller from '../ui/BliksemTeller.svelte';
   import Maatje from '../ui/Maatje.svelte';
   import { aantalVerzameld } from '../store/plakboek.svelte';
   import OuderSlot from './OuderSlot.svelte';
@@ -80,7 +79,6 @@
     <button class="winkelknop" onclick={() => { speelTik(); opWinkel(); }} aria-label="Turbo-winkel">
       <span class="w-icoon">🛒</span>
       <span class="w-tekst">Winkel</span>
-      <BliksemTeller aantal={vg.bliksems} klein />
     </button>
     <button class="boekknop" onclick={() => { speelTik(); opPlakboek(); }} aria-label="Plakboek">
       <span class="w-icoon">📒</span>

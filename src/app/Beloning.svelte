@@ -5,11 +5,9 @@
   import { speelFanfare } from '../audio/geluid';
   import { grootFeest } from '../ui/feest';
   import teksten from '../../content/teksten.json';
-  import BliksemTeller from '../ui/BliksemTeller.svelte';
   import StickerKaart from '../ui/StickerKaart.svelte';
   import type { StickerWinst } from '../store/plakboek.svelte';
   import { vg } from '../store/voortgang.svelte';
-  import { speelBliksem } from '../audio/geluid';
   import { beloning } from '../games/teksten';
   import type { HeldinId } from '../store/voortgang.svelte';
 
@@ -18,7 +16,6 @@
     goed,
     totaal,
     noten,
-    bliksems = 0,
     sticker = null,
     omhoog,
     titel = 'Gelukt!',
@@ -36,8 +33,6 @@
     goed: number;
     totaal: number;
     noten: number;
-    /** Hoeveel bliksems verdiend met deze ronde. */
-    bliksems?: number;
     /** De sticker die hij met deze ronde verdiende. */
     sticker?: StickerWinst | null;
     omhoog: boolean;
@@ -66,12 +61,6 @@
     grootFeest();
     void (async () => {
       await spreek(missie ? teksten.missie.volgende : melding ? teksten.auditie.klaar : beloning());
-      if (bliksems > 0) {
-        speelBliksem();
-        await spreek(teksten.winkel.krijgt);
-        await spreek(String(bliksems), 'getal');
-        await spreek(bliksems === 1 ? teksten.winkel.bliksemJuich : teksten.winkel.bliksemsJuich);
-      }
       if (sticker) {
         stickerOpen = true;
         const pb = teksten.plakboek;
@@ -87,7 +76,7 @@
 <div class="scherm">
   {#if sticker}
     <button class="sticker-plek" class:open={stickerOpen} onclick={() => opPlakboek?.()} aria-label="Nieuwe sticker: {sticker.woord}. Open je plakboek">
-      <span class="lint">{sticker.dubbel ? 'Dubbel! +1 ⚡' : sticker.glim ? '✨ Glimmer!' : 'Nieuwe sticker!'}</span>
+      <span class="lint">{sticker.dubbel ? 'Dubbel! +5 ringen' : sticker.glim ? '✨ Glimmer!' : 'Nieuwe sticker!'}</span>
       <StickerKaart woord={sticker.woord} glim={sticker.glim} grootte={150} kantel={6} />
       <span class="naar">📒 Plakboek</span>
     </button>
@@ -117,9 +106,7 @@
     </div>
 
     <div class="noten">+{noten} gouden ringen</div>
-    {#if bliksems > 0}
-      <div class="bliksem-winst"><span>+{bliksems} {bliksems === 1 ? 'bliksem' : 'bliksems'}</span><BliksemTeller aantal={vg.bliksems} klein /></div>
-    {/if}
+
     {#if melding}
       <div class="omhoog">{melding}</div>
     {/if}
@@ -144,7 +131,7 @@
     {:else}
       <div class="knoppen">
         <button class="knop-goud ander" onclick={opTerug}>Ander spel</button>
-        {#if opWinkel && vg.bliksems > 0}
+        {#if opWinkel && vg.ringen >= 25}
           <button class="knop-goud winkel" onclick={opWinkel}>🛒 Winkel</button>
         {/if}
         <button class="knop-goud" onclick={opNogEens}>Nog een keer! ✨</button>
@@ -235,16 +222,6 @@
     font-size: 22px;
     font-weight: 700;
     color: #fbcfe8;
-  }
-  .bliksem-winst {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 34px;
-    font-weight: 700;
-    color: #fde047;
-    text-shadow: 0 0 16px rgba(253, 224, 71, 0.8);
-    animation: pop-in 0.6s ease-out 0.8s backwards;
   }
   .winkel {
     background: linear-gradient(180deg, #c4b5fd, #7c3aed);

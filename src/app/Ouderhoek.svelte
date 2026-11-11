@@ -211,14 +211,14 @@
     <section>
       <h2>Turbo-winkel</h2>
       <p class="uitleg">
-        Lucas verdient bliksems met rondes (1 tot 3) en dagmissies (5) en koopt er powerups, maatjes en meer mee. Er wordt nooit echt geld uitgegeven.
-        Nu in kas: <strong>{vg.bliksems}</strong> · totaal verdiend: {vg.bliksemsTotaal} · uitgegeven: {vg.winkel.uitgegeven}.
+        Lucas betaalt alles met de gouden ringen die hij in de spellen verdient (plus 40 voor een dagmissie en voor een volle plakboekbladzijde). Hij koopt er powerups, stickers, kleding, maatjes en meer mee. Er wordt nooit echt geld uitgegeven.
+        Nu: <strong>{vg.ringen}</strong> ringen · uitgegeven: {vg.winkel.uitgegeven}.
         Plakboek: {Object.keys(vg.plakboek.stickers).length} van 64 stickers, {vg.plakboek.glim.length} glimmend.
         {#if vg.winkel.bezit.length}Hij heeft: {vg.winkel.bezit.map((id) => ARTIKEL[id]?.icoon ?? id).join(' ')}{/if}
       </p>
       <div class="rij">
-        <button class="klein" onclick={() => verdien(5)}>⚡ Geef 5 bliksems (beloning)</button>
-        <button class="klein" onclick={() => verdien(20)}>⚡ Geef 20 bliksems</button>
+        <button class="klein" onclick={() => verdien(25)}>Geef 25 ringen (beloning)</button>
+        <button class="klein" onclick={() => verdien(100)}>Geef 100 ringen</button>
         <button class="klein" onclick={() => { vg.plakboek = { stickers: {}, glim: [], vol: [] }; bewaar(); }}>Plakboek leegmaken</button>
         <button class="klein" onclick={() => { vg.winkel.voorraad = {}; vg.winkel.bezit = []; vg.winkel.gekozen = { maatje: '', ring: '', feest: '', wereld: '', held: '' }; bewaar(); }}>Winkel leegmaken</button>
       </div>

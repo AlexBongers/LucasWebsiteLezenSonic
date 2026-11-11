@@ -104,7 +104,7 @@
   <div class="speelveld">
     <div class="snelheid" aria-label="Flitssnelheid {bliksems} van 5">
       <span>Snelheid</span>
-      {#each [1, 2, 3, 4, 5] as b}<span class="bliksem" class:aan={b <= bliksems}>⚡</span>{/each}
+      {#each [1, 2, 3, 4, 5] as b}<span class="bliksem" class:aan={b <= bliksems}>💨</span>{/each}
     </div>
 
     <div class="portaal" class:flits={fase === 'flits'} bind:this={podiumEl}>

@@ -41,8 +41,8 @@
   import Uitrusting from '../ui/Uitrusting.svelte';
   import Maatje from '../ui/Maatje.svelte';
   import { nieuweRonde, uitrusting } from '../games/uitrusting.svelte';
-  import { ARTIKEL, bliksemsVoorRonde } from '../games/winkel';
-  import { pakPowerup, verdien } from '../store/winkel.svelte';
+  import { ARTIKEL } from '../games/winkel';
+  import { pakPowerup } from '../store/winkel.svelte';
   import { geefSticker, type StickerWinst } from '../store/plakboek.svelte';
   import teksten from '../../content/teksten.json';
 
@@ -79,7 +79,6 @@
   let ronde = $state(0);
   let voortgang = $state(0);
   let verdiend = $state(0);
-  let verdiendBliksems = $state(0);
   let sticker: StickerWinst | null = $state(null);
   /** Een korte melding midden boven in beeld, bijv. bij het aanzetten van een powerup. */
   let toast = $state('');
@@ -227,9 +226,6 @@
     vg.ringen += bonus;
     verdiend += bonus;
     const goed = resultaten.filter((r) => r.goed).length;
-    // Bliksems om voor te sparen.
-    verdiendBliksems = bliksemsVoorRonde(goed, resultaten.length);
-    verdien(verdiendBliksems);
     // En een sticker voor het plakboek.
     sticker = geefSticker();
     vg.sessies = [
@@ -251,7 +247,6 @@
     reeks = 0;
     voortgang = 0;
     verdiend = 0;
-    verdiendBliksems = 0;
     sticker = null;
     nieuweRonde();
     start = Date.now();
@@ -312,7 +307,7 @@
   </main>
 
   {#if uitslag}
-    <Beloning heldin={held} {...uitslag} noten={verdiend} bliksems={verdiendBliksems} {sticker} {missie} {opVerder} opNogEens={nogEens} {opTerug} {opPauze} {opWinkel} {opPlakboek} />
+    <Beloning heldin={held} {...uitslag} noten={verdiend} {sticker} {missie} {opVerder} opNogEens={nogEens} {opTerug} {opPauze} {opWinkel} {opPlakboek} />
   {/if}
 </div>
 

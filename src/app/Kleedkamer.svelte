@@ -1,11 +1,13 @@
 <script lang="ts">
   /**
    * De kleedkamer: Lucas kiest een held en kleedt hem aan met hoeden, brillen, schoenen en spullen op de rug.
-   * Tik op iets om het eerst te passen; kopen gaat met bliksems, daarna kan het bij elke held aan en uit.
+   * Tik op iets om het eerst te passen; kopen gaat met gouden ringen, daarna kan het bij elke held aan en uit.
    */
   import { onMount } from 'svelte';
   import Held from '../art/Held.svelte';
-  import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import RingTeller from '../ui/RingTeller.svelte';
+  import RingPrijs from '../ui/RingPrijs.svelte';
+  import { spreekbaarBedrag } from '../games/geld';
   import { spreek, stopSpreken } from '../audio/stem';
   import { speelBijna, speelKoop, speelTik } from '../audio/geluid';
   import { glitterOp } from '../ui/feest';
@@ -61,7 +63,7 @@
     if (mijn !== beurt) return;
     await spreek(String(prijs), 'getal');
     if (mijn !== beurt) return;
-    await spreek(w.bliksems);
+    await spreek(w.ringen);
   }
 
   async function tik(k: KledingStuk) {
@@ -98,12 +100,14 @@
     const uit = koopKleding(k.id, wie);
     if (uit === 'te-weinig') {
       speelBijna();
-      const nog = k.prijs - vg.bliksems;
-      if (nog === 1) await spreek(w.nogEen);
+      const nog = k.prijs - vg.ringen;
+      const bedrag = spreekbaarBedrag(nog);
+      if (nog <= 1) await spreek(w.nogEen);
+      else if (!bedrag) await spreek(w.sparen);
       else {
         await spreek(w.nog);
         if (mijn !== beurt) return;
-        await spreek(String(nog), 'getal');
+        await spreek(bedrag, 'getal');
         if (mijn !== beurt) return;
         await spreek(w.nogSparen);
       }
@@ -125,7 +129,7 @@
       </svg>
     </button>
     <h1>👕 Kleedkamer</h1>
-    <BliksemTeller aantal={vg.bliksems} />
+    <RingTeller aantal={vg.ringen} />
   </header>
 
   <div class="midden">
@@ -166,7 +170,7 @@
             {:else if bezit}
               <span class="label">Van jou</span>
             {:else}
-              <span class="prijs" class:duur={vg.bliksems < k.prijs}>⚡{k.prijs}</span>
+              <RingPrijs prijs={k.prijs} duur={vg.ringen < k.prijs} />
             {/if}
           </button>
         {/each}
@@ -176,7 +180,7 @@
         {#if gekozen}
           <span class="b-tekst">{gekozen.icoon} {naam(gekozen.id)}</span>
           <button class="knop-rond nee" onclick={() => (pas = null)} aria-label="Niet kopen">✕</button>
-          <button class="knop-goud" class:duur={vg.bliksems < gekozen.prijs} onclick={koop}>Kopen ⚡{gekozen.prijs}</button>
+          <button class="knop-goud" class:duur={vg.ringen < gekozen.prijs} onclick={koop}>Kopen <RingPrijs prijs={gekozen.prijs} /></button>
         {:else}
           <span class="b-tekst zacht">Tik op iets om het te passen of aan te trekken</span>
         {/if}
@@ -358,16 +362,6 @@
     font-weight: 700;
     color: #bbf7d0;
   }
-  .prijs {
-    padding: 2px 14px;
-    border-radius: 999px;
-    font-size: 24px;
-    font-weight: 700;
-    color: #3b1d00;
-    background: linear-gradient(180deg, #fff7c2, #fbbf24);
-    box-shadow: 0 3px 0 #92400e;
-  }
-  .prijs.duur,
   .duur {
     filter: grayscale(0.8) brightness(0.85);
   }

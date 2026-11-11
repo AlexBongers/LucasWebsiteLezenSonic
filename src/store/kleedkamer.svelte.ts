@@ -11,8 +11,8 @@ export const kledingVan = (wie: HeldId): Kleding => vg.winkel.kleding[wie];
 export function koopKleding(id: string, wie: HeldId): 'gekocht' | 'te-weinig' | 'al-van-hem' {
   const k = KLEDINGSTUK[id];
   if (!k || heeftKleding(id)) return 'al-van-hem';
-  if (vg.bliksems < k.prijs) return 'te-weinig';
-  vg.bliksems -= k.prijs;
+  if (vg.ringen < k.prijs) return 'te-weinig';
+  vg.ringen -= k.prijs;
   vg.winkel.uitgegeven += k.prijs;
   vg.winkel.bezit = [...vg.winkel.bezit, id];
   vg.winkel.kleding[wie][k.plek] = id;

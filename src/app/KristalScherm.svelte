@@ -8,10 +8,10 @@
   import { spreek } from '../audio/stem';
   import { grootFeest } from '../ui/feest';
   import teksten from '../../content/teksten.json';
-  import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import RingTeller from '../ui/RingTeller.svelte';
   import { vg } from '../store/voortgang.svelte';
-  import { BLIKSEMS_KRISTAL } from '../games/winkel';
-  import { speelBliksem } from '../audio/geluid';
+  import { RINGEN_KRISTAL } from '../games/winkel';
+  import { speelRing } from '../audio/geluid';
 
   let { nummer, opSluit }: { nummer: number; opSluit: () => void } = $props();
 
@@ -26,11 +26,11 @@
     grootFeest();
     void (async () => {
       await spreek(alle ? teksten.missie.alle : teksten.missie.klaar);
-      // En de bliksems die erbij horen.
-      speelBliksem();
+      // En de extra ringen die erbij horen.
+      speelRing();
       await spreek(teksten.winkel.krijgt);
-      await spreek(String(BLIKSEMS_KRISTAL), 'getal');
-      await spreek(teksten.winkel.bliksemsJuich);
+      await spreek(String(RINGEN_KRISTAL), 'getal');
+      await spreek(teksten.winkel.ringenJuich);
     })();
   });
 </script>
@@ -46,7 +46,7 @@
   </div>
 
   <p class="telling">Turbokristal <strong>{nummer}</strong> van {AANTAL_KRISTALLEN}!</p>
-  <div class="extra"><span>+{BLIKSEMS_KRISTAL} bliksems</span><BliksemTeller aantal={vg.bliksems} klein /></div>
+  <div class="extra"><span>+{RINGEN_KRISTAL} ringen</span><RingTeller aantal={vg.ringen} /></div>
 
   <div class="rij">
     {#each KRISTAL_KLEUREN as k, i}

@@ -245,18 +245,12 @@
     "hint": "Kijk, ik tel nog een keer."
   },
   "winkel": {
-    "welkom": "Welkom in de Turbo-winkel, Lucas! Tik op iets om het te horen.",
-    "heeft": "Je hebt",
-    "bliksem": "bliksem in je zakje.",
-    "bliksems": "bliksems in je zakje.",
-    "geen": "Je hebt nog geen bliksems. Speel een spelletje, dan verdien je er!",
+    "welkom": "Welkom in de Turbo-winkel, Lucas! Hier koop je dingen met je gouden ringen. Tik op iets om het te horen.",
     "kost": "Dat kost",
     "krijgt": "Je krijgt",
-    "bliksemJuich": "bliksem!",
-    "bliksemsJuich": "bliksems!",
     "nog": "Nog",
-    "nogEen": "Nog één bliksem sparen, Lucas!",
-    "nogSparen": "bliksems sparen, Lucas!",
+    "nogEen": "Nog één ring sparen, Lucas!",
+    "nogSparen": "ringen sparen, Lucas!",
     "gekocht": [
       "Gekocht! Wat leuk, Lucas!",
       "Yes! Dat is van jou, Lucas!",
@@ -275,7 +269,7 @@
     "tabs": {
       "power": "Powerups",
       "maatje": "Maatjes",
-      "ring": "Ringen",
+      "ring": "Ringkleuren",
       "feest": "Feestjes",
       "wereld": "Werelden",
       "held": "Helden",
@@ -358,7 +352,10 @@
         "naam": "Glimzakje",
         "uitleg": "Twee stickers, en één ervan glimt!"
       }
-    }
+    },
+    "ringen": "ringen.",
+    "ringenJuich": "ringen!",
+    "sparen": "Nog even sparen, Lucas! Speel een spelletje voor meer ringen."
   },
   "patroonbaan": {
     "start": "Kijk goed naar de baan. Sonic rent erover! Wat komt hierna?"
@@ -374,9 +371,9 @@
     "welkom": "Dit is jouw plakboek, Lucas! Tik op een sticker.",
     "leeg": "Deze sticker heb je nog niet. Speel een spelletje, dan verdien je stickers!",
     "nieuw": "Je krijgt een nieuwe sticker!",
-    "dubbel": "Die had je al! Je krijgt er een bliksem voor.",
+    "dubbel": "Die had je al! Je krijgt er vijf ringen voor.",
     "glim": "Wauw, een glimmende sticker!",
-    "vol": "De bladzijde is vol! Je krijgt vijf bliksems extra!",
+    "vol": "De bladzijde is vol! Je krijgt veertig ringen extra!",
     "zakje": "Een stickerzakje! Eens kijken wat erin zit.",
     "bladzijden": {
       "dieren": "Dieren",
@@ -386,7 +383,7 @@
     }
   },
   "kleedkamer": {
-    "welkom": "Welkom in de kleedkamer, Lucas! Kies een held en tik op iets om het te passen.",
+    "welkom": "Welkom in de kleedkamer, Lucas! Tik op iets om het te passen. Kopen doe je met je gouden ringen.",
     "plekken": {
       "hoofd": "Hoeden",
       "bril": "Brillen",

@@ -14,7 +14,7 @@
   import Plakboek from './Plakboek.svelte';
   import Kleedkamer from './Kleedkamer.svelte';
   import { verdien } from '../store/winkel.svelte';
-  import { BLIKSEMS_KRISTAL, type Soort } from '../games/winkel';
+  import { RINGEN_KRISTAL, type Soort } from '../games/winkel';
   import { SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
   import { WERELD_VAN } from '../ui/werelden';
   import characters from '../../content/characters.json';
@@ -200,7 +200,7 @@
     vg.missies++;
     vg.kristallen = Math.min(7, vg.kristallen + 1);
     nieuwKristal = vg.kristallen;
-    verdien(BLIKSEMS_KRISTAL);
+    verdien(RINGEN_KRISTAL);
     void bewaar();
     scherm = 'kristal';
   }

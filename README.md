@@ -35,22 +35,22 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 
 De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden: filmisch licht, zachte schaduwen, randlicht, gloed rond ringen en zwevende glitters. Op een trage tablet schakelt de site zelf terug (minder pixels, daarna zonder schaduwen) en onthoudt dat. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
 
-**Bliksems en de Turbo-winkel.** Met elke ronde verdient Lucas 1 tot 3 ⚡ bliksems (net als de sterren), en met een dagmissie 5. In de **Turbo-winkel** (knop naast de dagmissie) koopt hij er dingen mee. Er wordt nooit echt geld uitgegeven. Alles heeft een stem die vertelt wat het is en wat het kost.
+**Eén munt: gouden ringen.** Lucas verdient ringen in elk spel (2 voor meteen goed, 1 na een hint, bonus voor combo's en het einde van een ronde, 40 extra voor een dagmissie en voor een volle plakboekbladzijde) en betaalt er alles mee in de **Turbo-winkel** en de **kleedkamer**. Er wordt nooit echt geld uitgegeven. Alles heeft een stem die vertelt wat het is en wat het kost. (Oude bliksems zijn omgezet: 1 bliksem = 8 ringen.)
 
 | Soort | Wat | Prijs |
 |---|---|---|
-| Powerups (opgebruiken, tik tijdens het spel op de knop bovenin) | ❤️ **Extra leven**: een foutje kost geen ringen en geen reeks (het telt nog wel mee voor het leren). ✨ **Dubbele ringen** voor één ronde. 🔥 **Vuurstart**: begin met een reeks van twee. 🐢 **Trage flits**: de flits blijft langer in beeld. | 3 tot 4 |
-| Maatjes (voor altijd) | 🐥 kuikentje, 🦊 vosje, 🐲 draakje, 🦄 eenhoorn: kijkt mee in het spel en in het menu | 6 tot 18 |
-| Ringen | 🥈 zilver, 🩷 roze, 🌈 regenboog | 8 tot 14 |
-| Feest | ⚡ bliksemfeest, 💖 hartjesfeest, 🎆 vuurwerk | 10 tot 14 |
-| Wereld | 🪐 ruimtewereld voor alle spellen | 20 |
-| Helden | 🌟 supersnelle gouden helden (ook in de 3D-spellen) | 25 |
+| Powerups (opgebruiken, tik tijdens het spel op de knop bovenin) | ❤️ **Extra leven**: een foutje kost geen ringen en geen reeks (het telt nog wel mee voor het leren). ✨ **Dubbele ringen** voor één ronde. 🔥 **Vuurstart**: begin met een reeks van twee. 🐢 **Trage flits**: de flits blijft langer in beeld. | 25 tot 30 |
+| Maatjes (voor altijd) | 🐥 kuikentje, 🦊 vosje, 🐲 draakje, 🦄 eenhoorn: kijkt mee in het spel en in het menu | 50 tot 140 |
+| Ringen | 🥈 zilver, 🩷 roze, 🌈 regenboog | 60 tot 110 |
+| Feest | ⚡ bliksemfeest, 💖 hartjesfeest, 🎆 vuurwerk | 80 tot 110 |
+| Wereld | 🪐 ruimtewereld voor alle spellen | 160 |
+| Helden | 🌟 supersnelle gouden helden (ook in de 3D-spellen) | 200 |
 
-**Kleedkamer.** Met de knop "Aankleden" in het menu kleedt Lucas Sonic, Tails en Knuckles aan: hoeden (pet, feesthoedje, koptelefoon, cowboyhoed, kroon), brillen (zonnebril, skibril), gekleurde schoenen en iets op de rug (rugzak, superheldencape, vleugels). Tik op iets om het eerst te passen; kopen gaat met bliksems (3 tot 12) en daarna past het op elke held. De kleding is te zien in het menu, op het eindscherm en op de 3D-helden in de spellen.
+**Kleedkamer.** Met de knop "Aankleden" in het menu kleedt Lucas Sonic, Tails en Knuckles aan: hoeden (pet, feesthoedje, koptelefoon, cowboyhoed, kroon), brillen (zonnebril, skibril), gekleurde schoenen en iets op de rug (rugzak, superheldencape, vleugels). Tik op iets om het eerst te passen; kopen gaat met gouden ringen (25 tot 100) en daarna past het op elke held. De kleding is te zien in het menu, op het eindscherm en op de 3D-helden in de spellen.
 
-**Plakboek met stickers.** Na elke ronde krijgt Lucas een sticker (meestal een nieuwe; een dubbele levert een bliksem op, soms is er een glimmende regenboogsticker). Elke sticker is een woordje uit de woordenlijst met plaatje, dus hij leest het woord eronder, en de stem zegt het als hij erop tikt. Het plakboek (roze knop in het menu) heeft vier bladzijden: dieren, in huis, kleren en je lijf, buiten (64 stickers). Een volle bladzijde geeft 5 bliksems. In de winkel zijn stickerzakjes (3 stickers, 5 ⚡) en glimzakjes (met een glimmer, 8 ⚡).
+**Plakboek met stickers.** Na elke ronde krijgt Lucas een sticker (meestal een nieuwe; een dubbele levert 5 ringen op, soms is er een glimmende regenboogsticker). Elke sticker is een woordje uit de woordenlijst met plaatje, dus hij leest het woord eronder, en de stem zegt het als hij erop tikt. Het plakboek (roze knop in het menu) heeft vier bladzijden: dieren, in huis, kleren en je lijf, buiten (64 stickers). Een volle bladzijde geeft 40 ringen. In de winkel zijn stickerzakjes (3 stickers, 40 ringen) en glimzakjes (met een glimmer, 60 ringen).
 
-Papa of mama kan in de ouderhoek bliksems geven als beloning, de winkel leegmaken en zien wat Lucas heeft gekocht. Prijzen en artikelen staan in `src/games/winkel.ts`, de teksten in `content/teksten.json` onder `winkel`.
+Papa of mama kan in de ouderhoek ringen geven als beloning, de winkel leegmaken en zien wat Lucas heeft gekocht. Prijzen en artikelen staan in `src/games/winkel.ts`, de teksten in `content/teksten.json` onder `winkel`.
 
 **Dagmissie.** Drie spellen achter elkaar, een van elke held, vier opgaven per spel. Gelukt? Dan krijgt Lucas een **turbokristal** (regenboogkleuren). Bij het zevende kristal wordt hij **superheld**.
 

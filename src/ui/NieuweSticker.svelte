@@ -6,7 +6,7 @@
   import { onMount } from 'svelte';
   import StickerKaart from './StickerKaart.svelte';
   import { spreek } from '../audio/stem';
-  import { speelKoop, speelBliksem, speelTik } from '../audio/geluid';
+  import { speelKoop, speelRing, speelTik } from '../audio/geluid';
   import { glitterOp } from './feest';
   import type { StickerWinst } from '../store/plakboek.svelte';
   import teksten from '../../content/teksten.json';
@@ -32,11 +32,11 @@
         else if (w.nieuw) await spreek(pb.nieuw);
         await spreek(w.woord, 'woord');
         if (w.dubbel) {
-          speelBliksem();
+          speelRing();
           await spreek(pb.dubbel);
         }
         if (w.bladzijdeVol) {
-          speelBliksem();
+          speelRing();
           await spreek(pb.vol);
         }
       }
@@ -58,13 +58,13 @@
           </div>
           {#if i < open}
             <span class="label">
-              {#if w.dubbel}+1 ⚡ (dubbel){:else if w.glim}✨ Glimmer!{:else}Nieuw!{/if}
+              {#if w.dubbel}Dubbel: +5 ringen{:else if w.glim}✨ Glimmer!{:else}Nieuw!{/if}
             </span>
           {/if}
         </div>
       {/each}
     </div>
-    {#if winsten.some((w) => w.bladzijdeVol)}<p class="vol">⭐ Bladzijde vol! +5 ⚡</p>{/if}
+    {#if winsten.some((w) => w.bladzijdeVol)}<p class="vol">⭐ Bladzijde vol! +40 ringen</p>{/if}
     <button class="knop-goud" class:wacht={!klaar} onclick={opSluit}>Plak in je boek! 📒</button>
   </div>
 </div>

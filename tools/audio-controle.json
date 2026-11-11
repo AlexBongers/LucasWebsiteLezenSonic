@@ -3497,39 +3497,6 @@
   "piek": 0.63,
   "seconden": 2.07
  },
- "02e8e97cc4f0ec": {
-  "tekst": "Je hebt",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Je hebt",
-  "lufs": -18,
-  "piek": 0.81,
-  "seconden": 0.65
- },
- "028a2762163c58": {
-  "tekst": "Welkom in de Turbo-winkel, Lucas! Tik op iets om het te horen.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Welkom in de turbowinkel Lucas. Tik op iets om het te horen",
-  "lufs": -18.1,
-  "piek": 0.89,
-  "seconden": 3.41
- },
- "04dafbc8cc0c19": {
-  "tekst": "Je hebt nog geen bliksems. Speel een spelletje, dan verdien je er!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Je hebt nog geen bliksems. Speel een spelletje, dan verdien je er",
-  "lufs": -18,
-  "piek": 0.89,
-  "seconden": 3.56
- },
  "0ba2a14c9c626d": {
   "tekst": "Dat kost",
   "soort": "instructie",
@@ -3563,39 +3530,6 @@
   "piek": 0.58,
   "seconden": 0.52
  },
- "02fb1e981b1b0e": {
-  "tekst": "bliksems!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 2,
-  "gehoord": "Bliksems",
-  "lufs": -18,
-  "piek": 0.68,
-  "seconden": 0.99
- },
- "07252c28d85be4": {
-  "tekst": "bliksem!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "v4-nl",
-  "pogingen": 2,
-  "gehoord": "Bliksem",
-  "lufs": -18,
-  "piek": 0.7,
-  "seconden": 0.79
- },
- "03c2a8a41a014d": {
-  "tekst": "Nog één bliksem sparen, Lucas!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Nog één bliksem sparen, Lucas",
-  "lufs": -18,
-  "piek": 0.76,
-  "seconden": 1.64
- },
  "1948d896440c4f": {
   "tekst": "Gekocht! Wat leuk, Lucas!",
   "soort": "instructie",
@@ -3606,17 +3540,6 @@
   "lufs": -18,
   "piek": 0.88,
   "seconden": 1.46
- },
- "19aadcb2e1ff3a": {
-  "tekst": "bliksems sparen, Lucas!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Bliksemsparen Lucas",
-  "lufs": -18,
-  "piek": 0.78,
-  "seconden": 1.26
  },
  "109fe0a3cba19b": {
   "tekst": "Yes! Dat is van jou, Lucas!",
@@ -3749,17 +3672,6 @@
   "lufs": -18,
   "piek": 0.67,
   "seconden": 0.84
- },
- "103b291967d0e7": {
-  "tekst": "Ringen",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Ringen",
-  "lufs": -18,
-  "piek": 0.69,
-  "seconden": 0.62
  },
  "00239b8248dfb4": {
   "tekst": "Helden",
@@ -4223,28 +4135,6 @@
   "piek": 0.75,
   "seconden": 1.03
  },
- "19da9b8dfa44d2": {
-  "tekst": "bliksems in je zakje.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Bliksems in je zakje",
-  "lufs": -18,
-  "piek": 0.82,
-  "seconden": 1.17
- },
- "049dcc64e4d904": {
-  "tekst": "bliksem in je zakje.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Bliksem in je zakje",
-  "lufs": -18,
-  "piek": 0.88,
-  "seconden": 1.07
- },
  "1f5afb4c5dad84": {
   "tekst": "Feestjes",
   "soort": "instructie",
@@ -4333,17 +4223,6 @@
   "piek": 0.88,
   "seconden": 2.7
  },
- "0d40c95d72e89b": {
-  "tekst": "Die had je al! Je krijgt er een bliksem voor.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Die had je al. Je krijgt er een bliksem voor",
-  "lufs": -18.3,
-  "piek": 0.89,
-  "seconden": 2.06
- },
  "114ef5aacbb702": {
   "tekst": "Wauw, een glimmende sticker!",
   "soort": "instructie",
@@ -4365,17 +4244,6 @@
   "lufs": -18,
   "piek": 0.88,
   "seconden": 1.29
- },
- "1deddf79c11baa": {
-  "tekst": "De bladzijde is vol! Je krijgt vijf bliksems extra!",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "De bladzijde is vol. Je krijgt vijf bliksems extra",
-  "lufs": -18,
-  "piek": 0.89,
-  "seconden": 3.3
  },
  "0b480c2fda7ba3": {
   "tekst": "Dieren",
@@ -4442,17 +4310,6 @@
   "lufs": -18,
   "piek": 0.79,
   "seconden": 0.6
- },
- "0f400dee5e5ac8": {
-  "tekst": "Welkom in de kleedkamer, Lucas! Kies een held en tik op iets om het te passen.",
-  "soort": "instructie",
-  "ok": true,
-  "poging": "multi",
-  "pogingen": 1,
-  "gehoord": "Welkom in de kleedkamer, Lucas. Kies een held en tik op iets om het te passen",
-  "lufs": -18.2,
-  "piek": 0.89,
-  "seconden": 4.36
  },
  "0332bfc01f3f24": {
   "tekst": "Schoenen",
@@ -4706,5 +4563,511 @@
   "lufs": -18.1,
   "piek": 0.89,
   "seconden": 0.81
+ },
+ "0c89feb21fc72f": {
+  "tekst": "Nog één ring sparen, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Nog één ring sparen, Lucas",
+  "lufs": -18,
+  "piek": 0.82,
+  "seconden": 1.55
+ },
+ "0d03e923eccb89": {
+  "tekst": "ringen sparen, Lucas!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ringen sparen, Lucas",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.15
+ },
+ "11e5bdccef8d0d": {
+  "tekst": "Welkom in de Turbo-winkel, Lucas! Hier koop je dingen met je gouden ringen. Tik op iets om het te horen.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Welkom in de turbowinkel Lucas. Hier koop je dingen met je gouden ringen. Tik op iets om het te horen",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 6.08
+ },
+ "1f497e0dfcf005": {
+  "tekst": "ringen.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Ringen",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 0.57
+ },
+ "01c3774648650e": {
+  "tekst": "ringen!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Ringen",
+  "lufs": -18,
+  "piek": 0.73,
+  "seconden": 0.66
+ },
+ "0cf5447fd39f89": {
+  "tekst": "Die had je al! Je krijgt er vijf ringen voor.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Die had je al. Je krijgt er vijf ringen voor",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 2.15
+ },
+ "02bd1f286e690d": {
+  "tekst": "Nog even sparen, Lucas! Speel een spelletje voor meer ringen.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Nog even sparen Lucas? Speel een spelletje voor meer ringen",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 3.12
+ },
+ "070e263679f6da": {
+  "tekst": "De bladzijde is vol! Je krijgt veertig ringen extra!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "De bladzijde is vol. Je krijgt veertig ringen extra",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 3.27
+ },
+ "1de5ec211f96d4": {
+  "tekst": "25",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "25",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.01
+ },
+ "0ee5ab841b140f": {
+  "tekst": "Welkom in de kleedkamer, Lucas! Tik op iets om het te passen. Kopen doe je met je gouden ringen.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Welkom in de kleedkamer, Lucas. Tik op iets om het te passen. Kopen doe je met je gouden ringen",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 6.14
+ },
+ "08b24171647271": {
+  "tekst": "30",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "30",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.52
+ },
+ "0d584a4e7538bb": {
+  "tekst": "40",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "40",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 0.68
+ },
+ "1901ea6dffe24d": {
+  "tekst": "35",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "35",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 0.95
+ },
+ "18771beebdbe40": {
+  "tekst": "45",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "45",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 0.89
+ },
+ "0331d34219e551": {
+  "tekst": "50",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "50",
+  "lufs": -18,
+  "piek": 0.78,
+  "seconden": 0.53
+ },
+ "17d0f230b62276": {
+  "tekst": "55",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "55",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 0.91
+ },
+ "0a3d1cf00b757f": {
+  "tekst": "60",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "60",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 0.7
+ },
+ "18c757b217584f": {
+  "tekst": "65",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "65",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 0.85
+ },
+ "19b557d5a497ae": {
+  "tekst": "75",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "75",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 0.92
+ },
+ "014b0a75dc36f6": {
+  "tekst": "70",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "70",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.8
+ },
+ "0a9f4b878ff5a2": {
+  "tekst": "80",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "80",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.45
+ },
+ "05e9b5af19996c": {
+  "tekst": "85",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "85",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.88
+ },
+ "17c299b85d2d47": {
+  "tekst": "95",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "95",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.96
+ },
+ "1c42b6dd00a39f": {
+  "tekst": "90",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "90",
+  "lufs": -18,
+  "piek": 0.71,
+  "seconden": 0.78
+ },
+ "1ad0840a26aa75": {
+  "tekst": "100",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "100",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 0.68
+ },
+ "0b942aed913b3e": {
+  "tekst": "110",
+  "soort": "getal",
+  "ok": true,
+  "poging": "flash-nl",
+  "pogingen": 2,
+  "gehoord": "honderdtien",
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 0.72
+ },
+ "14126c57ab89ab": {
+  "tekst": "105",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "105",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 0.97
+ },
+ "08e2b9f9b4ff6c": {
+  "tekst": "115",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "115",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.05
+ },
+ "1cc92448d4bffb": {
+  "tekst": "120",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "120",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 1.02
+ },
+ "1e4e3a651a24fa": {
+  "tekst": "125",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "125",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.26
+ },
+ "0cc83a827f9143": {
+  "tekst": "130",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "130",
+  "lufs": -18,
+  "piek": 0.86,
+  "seconden": 0.98
+ },
+ "1840417689fc1f": {
+  "tekst": "135",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "135",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 0.9
+ },
+ "1d7b02ece56228": {
+  "tekst": "140",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "140",
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 1.14
+ },
+ "048694b4d2d6df": {
+  "tekst": "145",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "145",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.32
+ },
+ "18a8bfe77f09b8": {
+  "tekst": "150",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "150",
+  "lufs": -18,
+  "piek": 0.84,
+  "seconden": 0.92
+ },
+ "022bc47784ea8c": {
+  "tekst": "155",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "155",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.46
+ },
+ "0660e35eb00b17": {
+  "tekst": "160",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "160",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.04
+ },
+ "0cb94a2a4314b3": {
+  "tekst": "165",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "165",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 0.92
+ },
+ "13c463661794da": {
+  "tekst": "170",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "170",
+  "lufs": -18,
+  "piek": 0.77,
+  "seconden": 1.2
+ },
+ "15c5ecbd2864aa": {
+  "tekst": "175",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "175",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.45
+ },
+ "08368916916ffd": {
+  "tekst": "180",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "180",
+  "lufs": -18.1,
+  "piek": 0.88,
+  "seconden": 1.02
+ },
+ "1c46aec87d6d41": {
+  "tekst": "185",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "185",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.2
+ },
+ "0d6b0bd36927ec": {
+  "tekst": "190",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "190",
+  "lufs": -18,
+  "piek": 0.68,
+  "seconden": 1.1
+ },
+ "03c17dfeaed9a6": {
+  "tekst": "195",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "195",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.21
+ },
+ "0de17c6f307bc9": {
+  "tekst": "200",
+  "soort": "getal",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 1,
+  "gehoord": "200",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 0.7
+ },
+ "05e3ffa1ef2697": {
+  "tekst": "Ringkleuren",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Ringkleuren",
+  "lufs": -18,
+  "piek": 0.83,
+  "seconden": 0.79
  }
 }

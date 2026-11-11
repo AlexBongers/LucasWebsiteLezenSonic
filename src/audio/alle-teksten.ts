@@ -13,6 +13,8 @@ export type TeSpreken = { tekst: string; soort: Spreeksoort };
 export const SOM_WOORDEN = ['plus', 'min', 'is'];
 /** Hoogste getal dat Lucas te horen krijgt (sommen en torens tot en met 20). */
 export const MAX_GETAL = 20;
+/** Prijzen en 'nog zoveel sparen' worden afgerond op 5: van 25 tot en met 200. */
+export const SPAAR_GETALLEN = Array.from({ length: 36 }, (_, i) => 25 + i * 5);
 
 function strings(x: unknown): string[] {
   if (typeof x === 'string') return [x];
@@ -34,6 +36,8 @@ export function alleTeksten(): TeSpreken[] {
   ALLE_WOORDEN.forEach((w) => voeg(w.woord, 'woord'));
 
   for (let n = 0; n <= MAX_GETAL; n++) voeg(String(n), 'getal');
+  // Prijzen en spaarbedragen in de winkel en de kleedkamer (veelvouden van 5)
+  for (const n of SPAAR_GETALLEN) voeg(String(n), 'getal');
   SOM_WOORDEN.forEach((w) => voeg(w, 'getal'));
 
   // Dubbele eruit

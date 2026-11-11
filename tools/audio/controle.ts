@@ -5,7 +5,7 @@ import { getalInWoorden } from '../../src/audio/getallen';
 
 /** Zet een tekst om naar een vergelijkbare vorm: kleine letters, zonder leestekens, getallen als woorden. */
 export function normaliseerTekst(t: string): string {
-  const metGetallen = t.replace(/\d+/g, (d) => (Number(d) <= 100 ? ` ${getalInWoorden(Number(d))} ` : d));
+  const metGetallen = t.replace(/\d+/g, (d) => (Number(d) <= 999 ? ` ${getalInWoorden(Number(d))} ` : d));
   return metGetallen
     .toLowerCase()
     .normalize('NFD')
