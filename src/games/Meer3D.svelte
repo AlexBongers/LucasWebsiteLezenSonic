@@ -16,6 +16,7 @@
   import { getalPlaat, ruimOp, wolkVorm, zoekMet } from '../ui/drie-d-vormen';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { maakHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   type Kant = 'links' | 'rechts';
@@ -126,9 +127,9 @@
 
     eilanden = [bouwEiland('links'), bouwEiland('rechts')];
     for (const e of eilanden) scene.add(e.groep);
-    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
-    sonic.groep.scale.setScalar(0.85);
-    sonic.groep.position.set(0, 0.4, 1.2);
+    sonic = maakHeld3D('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
+    sonic.groep.scale.setScalar(1.3);
+    sonic.groep.position.set(0, 0.4, 1.7);
     sonic.groep.rotation.y = Math.PI;
     scene.add(sonic.groep);
     brokken = new Brokken(scene, -3);
@@ -267,7 +268,7 @@
     if (!ronde.volgende()) return;
     fout = [];
     vergrendeld = false;
-    sonic.groep.position.set(0, 0.4, 1.2);
+    sonic.groep.position.set(0, 0.4, 1.7);
     vulEilanden(false);
     void spreek(vraagTekst);
   }

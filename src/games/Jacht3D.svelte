@@ -19,6 +19,7 @@
   import { BoxGeometry, type MeshToonMaterial, type Sprite } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { maakHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [] }: SpelProps<JachtOpgave> = $props();
@@ -122,7 +123,7 @@
       ringen.push(r);
     }
     brokken = new Brokken(scene, 0.05);
-    knuckles = maakRenner('knuckles', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.knuckles);
+    knuckles = maakHeld3D('knuckles', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.knuckles, { podium: true });
     knuckles.groep.scale.setScalar(1.4);
     knuckles.groep.position.set(9.6, 0, -1.5);
     knuckles.groep.rotation.y = Math.PI * 0.75;

@@ -16,6 +16,7 @@
   import { TorusGeometry } from 'three';
   import { teksten, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { maakHeld3D } from '../ui/held-3d';
   import { flitsMaal } from './uitrusting.svelte';
   import type { SpelProps } from './types';
 
@@ -122,7 +123,7 @@
       zwevers.push(r);
     }
 
-    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
+    sonic = maakHeld3D('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
     sonic.groep.position.copy(START);
     sonic.groep.scale.setScalar(0.95);
     sonic.groep.rotation.y = Math.PI;

@@ -21,6 +21,7 @@
   import { MeshBasicMaterial, PlaneGeometry, TorusGeometry } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { maakHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [] }: SpelProps<SplitsOpgave> = $props();
@@ -252,7 +253,7 @@
     scene.add(bom);
 
     // Tails zweeft links van de bom
-    tails = maakRenner('tails', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.tails);
+    tails = maakHeld3D('tails', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.tails);
     tails.groep.scale.setScalar(1.6);
     tails.groep.position.set(-8.5, 1.2, 3.2);
     tails.groep.rotation.y = -Math.PI * 0.72;

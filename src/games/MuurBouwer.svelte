@@ -22,6 +22,7 @@
   import { BoxGeometry, CircleGeometry, MeshBasicMaterial, PlaneGeometry, type MeshToonMaterial } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { maakHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [] }: SpelProps<BouwOpgave> = $props();
@@ -193,7 +194,7 @@
     brokken = new Brokken(scene, 0.1);
 
     // Knuckles staat rechts van de muur, kijkt naar de blokken
-    held = maakRenner('knuckles', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.knuckles);
+    held = maakHeld3D('knuckles', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.knuckles, { podium: true });
     held.groep.scale.setScalar(1.45);
     held.groep.position.set(8.6, 0.05, 2.2);
     held.groep.rotation.y = Math.PI * 0.72;

@@ -20,6 +20,7 @@
   import { patroonSymbool, ruimOp, vraagPlaat, wolkVorm } from '../ui/drie-d-vormen';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { maakHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [] }: SpelProps<PatroonOpgave> = $props();
@@ -171,7 +172,7 @@
       zwevend.push(r);
     }
 
-    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
+    sonic = maakHeld3D('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
     sonic.groep.rotation.y = -Math.PI / 2;
     scene.add(sonic.groep);
     brokken = new Brokken(scene, -50);
