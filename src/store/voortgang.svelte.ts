@@ -43,6 +43,8 @@ export type Voortgang = {
   /** Alle bliksems die hij ooit verdiend heeft. */
   bliksemsTotaal: number;
   winkel: Winkel;
+  /** Het plakboek: hoeveel van elke sticker, welke glimmen, welke bladzijden vol zijn. */
+  plakboek: { stickers: Record<string, number>; glim: string[]; vol: string[] };
   /** Turbokristallen verzameld met dagmissies (maximaal 7). */
   kristallen: number;
   /** Hoeveel dagmissies zijn er gespeeld? */
@@ -81,6 +83,7 @@ export function standaardVoortgang(): Voortgang {
     bliksems: 0,
     bliksemsTotaal: 0,
     winkel: { voorraad: {}, bezit: [], gekozen: { maatje: '', ring: '', feest: '', wereld: '', held: '' }, uitgegeven: 0 },
+    plakboek: { stickers: {}, glim: [], vol: [] },
     kristallen: 0,
     missies: 0,
     vaardigheden: perSpel(() => ({ niveau: 0, recent: [] as boolean[] })),
@@ -120,6 +123,11 @@ function samenvoegen(basis: Voortgang, data: Partial<Voortgang>): Voortgang {
       voorraad: { ...(data.winkel?.voorraad ?? {}) },
       bezit: [...(data.winkel?.bezit ?? [])],
       gekozen: { ...basis.winkel.gekozen, ...(data.winkel?.gekozen ?? {}) },
+    },
+    plakboek: {
+      stickers: { ...(data.plakboek?.stickers ?? {}) },
+      glim: [...(data.plakboek?.glim ?? [])],
+      vol: [...(data.plakboek?.vol ?? [])],
     },
     instellingen: { ...basis.instellingen, ...(data.instellingen ?? {}) },
   };

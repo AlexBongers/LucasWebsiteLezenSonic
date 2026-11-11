@@ -159,3 +159,45 @@ describe('de nieuwe 3D-spellen', () => {
     }
   });
 });
+
+describe('het plakboek', () => {
+  it('elke sticker is een woordje met plaatje (en dus met stem), en elk woordje staat op precies één bladzijde', async () => {
+    const { ALLE_WOORDEN } = await import('../src/engine/generator-lucas');
+    const { ALLE_STICKERS, BLADZIJDEN } = await import('../src/games/stickers');
+    const woorden = ALLE_WOORDEN.map((w) => w.woord).sort();
+    expect([...ALLE_STICKERS].sort()).toEqual(woorden);
+    for (const b of BLADZIJDEN) expect((teksten.plakboek.bladzijden as Record<string, string>)[b.id]).toBeTruthy();
+  });
+
+  it('een sticker verdienen: eerst vooral nieuwe, een dubbele levert een bliksem op', async () => {
+    const { geefSticker, aantalVerzameld } = await import('../src/store/plakboek.svelte');
+    const rnd = zaadRnd(4);
+    for (let i = 0; i < 30; i++) geefSticker({ rnd });
+    expect(aantalVerzameld()).toBeGreaterThan(18);
+    const dubbele = Object.values(vg.plakboek.stickers).reduce((a, n) => a + n, 0) - aantalVerzameld();
+    expect(vg.bliksems).toBeGreaterThanOrEqual(dubbele - vg.plakboek.glim.length);
+  });
+
+  it('een volle bladzijde geeft 5 bliksems extra, één keer', async () => {
+    const { geefSticker } = await import('../src/store/plakboek.svelte');
+    const { BLADZIJDEN } = await import('../src/games/stickers');
+    const dieren = BLADZIJDEN[0].woorden;
+    for (const w of dieren.slice(1)) vg.plakboek.stickers[w] = 1;
+    // Alles behalve de eerste: de volgende nieuwe sticker die past maakt de bladzijde vol
+    let winst = geefSticker({ rnd: () => 0, glim: false });
+    while (winst.woord !== dieren[0]) winst = geefSticker({ rnd: () => 0, glim: false });
+    expect(winst.bladzijdeVol).toBe('dieren');
+    expect(vg.plakboek.vol).toEqual(['dieren']);
+  });
+
+  it('een stickerzakje uit de winkel heeft drie stickers, een glimzakje één glimmer', async () => {
+    const { openZakje } = await import('../src/store/plakboek.svelte');
+    expect(openZakje('zakje').length).toBe(3);
+    const glim = openZakje('glimzakje');
+    expect(glim.length).toBe(2);
+    expect(glim[0].glim).toBe(true);
+    vg.bliksems = 9;
+    expect(koop('zakje')).toBe('gekocht');
+    expect(koop('zakje')).toBe('te-weinig');
+  });
+});

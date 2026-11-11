@@ -3,7 +3,7 @@
  * Powerups kun je opgebruiken; al het andere is voor altijd van hem en kan hij aan- of uitzetten.
  * De namen en uitleg (die de stem uitspreekt) staan in content/teksten.json onder "winkel.artikelen".
  */
-export type Soort = 'power' | 'maatje' | 'ring' | 'feest' | 'wereld' | 'held';
+export type Soort = 'power' | 'sticker' | 'maatje' | 'ring' | 'feest' | 'wereld' | 'held';
 
 export type Artikel = {
   id: string;
@@ -16,6 +16,7 @@ export type Artikel = {
 
 export const SOORTEN: { soort: Soort; icoon: string; naam: string }[] = [
   { soort: 'power', icoon: '⚡', naam: 'Powerups' },
+  { soort: 'sticker', icoon: '📒', naam: 'Stickers' },
   { soort: 'maatje', icoon: '🐥', naam: 'Maatjes' },
   { soort: 'ring', icoon: '💍', naam: 'Ringen' },
   { soort: 'feest', icoon: '🎆', naam: 'Feest' },
@@ -29,6 +30,9 @@ export const ARTIKELEN: Artikel[] = [
   { id: 'dubbel', soort: 'power', prijs: 4, icoon: '✨', kleur: '#f59e0b' },
   { id: 'vuur', soort: 'power', prijs: 4, icoon: '🔥', kleur: '#f97316' },
   { id: 'traag', soort: 'power', prijs: 3, icoon: '🐢', kleur: '#22c55e' },
+  // Stickerzakjes voor het plakboek (meteen open)
+  { id: 'zakje', soort: 'sticker', prijs: 5, icoon: '🎁', kleur: '#a855f7' },
+  { id: 'glimzakje', soort: 'sticker', prijs: 8, icoon: '✨', kleur: '#ec4899' },
   // Maatjes die meekijken
   { id: 'kuiken', soort: 'maatje', prijs: 6, icoon: '🐥', kleur: '#facc15' },
   { id: 'vos', soort: 'maatje', prijs: 10, icoon: '🦊', kleur: '#fb923c' },

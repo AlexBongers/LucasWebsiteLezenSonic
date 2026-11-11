@@ -32,6 +32,17 @@ import {
   Vector3,
   WebGLRenderer,
   Fog,
+  ACESFilmicToneMapping,
+  PCFSoftShadowMap,
+  MeshLambertMaterial,
+  PlaneGeometry,
+  Points,
+  Sprite,
+  SpriteMaterial,
+  PointsMaterial,
+  AdditiveBlending,
+  Float32BufferAttribute,
+  BufferGeometry as Geometrie,
   type BufferGeometry,
   type Material,
 } from 'three';
@@ -53,7 +64,7 @@ export function webglKan(): boolean {
 let trapje: DataTexture | null = null;
 function verloop(): DataTexture {
   if (!trapje) {
-    trapje = new DataTexture(new Uint8Array([70, 150, 255]), 3, 1, RedFormat);
+    trapje = new DataTexture(new Uint8Array([95, 165, 220, 255]), 4, 1, RedFormat);
     trapje.minFilter = NearestFilter;
     trapje.magFilter = NearestFilter;
     trapje.needsUpdate = true;
@@ -93,7 +104,7 @@ export function omlijn<T extends Mesh>(mesh: T, dikte = 0.07): T {
 
 /** Een bol, kubus of kegel met materiaal en omlijning in één keer. */
 export function bol(r: number, kleur: number | string, schaal: [number, number, number] = [1, 1, 1], dikte = 0.08): Mesh {
-  const m = new Mesh(new SphereGeometry(r, 20, 14), toon(kleur));
+  const m = new Mesh(new SphereGeometry(r, 32, 22), toon(kleur));
   m.scale.set(...schaal);
   return omlijn(m, dikte);
 }
@@ -107,8 +118,30 @@ export function cilinder(r: number, h: number, kleur: number | string, dikte = 0
   return omlijn(new Mesh(new CylinderGeometry(r, r, h, 14), toon(kleur)), dikte);
 }
 export function ring(r = 0.5, buis = 0.14, kleur: number | string = 0xfbbf24): Mesh {
-  const m = new Mesh(new TorusGeometry(r, buis, 10, 22), toon(kleur, 0.5));
+  const m = new Mesh(new TorusGeometry(r, buis, 12, 28), toon(kleur, 0.5));
+  m.add(gloed(r * 3.2, kleur));
   return m;
+}
+
+let gloedTex: CanvasTexture | null = null;
+/** Een zachte lichtkrans (altijd naar de camera gedraaid). */
+export function gloed(maat: number, kleur: number | string = 0xfde68a, sterkte = 0.55): Sprite {
+  if (!gloedTex) {
+    const c = document.createElement('canvas');
+    c.width = c.height = 128;
+    const g = c.getContext('2d')!;
+    const v = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    v.addColorStop(0, 'rgba(255,255,255,0.9)');
+    v.addColorStop(0.35, 'rgba(255,255,255,0.35)');
+    v.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = v;
+    g.fillRect(0, 0, 128, 128);
+    gloedTex = new CanvasTexture(c);
+  }
+  const sp = new Sprite(new SpriteMaterial({ map: gloedTex, color: kleur, transparent: true, opacity: sterkte, depthWrite: false, blending: AdditiveBlending }));
+  sp.scale.setScalar(maat);
+  sp.userData.gloed = true;
+  return sp;
 }
 
 // ------------------------------------------------------------------ Teksturen
@@ -174,6 +207,59 @@ export function ruitTekstuur(a: string, b: string, herhaal: [number, number]): C
   return t;
 }
 
+/** Een vloer die licht en schaduwen opvangt. */
+export function vloer(map: Texture | null, breed: number, lang: number, kleur: number | string = 0xffffff): Mesh {
+  const m = new Mesh(new PlaneGeometry(breed, lang), new MeshLambertMaterial({ map, color: kleur }));
+  m.rotation.x = -Math.PI / 2;
+  m.receiveShadow = true;
+  m.userData.vloer = true;
+  return m;
+}
+
+/** Glitters: kleine lichtpuntjes die door de lucht zweven. */
+function glitterWolk(kleur: number, aantal = 140): Points {
+  const c = document.createElement('canvas');
+  c.width = c.height = 64;
+  const g = c.getContext('2d')!;
+  const v = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  v.addColorStop(0, 'rgba(255,255,255,1)');
+  v.addColorStop(0.25, 'rgba(255,255,255,0.8)');
+  v.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = v;
+  g.fillRect(0, 0, 64, 64);
+  const tex = new CanvasTexture(c);
+  const pos: number[] = [];
+  for (let i = 0; i < aantal; i++) pos.push((Math.random() - 0.5) * 46, Math.random() * 16, -24 + Math.random() * 30);
+  const geo = new Geometrie();
+  geo.setAttribute('position', new Float32BufferAttribute(pos, 3));
+  const mat = new PointsMaterial({ map: tex, color: kleur, size: 0.32, transparent: true, opacity: 0.85, depthWrite: false, blending: AdditiveBlending });
+  return new Points(geo, mat);
+}
+
+// ------------------------------------------------------------------ Kwaliteit
+/**
+ * Hoog: scherp beeld en zachte schaduwen. Midden: minder pixels. Laag: ook geen schaduwen.
+ * De site meet zelf hoe snel het apparaat is en onthoudt de stand voor de volgende keer.
+ */
+type Kwaliteit = 'hoog' | 'midden' | 'laag';
+const KWALITEIT_SLEUTEL = 'lucas-3d-kwaliteit';
+function leesKwaliteit(): Kwaliteit {
+  try {
+    const k = localStorage.getItem(KWALITEIT_SLEUTEL);
+    if (k === 'hoog' || k === 'midden' || k === 'laag') return k;
+  } catch {
+    // geen opslag
+  }
+  return 'hoog';
+}
+function bewaarKwaliteit(k: Kwaliteit) {
+  try {
+    localStorage.setItem(KWALITEIT_SLEUTEL, k);
+  } catch {
+    // geen opslag
+  }
+}
+
 // ------------------------------------------------------------------ Toneel
 export type Toneel = {
   scene: Scene;
@@ -188,9 +274,17 @@ export type Toneel = {
   stop: () => void;
 };
 
-export function maakToneel(host: HTMLElement, opt: { lucht?: [string, string, string]; mist?: number; mistAfstand?: [number, number]; fov?: number } = {}): Toneel {
+export function maakToneel(
+  host: HTMLElement,
+  opt: { lucht?: [string, string, string]; mist?: number; mistAfstand?: [number, number]; fov?: number; glitter?: number } = {},
+): Toneel {
+  let kwaliteit = leesKwaliteit();
   const renderer = new WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, kwaliteit === 'laag' ? 1 : 1.5));
+  renderer.toneMapping = ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.18;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = PCFSoftShadowMap;
   const canvas = renderer.domElement;
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;';
   host.appendChild(canvas);
@@ -203,9 +297,31 @@ export function maakToneel(host: HTMLElement, opt: { lucht?: [string, string, st
     scene.fog = new Fog(opt.mist, van, tot);
   }
   scene.add(new HemisphereLight(0xffffff, 0x6b7a8f, 1.55));
-  const zon = new DirectionalLight(0xfff3d6, 2.1);
-  zon.position.set(6, 12, 8);
+  const zon = new DirectionalLight(0xfff3d6, 2.4);
+  zon.position.set(9, 20, 12);
+  zon.castShadow = kwaliteit !== 'laag';
+  zon.shadow.mapSize.set(1024, 1024);
+  const sc = zon.shadow.camera;
+  sc.left = -20;
+  sc.right = 20;
+  sc.top = 20;
+  sc.bottom = -20;
+  sc.near = 1;
+  sc.far = 70;
+  zon.shadow.bias = -0.0005;
+  zon.shadow.normalBias = 0.03;
+  zon.shadow.radius = 4;
   scene.add(zon);
+  scene.add(zon.target);
+  // Randlicht van achteren: figuren komen los van de achtergrond
+  const rand = new DirectionalLight(0xbfe3ff, 1.1);
+  rand.position.set(-10, 9, -14);
+  scene.add(rand);
+  // Glitters in de lucht
+  const glitter = glitterWolk(opt.glitter ?? 0xfff7c2);
+  scene.add(glitter);
+
+
 
   const camera = new PerspectiveCamera(opt.fov ?? 55, 1, 0.1, 400);
   const formaat = () => {
@@ -218,6 +334,47 @@ export function maakToneel(host: HTMLElement, opt: { lucht?: [string, string, st
   formaat();
   const ro = new ResizeObserver(formaat);
   ro.observe(host);
+
+  const zetSchaduwen = () => {
+    if (!zon.castShadow) return;
+    scene.traverse((o) => {
+      const m = o as Mesh;
+      if (!m.isMesh || m.userData.schaduwKlaar) return;
+      m.userData.schaduwKlaar = true;
+      const mat = Array.isArray(m.material) ? m.material[0] : m.material;
+      if (m.userData.vloer) return;
+      if (mat === lijn || (mat as MeshBasicMaterial).transparent) return;
+      m.castShadow = true;
+      m.receiveShadow = !(mat instanceof MeshBasicMaterial);
+    });
+  };
+
+  // Snelheid meten: is het apparaat te traag, dan een stand lager (en onthouden).
+  let beeldjes = 0;
+  let meetSom = 0;
+  let meetAantal = 0;
+  const meet = (dt: number) => {
+    if (beeldjes < 30 || kwaliteit === 'laag') return;
+    meetSom += dt;
+    meetAantal++;
+    if (meetAantal < 90) return;
+    const gem = meetSom / meetAantal;
+    meetSom = 0;
+    meetAantal = 0;
+    if (gem > 1 / 38) {
+      if (kwaliteit === 'hoog') {
+        kwaliteit = 'midden';
+        renderer.setPixelRatio(1);
+        formaat();
+      } else {
+        kwaliteit = 'laag';
+        zon.castShadow = false;
+        renderer.setPixelRatio(1);
+        formaat();
+      }
+      bewaarKwaliteit(kwaliteit);
+    }
+  };
 
   const functies: ((dt: number, t: number) => void)[] = [];
   let raf = 0;
@@ -232,6 +389,16 @@ export function maakToneel(host: HTMLElement, opt: { lucht?: [string, string, st
     if (document.hidden) return;
     tijd += dt;
     for (const f of functies) f(dt, tijd);
+    beeldjes++;
+    // De zon (en zijn schaduwvak) loopt mee met de camera
+    zon.target.position.set(camera.position.x, 0, camera.position.z - 10);
+    zon.position.set(camera.position.x + 9, 20, camera.position.z + 2);
+    // Schaduwen: alles wat nieuw in beeld komt, werpt er een (behalve randen, plaatjes en glitters).
+    if (beeldjes % 20 === 1) zetSchaduwen();
+    glitter.rotation.y = Math.sin(tijd * 0.05) * 0.2;
+    glitter.position.y = Math.sin(tijd * 0.4) * 0.4;
+    (glitter.material as PointsMaterial).opacity = 0.65 + Math.sin(tijd * 2.3) * 0.2;
+    meet(dt);
     renderer.render(scene, camera);
   };
   raf = requestAnimationFrame(lus);
@@ -394,7 +561,14 @@ export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false): R
     const pupil = bol(0.1, sonic ? 0x16a34a : knuckles ? 0x7c3aed : 0x2563eb, [1, 1.2, 0.6]);
     pupil.position.set(x * 0.9, 1.88, -0.76);
     groep.add(pupil);
+    const glans = new Mesh(new SphereGeometry(0.035, 10, 8), new MeshBasicMaterial({ color: 0xffffff }));
+    glans.position.set(x * 0.9 - 0.03, 1.93, -0.82);
+    groep.add(glans);
   }
+  // Lichte buik
+  const buik = bol(0.44, knuckles ? 0xfbd5a8 : sonic ? 0xfbd5a8 : 0xfff7ed, [1, 1.1, 0.55]);
+  buik.position.set(0, 1.0, -0.36);
+  groep.add(buik);
   const neus = bol(0.1, 0x0f172a);
   neus.position.set(0, 1.7, -0.9);
   groep.add(neus);
@@ -467,6 +641,13 @@ export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false): R
     const band = bol(0.2, 0xffffff, [1, 0.35, 1.1]);
     band.position.set(0, -0.15, 0.08);
     been.add(band);
+    // Wit bandje met een gouden gesp over de schoen
+    const riem = kubus(0.42, 0.09, 0.16, 0xffffff, 0.04);
+    riem.position.set(0, -0.28, -0.08);
+    been.add(riem);
+    const gesp = kubus(0.12, 0.1, 0.06, 0xfacc15, 0.03);
+    gesp.position.set(0, -0.28, -0.17);
+    been.add(gesp);
     groep.add(been);
     benen.push(been);
   }
@@ -474,6 +655,10 @@ export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false): R
   for (const x of [-0.75, 0.75]) {
     const arm = cilinder(0.13, 0.65, huid);
     arm.position.set(x, 1.15, 0);
+    const manchet = new Mesh(new TorusGeometry(0.15, 0.06, 8, 16), toon(0xffffff));
+    manchet.rotation.x = Math.PI / 2;
+    manchet.position.y = -0.28;
+    arm.add(manchet);
     // Knuckles heeft grote vuisten met witte stekels
     const hand = bol(knuckles ? 0.34 : 0.22, knuckles ? huid : 0xffffff);
     if (knuckles) {
@@ -490,7 +675,7 @@ export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false): R
     armen.push(arm);
   }
 
-  const schaduw = new Mesh(new SphereGeometry(0.8, 14, 8), new MeshBasicMaterial({ color: 0x0a1540, transparent: true, opacity: 0.28 }));
+  const schaduw = new Mesh(new SphereGeometry(0.8, 14, 8), new MeshBasicMaterial({ color: 0x0a1540, transparent: true, opacity: 0.16 }));
   schaduw.scale.set(1, 0.05, 1);
   schaduw.position.y = 0.02;
   groep.add(schaduw);

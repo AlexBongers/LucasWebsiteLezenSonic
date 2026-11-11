@@ -278,7 +278,8 @@
       "ring": "Ringen",
       "feest": "Feestjes",
       "wereld": "Werelden",
-      "held": "Helden"
+      "held": "Helden",
+      "sticker": "Stickers"
     },
     "artikelen": {
       "hart": {
@@ -348,6 +349,14 @@
       "super": {
         "naam": "Supersnelle helden",
         "uitleg": "Sonic, Tails en Knuckles worden goud en stralen als superhelden."
+      },
+      "zakje": {
+        "naam": "Stickerzakje",
+        "uitleg": "Drie stickers voor in je plakboek."
+      },
+      "glimzakje": {
+        "naam": "Glimzakje",
+        "uitleg": "Twee stickers, en één ervan glimt!"
       }
     }
   },
@@ -360,5 +369,20 @@
   },
   "bomsplits": {
     "start": "Help Tails! Maak de grote bom veilig met ringen."
+  },
+  "plakboek": {
+    "welkom": "Dit is jouw plakboek, Lucas! Tik op een sticker.",
+    "leeg": "Deze sticker heb je nog niet. Speel een spelletje, dan verdien je stickers!",
+    "nieuw": "Je krijgt een nieuwe sticker!",
+    "dubbel": "Die had je al! Je krijgt er een bliksem voor.",
+    "glim": "Wauw, een glimmende sticker!",
+    "vol": "De bladzijde is vol! Je krijgt vijf bliksems extra!",
+    "zakje": "Een stickerzakje! Eens kijken wat erin zit.",
+    "bladzijden": {
+      "dieren": "Dieren",
+      "thuis": "In huis",
+      "lijf": "Kleren en je lijf",
+      "buiten": "Buiten"
+    }
   }
 }

@@ -6,6 +6,8 @@
   import { grootFeest } from '../ui/feest';
   import teksten from '../../content/teksten.json';
   import BliksemTeller from '../ui/BliksemTeller.svelte';
+  import StickerKaart from '../ui/StickerKaart.svelte';
+  import type { StickerWinst } from '../store/plakboek.svelte';
   import { vg } from '../store/voortgang.svelte';
   import { speelBliksem } from '../audio/geluid';
   import { beloning } from '../games/teksten';
@@ -17,6 +19,7 @@
     totaal,
     noten,
     bliksems = 0,
+    sticker = null,
     omhoog,
     titel = 'Gelukt!',
     melding,
@@ -27,6 +30,7 @@
     opTerug,
     opPauze = opTerug,
     opWinkel,
+    opPlakboek,
   }: {
     heldin: HeldinId;
     goed: number;
@@ -34,6 +38,8 @@
     noten: number;
     /** Hoeveel bliksems verdiend met deze ronde. */
     bliksems?: number;
+    /** De sticker die hij met deze ronde verdiende. */
+    sticker?: StickerWinst | null;
     omhoog: boolean;
     titel?: string;
     /** Extra regel, bijv. het startniveau na de auditie. */
@@ -48,8 +54,10 @@
     opTerug: () => void;
     /** Naar de Turbo-winkel. */
     opWinkel?: () => void;
+    opPlakboek?: () => void;
   } = $props();
 
+  let stickerOpen = $state(false);
   let sterren = $derived(totaal === 0 ? 3 : goed / totaal >= 0.85 ? 3 : goed / totaal >= 0.6 ? 2 : 1);
   const anderen = (['sonic', 'tails', 'knuckles'] as HeldinId[]).filter((h) => h !== heldin);
 
@@ -64,12 +72,26 @@
         await spreek(String(bliksems), 'getal');
         await spreek(bliksems === 1 ? teksten.winkel.bliksemJuich : teksten.winkel.bliksemsJuich);
       }
+      if (sticker) {
+        stickerOpen = true;
+        const pb = teksten.plakboek;
+        await spreek(sticker.glim && !sticker.dubbel ? pb.glim : sticker.nieuw ? pb.nieuw : pb.dubbel);
+        await spreek(sticker.woord, 'woord');
+        if (sticker.bladzijdeVol) await spreek(pb.vol);
+      }
       if (pauze) await spreek(teksten.pauze.tijd);
     })();
   });
 </script>
 
 <div class="scherm">
+  {#if sticker}
+    <button class="sticker-plek" class:open={stickerOpen} onclick={() => opPlakboek?.()} aria-label="Nieuwe sticker: {sticker.woord}. Open je plakboek">
+      <span class="lint">{sticker.dubbel ? 'Dubbel! +1 ⚡' : sticker.glim ? '✨ Glimmer!' : 'Nieuwe sticker!'}</span>
+      <StickerKaart woord={sticker.woord} glim={sticker.glim} grootte={150} kantel={6} />
+      <span class="naar">📒 Plakboek</span>
+    </button>
+  {/if}
   <div class="kaart">
     <p class="groet">Goed gedaan, Lucas!</p>
     <h2 class="goudtekst">{titel}</h2>
@@ -183,6 +205,36 @@
     font-weight: 700;
     color: #fde68a;
     text-shadow: 0 0 16px rgba(251, 191, 36, 0.8);
+  }
+  .sticker-plek {
+    position: absolute;
+    right: 46px;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    background: none;
+    border: 0;
+    transform: translateY(-50%) rotateY(90deg);
+    transition: transform 0.6s cubic-bezier(0.3, 1.5, 0.5, 1);
+  }
+  .sticker-plek.open {
+    transform: translateY(-50%) rotateY(0);
+  }
+  .lint {
+    padding: 4px 16px;
+    border-radius: 999px;
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #f472b6, #a855f7);
+    box-shadow: 0 0 18px rgba(244, 114, 182, 0.7);
+  }
+  .naar {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fbcfe8;
   }
   .bliksem-winst {
     display: flex;

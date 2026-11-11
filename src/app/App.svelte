@@ -11,8 +11,9 @@
   import SpelKeuze from './SpelKeuze.svelte';
   import KristalScherm from './KristalScherm.svelte';
   import Winkel from './Winkel.svelte';
+  import Plakboek from './Plakboek.svelte';
   import { verdien } from '../store/winkel.svelte';
-  import { BLIKSEMS_KRISTAL } from '../games/winkel';
+  import { BLIKSEMS_KRISTAL, type Soort } from '../games/winkel';
   import { SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
   import { WERELD_VAN } from '../ui/werelden';
   import characters from '../../content/characters.json';
@@ -21,7 +22,7 @@
   import { laadStemManifest, spreek, stopSpreken, zetApparaatStem } from '../audio/stem';
   import { ontgrendelGeluid, pauzeerGeluid, speelWhoosh, startMuziek, stopMuziek, zetEffectenAan } from '../audio/geluid';
 
-  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'kristal' | 'ouder' | 'einde' | 'winkel';
+  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'kristal' | 'ouder' | 'einde' | 'winkel' | 'plakboek';
   let scherm = $state<Scherm>('start');
   let heldin = $state<HeldinId>('sonic');
   let spel = $state<SpelId>('ringrace');
@@ -92,7 +93,7 @@
       }
       history.pushState({ app: true }, '');
       if (scherm === 'level') vraagStop = true;
-      else if (scherm === 'ouder' || scherm === 'spellen' || scherm === 'winkel') scherm = 'keuze';
+      else if (scherm === 'ouder' || scherm === 'spellen' || scherm === 'winkel' || scherm === 'plakboek') scherm = 'keuze';
       else if (scherm === 'kristal') scherm = 'keuze';
       else if (scherm === 'keuze') vraagAfsluiten = true;
     };
@@ -221,11 +222,20 @@
     scherm = 'einde';
   }
 
-  function naarWinkel() {
+  let winkelTab = $state<Soort>('power');
+  function naarWinkel(tab: Soort = 'power') {
+    winkelTab = tab;
     stopSpreken();
     vraagStop = false;
     missie = null;
     scherm = 'winkel';
+  }
+
+  function naarPlakboek() {
+    stopSpreken();
+    vraagStop = false;
+    missie = null;
+    scherm = 'plakboek';
   }
 
   function naarKeuze() {
@@ -254,7 +264,7 @@
       {#if scherm === 'start'}
         <Start opStart={begin} />
       {:else if scherm === 'keuze'}
-        <HeldinKeuze opKies={kies} opMissie={startMissie} opWinkel={naarWinkel} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
+        <HeldinKeuze opKies={kies} opMissie={startMissie} opWinkel={naarWinkel} opPlakboek={naarPlakboek} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
       {:else if scherm === 'spellen'}
         <SpelKeuze {heldin} opKies={kiesSpel} opTerug={naarKeuze} />
       {:else if scherm === 'level'}
@@ -264,12 +274,15 @@
           opVerder={missieVerder}
           opTerug={naarSpellen}
           opWinkel={naarWinkel}
+          opPlakboek={naarPlakboek}
           opStop={() => (vraagStop = true)}
           {pauzeNodig}
           opPauze={naarEinde}
         />
+      {:else if scherm === 'plakboek'}
+        <Plakboek opSluit={naarKeuze} opWinkel={() => naarWinkel('sticker')} />
       {:else if scherm === 'winkel'}
-        <Winkel opSluit={naarKeuze} />
+        <Winkel opSluit={naarKeuze} startTab={winkelTab} />
       {:else if scherm === 'kristal'}
         <KristalScherm nummer={nieuwKristal} opSluit={naarKeuze} />
       {:else if scherm === 'einde'}

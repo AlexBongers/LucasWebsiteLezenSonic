@@ -11,6 +11,7 @@
   import { speelBijna, speelGoed, speelTik } from '../audio/geluid';
   import { boem, schud } from '../ui/boem';
   import { Brokken, Group, Mesh, Vector3, cilinder, kubus, maakToneel, ring, ruitTekstuur, type Toneel } from '../ui/drie-d';
+  import { vloer } from '../ui/drie-d';
   import { MeshBasicMaterial, PlaneGeometry } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
@@ -61,9 +62,7 @@
   function bouwWereld(host: HTMLElement) {
     tn = maakToneel(host, { lucht: ['#7c2d12', '#f97316', '#fde68a'], mist: 0xfde68a, mistAfstand: [24, 70], fov: 50 });
     const { scene, camera } = tn;
-    const vloer = new Mesh(new PlaneGeometry(120, 120), new MeshBasicMaterial({ map: ruitTekstuur('#fdba74', '#fb923c', [30, 30]) }));
-    vloer.rotation.x = -Math.PI / 2;
-    scene.add(vloer);
+    scene.add(vloer(ruitTekstuur('#fdba74', '#fb923c', [30, 30]), 120, 120));
     const plaat = kubus(9, 0.4, 5, 0x475569);
     plaat.position.y = 0.2;
     scene.add(plaat);

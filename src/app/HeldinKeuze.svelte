@@ -4,6 +4,7 @@
   import Kristal from '../ui/Kristal.svelte';
   import BliksemTeller from '../ui/BliksemTeller.svelte';
   import Maatje from '../ui/Maatje.svelte';
+  import { aantalVerzameld } from '../store/plakboek.svelte';
   import OuderSlot from './OuderSlot.svelte';
   import characters from '../../content/characters.json';
   import { AANTAL_KRISTALLEN, KRISTAL_KLEUREN } from '../games/kristallen';
@@ -14,9 +15,10 @@
     opKies,
     opMissie,
     opWinkel,
+    opPlakboek,
     opOuder,
     opStoppen,
-  }: { opKies: (h: HeldinId) => void; opMissie: () => void; opWinkel: () => void; opOuder: () => void; opStoppen: () => void } = $props();
+  }: { opKies: (h: HeldinId) => void; opMissie: () => void; opWinkel: () => void; opPlakboek: () => void; opOuder: () => void; opStoppen: () => void } = $props();
 
   const volgorde: HeldinId[] = ['sonic', 'tails', 'knuckles'];
   let gekozen: HeldinId | null = $state(null);
@@ -58,7 +60,7 @@
   <div class="missie" class:super={superheld}>
     <div class="kristallen" aria-label="{vg.kristallen} van {AANTAL_KRISTALLEN} turbokristallen">
       {#each KRISTAL_KLEUREN as k, i}
-        <Kristal kleur={k} grootte={34} leeg={i >= vg.kristallen} />
+        <Kristal kleur={k} grootte={28} leeg={i >= vg.kristallen} />
       {/each}
     </div>
     <div class="tekst">
@@ -75,6 +77,10 @@
       <span class="w-icoon">🛒</span>
       <span class="w-tekst">Winkel</span>
       <BliksemTeller aantal={vg.bliksems} klein />
+    </button>
+    <button class="boekknop" onclick={() => { speelTik(); opPlakboek(); }} aria-label="Plakboek">
+      <span class="w-icoon">📒</span>
+      <span class="b-tel">{aantalVerzameld()}</span>
     </button>
     {#if vg.winkel.gekozen.maatje}<Maatje grootte={46} />{/if}
   </div>
@@ -174,6 +180,7 @@
   }
   .tekst {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     line-height: 1.15;
@@ -188,8 +195,9 @@
   }
   .missieknop {
     min-height: 64px;
-    padding: 0 28px;
-    font-size: 28px;
+    padding: 0 20px;
+    font-size: 26px;
+    white-space: nowrap;
     animation: puls 1.8s ease-in-out infinite;
   }
   .winkelknop {
@@ -204,6 +212,22 @@
     background: linear-gradient(180deg, #8b5cf6, #5b21b6);
     border: 3px solid #ddd6fe;
     box-shadow: 0 6px 0 #3b0f7a, 0 0 22px rgba(167, 139, 250, 0.6);
+  }
+  .boekknop {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 64px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-size: 26px;
+    font-weight: 700;
+    background: linear-gradient(180deg, #f472b6, #be185d);
+    border: 3px solid #fce7f3;
+    box-shadow: 0 6px 0 #831843, 0 0 22px rgba(244, 114, 182, 0.5);
+  }
+  .boekknop:active {
+    transform: translateY(4px);
   }
   .winkelknop:active {
     transform: translateY(4px);

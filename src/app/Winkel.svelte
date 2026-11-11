@@ -6,6 +6,8 @@
   import { onMount } from 'svelte';
   import BliksemTeller from '../ui/BliksemTeller.svelte';
   import Maatje from '../ui/Maatje.svelte';
+  import NieuweSticker from '../ui/NieuweSticker.svelte';
+  import { openZakje, type StickerWinst } from '../store/plakboek.svelte';
   import { spreek, stopSpreken } from '../audio/stem';
   import { speelBijna, speelKoop, speelBliksem, speelTik } from '../audio/geluid';
   import { glitterOp } from '../ui/feest';
@@ -15,17 +17,20 @@
   import { vg } from '../store/voortgang.svelte';
   import teksten from '../../content/teksten.json';
 
-  let { opSluit }: { opSluit: () => void } = $props();
+  let { opSluit, startTab = 'power' }: { opSluit: () => void; startTab?: Soort } = $props();
 
   const winkel = teksten.winkel;
   type Tekst = { naam: string; uitleg: string };
   const tekst = (id: string) => (winkel.artikelen as Record<string, Tekst>)[id];
 
-  let tab: Soort = $state('power');
-  let gekozen: Artikel = $state(ARTIKELEN[0]);
+  // svelte-ignore state_referenced_locally
+  let tab: Soort = $state(startTab);
+  // svelte-ignore state_referenced_locally
+  let gekozen: Artikel = $state(artikelenVan(startTab)[0] ?? ARTIKELEN[0]);
   let detailEl: HTMLElement | undefined = $state();
   let beurt = 0;
   let schud: string | null = $state(null);
+  let zakjeWinst: StickerWinst[] | null = $state(null);
 
   let lijst = $derived(artikelenVan(tab));
   let genoeg = $derived(vg.bliksems >= gekozen.prijs);
@@ -122,11 +127,20 @@
       return;
     }
     speelKoop();
+    if (a.soort === 'sticker') {
+      // Het zakje gaat meteen open.
+      zakjeWinst = openZakje(a.id);
+      return;
+    }
     setTimeout(speelBliksem, 250);
     glitterOp(detailEl ?? null);
     await spreek(uitZak('gekocht', winkel.gekocht));
   }
 </script>
+
+{#if zakjeWinst}
+  <NieuweSticker winsten={zakjeWinst} zakje opSluit={() => (zakjeWinst = null)} />
+{/if}
 
 <div class="winkel">
   <header>

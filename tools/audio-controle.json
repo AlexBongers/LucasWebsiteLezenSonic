@@ -4255,5 +4255,181 @@
   "lufs": -18,
   "piek": 0.87,
   "seconden": 0.88
+ },
+ "04408f87a15c36": {
+  "tekst": "Stickers",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Stickers",
+  "lufs": -18.1,
+  "piek": 0.87,
+  "seconden": 0.68
+ },
+ "1a5f79bfeaf13f": {
+  "tekst": "Drie stickers voor in je plakboek.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Drie stickers voor in je plakboek",
+  "lufs": -18.3,
+  "piek": 0.89,
+  "seconden": 1.52
+ },
+ "16d27d8a88faf1": {
+  "tekst": "Stickerzakje",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Stickerzakje",
+  "lufs": -18,
+  "piek": 0.75,
+  "seconden": 0.91
+ },
+ "060bdea930c639": {
+  "tekst": "Dit is jouw plakboek, Lucas! Tik op een sticker.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dit is jouw plakboek Lucas. Tik op een sticker",
+  "lufs": -18.3,
+  "piek": 0.89,
+  "seconden": 2.73
+ },
+ "0f94d45fe4cb34": {
+  "tekst": "Glimzakje",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Glimzakje",
+  "lufs": -18,
+  "piek": 0.85,
+  "seconden": 1.09
+ },
+ "0898bda8f8c20e": {
+  "tekst": "Deze sticker heb je nog niet. Speel een spelletje, dan verdien je stickers!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Deze sticker heb je nog niet. Speel een spelletje, dan verdien je stickers",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 4.1
+ },
+ "10628433252565": {
+  "tekst": "Twee stickers, en één ervan glimt!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "v4-nl",
+  "pogingen": 2,
+  "gehoord": "Twee stickers en één ervan glimt",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 2.7
+ },
+ "0d40c95d72e89b": {
+  "tekst": "Die had je al! Je krijgt er een bliksem voor.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Die had je al. Je krijgt er een bliksem voor",
+  "lufs": -18.3,
+  "piek": 0.89,
+  "seconden": 2.06
+ },
+ "114ef5aacbb702": {
+  "tekst": "Wauw, een glimmende sticker!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Wauw, een glimmende sticker",
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 1.36
+ },
+ "1363e19abf8b14": {
+  "tekst": "Je krijgt een nieuwe sticker!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Je krijgt een nieuwe sticker",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.29
+ },
+ "1deddf79c11baa": {
+  "tekst": "De bladzijde is vol! Je krijgt vijf bliksems extra!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "De bladzijde is vol. Je krijgt vijf bliksems extra",
+  "lufs": -18,
+  "piek": 0.89,
+  "seconden": 3.3
+ },
+ "0b480c2fda7ba3": {
+  "tekst": "Dieren",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Dieren",
+  "lufs": -18,
+  "piek": 0.52,
+  "seconden": 0.65
+ },
+ "0e8800afbc02d4": {
+  "tekst": "Een stickerzakje! Eens kijken wat erin zit.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Een stickerzakje. Eens kijken wat erin zit",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 2.3
+ },
+ "1fc39367fc92b5": {
+  "tekst": "In huis",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "In huis?",
+  "lufs": -18,
+  "piek": 0.69,
+  "seconden": 0.84
+ },
+ "02fed312d640db": {
+  "tekst": "Kleren en je lijf",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kleren en je lijf",
+  "lufs": -18,
+  "piek": 0.76,
+  "seconden": 1.11
+ },
+ "025bb918ffe39a": {
+  "tekst": "Buiten",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Buiten",
+  "lufs": -18,
+  "piek": 0.59,
+  "seconden": 0.67
  }
 }

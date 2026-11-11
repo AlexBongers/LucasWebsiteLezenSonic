@@ -17,6 +17,7 @@
     Brokken, Group, Mesh, Vector3, cilinder, kegel, kubus, letterTekstuur, maakRenner, maakToneel, ring, ruitTekstuur, toon, toonKaart, omlijn,
     type Renner, type Toneel,
   } from '../ui/drie-d';
+  import { vloer } from '../ui/drie-d';
   import { emojiPlaat, ruimOp } from '../ui/drie-d-vormen';
   import { BoxGeometry, CircleGeometry, MeshBasicMaterial, PlaneGeometry, type MeshToonMaterial } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
@@ -142,9 +143,7 @@
     muur = new Group();
     scene.add(muur);
 
-    const vloer = new Mesh(new PlaneGeometry(140, 140), new MeshBasicMaterial({ map: ruitTekstuur('#3f6153', '#4c7565', [34, 34]) }));
-    vloer.rotation.x = -Math.PI / 2;
-    scene.add(vloer);
+    scene.add(vloer(ruitTekstuur('#3f6153', '#4c7565', [34, 34]), 140, 140));
     // Sokkel waar de muur op staat
     const sokkel = kubus(17, 0.8, 3.4, 0x64748b);
     sokkel.position.set(0, 0.4, SLOT_Z);

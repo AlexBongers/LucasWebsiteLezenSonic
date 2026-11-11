@@ -30,7 +30,7 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | 🏰 **Muur-bouwer 3D** | Boven een muur zweeft een plaatje. Tik de grote letterblokken in de goede volgorde: Knuckles slaat ze op hun plek en de muur danst. |
 | | 🔨 Letter-jacht | Een rij stenen met letters. Sla ze allemaal kapot die gelijk zijn aan de letter bovenin. |
 
-De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
+De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden: filmisch licht, zachte schaduwen, randlicht, gloed rond ringen en zwevende glitters. Op een trage tablet schakelt de site zelf terug (minder pixels, daarna zonder schaduwen) en onthoudt dat. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
 
 **Bliksems en de Turbo-winkel.** Met elke ronde verdient Lucas 1 tot 3 ⚡ bliksems (net als de sterren), en met een dagmissie 5. In de **Turbo-winkel** (knop naast de dagmissie) koopt hij er dingen mee. Er wordt nooit echt geld uitgegeven. Alles heeft een stem die vertelt wat het is en wat het kost.
 
@@ -42,6 +42,8 @@ De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden. Hee
 | Feest | ⚡ bliksemfeest, 💖 hartjesfeest, 🎆 vuurwerk | 10 tot 14 |
 | Wereld | 🪐 ruimtewereld voor alle spellen | 20 |
 | Helden | 🌟 supersnelle gouden helden (ook in de 3D-spellen) | 25 |
+
+**Plakboek met stickers.** Na elke ronde krijgt Lucas een sticker (meestal een nieuwe; een dubbele levert een bliksem op, soms is er een glimmende regenboogsticker). Elke sticker is een woordje uit de woordenlijst met plaatje, dus hij leest het woord eronder, en de stem zegt het als hij erop tikt. Het plakboek (roze knop in het menu) heeft vier bladzijden: dieren, in huis, kleren en je lijf, buiten (64 stickers). Een volle bladzijde geeft 5 bliksems. In de winkel zijn stickerzakjes (3 stickers, 5 ⚡) en glimzakjes (met een glimmer, 8 ⚡).
 
 Papa of mama kan in de ouderhoek bliksems geven als beloning, de winkel leegmaken en zien wat Lucas heeft gekocht. Prijzen en artikelen staan in `src/games/winkel.ts`, de teksten in `content/teksten.json` onder `winkel`.
 
@@ -105,7 +107,7 @@ De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmal
 
 ### Opbouw
 ```
-src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, winkel, ouderhoek
+src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, winkel, plakboek, ouderhoek
 src/art/      Held (Sonic, Tails, Knuckles) en Robot
 src/engine/   letters en woorden, sommen, niveau, doosjes, planning
 src/games/    de zeventien spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)

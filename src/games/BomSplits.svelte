@@ -16,6 +16,7 @@
     Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, maakRenner, maakToneel, ring, ruitTekstuur, toon,
     type Renner, type Toneel,
   } from '../ui/drie-d';
+  import { vloer } from '../ui/drie-d';
   import { getalPlaat, ruimOp } from '../ui/drie-d-vormen';
   import { MeshBasicMaterial, PlaneGeometry, TorusGeometry } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
@@ -180,9 +181,7 @@
     tn = maakToneel(host, { lucht: ['#2b2a7a', '#c4527f', '#ffb878'], mist: 0xffb878, mistAfstand: [32, 90], fov: 50 });
     const { scene, camera } = tn;
 
-    const vloer = new Mesh(new PlaneGeometry(140, 140), new MeshBasicMaterial({ map: ruitTekstuur('#4b5568', '#5d6a80', [34, 34]) }));
-    vloer.rotation.x = -Math.PI / 2;
-    scene.add(vloer);
+    scene.add(vloer(ruitTekstuur('#4b5568', '#5d6a80', [34, 34]), 140, 140));
     const sokkel = cilinder(2.9, 0.6, 0x475569);
     sokkel.position.set(0, 0.3, 0);
     scene.add(sokkel);

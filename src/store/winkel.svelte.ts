@@ -23,12 +23,14 @@ export function koop(id: string): KoopUitslag {
   if (!a) return 'al-van-hem';
   if (a.soort === 'power') {
     if (voorraad(id) >= MAX_VOORRAAD) return 'vol';
-  } else if (heeft(id)) return 'al-van-hem';
+  } else if (a.soort !== 'sticker' && heeft(id)) return 'al-van-hem';
   if (vg.bliksems < a.prijs) return 'te-weinig';
   vg.bliksems -= a.prijs;
   vg.winkel.uitgegeven += a.prijs;
   if (a.soort === 'power') vg.winkel.voorraad[id] = voorraad(id) + 1;
-  else {
+  else if (a.soort === 'sticker') {
+    // Het zakje wordt meteen geopend door de winkel (openZakje).
+  } else {
     vg.winkel.bezit = [...vg.winkel.bezit, id];
     // Meteen aan: dan ziet hij het verschil.
     (vg.winkel.gekozen as Record<string, string>)[a.soort] = id;
@@ -40,7 +42,7 @@ export function koop(id: string): KoopUitslag {
 /** Zet iets dat hij bezit aan of uit. Geeft terug of het nu aan staat. */
 export function wissel(id: string): boolean {
   const a = ARTIKEL[id];
-  if (!a || a.soort === 'power' || !heeft(id)) return false;
+  if (!a || a.soort === 'power' || a.soort === 'sticker' || !heeft(id)) return false;
   const g = vg.winkel.gekozen as Record<string, string>;
   g[a.soort] = g[a.soort] === id ? '' : id;
   void bewaar();

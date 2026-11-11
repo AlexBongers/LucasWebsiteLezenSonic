@@ -14,6 +14,7 @@
     Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, letterTekstuur, maakToneel, ring, ruitTekstuur, toonKaart,
     type Toneel,
   } from '../ui/drie-d';
+  import { vloer } from '../ui/drie-d';
   import { BoxGeometry, MeshBasicMaterial, PlaneGeometry, type MeshToonMaterial } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
@@ -74,9 +75,7 @@
     const { scene, camera } = tn;
     camera.position.set(0, 6.5, 15.5);
 
-    const vloer = new Mesh(new PlaneGeometry(120, 120), new MeshBasicMaterial({ map: ruitTekstuur('#6d28d9', '#7c3aed', [30, 30]) }));
-    vloer.rotation.x = -Math.PI / 2;
-    scene.add(vloer);
+    scene.add(vloer(ruitTekstuur('#6d28d9', '#7c3aed', [30, 30]), 120, 120));
     const podium = cilinder(5.2, 0.6, 0xfacc15);
     podium.position.y = 0.3;
     scene.add(podium);

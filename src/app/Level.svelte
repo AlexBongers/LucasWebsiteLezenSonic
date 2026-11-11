@@ -40,6 +40,7 @@
   import { nieuweRonde, uitrusting } from '../games/uitrusting.svelte';
   import { ARTIKEL, bliksemsVoorRonde } from '../games/winkel';
   import { pakPowerup, verdien } from '../store/winkel.svelte';
+  import { geefSticker, type StickerWinst } from '../store/plakboek.svelte';
   import teksten from '../../content/teksten.json';
 
   let {
@@ -51,6 +52,7 @@
     missie = null,
     opVerder = () => {},
     opWinkel = () => {},
+    opPlakboek = () => {},
   }: {
     spel: SpelId;
     /** Bij een dagmissie: korte rondes zonder proefrondje, en daarna door naar het volgende spel. */
@@ -58,6 +60,8 @@
     opVerder?: () => void;
     /** Naar de Turbo-winkel (vanuit het eindscherm). */
     opWinkel?: () => void;
+    /** Naar het plakboek (vanuit het eindscherm). */
+    opPlakboek?: () => void;
     opTerug: () => void;
     opStop: () => void;
     /** Is de speeltijd om? Dan volgt na deze ronde een pauze. */
@@ -73,6 +77,7 @@
   let voortgang = $state(0);
   let verdiend = $state(0);
   let verdiendBliksems = $state(0);
+  let sticker: StickerWinst | null = $state(null);
   /** Een korte melding midden boven in beeld, bijv. bij het aanzetten van een powerup. */
   let toast = $state('');
   let toastTimer: ReturnType<typeof setTimeout> | undefined;
@@ -222,6 +227,8 @@
     // Bliksems om voor te sparen.
     verdiendBliksems = bliksemsVoorRonde(goed, resultaten.length);
     verdien(verdiendBliksems);
+    // En een sticker voor het plakboek.
+    sticker = geefSticker();
     vg.sessies = [
       ...vg.sessies.slice(-199),
       { datum: new Date().toISOString(), held, spel, goed, totaal: resultaten.length, ringen: verdiend, seconden: Math.round((nu - start) / 1000), auditie },
@@ -242,6 +249,7 @@
     voortgang = 0;
     verdiend = 0;
     verdiendBliksems = 0;
+    sticker = null;
     nieuweRonde();
     start = Date.now();
     plan();
@@ -300,7 +308,7 @@
   </main>
 
   {#if uitslag}
-    <Beloning heldin={held} {...uitslag} noten={verdiend} bliksems={verdiendBliksems} {missie} {opVerder} opNogEens={nogEens} {opTerug} {opPauze} {opWinkel} />
+    <Beloning heldin={held} {...uitslag} noten={verdiend} bliksems={verdiendBliksems} {sticker} {missie} {opVerder} opNogEens={nogEens} {opTerug} {opPauze} {opWinkel} {opPlakboek} />
   {/if}
 </div>
 

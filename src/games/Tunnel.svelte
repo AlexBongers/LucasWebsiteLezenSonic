@@ -16,6 +16,7 @@
     Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, letterTekstuur, maakRenner, maakToneel, ring, ruitTekstuur, toon,
     type Toneel,
   } from '../ui/drie-d';
+  import { vloer } from '../ui/drie-d';
   import { MeshBasicMaterial, PlaneGeometry, BoxGeometry, SphereGeometry, Fog } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
@@ -72,10 +73,9 @@
 
     // Baan met banen en kantstenen
     const vloerTex = ruitTekstuur(letters ? '#fcd34d' : '#fdba74', letters ? '#f59e0b' : '#fb923c', [3, 90]);
-    const vloer = new Mesh(new PlaneGeometry(10.5, 360), new MeshBasicMaterial({ map: vloerTex }));
-    vloer.rotation.x = -Math.PI / 2;
-    vloer.position.set(0, 0, -150);
-    scene.add(vloer);
+    const baan = vloer(vloerTex, 10.5, 360);
+    baan.position.set(0, 0, -150);
+    scene.add(baan);
     for (const x of [-1.55, 1.55]) {
       const streep = new Mesh(new PlaneGeometry(0.16, 360), new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 }));
       streep.rotation.x = -Math.PI / 2;
@@ -83,8 +83,7 @@
       streep.position.x = x * 1.0;
       scene.add(streep);
     }
-    const gras = new Mesh(new PlaneGeometry(200, 360), new MeshBasicMaterial({ color: letters ? 0x22c55e : 0xa855f7 }));
-    gras.rotation.x = -Math.PI / 2;
+    const gras = vloer(null, 200, 360, letters ? 0x22c55e : 0xa855f7);
     gras.position.set(0, -0.05, -150);
     scene.add(gras);
     for (const x of [-5.5, 5.5]) {
