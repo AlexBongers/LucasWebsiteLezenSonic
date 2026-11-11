@@ -17,6 +17,8 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | ⚖️ Meer-race | Twee stapels ringen: welke kant heeft er meer (of minder, of evenveel)? |
 | | 🔴 Patroon-race | Rood, blauw, rood, blauw, ... wat komt hierna? |
 | | 🌈 **Patroon-baan 3D** | Sonic rent over een zwevende baan met een patroon. Wat komt er op het laatste platform? Kies het plaatje en hij rent door. |
+| | 🏝️ **Ringen-eilanden 3D** | Twee zwevende eilanden met stapels ringen of een getal. Tik het eiland met meer (of minder) en Sonic springt erheen. |
+| | 💫 **Woord-race 3D** | Een woordje flitst in een grote gouden ring; daarna komen drie plaatjes omhoog. Kies het goede en Sonic racet erheen. |
 | | 🌀 **Turbo-tunnel 3D** | Sonic rent door een 3D-wereld naar drie poorten. De stem zegt een woord; ren door de poort met de eerste letter. |
 | **Tails** | 🎯 Katapult-sommen | Een som met ringen. Schiet de robot met het goede antwoord weg met de katapult. |
 | | 🏗️ Tel & Bouw | Bouw een toren van n stenen en laat hem ontploffen. Of tel hoeveel stenen er staan. Elke steen wordt hardop geteld. |
@@ -28,6 +30,7 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | 🧱 Woord-bouwen | Er staat een plaatje. Leg het woordje met letterstenen in de goede volgorde. |
 | | 🗼 **Toren-smash 3D** | Een draaiende toren van letterblokken. Tik op het blok met de beginletter, Knuckles slaat het eruit. |
 | | 🏰 **Muur-bouwer 3D** | Boven een muur zweeft een plaatje. Tik de grote letterblokken in de goede volgorde: Knuckles slaat ze op hun plek en de muur danst. |
+| | 🥊 **Letter-jacht 3D** | Letterblokken op zuiltjes in een tempel. Sla alle blokken met de gezochte letter kapot. |
 | | 🔨 Letter-jacht | Een rij stenen met letters. Sla ze allemaal kapot die gelijk zijn aan de letter bovenin. |
 
 De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden: filmisch licht, zachte schaduwen, randlicht, gloed rond ringen en zwevende glitters. Op een trage tablet schakelt de site zelf terug (minder pixels, daarna zonder schaduwen) en onthoudt dat. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
@@ -110,7 +113,7 @@ De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmal
 src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, winkel, plakboek, ouderhoek
 src/art/      Held (Sonic, Tails, Knuckles) en Robot
 src/engine/   letters en woorden, sommen, niveau, doosjes, planning
-src/games/    de zeventien spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)
+src/games/    de twintig spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)
 src/audio/    stem, geluidseffecten en muziek
 src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest, drie-d.ts (3D-basis) en drie-d-vormen.ts
 tools/audio/  opnames: luidheid, stiltes, MP3 en uitspraakcontrole

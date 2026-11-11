@@ -14,7 +14,7 @@ import {
 
 export type HeldId = 'sonic' | 'tails' | 'knuckles';
 
-export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem' | 'patroonbaan' | 'bouwmuur' | 'bomsplits';
+export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem' | 'patroonbaan' | 'bouwmuur' | 'bomsplits' | 'meer3d' | 'jacht3d' | 'woordrace3d';
 
 /** Een spel is ook de vaardigheid waarvan het niveau wordt bijgehouden. */
 export type VaardigheidId = SpelId;
@@ -157,6 +157,21 @@ SPELLEN.push(
       herbouw: (id) => splitsUitId(id.replace(/^bsplits\./, '')),
       id: (o) => `bsplits.${splitsId(o)}`,
     },
+  }),
+);
+
+SPELLEN.push(
+  def<MeerOpgave>({
+    id: 'meer3d', held: 'sonic', naam: 'Ringen-eilanden 3D', uitleg: 'Welk eiland heeft meer ringen?', icoon: '🏝️', maxNiveau: MEER_MAX, rekenen: true, prefix: 'meer3.', snel: true,
+    opgaven: { maak: (n, a, _k, rnd) => maakMeer(n, a, rnd), herbouw: (id) => meerUitId(id.replace(/^meer3\./, '')), id: (o) => `meer3.${meerId(o)}` },
+  }),
+  def<WoordRaceOpgave>({
+    id: 'woordrace3d', held: 'sonic', naam: 'Woord-race 3D', uitleg: 'Een woord flitst in de ring: kies het plaatje', icoon: '💫', maxNiveau: 1, prefix: 'wrace3.', flits: true, snel: true,
+    opgaven: { maak: maakWoordRace, herbouw: (id, _n, kent) => woordRaceUitId(id.replace(/^wrace3\./, ''), kent), id: (o) => `wrace3.${woordId(o.woord)}` },
+  }),
+  def<JachtOpgave>({
+    id: 'jacht3d', held: 'knuckles', naam: 'Letter-jacht 3D', uitleg: 'Sla alle blokken met de letter kapot', icoon: '🥊', maxNiveau: JACHT_MAX, prefix: 'jacht3.', snel: true,
+    opgaven: { maak: maakJacht, herbouw: (id, n, kent) => jachtUitId(id.replace(/^jacht3\./, ''), n, kent), id: (o) => `jacht3.${jachtId(o.letter)}` },
   }),
 );
 

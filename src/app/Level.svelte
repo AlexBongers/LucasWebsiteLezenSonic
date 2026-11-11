@@ -18,6 +18,9 @@
   import PatroonBaan from '../games/PatroonBaan.svelte';
   import MuurBouwer from '../games/MuurBouwer.svelte';
   import BomSplits from '../games/BomSplits.svelte';
+  import Meer3D from '../games/Meer3D.svelte';
+  import Jacht3D from '../games/Jacht3D.svelte';
+  import WoordRace3D from '../games/WoordRace3D.svelte';
   import { webglKan } from '../ui/drie-d';
   import SchildBalk from '../ui/SchildBalk.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
@@ -267,7 +270,8 @@
   const SPELCOMP = { ringrace: Race, woordrace: Race, meer: Meer, patroon: Patroon, smash: Smash, bouwen: Bouwen, jacht: Jacht, katapult: Katapult, telbouw: TelBouw, splits: Splits,
     // 3D-spellen: zonder WebGL nemen ze hun 2D-broertje
     tunnel: webglKan() ? Tunnel : Smash, tunnelsom: webglKan() ? Tunnel : Katapult, torensmash: webglKan() ? TorenSmash : Smash, torenboem: webglKan() ? TorenBoem : TelBouw,
-    patroonbaan: webglKan() ? PatroonBaan : Patroon, bouwmuur: webglKan() ? MuurBouwer : Bouwen, bomsplits: webglKan() ? BomSplits : Splits } as const;
+    patroonbaan: webglKan() ? PatroonBaan : Patroon, bouwmuur: webglKan() ? MuurBouwer : Bouwen, bomsplits: webglKan() ? BomSplits : Splits,
+    meer3d: webglKan() ? Meer3D : Meer, jacht3d: webglKan() ? Jacht3D : Jacht, woordrace3d: webglKan() ? WoordRace3D : Race } as const;
   // svelte-ignore state_referenced_locally
   const Spel = SPELCOMP[spel];
 </script>

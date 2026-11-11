@@ -201,3 +201,22 @@ describe('het plakboek', () => {
     expect(koop('zakje')).toBe('te-weinig');
   });
 });
+
+describe('de 3D-versies van Meer-race, Woord-race en Letter-jacht', () => {
+  const kent = maakKent(['m', 'r', 'v', 's', 'a', 'i', 'e', 'o', 'k', 'p', 't', 'n']);
+  for (const [id, voorvoegsel] of [['meer3d', 'meer3.'], ['woordrace3d', 'wrace3.'], ['jacht3d', 'jacht3.']] as const) {
+    it(`${id}: elke opgave is uit zijn id te herbouwen`, async () => {
+      const { SPEL } = await import('../src/games/spellen');
+      const def = SPEL[id];
+      for (let n = 0; n <= def.maxNiveau; n++) {
+        const lijst = def.opgaven.maak(n, 6, kent, zaadRnd(20 + n));
+        expect(lijst.length).toBeGreaterThan(0);
+        for (const o of lijst) {
+          const sleutel = def.opgaven.id(o);
+          expect(sleutel.startsWith(voorvoegsel)).toBe(true);
+          expect(def.opgaven.herbouw(sleutel, n, kent)).not.toBeNull();
+        }
+      }
+    });
+  }
+});

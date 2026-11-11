@@ -2,7 +2,7 @@
  * Extra 3D-vormen voor de nieuwe spellen: een ster, bliksem, bom, robot en wolk,
  * plus doorzichtige plaatjes met een getal of emoji erop.
  */
-import { CanvasTexture, DoubleSide, ExtrudeGeometry, Group, Mesh, MeshBasicMaterial, PlaneGeometry, Shape, SphereGeometry, SRGBColorSpace } from 'three';
+import { CanvasTexture, DoubleSide, ExtrudeGeometry, Group, Mesh, MeshBasicMaterial, PlaneGeometry, Shape, SphereGeometry, SRGBColorSpace, type Object3D } from 'three';
 import { bol, cilinder, kegel, kubus, omlijn, toon } from './drie-d';
 
 /** Een dikke ster. */
@@ -161,4 +161,35 @@ export function ruimOp(o: Group | Mesh) {
     }
   });
   o.parent?.remove(o);
+}
+
+/** Een breed bord met een woord erop (voor de flits in de Woord-race). */
+export function woordPlaat(woord: string, hoog = 1.6): Mesh {
+  const c = document.createElement('canvas');
+  c.width = 512;
+  c.height = 192;
+  const g = c.getContext('2d')!;
+  g.fillStyle = '#fffdf5';
+  g.beginPath();
+  g.roundRect(8, 8, 496, 176, 40);
+  g.fill();
+  g.lineWidth = 12;
+  g.strokeStyle = '#1e3a8a';
+  g.stroke();
+  g.fillStyle = '#0f172a';
+  g.textAlign = 'center';
+  g.textBaseline = 'middle';
+  const lees = getComputedStyle(document.body).getPropertyValue('--font-lees').trim() || 'sans-serif';
+  g.font = `700 ${woord.length > 5 ? 110 : 136}px ${lees}`;
+  g.fillText(woord, 256, 104);
+  const t = new CanvasTexture(c);
+  t.colorSpace = SRGBColorSpace;
+  t.anisotropy = 4;
+  return plaat(t, hoog * (512 / 192), hoog);
+}
+
+/** Loop omhoog vanaf een aangetikt object tot een object met deze sleutel in userData. */
+export function zoekMet<T>(o: Object3D | null, sleutel: string): T | undefined {
+  for (let x: Object3D | null = o; x; x = x.parent) if (x.userData[sleutel] !== undefined) return x.userData[sleutel] as T;
+  return undefined;
 }

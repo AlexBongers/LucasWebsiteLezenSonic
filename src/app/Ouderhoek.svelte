@@ -33,6 +33,9 @@
     patroonbaan: ['1 · rood, blauw, rood, blauw (AB)', '2 · AAB, ABB en ABC', '3 · patronen van vier'],
     bouwmuur: ['1 · woordjes van drie klanken leggen', '2 · vier of meer klanken, met blokken te veel'],
     bomsplits: ['1 · bom tot 5', '2 · bom tot 10', '3 · bom tot 20'],
+    meer3d: ['1 · ringen vergelijken tot 6', '2 · ringen tot 10, ook minder', '3 · getallen tot 20, groter en kleiner'],
+    woordrace3d: ['1 · woordjes van drie klanken', '2 · woordjes van vier of meer klanken'],
+    jacht3d: ['1 · zes blokken, drie gezocht', '2 · negen blokken, vier gezocht', '3 · negen blokken met lettervriendjes (b en d)'],
     jacht: ['1 · zes stenen, drie gezocht', '2 · negen stenen, vier gezocht', '3 · negen stenen met lettervriendjes (b en d)'],
   };
 
