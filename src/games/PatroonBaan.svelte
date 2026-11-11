@@ -171,7 +171,7 @@
       zwevend.push(r);
     }
 
-    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super');
+    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
     sonic.groep.rotation.y = -Math.PI / 2;
     scene.add(sonic.groep);
     brokken = new Brokken(scene, -50);

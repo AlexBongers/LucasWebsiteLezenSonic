@@ -16,9 +16,10 @@
     opMissie,
     opWinkel,
     opPlakboek,
+    opKleedkamer,
     opOuder,
     opStoppen,
-  }: { opKies: (h: HeldinId) => void; opMissie: () => void; opWinkel: () => void; opPlakboek: () => void; opOuder: () => void; opStoppen: () => void } = $props();
+  }: { opKies: (h: HeldinId) => void; opMissie: () => void; opWinkel: () => void; opPlakboek: () => void; opKleedkamer: () => void; opOuder: () => void; opStoppen: () => void } = $props();
 
   const volgorde: HeldinId[] = ['sonic', 'tails', 'knuckles'];
   let gekozen: HeldinId | null = $state(null);
@@ -43,6 +44,9 @@
     <OuderSlot opOpen={opOuder} />
     <h1>Met wie ga je oefenen?</h1>
     <div class="rechts">
+      <button class="kleedknop" onclick={() => { speelTik(); opKleedkamer(); }} aria-label="Kleedkamer">
+        <span>👕</span><span class="k-tekst">Aankleden</span>
+      </button>
       <RingTeller aantal={vg.ringen} />
       <button class="muziek" class:uit={!vg.instellingen.muziek} onclick={wisselMuziek} aria-label="Muziek aan of uit">
         <span>{vg.instellingen.muziek ? '🎵' : '🔇'}</span>
@@ -128,6 +132,22 @@
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+  .kleedknop {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 60px;
+    padding: 0 18px 0 12px;
+    border-radius: 999px;
+    font-size: 30px;
+    background: linear-gradient(180deg, #38bdf8, #0369a1);
+    border: 3px solid #e0f2fe;
+    box-shadow: 0 4px 0 #0c4a6e, 0 0 18px rgba(56, 189, 248, 0.5);
+  }
+  .k-tekst {
+    font-size: 22px;
+    font-weight: 700;
   }
   .muziek {
     width: 60px;

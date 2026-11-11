@@ -122,7 +122,7 @@
       zwevers.push(r);
     }
 
-    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super');
+    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
     sonic.groep.position.copy(START);
     sonic.groep.scale.setScalar(0.95);
     sonic.groep.rotation.y = Math.PI;

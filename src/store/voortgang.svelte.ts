@@ -7,6 +7,7 @@ import type { Herhaling } from '../engine/herhaling';
 import type { Stats } from '../engine/overzicht';
 import { FLITS_START, STANDAARD_KENT } from '../engine/generator-lucas';
 import { SPELLEN, type HeldId, type SpelId, type VaardigheidId } from '../games/spellen';
+import { geenKleding, type Kleding } from '../games/kleding';
 
 export type { HeldId, SpelId, VaardigheidId };
 /** Oude naam, nog gebruikt in de schermen. */
@@ -33,6 +34,8 @@ export type Winkel = {
   gekozen: { maatje: string; ring: string; feest: string; wereld: string; held: string };
   /** Hoeveel bliksems zijn er in totaal uitgegeven? */
   uitgegeven: number;
+  /** Wat elke held aan heeft (kleedkamer). */
+  kleding: Record<HeldId, Kleding>;
 };
 
 export type Voortgang = {
@@ -82,7 +85,7 @@ export function standaardVoortgang(): Voortgang {
     ringen: 0,
     bliksems: 0,
     bliksemsTotaal: 0,
-    winkel: { voorraad: {}, bezit: [], gekozen: { maatje: '', ring: '', feest: '', wereld: '', held: '' }, uitgegeven: 0 },
+    winkel: { voorraad: {}, bezit: [], gekozen: { maatje: '', ring: '', feest: '', wereld: '', held: '' }, uitgegeven: 0, kleding: { sonic: geenKleding(), tails: geenKleding(), knuckles: geenKleding() } },
     plakboek: { stickers: {}, glim: [], vol: [] },
     kristallen: 0,
     missies: 0,
@@ -123,6 +126,11 @@ function samenvoegen(basis: Voortgang, data: Partial<Voortgang>): Voortgang {
       voorraad: { ...(data.winkel?.voorraad ?? {}) },
       bezit: [...(data.winkel?.bezit ?? [])],
       gekozen: { ...basis.winkel.gekozen, ...(data.winkel?.gekozen ?? {}) },
+      kleding: {
+        sonic: { ...geenKleding(), ...(data.winkel?.kleding?.sonic ?? {}) },
+        tails: { ...geenKleding(), ...(data.winkel?.kleding?.tails ?? {}) },
+        knuckles: { ...geenKleding(), ...(data.winkel?.kleding?.knuckles ?? {}) },
+      },
     },
     plakboek: {
       stickers: { ...(data.plakboek?.stickers ?? {}) },

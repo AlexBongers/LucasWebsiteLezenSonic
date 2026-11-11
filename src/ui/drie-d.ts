@@ -522,6 +522,73 @@ export function ringenWolk(scene: Scene, pos: Vector3, n = 6): Group {
   return g;
 }
 
+// ------------------------------------------------------------------ Kleding op de 3D-held
+/** Hoeden, brillen en rugspullen uit de kleedkamer (de held kijkt naar -z, de rug is +z). */
+function kleedAan(groep: Group, k: RennerKleding) {
+  const zet = (m: Object3D, x: number, y: number, z: number) => {
+    m.position.set(x, y, z);
+    groep.add(m);
+    return m;
+  };
+  switch (k.hoofd) {
+    case 'pet': {
+      zet(bol(0.66, 0x2563eb, [1, 0.55, 1]), 0, 2.2, 0);
+      zet(kubus(0.75, 0.07, 0.6, 0x1d4ed8, 0.03), 0, 2.2, -0.75);
+      break;
+    }
+    case 'feestmuts': {
+      const m = zet(kegel(0.36, 1.0, 0xec4899), 0, 2.85, 0);
+      m.rotation.z = 0.15;
+      zet(bol(0.14, 0xfde047), -0.07, 3.38, 0);
+      break;
+    }
+    case 'koptelefoon': {
+      const boog = new Mesh(new TorusGeometry(0.76, 0.07, 8, 20, Math.PI), toon(0x475569));
+      zet(boog, 0, 1.75, 0);
+      for (const x of [-0.76, 0.76]) {
+        const kap = zet(cilinder(0.22, 0.22, 0xef4444), x, 1.75, 0);
+        kap.rotation.z = Math.PI / 2;
+      }
+      break;
+    }
+    case 'cowboyhoed': {
+      zet(cilinder(1.05, 0.07, 0x92400e), 0, 2.32, 0);
+      zet(cilinder(0.48, 0.5, 0xa16207), 0, 2.6, 0);
+      zet(cilinder(0.5, 0.1, 0x7c2d12, 0.02), 0, 2.42, 0);
+      break;
+    }
+    case 'kroon': {
+      zet(cilinder(0.42, 0.28, 0xf59e0b), 0, 2.48, 0);
+      for (let i = 0; i < 5; i++) {
+        const h = (i / 5) * Math.PI * 2;
+        zet(kegel(0.11, 0.3, 0xfbbf24, 0.05), Math.cos(h) * 0.36, 2.76, Math.sin(h) * 0.36);
+      }
+      zet(bol(0.08, 0xef4444), 0, 2.5, -0.43);
+      break;
+    }
+  }
+  if (k.bril === 'zonnebril') {
+    for (const x of [-0.26, 0.26]) zet(kubus(0.36, 0.26, 0.06, 0x0f172a, 0.02), x, 1.88, -0.8);
+    zet(kubus(0.2, 0.05, 0.05, 0x0f172a, 0.02), 0, 1.92, -0.8);
+  } else if (k.bril === 'skibril') {
+    zet(kubus(0.95, 0.34, 0.12, 0x06b6d4, 0.03), 0, 1.88, -0.78);
+    const band = new Mesh(new TorusGeometry(0.72, 0.06, 8, 24), toon(0xf97316));
+    band.rotation.x = Math.PI / 2;
+    zet(band, 0, 1.88, 0);
+  }
+  if (k.rug === 'cape') {
+    const cape = zet(kubus(1.15, 1.35, 0.06, 0xdc2626, 0.03), 0, 0.95, 0.68);
+    cape.rotation.x = -0.18;
+  } else if (k.rug === 'rugzak') {
+    zet(kubus(0.85, 0.9, 0.42, 0x16a34a, 0.04), 0, 1.05, 0.62);
+  } else if (k.rug === 'vleugels') {
+    for (const x of [-0.6, 0.6]) {
+      const v = zet(bol(0.5, 0xf0f9ff, [1.4, 0.7, 0.18]), x, 1.45, 0.62);
+      v.rotation.z = x < 0 ? 0.5 : -0.5;
+    }
+  }
+}
+
 // ------------------------------------------------------------------ De renner
 export type Renner = {
   groep: Group;
@@ -535,13 +602,16 @@ export type Renner = {
  * maar heeft ook een gezicht: draai de groep een halve slag om hem van voren te laten zien.
  * Met `goud` is hij een superheld uit de winkel.
  */
-export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false): Renner {
+export type RennerKleding = { hoofd: string; bril: string; schoen: string; rug: string };
+const SCHOEN3D: Record<string, number> = { blauweschoenen: 0x2563eb, groeneschoenen: 0x16a34a, gouden_schoenen: 0xf59e0b, regenboogschoenen: 0xa855f7 };
+
+export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false, kleding?: RennerKleding): Renner {
   const groep = new Group();
   const sonic = wie === 'sonic';
   const knuckles = wie === 'knuckles';
   const huid = goud ? 0xfacc15 : sonic ? 0x2563eb : knuckles ? 0xdc2626 : 0xf59e0b;
   const licht = sonic ? 0x60a5fa : 0xfde68a;
-  const schoen = knuckles ? 0x65a30d : 0xdc2626;
+  const schoen = SCHOEN3D[kleding?.schoen ?? ''] ?? (knuckles ? 0x65a30d : 0xdc2626);
 
   const lijf = bol(0.62, huid, [1, 1.05, 0.95]);
   lijf.position.y = 1.0;
@@ -680,6 +750,8 @@ export function maakRenner(wie: 'sonic' | 'tails' | 'knuckles', goud = false): R
   schaduw.position.y = 0.02;
   groep.add(schaduw);
   void licht;
+
+  if (kleding) kleedAan(groep, kleding);
 
   return {
     groep,

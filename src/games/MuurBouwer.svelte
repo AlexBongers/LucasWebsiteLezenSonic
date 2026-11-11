@@ -193,7 +193,7 @@
     brokken = new Brokken(scene, 0.1);
 
     // Knuckles staat rechts van de muur, kijkt naar de blokken
-    held = maakRenner('knuckles', vg.winkel.gekozen.held === 'super');
+    held = maakRenner('knuckles', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.knuckles);
     held.groep.scale.setScalar(1.45);
     held.groep.position.set(8.6, 0.05, 2.2);
     held.groep.rotation.y = Math.PI * 0.72;

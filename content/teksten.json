@@ -384,5 +384,38 @@
       "lijf": "Kleren en je lijf",
       "buiten": "Buiten"
     }
+  },
+  "kleedkamer": {
+    "welkom": "Welkom in de kleedkamer, Lucas! Kies een held en tik op iets om het te passen.",
+    "plekken": {
+      "hoofd": "Hoeden",
+      "bril": "Brillen",
+      "schoen": "Schoenen",
+      "rug": "Op je rug"
+    },
+    "stuks": {
+      "pet": "Pet",
+      "feestmuts": "Feesthoedje",
+      "koptelefoon": "Koptelefoon",
+      "cowboyhoed": "Cowboyhoed",
+      "kroon": "Kroon",
+      "zonnebril": "Zonnebril",
+      "skibril": "Skibril",
+      "blauweschoenen": "Blauwe schoenen",
+      "groeneschoenen": "Groene schoenen",
+      "gouden_schoenen": "Gouden schoenen",
+      "regenboogschoenen": "Regenboogschoenen",
+      "rugzak": "Rugzak",
+      "cape": "Superheldencape",
+      "vleugels": "Vleugels"
+    },
+    "aan": [
+      "Wat staat dat stoer!",
+      "Cool, Lucas!",
+      "Die staat hem goed!",
+      "Wauw, wat een held!"
+    ],
+    "uit": "Uitgetrokken.",
+    "passen": "Zo ziet het eruit!"
   }
 }

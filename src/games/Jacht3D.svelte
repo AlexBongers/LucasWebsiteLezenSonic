@@ -122,7 +122,7 @@
       ringen.push(r);
     }
     brokken = new Brokken(scene, 0.05);
-    knuckles = maakRenner('knuckles', vg.winkel.gekozen.held === 'super');
+    knuckles = maakRenner('knuckles', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.knuckles);
     knuckles.groep.scale.setScalar(1.4);
     knuckles.groep.position.set(9.6, 0, -1.5);
     knuckles.groep.rotation.y = Math.PI * 0.75;

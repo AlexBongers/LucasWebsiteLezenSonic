@@ -126,7 +126,7 @@
 
     eilanden = [bouwEiland('links'), bouwEiland('rechts')];
     for (const e of eilanden) scene.add(e.groep);
-    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super');
+    sonic = maakRenner('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
     sonic.groep.scale.setScalar(0.85);
     sonic.groep.position.set(0, 0.4, 1.2);
     sonic.groep.rotation.y = Math.PI;

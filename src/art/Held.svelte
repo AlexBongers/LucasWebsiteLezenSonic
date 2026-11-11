@@ -9,12 +9,14 @@
    */
   import type { HeldId } from '../games/spellen';
   import { vg } from '../store/voortgang.svelte';
+  import { SCHOEN, type Kleding } from '../games/kleding';
 
   let {
     wie,
     stemming = 'rust',
     hoogte = 320,
-  }: { wie: HeldId; stemming?: 'rust' | 'dans' | 'juich' | 'denk'; hoogte?: number } = $props();
+    kleding,
+  }: { wie: HeldId; stemming?: 'rust' | 'dans' | 'juich' | 'denk'; hoogte?: number; kleding?: Kleding } = $props();
 
   const STIJL = {
     sonic: { huid: '#2563eb', licht: '#60a5fa', donker: '#1e40af', iris: '#16a34a', schoen: '#dc2626', schaal: 1 },
@@ -25,6 +27,9 @@
   let s = $derived(STIJL[wie]);
   /** Superhelden uit de winkel: goud met een gloed. */
   let goud = $derived(vg.winkel.gekozen.held === 'super');
+  /** Wat hij aan heeft uit de kleedkamer (of wat Lucas aan het passen is). */
+  let kl = $derived(kleding ?? vg.winkel.kleding?.[wie] ?? { hoofd: '', bril: '', schoen: '', rug: '' });
+  let schoen = $derived(SCHOEN[kl.schoen] ?? [s.schoen, '#7f1d1d']);
   const id = `h${Math.random().toString(36).slice(2, 8)}`;
   let zingt = $derived(stemming === 'juich' || stemming === 'dans');
   const PEACH = '#fbd5a8';
@@ -46,9 +51,21 @@
       <stop offset="0" stop-color="#fff" />
       <stop offset="1" stop-color="#cbd5e1" />
     </radialGradient>
-    <linearGradient id="{id}-schoen" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color={s.schoen} />
-      <stop offset="1" stop-color="#7f1d1d" />
+    {#if kl.schoen === 'regenboogschoenen'}
+      <linearGradient id="{id}-schoen" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#ef4444" /><stop offset="0.25" stop-color="#f59e0b" /><stop offset="0.5" stop-color="#22c55e" />
+        <stop offset="0.75" stop-color="#3b82f6" /><stop offset="1" stop-color="#a855f7" />
+      </linearGradient>
+    {:else}
+      <linearGradient id="{id}-schoen" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color={schoen[0]} />
+        <stop offset="1" stop-color={schoen[1]} />
+      </linearGradient>
+    {/if}
+    <linearGradient id="{id}-lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a5f3fc" />
+      <stop offset="0.5" stop-color="#06b6d4" />
+      <stop offset="1" stop-color="#7c3aed" />
     </linearGradient>
     <linearGradient id="{id}-goud" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#fff4c2" />
@@ -67,6 +84,20 @@
 
   <g filter="url(#{id}-lijn)">
     <g class="lijf">
+      <!-- ============ KLEDING OP DE RUG ============ -->
+      {#if kl.rug === 'cape'}
+        <path class="cape" d="M74 150 C56 190 40 230 34 258 C70 270 130 270 166 258 C160 230 144 190 126 150 Z" fill="#dc2626" />
+        <path d="M74 150 C60 190 50 226 46 252" stroke="#991b1b" stroke-width="4" fill="none" opacity="0.6" />
+      {:else if kl.rug === 'vleugels'}
+        <g class="vleugels">
+          <path d="M80 160 C40 120 4 128 -2 150 C20 150 22 166 8 176 C30 176 36 190 24 202 C54 196 72 182 82 172 Z" fill="#f0f9ff" />
+          <path d="M120 160 C160 120 196 128 202 150 C180 150 178 166 192 176 C170 176 164 190 176 202 C146 196 128 182 118 172 Z" fill="#f0f9ff" />
+        </g>
+      {:else if kl.rug === 'rugzak'}
+        <rect x="58" y="150" width="84" height="74" rx="20" fill="#16a34a" />
+        <rect x="70" y="190" width="60" height="26" rx="8" fill="#15803d" />
+      {/if}
+
       <!-- ============ ACHTERKANT: STEKELS EN STAARTEN ============ -->
       {#if wie === 'sonic'}
         <path d="M52 78 C30 62 8 66 -2 74 C16 76 24 84 30 92 C12 92 2 100 -4 112 C16 108 28 112 40 120 C30 132 26 142 24 154 C44 140 58 138 70 142 Z" fill="url(#{id}-huid)" />
@@ -110,6 +141,13 @@
       {/if}
       {#if wie === 'tails'}
         <ellipse cx="100" cy="192" rx="21" ry="27" fill="url(#{id}-wit)" />
+      {/if}
+
+      {#if kl.rug === 'rugzak'}
+        <path d="M80 152 C76 172 78 196 84 214 M120 152 C124 172 122 196 116 214" stroke="#15803d" stroke-width="7" fill="none" stroke-linecap="round" />
+      {:else if kl.rug === 'cape'}
+        <path d="M76 152 C88 162 112 162 124 152" stroke="#dc2626" stroke-width="8" fill="none" stroke-linecap="round" />
+        <circle cx="100" cy="160" r="6" fill="url(#{id}-goud)" />
       {/if}
 
       <!-- ============ LINKERARM ============ -->
@@ -188,6 +226,45 @@
         {:else}
           <path d="M82 122 Q100 138 118 122" stroke="#0a1540" stroke-width="4" fill="none" stroke-linecap="round" />
           <path d="M118 122 l5 -3" stroke="#0a1540" stroke-width="3.5" stroke-linecap="round" />
+        {/if}
+
+        <!-- ============ BRIL ============ -->
+        {#if kl.bril === 'zonnebril'}
+          <path d="M44 78 L60 76 M156 78 L140 76" stroke="#0f172a" stroke-width="5" stroke-linecap="round" />
+          <rect x="58" y="70" width="38" height="28" rx="11" fill="#0f172a" />
+          <rect x="104" y="70" width="38" height="28" rx="11" fill="#0f172a" />
+          <path d="M96 80 Q100 76 104 80" stroke="#0f172a" stroke-width="5" fill="none" />
+          <path d="M64 76 L76 76 M110 76 L122 76" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+        {:else if kl.bril === 'skibril'}
+          <rect x="42" y="74" width="116" height="14" rx="6" fill="#f97316" />
+          <rect x="56" y="64" width="88" height="40" rx="18" fill="url(#{id}-lens)" stroke="#e2e8f0" stroke-width="5" />
+          <path d="M66 72 L84 72" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+        {/if}
+
+        <!-- ============ HOOFDDEKSEL ============ -->
+        {#if kl.hoofd === 'pet'}
+          <path d="M50 66 C50 18 150 18 150 66 Z" fill="#2563eb" />
+          <path d="M50 66 C30 64 18 70 22 76 C40 78 60 74 76 68 Z" fill="#1d4ed8" />
+          <circle cx="100" cy="28" r="5" fill="#1e3a8a" />
+          <path d="M84 44 L116 44" stroke="#fde047" stroke-width="5" stroke-linecap="round" />
+        {:else if kl.hoofd === 'feestmuts'}
+          <path d="M74 52 L104 -6 L128 50 Z" fill="#ec4899" />
+          <path d="M84 34 L120 34 M92 18 L112 18" stroke="#fde047" stroke-width="5" />
+          <circle cx="104" cy="-8" r="8" fill="#fde047" />
+        {:else if kl.hoofd === 'koptelefoon'}
+          <path d="M44 96 C40 20 160 20 156 96" stroke="#475569" stroke-width="10" fill="none" stroke-linecap="round" />
+          <rect x="30" y="76" width="22" height="40" rx="10" fill="#ef4444" />
+          <rect x="148" y="76" width="22" height="40" rx="10" fill="#ef4444" />
+        {:else if kl.hoofd === 'cowboyhoed'}
+          <ellipse cx="100" cy="50" rx="82" ry="14" fill="#92400e" />
+          <path d="M60 50 C58 4 142 4 140 50 Z" fill="#a16207" />
+          <rect x="60" y="36" width="80" height="10" fill="#7c2d12" />
+          <path d="M100 12 L100 36" stroke="#7c2d12" stroke-width="4" opacity="0.5" />
+        {:else if kl.hoofd === 'kroon'}
+          <path d="M58 54 L62 14 L80 34 L100 2 L120 34 L138 14 L142 54 Z" fill="url(#{id}-goud)" />
+          <circle cx="100" cy="40" r="7" fill="#ef4444" />
+          <circle cx="76" cy="44" r="5" fill="#3b82f6" />
+          <circle cx="124" cy="44" r="5" fill="#22c55e" />
         {/if}
       </g>
 

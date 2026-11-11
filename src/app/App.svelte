@@ -12,6 +12,7 @@
   import KristalScherm from './KristalScherm.svelte';
   import Winkel from './Winkel.svelte';
   import Plakboek from './Plakboek.svelte';
+  import Kleedkamer from './Kleedkamer.svelte';
   import { verdien } from '../store/winkel.svelte';
   import { BLIKSEMS_KRISTAL, type Soort } from '../games/winkel';
   import { SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
@@ -22,7 +23,7 @@
   import { laadStemManifest, spreek, stopSpreken, zetApparaatStem } from '../audio/stem';
   import { ontgrendelGeluid, pauzeerGeluid, speelWhoosh, startMuziek, stopMuziek, zetEffectenAan } from '../audio/geluid';
 
-  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'kristal' | 'ouder' | 'einde' | 'winkel' | 'plakboek';
+  type Scherm = 'start' | 'keuze' | 'spellen' | 'level' | 'kristal' | 'ouder' | 'einde' | 'winkel' | 'plakboek' | 'kleedkamer';
   let scherm = $state<Scherm>('start');
   let heldin = $state<HeldinId>('sonic');
   let spel = $state<SpelId>('ringrace');
@@ -93,7 +94,7 @@
       }
       history.pushState({ app: true }, '');
       if (scherm === 'level') vraagStop = true;
-      else if (scherm === 'ouder' || scherm === 'spellen' || scherm === 'winkel' || scherm === 'plakboek') scherm = 'keuze';
+      else if (scherm === 'ouder' || scherm === 'spellen' || scherm === 'winkel' || scherm === 'plakboek' || scherm === 'kleedkamer') scherm = 'keuze';
       else if (scherm === 'kristal') scherm = 'keuze';
       else if (scherm === 'keuze') vraagAfsluiten = true;
     };
@@ -231,6 +232,12 @@
     scherm = 'winkel';
   }
 
+  function naarKleedkamer() {
+    stopSpreken();
+    missie = null;
+    scherm = 'kleedkamer';
+  }
+
   function naarPlakboek() {
     stopSpreken();
     vraagStop = false;
@@ -264,7 +271,7 @@
       {#if scherm === 'start'}
         <Start opStart={begin} />
       {:else if scherm === 'keuze'}
-        <HeldinKeuze opKies={kies} opMissie={startMissie} opWinkel={naarWinkel} opPlakboek={naarPlakboek} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
+        <HeldinKeuze opKies={kies} opMissie={startMissie} opWinkel={naarWinkel} opPlakboek={naarPlakboek} opKleedkamer={naarKleedkamer} opOuder={() => (scherm = 'ouder')} opStoppen={() => (vraagAfsluiten = true)} />
       {:else if scherm === 'spellen'}
         <SpelKeuze {heldin} opKies={kiesSpel} opTerug={naarKeuze} />
       {:else if scherm === 'level'}
@@ -279,6 +286,8 @@
           {pauzeNodig}
           opPauze={naarEinde}
         />
+      {:else if scherm === 'kleedkamer'}
+        <Kleedkamer opSluit={naarKeuze} />
       {:else if scherm === 'plakboek'}
         <Plakboek opSluit={naarKeuze} opWinkel={() => naarWinkel('sticker')} />
       {:else if scherm === 'winkel'}

@@ -220,3 +220,25 @@ describe('de 3D-versies van Meer-race, Woord-race en Letter-jacht', () => {
     });
   }
 });
+
+describe('de kleedkamer', () => {
+  it('elk kledingstuk heeft een naam voor de stem', async () => {
+    const { KLEDING, PLEKKEN } = await import('../src/games/kleding');
+    for (const k of KLEDING) expect((teksten.kleedkamer.stuks as Record<string, string>)[k.id], k.id).toBeTruthy();
+    for (const p of PLEKKEN) expect((teksten.kleedkamer.plekken as Record<string, string>)[p.plek]).toBeTruthy();
+  });
+
+  it('kopen trekt het meteen aan; daarna past het ook op een andere held', async () => {
+    const { koopKleding, wisselKleding } = await import('../src/store/kleedkamer.svelte');
+    expect(koopKleding('kroon', 'sonic')).toBe('te-weinig');
+    vg.bliksems = 20;
+    expect(koopKleding('kroon', 'sonic')).toBe('gekocht');
+    expect(vg.bliksems).toBe(8);
+    expect(vg.winkel.kleding.sonic.hoofd).toBe('kroon');
+    expect(koopKleding('kroon', 'tails')).toBe('al-van-hem');
+    expect(wisselKleding('kroon', 'tails')).toBe(true);
+    expect(vg.winkel.kleding.tails.hoofd).toBe('kroon');
+    expect(wisselKleding('kroon', 'sonic')).toBe(false);
+    expect(vg.winkel.kleding.sonic.hoofd).toBe('');
+  });
+});

@@ -162,7 +162,7 @@
     }
 
     // De renner
-    renner = maakRenner(letters ? 'sonic' : 'tails', vg.winkel.gekozen.held === 'super');
+    renner = maakRenner(letters ? 'sonic' : 'tails', vg.winkel.gekozen.held === 'super', vg.winkel.kleding[letters ? 'sonic' : 'tails']);
     renner.groep.rotation.y = 0;
     scene.add(renner.groep);
 

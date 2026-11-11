@@ -46,6 +46,8 @@ De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden: fil
 | Wereld | 🪐 ruimtewereld voor alle spellen | 20 |
 | Helden | 🌟 supersnelle gouden helden (ook in de 3D-spellen) | 25 |
 
+**Kleedkamer.** Met de knop "Aankleden" in het menu kleedt Lucas Sonic, Tails en Knuckles aan: hoeden (pet, feesthoedje, koptelefoon, cowboyhoed, kroon), brillen (zonnebril, skibril), gekleurde schoenen en iets op de rug (rugzak, superheldencape, vleugels). Tik op iets om het eerst te passen; kopen gaat met bliksems (3 tot 12) en daarna past het op elke held. De kleding is te zien in het menu, op het eindscherm en op de 3D-helden in de spellen.
+
 **Plakboek met stickers.** Na elke ronde krijgt Lucas een sticker (meestal een nieuwe; een dubbele levert een bliksem op, soms is er een glimmende regenboogsticker). Elke sticker is een woordje uit de woordenlijst met plaatje, dus hij leest het woord eronder, en de stem zegt het als hij erop tikt. Het plakboek (roze knop in het menu) heeft vier bladzijden: dieren, in huis, kleren en je lijf, buiten (64 stickers). Een volle bladzijde geeft 5 bliksems. In de winkel zijn stickerzakjes (3 stickers, 5 ⚡) en glimzakjes (met een glimmer, 8 ⚡).
 
 Papa of mama kan in de ouderhoek bliksems geven als beloning, de winkel leegmaken en zien wat Lucas heeft gekocht. Prijzen en artikelen staan in `src/games/winkel.ts`, de teksten in `content/teksten.json` onder `winkel`.

@@ -252,7 +252,7 @@
     scene.add(bom);
 
     // Tails zweeft links van de bom
-    tails = maakRenner('tails', vg.winkel.gekozen.held === 'super');
+    tails = maakRenner('tails', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.tails);
     tails.groep.scale.setScalar(1.6);
     tails.groep.position.set(-8.5, 1.2, 3.2);
     tails.groep.rotation.y = -Math.PI * 0.72;
