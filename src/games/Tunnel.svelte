@@ -77,9 +77,9 @@
     baan.position.set(0, 0, -150);
     scene.add(baan);
     for (const x of [-1.55, 1.55]) {
-      const streep = new Mesh(new PlaneGeometry(0.16, 360), new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 }));
+      const streep = new Mesh(new PlaneGeometry(0.16, 360), new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
       streep.rotation.x = -Math.PI / 2;
-      streep.position.set(x * 1.0 + (x < 0 ? -0.0 : 0.0), 0.02, -150);
+      streep.position.set(x, 0.04, -150);
       streep.position.x = x * 1.0;
       scene.add(streep);
     }
@@ -177,8 +177,15 @@
       const balk = kubus(3.5, 0.35, 0.5, KLEUREN[i]);
       balk.position.y = 3.7;
       groep.add(balk);
-      const paneel = new Mesh(new PlaneGeometry(2.7, 2.7), new MeshBasicMaterial({ color: 0xffffff }));
-      paneel.position.set(0, 2.0, 0.1);
+      // Het paneel staat duidelijk vóór de lijst (die steekt tot z = 0,1 uit) en krijgt voorrang
+      // bij het tekenen, anders flikkeren paneel en lijst door elkaar (z-fighting), vooral in de verte.
+      const paneel = new Mesh(
+        new PlaneGeometry(2.7, 2.7),
+        new MeshBasicMaterial({ color: 0xffffff, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }),
+      );
+      paneel.position.set(0, 2.0, 0.22);
+      paneel.renderOrder = 1;
+      paneel.userData.vloer = true; // geen schaduw werpen of ontvangen
       groep.add(paneel);
       const lijst = kubus(3.0, 3.0, 0.2, KLEUREN[i]);
       lijst.position.set(0, 2.0, 0);

@@ -323,7 +323,7 @@ export function maakToneel(
 
 
 
-  const camera = new PerspectiveCamera(opt.fov ?? 55, 1, 0.1, 400);
+  const camera = new PerspectiveCamera(opt.fov ?? 55, 1, 0.3, 300);
   const formaat = () => {
     const w = host.clientWidth || 1280;
     const h = host.clientHeight || 700;
