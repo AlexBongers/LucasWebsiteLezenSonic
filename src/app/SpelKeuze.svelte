@@ -10,6 +10,8 @@
   import { vg, type HeldinId } from '../store/voortgang.svelte';
   import { spreek, stopSpreken } from '../audio/stem';
   import { speelTik } from '../audio/geluid';
+  import SomSlot from '../ui/SomSlot.svelte';
+  import { SPEL } from '../games/spellen';
 
   let { heldin, opKies, opTerug }: { heldin: HeldinId; opKies: (s: SpelId) => void; opTerug: () => void } = $props();
 
@@ -18,6 +20,8 @@
   // svelte-ignore state_referenced_locally
   const c = characters[heldin];
   let gekozen: SpelId | null = $state(null);
+  /** Een groep 3-spel gaat pas open na een moeilijke som. */
+  let slotVoor: SpelId | null = $state(null);
 
   onMount(() => {
     void spreek(teksten.spelkeuze);
@@ -32,11 +36,20 @@
 
   function kies(s: SpelId) {
     if (gekozen) return;
+    if (SPEL[s].groep3 && slotVoor !== s) {
+      speelTik();
+      slotVoor = s;
+      return;
+    }
     speelTik();
     gekozen = s;
     setTimeout(() => opKies(s), 450);
   }
 </script>
+
+{#if slotVoor}
+  <SomSlot opOpen={() => { const s = slotVoor!; gekozen = s; setTimeout(() => opKies(s), 300); }} opSluit={() => (slotVoor = null)} />
+{/if}
 
 <div class="keuze" style="--kleur:{c.kleur}">
   <header>
@@ -71,6 +84,7 @@
             <span class="naam">{s.naam}</span>
           </span>
           <span class="labels">
+            {#if s.groep3}<span class="groep3" title="Eigenlijk voor groep 3">🎓3</span>{/if}
             {#if s.snel}<span class="snel">💨</span>{/if}
             {#if s.maxNiveau > 0}<span class="niveau">⭐{niveau + 1}</span>{/if}
           </span>
@@ -212,6 +226,15 @@
     border-radius: 999px;
     font-size: 20px;
     font-weight: 700;
+  }
+  .groep3 {
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, #7c3aed, #db2777);
+    box-shadow: 0 0 12px rgba(219, 39, 119, 0.7);
   }
   .snel {
     color: #422006;

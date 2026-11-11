@@ -167,7 +167,8 @@
   /** Per held een spel; liever een spel dat nog weinig gespeeld is. */
   function kiesMissieSpellen(): SpelId[] {
     return (['sonic', 'tails', 'knuckles'] as HeldId[]).map((h) => {
-      const van = SPELLEN.filter((x) => x.held === h);
+      // Groep 3-spellen (met een somslot) doen niet mee in de dagmissie.
+      const van = SPELLEN.filter((x) => x.held === h && !x.groep3);
       const gespeeld = (id: SpelId) => vg.sessies.filter((x) => x.spel === id).length + Math.random() * 1.5;
       return van.sort((a, b) => gespeeld(a.id) - gespeeld(b.id))[0].id;
     });

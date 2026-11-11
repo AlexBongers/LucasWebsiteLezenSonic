@@ -31,6 +31,7 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | 🗼 **Toren-smash 3D** | Een draaiende toren van letterblokken. Tik op het blok met de beginletter, Knuckles slaat het eruit. |
 | | 🏰 **Muur-bouwer 3D** | Boven een muur zweeft een plaatje. Tik de grote letterblokken in de goede volgorde: Knuckles slaat ze op hun plek en de muur danst. |
 | | 🥊 **Letter-jacht 3D** | Letterblokken op zuiltjes in een tempel. Sla alle blokken met de gezochte letter kapot. |
+| | 🔐 **Kluis-kraker** 🎓3 | Groep 3-niveau, uitdagend. De stem zegt een woord; in het woord op de kluis mist een letter (eerst de middelste klinker: v?s, later elke plek, ook aa/oo/ie en b/d). Het spel gaat pas open na een moeilijke som over het tiental (bijv. 14 − 9). Het paarse 🎓3-label in het spelmenu betekent: eigenlijk voor groep 3. Doet niet mee in de dagmissie. |
 | | 🔨 Letter-jacht | Een rij stenen met letters. Sla ze allemaal kapot die gelijk zijn aan de letter bovenin. |
 
 De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden: filmisch licht, zachte schaduwen, randlicht, gloed rond ringen en zwevende glitters. De helden zijn in zes 3D-spellen dezelfde getekende figuren als in de menu's (met alles uit de kleedkamer), maar met diepte: een schaduw op de vloer, licht dat over ze heen glijdt, een randgloed en een kanteling als ze rennen of juichen. Alleen in de Turbo-tunnel, waar je de held van achteren ziet, is hij van blokjes gebouwd. Op een trage tablet schakelt de site zelf terug (minder pixels, daarna zonder schaduwen) en onthoudt dat. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
@@ -115,7 +116,7 @@ De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmal
 src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, winkel, plakboek, ouderhoek
 src/art/      Held (Sonic, Tails, Knuckles) en Robot
 src/engine/   letters en woorden, sommen, niveau, doosjes, planning
-src/games/    de twintig spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)
+src/games/    de eenentwintig spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)
 src/audio/    stem, geluidseffecten en muziek
 src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest, drie-d.ts (3D-basis) en drie-d-vormen.ts
 tools/audio/  opnames: luidheid, stiltes, MP3 en uitspraakcontrole

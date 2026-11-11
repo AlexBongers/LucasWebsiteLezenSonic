@@ -3,6 +3,7 @@
  * door dezelfde ronde-planner vullen (herhaling, makkelijke opwarmer, eigen niveau).
  */
 import type { Rnd } from '../engine/toeval';
+import { KLUIS_MAX, kluisId, kluisUitId, maakKluis, type KluisOpgave } from '../engine/kluis';
 import {
   jachtId, jachtUitId, maakJacht, maakMeer, maakPatronen, maakSplits, meerId, meerUitId, patroonId, patroonUitId, splitsId, splitsUitId,
   MEER_MAX, PATROON_MAX, SPLITS_MAX, JACHT_MAX,
@@ -14,7 +15,7 @@ import {
 
 export type HeldId = 'sonic' | 'tails' | 'knuckles';
 
-export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem' | 'patroonbaan' | 'bouwmuur' | 'bomsplits' | 'meer3d' | 'jacht3d' | 'woordrace3d';
+export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem' | 'patroonbaan' | 'bouwmuur' | 'bomsplits' | 'meer3d' | 'jacht3d' | 'woordrace3d' | 'kluis';
 
 /** Een spel is ook de vaardigheid waarvan het niveau wordt bijgehouden. */
 export type VaardigheidId = SpelId;
@@ -43,6 +44,8 @@ export type SpelDef<T = unknown> = {
   /** Flitsspellen onthouden hoe snel Lucas al kan lezen. */
   flits?: boolean;
   snel?: boolean;
+  /** Eigenlijk voor groep 3: extra uitdagend, met een eigen icoon en een moeilijke som als slot. */
+  groep3?: boolean;
   opgaven: Opgaven<T>;
 };
 
@@ -172,6 +175,13 @@ SPELLEN.push(
   def<JachtOpgave>({
     id: 'jacht3d', held: 'knuckles', naam: 'Letter-jacht 3D', uitleg: 'Sla alle blokken met de letter kapot', icoon: '🥊', maxNiveau: JACHT_MAX, prefix: 'jacht3.', snel: true,
     opgaven: { maak: maakJacht, herbouw: (id, n, kent) => jachtUitId(id.replace(/^jacht3\./, ''), n, kent), id: (o) => `jacht3.${jachtId(o.letter)}` },
+  }),
+);
+
+SPELLEN.push(
+  def<KluisOpgave>({
+    id: 'kluis', held: 'knuckles', naam: 'Kluis-kraker', uitleg: 'Welke letter mist er in het woord?', icoon: '🔐', maxNiveau: KLUIS_MAX, prefix: 'kluis.', groep3: true,
+    opgaven: { maak: maakKluis, herbouw: (id, n) => kluisUitId(id, n), id: kluisId },
   }),
 );
 

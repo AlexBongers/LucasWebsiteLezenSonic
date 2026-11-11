@@ -414,5 +414,16 @@
     ],
     "uit": "Uitgetrokken.",
     "passen": "Zo ziet het eruit!"
+  },
+  "kluis": {
+    "start": "Kraak de kluis! Ik zeg een woord, maar er mist een letter. Welke letter mist er?",
+    "vraag": "Welke letter mist er in",
+    "hint": "Luister nog eens goed naar het woord. Zeg het maar zachtjes na.",
+    "klaar": "De kluis is open!"
+  },
+  "slot": {
+    "start": "Deze kluis is extra moeilijk! Los eerst deze som op.",
+    "goed": "Goed zo! De kluis mag open.",
+    "fout": "Oei, dat klopt niet. Probeer deze maar."
   }
 }

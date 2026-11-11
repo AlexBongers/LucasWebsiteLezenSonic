@@ -5278,5 +5278,93 @@
   "lufs": -18,
   "piek": 0.81,
   "seconden": 2.37
+ },
+ "0b248728c0ad7f": {
+  "tekst": "Luister nog eens goed naar het woord. Zeg het maar zachtjes na.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Luister nog eens goed naar het woord. Zeg het maar zachtjes na",
+  "lufs": -18.4,
+  "piek": 0.89,
+  "seconden": 3.38
+ },
+ "0b4747b8ee34b2": {
+  "tekst": "Welke letter mist er in",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Welke letter mist erin?",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 1.27
+ },
+ "1b01e9db41f612": {
+  "tekst": "Kraak de kluis! Ik zeg een woord, maar er mist een letter. Welke letter mist er?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Kraak de kluis. Ik zeg een woord, maar er mist een letter. Welke letter mist er?",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 5.41
+ },
+ "1ec9838dbc7456": {
+  "tekst": "De kluis is open!",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "De kluis is open",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 1.05
+ },
+ "0676f99a47d043": {
+  "tekst": "Goed zo! De kluis mag open.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Goed zo. De kluis mag open",
+  "lufs": -18.2,
+  "piek": 0.89,
+  "seconden": 1.34
+ },
+ "1194022ea9f58d": {
+  "tekst": "Deze kluis is extra moeilijk! Los eerst deze som op.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Deze kluis is extra moeilijk. Los eerst deze som op",
+  "lufs": -18.1,
+  "piek": 0.89,
+  "seconden": 3.25
+ },
+ "0834bdd5fbd6fd": {
+  "tekst": "Oei, dat klopt niet. Probeer deze maar.",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Oei, dat klopt niet. Probeer deze maar",
+  "lufs": -18,
+  "piek": 0.88,
+  "seconden": 2.48
+ },
+ "0bc97895f57820": {
+  "tekst": "Welke letter mist er in het woord?",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Welke letter mist er in het woord?",
+  "lufs": -18,
+  "piek": 0.87,
+  "seconden": 1.39
  }
 }

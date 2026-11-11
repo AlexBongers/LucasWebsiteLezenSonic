@@ -248,3 +248,29 @@ describe('de kleedkamer', () => {
     expect(vg.winkel.kleding.sonic.hoofd).toBe('');
   });
 });
+
+describe('Kluis-kraker (groep 3)', () => {
+  it('het gat zit op de goede plek, het antwoord zit bij drie verschillende keuzes, en de id is te herbouwen', async () => {
+    const { maakKluis, kluisId, kluisUitId, KORTE_KLINKERS } = await import('../src/engine/kluis');
+    const kent = maakKent(['m', 'r', 'v', 's', 'a', 'i', 'e', 'o', 'k', 'p', 't', 'n']);
+    for (let n = 0; n <= 1; n++) {
+      const lijst = maakKluis(n, 10, kent, zaadRnd(30 + n));
+      expect(lijst.length).toBeGreaterThan(4);
+      for (const o of lijst) {
+        expect(o.delen[o.gat]).toBe(o.antwoord);
+        expect(o.keuzes).toContain(o.antwoord);
+        expect(new Set(o.keuzes).size).toBe(3);
+        if (n === 0) {
+          expect(o.gat).toBe(1);
+          expect(KORTE_KLINKERS).toContain(o.antwoord);
+        }
+        expect(kluisUitId(kluisId(o), n)?.antwoord).toBe(o.antwoord);
+      }
+    }
+  });
+
+  it('staat als groep 3-spel in de lijst en doet niet mee in de dagmissie', async () => {
+    const { SPEL } = await import('../src/games/spellen');
+    expect(SPEL.kluis.groep3).toBe(true);
+  });
+});

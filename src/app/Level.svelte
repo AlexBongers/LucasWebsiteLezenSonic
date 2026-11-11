@@ -21,6 +21,7 @@
   import Meer3D from '../games/Meer3D.svelte';
   import Jacht3D from '../games/Jacht3D.svelte';
   import WoordRace3D from '../games/WoordRace3D.svelte';
+  import Kluis from '../games/Kluis.svelte';
   import { webglKan } from '../ui/drie-d';
   import SchildBalk from '../ui/SchildBalk.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
@@ -267,7 +268,7 @@
     // 3D-spellen: zonder WebGL nemen ze hun 2D-broertje
     tunnel: webglKan() ? Tunnel : Smash, tunnelsom: webglKan() ? Tunnel : Katapult, torensmash: webglKan() ? TorenSmash : Smash, torenboem: webglKan() ? TorenBoem : TelBouw,
     patroonbaan: webglKan() ? PatroonBaan : Patroon, bouwmuur: webglKan() ? MuurBouwer : Bouwen, bomsplits: webglKan() ? BomSplits : Splits,
-    meer3d: webglKan() ? Meer3D : Meer, jacht3d: webglKan() ? Jacht3D : Jacht, woordrace3d: webglKan() ? WoordRace3D : Race } as const;
+    meer3d: webglKan() ? Meer3D : Meer, jacht3d: webglKan() ? Jacht3D : Jacht, woordrace3d: webglKan() ? WoordRace3D : Race, kluis: Kluis } as const;
   // svelte-ignore state_referenced_locally
   const Spel = SPELCOMP[spel];
 </script>
