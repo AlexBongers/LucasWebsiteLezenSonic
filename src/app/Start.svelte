@@ -45,7 +45,7 @@
     </div>
   {/if}
 
-  <button class="knop-goud begin" onclick={opStart}>▶ Tik om te beginnen</button>
+  <button class="knop-goud begin icoonknop" onclick={opStart} aria-label="Beginnen">▶️</button>
 </div>
 
 <style>

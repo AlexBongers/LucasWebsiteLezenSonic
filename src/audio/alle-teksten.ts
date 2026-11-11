@@ -5,6 +5,7 @@
 import teksten from '../../content/teksten.json';
 import characters from '../../content/characters.json';
 import { LETTERS, ALLE_WOORDEN } from '../engine/generator-lucas';
+import { SPELLEN } from '../games/spellen';
 import type { Spreeksoort } from './hash';
 
 export type TeSpreken = { tekst: string; soort: Spreeksoort };
@@ -30,6 +31,9 @@ export function alleTeksten(): TeSpreken[] {
   strings(teksten).forEach((t) => voeg(t, 'instructie'));
   Object.values(characters).forEach((c) => voeg(c.intro, 'instructie'));
   strings(Object.values(characters).map((c) => c.complimenten)).forEach((t) => voeg(t, 'instructie'));
+
+  // Wat elk spel is (de luidspreker in het spelmenu: Lucas leest nog niet)
+  SPELLEN.forEach((sp) => voeg(sp.uitleg, 'instructie'));
 
   // Beginwoorden van de letters en alle woordjes (ook als de stem het woord na afloop herhaalt)
   LETTERS.forEach((l) => voeg(l.woord, 'woord'));

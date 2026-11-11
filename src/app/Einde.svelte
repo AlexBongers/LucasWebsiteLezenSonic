@@ -35,7 +35,7 @@
   </div>
 
   <p class="sluit">Je kunt de app nu sluiten met de knop van de tablet.</p>
-  <button class="opnieuw" onclick={opOpnieuw}>Naar het begin</button>
+  <button class="opnieuw icoonknop" onclick={opOpnieuw} aria-label="Naar het begin">🏠</button>
 </div>
 
 <style>

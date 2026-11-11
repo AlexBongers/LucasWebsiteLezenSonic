@@ -62,7 +62,7 @@
     <Held wie="knuckles" stemming="juich" hoogte={230} />
   </div>
 
-  <button class="knop-goud verder" onclick={opSluit}>Verder ➜</button>
+  <button class="knop-goud verder icoonknop" onclick={opSluit} aria-label="Verder">➡️</button>
 </div>
 
 <style>

@@ -272,10 +272,10 @@
   <div class="toneel" bind:this={hostEl}></div>
   <span class="merk" bind:this={merkEl}></span>
   <div class="vraag opdrachtkaart">
-    <span>{fase === 'klaar' ? 'Klaar? Kijk goed!' : 'Welk plaatje hoort erbij?'}</span>
+    <span class="oog">{fase === 'klaar' ? '👀' : '🖼️❓'}</span>
   </div>
   {#if fase === 'klaar'}
-    <button class="knop-goud start" onclick={start}>⚡ Laat zien!</button>
+    <button class="knop-goud start" onclick={start} aria-label="Laat zien">👀</button>
   {/if}
 </div>
 
@@ -309,9 +309,9 @@
     left: 50%;
     bottom: 26px;
     transform: translateX(-50%);
-    min-width: 340px;
-    min-height: 100px;
-    font-size: 44px;
+    min-width: 220px;
+    min-height: 110px;
+    font-size: 70px;
     z-index: 4;
     animation: puls 1.3s ease-in-out infinite;
   }

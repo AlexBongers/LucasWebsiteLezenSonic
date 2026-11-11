@@ -40,6 +40,7 @@
   import { onDestroy } from 'svelte';
   import Uitrusting from '../ui/Uitrusting.svelte';
   import Maatje from '../ui/Maatje.svelte';
+  import RingPrijs from '../ui/RingPrijs.svelte';
   import { nieuweRonde, uitrusting } from '../games/uitrusting.svelte';
   import { ARTIKEL } from '../games/winkel';
   import { pakPowerup } from '../store/winkel.svelte';
@@ -279,8 +280,8 @@
       </svg>
     </button>
     <div class="balk"><SchildBalk waarde={voortgang} /></div>
-    {#if auditie}<div class="auditie" style="--kleur:{characters[held].kleur}">⭐ Proefrondje</div>{/if}
-    {#if missie}<div class="auditie" style="--kleur:{characters[held].kleur}">🎯 Missie {missie.stap + 1}/{missie.totaal}</div>{/if}
+    {#if auditie}<div class="auditie" style="--kleur:{characters[held].kleur}">⭐</div>{/if}
+    {#if missie}<div class="auditie" style="--kleur:{characters[held].kleur}">🎯 {missie.stap + 1}/{missie.totaal}</div>{/if}
     <Uitrusting opGebruik={gebruik} />
     {#if vg.winkel.gekozen.maatje}<Maatje grootte={46} />{/if}
     <div bind:this={tellerEl}><RingTeller aantal={vg.ringen} /></div>
@@ -294,8 +295,8 @@
     {#key combo}
       <div class="combo" style="--kleur:{characters[held].kleur}">
         <span class="vuur">🔥</span>
-        <span>{combo} op rij!</span>
-        <span class="bonus">+1 ring</span>
+        <span>{combo}×</span>
+        <span class="bonus">+<RingPrijs prijs={1} /></span>
       </div>
     {/key}
   {/if}

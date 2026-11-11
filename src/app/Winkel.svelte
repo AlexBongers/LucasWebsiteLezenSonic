@@ -151,8 +151,7 @@
   <nav class="tabs">
     {#each SOORTEN as s (s.soort)}
       <button class="tab" class:aan={tab === s.soort} onclick={() => kiesTab(s.soort)}>
-        <span class="t-icoon">{s.icoon}</span>
-        <span>{s.naam}</span>
+        <span class="t-icoon" aria-label={s.naam}>{s.icoon}</span>
       </button>
     {/each}
   </nav>
@@ -215,11 +214,11 @@
     </div>
     <button class="knop-goud d-knop" class:duur={!genoeg && !bezit} onclick={actie} disabled={vol}>
       {#if bezit}
-        {isAan(gekozen.soort, gekozen.id) ? 'Uitzetten' : 'Aanzetten'}
+        <span class="groot-icoon">{isAan(gekozen.soort, gekozen.id) ? '❌' : '✅'}</span>
       {:else if vol}
-        Vol!
+        <span class="groot-icoon">✋</span>
       {:else}
-        Kopen <RingPrijs prijs={gekozen.prijs} />
+        <span class="groot-icoon">🛒</span> <RingPrijs prijs={gekozen.prijs} />
       {/if}
     </button>
   </div>
@@ -278,8 +277,12 @@
     color: #3b1d00;
     border-color: #fff7c2;
   }
+  .groot-icoon {
+    font-size: 44px;
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+  }
   .t-icoon {
-    font-size: 32px;
+    font-size: 40px;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
   }
   .rek {

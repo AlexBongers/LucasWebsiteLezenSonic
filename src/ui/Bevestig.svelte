@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { spreek } from '../audio/stem';
   let {
     vraag,
     ja = 'Ja',
@@ -6,14 +8,17 @@
     opJa,
     opNee,
   }: { vraag: string; ja?: string; nee?: string; opJa: () => void; opNee: () => void } = $props();
+  // De vraag wordt voorgelezen; de knoppen zijn plaatjes.
+  // svelte-ignore state_referenced_locally
+  onMount(() => void spreek(vraag));
 </script>
 
 <div class="scherm" role="dialog" aria-modal="true">
   <div class="kaart">
     <p>{vraag}</p>
     <div class="knoppen">
-      <button class="knop-goud nee" onclick={opNee}>{nee}</button>
-      <button class="knop-goud" onclick={opJa}>{ja}</button>
+      <button class="knop-goud nee icoonknop" onclick={opNee} aria-label="Nee, verder spelen">{nee}</button>
+      <button class="knop-goud icoonknop" onclick={opJa} aria-label="Ja, stoppen">{ja}</button>
     </div>
   </div>
 </div>

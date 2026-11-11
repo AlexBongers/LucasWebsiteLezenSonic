@@ -113,7 +113,7 @@
         {#key ronde.nummer}
           <button class="start" onclick={() => flits(vg.flitstijd)} aria-label="Laat zien">
             <span class="bliksemgroot">⚡</span>
-            <span>Tik!</span>
+            <span>👆</span>
           </button>
         {/key}
       {:else if zichtbaar}
@@ -154,7 +154,7 @@
     </div>
 
     {#if fase === 'onthuld'}
-      <button class="knop-goud verder-knop" onclick={volgende}>Verder ➜</button>
+      <button class="knop-goud verder-knop icoonknop" onclick={volgende} aria-label="Verder">➡️</button>
     {/if}
   </div>
 </div>

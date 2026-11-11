@@ -78,7 +78,7 @@
     <button class="sticker-plek" class:open={stickerOpen} onclick={() => opPlakboek?.()} aria-label="Nieuwe sticker: {sticker.woord}. Open je plakboek">
       <span class="lint">{sticker.dubbel ? 'Dubbel! +5 ringen' : sticker.glim ? '✨ Glimmer!' : 'Nieuwe sticker!'}</span>
       <StickerKaart woord={sticker.woord} glim={sticker.glim} grootte={150} kantel={6} />
-      <span class="naar">📒 Plakboek</span>
+      <span class="naar">📒</span>
     </button>
   {/if}
   <div class="kaart">
@@ -121,20 +121,20 @@
         {/each}
       </div>
       <div class="knoppen">
-        <button class="knop-goud groot" onclick={opVerder}>{missie.stap + 1 < missie.totaal ? 'Volgende spel ➜' : 'Pak je kristal! 💎'}</button>
+        <button class="knop-goud groot icoonknop" onclick={opVerder} aria-label={missie.stap + 1 < missie.totaal ? 'Volgende spel' : 'Pak je kristal'}>{missie.stap + 1 < missie.totaal ? '➡️' : '💎'}</button>
       </div>
     {:else if pauze}
-      <div class="pauze">☕ Tijd voor een pauze!</div>
+      <div class="pauze">☕</div>
       <div class="knoppen">
-        <button class="knop-goud" onclick={opPauze}>Klaar voor vandaag 👋</button>
+        <button class="knop-goud icoonknop" onclick={opPauze} aria-label="Klaar voor vandaag">👋</button>
       </div>
     {:else}
       <div class="knoppen">
-        <button class="knop-goud ander" onclick={opTerug}>Ander spel</button>
+        <button class="knop-goud ander icoonknop" onclick={opTerug} aria-label="Ander spel">🎮</button>
         {#if opWinkel && vg.ringen >= 25}
-          <button class="knop-goud winkel" onclick={opWinkel}>🛒 Winkel</button>
+          <button class="knop-goud winkel icoonknop" onclick={opWinkel} aria-label="Winkel">🛒</button>
         {/if}
-        <button class="knop-goud" onclick={opNogEens}>Nog een keer! ✨</button>
+        <button class="knop-goud icoonknop" onclick={opNogEens} aria-label="Nog een keer">🔁</button>
       </div>
     {/if}
   </div>

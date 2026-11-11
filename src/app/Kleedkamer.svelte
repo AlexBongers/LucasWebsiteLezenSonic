@@ -152,8 +152,7 @@
       <nav class="plekken">
         {#each PLEKKEN as p (p.plek)}
           <button class="plek" class:aan={plek === p.plek} onclick={() => kiesPlek(p.plek)}>
-            <span class="p-icoon">{p.icoon}</span>
-            <span>{(kk.plekken as Record<string, string>)[p.plek]}</span>
+            <span class="p-icoon" aria-label={(kk.plekken as Record<string, string>)[p.plek]}>{p.icoon}</span>
           </button>
         {/each}
       </nav>
@@ -180,9 +179,9 @@
         {#if gekozen}
           <span class="b-tekst">{gekozen.icoon} {naam(gekozen.id)}</span>
           <button class="knop-rond nee" onclick={() => (pas = null)} aria-label="Niet kopen">✕</button>
-          <button class="knop-goud" class:duur={vg.ringen < gekozen.prijs} onclick={koop}>Kopen <RingPrijs prijs={gekozen.prijs} /></button>
+          <button class="knop-goud" class:duur={vg.ringen < gekozen.prijs} onclick={koop} aria-label="Kopen"><span class="groot-icoon">🛒</span> <RingPrijs prijs={gekozen.prijs} /></button>
         {:else}
-          <span class="b-tekst zacht">Tik op iets om het te passen of aan te trekken</span>
+          <span class="b-tekst zacht groot-icoon">👆 👕</span>
         {/if}
       </div>
     </section>
@@ -301,8 +300,12 @@
     color: #3b1d00;
     border-color: #fff7c2;
   }
+  .groot-icoon {
+    font-size: 44px;
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+  }
   .p-icoon {
-    font-size: 30px;
+    font-size: 42px;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
   }
   .rek {

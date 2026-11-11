@@ -24,6 +24,12 @@
     return stopSpreken;
   });
 
+  /** Lucas kan nog niet lezen: de luidspreker vertelt wat het spel is. */
+  function hoor(uitleg: string) {
+    speelTik();
+    void spreek(uitleg);
+  }
+
   function kies(s: SpelId) {
     if (gekozen) return;
     speelTik();
@@ -39,7 +45,7 @@
         <path d="M15 5 L8 12 L15 19" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
-    <h1>{c.naam}: kies een spel</h1>
+    <h1>{c.naam} 🎮</h1>
     <NotenTeller aantal={vg.ringen} />
   </header>
 
@@ -52,23 +58,25 @@
     <div class="spellen" class:drie={spellen.length === 3}>
       {#each spellen as s, i}
         {@const niveau = vg.vaardigheden[s.id].niveau}
+        <div class="spelplek" style="animation-delay:{i * 0.08}s">
         <button
           class="spel"
           class:gekozen={gekozen === s.id}
           class:weg={gekozen !== null && gekozen !== s.id}
-          style="animation-delay:{i * 0.08}s"
           onclick={() => kies(s.id)}
+          aria-label={s.naam}
         >
           <span class="icoon" aria-hidden="true">{s.icoon}</span>
           <span class="tekst">
             <span class="naam">{s.naam}</span>
-            <span class="uitleg">{s.uitleg}</span>
           </span>
           <span class="labels">
-            {#if s.snel}<span class="snel">⚡ snel</span>{/if}
-            {#if s.maxNiveau > 0}<span class="niveau">level {niveau + 1}</span>{/if}
+            {#if s.snel}<span class="snel">💨</span>{/if}
+            {#if s.maxNiveau > 0}<span class="niveau">⭐{niveau + 1}</span>{/if}
           </span>
         </button>
+        <button class="hoor" onclick={() => hoor(s.uitleg)} aria-label="Wat is dit spel?">🔊</button>
+        </div>
       {/each}
     </div>
   </div>
@@ -119,8 +127,29 @@
     width: 100%;
     justify-self: center;
   }
+  .spelplek {
+    position: relative;
+    animation: pop-in 0.45s ease-out backwards;
+  }
+  .hoor {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 30px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 3px solid color-mix(in srgb, var(--kleur) 70%, white);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+  }
+  .hoor:active {
+    transform: translateY(3px);
+  }
   .spel {
     position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -132,7 +161,6 @@
     border: 3px solid color-mix(in srgb, var(--kleur) 70%, white);
     backdrop-filter: blur(4px);
     box-shadow: 0 0 26px color-mix(in srgb, var(--kleur) 45%, transparent), 0 8px 0 rgba(0, 0, 0, 0.25);
-    animation: pop-in 0.45s ease-out backwards;
     transition: transform 0.15s, opacity 0.3s;
   }
   .spellen.drie .spel {
@@ -152,10 +180,10 @@
     flex: none;
     display: grid;
     place-items: center;
-    width: 92px;
-    height: 92px;
-    border-radius: 24px;
-    font-size: 56px;
+    width: 108px;
+    height: 108px;
+    border-radius: 26px;
+    font-size: 70px;
     background: rgba(255, 255, 255, 0.92);
     box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.12);
   }
@@ -166,13 +194,10 @@
     min-width: 0;
   }
   .naam {
-    font-size: 32px;
+    font-size: 26px;
+    padding-right: 54px;
     font-weight: 700;
     line-height: 1.1;
-  }
-  .uitleg {
-    font-size: 20px;
-    color: #e0f2fe;
   }
   .labels {
     position: absolute;
@@ -183,9 +208,9 @@
   }
   .snel,
   .niveau {
-    padding: 2px 12px;
+    padding: 2px 10px;
     border-radius: 999px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
   }
   .snel {

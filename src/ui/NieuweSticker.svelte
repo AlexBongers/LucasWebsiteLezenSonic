@@ -5,6 +5,7 @@
    */
   import { onMount } from 'svelte';
   import StickerKaart from './StickerKaart.svelte';
+  import RingPrijs from './RingPrijs.svelte';
   import { spreek } from '../audio/stem';
   import { speelKoop, speelRing, speelTik } from '../audio/geluid';
   import { glitterOp } from './feest';
@@ -48,7 +49,7 @@
 
 <div class="laag" role="dialog" aria-label="Nieuwe stickers">
   <div class="vak" bind:this={vakEl}>
-    <h2 class="goudtekst">{winsten.length > 1 ? 'Nieuwe stickers!' : 'Nieuwe sticker!'}</h2>
+    <h2 class="goudtekst">🎉</h2>
     <div class="rij">
       {#each winsten as w, i}
         <div class="plek" class:open={i < open}>
@@ -58,14 +59,14 @@
           </div>
           {#if i < open}
             <span class="label">
-              {#if w.dubbel}Dubbel: +5 ringen{:else if w.glim}✨ Glimmer!{:else}Nieuw!{/if}
+              {#if w.dubbel}+<RingPrijs prijs={5} />{:else if w.glim}✨✨{:else}🆕{/if}
             </span>
           {/if}
         </div>
       {/each}
     </div>
     {#if winsten.some((w) => w.bladzijdeVol)}<p class="vol">⭐ Bladzijde vol! +40 ringen</p>{/if}
-    <button class="knop-goud" class:wacht={!klaar} onclick={opSluit}>Plak in je boek! 📒</button>
+    <button class="knop-goud icoonknop" class:wacht={!klaar} onclick={opSluit} aria-label="Plak in je boek">👍📒</button>
   </div>
 </div>
 

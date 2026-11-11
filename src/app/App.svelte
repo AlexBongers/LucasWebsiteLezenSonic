@@ -305,10 +305,10 @@
   {/key}
 
   {#if vraagStop}
-    <Bevestig vraag={teksten.stoppen} ja="Ja, stoppen" nee="Nee, verder!" opJa={naarSpellen} opNee={() => (vraagStop = false)} />
+    <Bevestig vraag={teksten.stoppen} ja="🏠" nee="▶️" opJa={naarSpellen} opNee={() => (vraagStop = false)} />
   {/if}
   {#if vraagAfsluiten}
-    <Bevestig vraag={teksten.afsluiten} ja="Ja, stoppen" nee="Nee, verder!" opJa={afsluiten} opNee={() => (vraagAfsluiten = false)} />
+    <Bevestig vraag={teksten.afsluiten} ja="🏠" nee="▶️" opJa={afsluiten} opNee={() => (vraagAfsluiten = false)} />
   {/if}
 </div>
 

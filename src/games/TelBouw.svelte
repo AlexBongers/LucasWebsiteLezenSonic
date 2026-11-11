@@ -140,7 +140,7 @@
             <button class="rond plus" onclick={() => pas(1)} aria-label="Steen erbij">+</button>
             <button class="bom" onclick={bom} aria-label="Ontplof de toren" disabled={ronde.onthuld}>
               <span class="b-icoon">💣</span>
-              <span>Boem!</span>
+              <span>💥</span>
             </button>
           </div>
         {/if}
@@ -162,7 +162,7 @@
       {/if}
     {/key}
     {#if ronde.onthuld}
-      <button class="knop-goud verder-knop" onclick={volgende}>Verder ➜</button>
+      <button class="knop-goud verder-knop icoonknop" onclick={volgende} aria-label="Verder">➡️</button>
     {/if}
   </div>
 </div>

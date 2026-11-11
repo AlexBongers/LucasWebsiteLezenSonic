@@ -162,7 +162,7 @@
       </div>
     {/key}
     {#if ronde.onthuld}
-      <button class="knop-goud verder-knop" onclick={volgende}>Verder ➜</button>
+      <button class="knop-goud verder-knop icoonknop" onclick={volgende} aria-label="Verder">➡️</button>
     {/if}
   </div>
 </div>

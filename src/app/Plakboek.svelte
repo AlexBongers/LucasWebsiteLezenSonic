@@ -52,9 +52,9 @@
         <path d="M15 5 L8 12 L15 19" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
-    <h1>📒 Mijn plakboek</h1>
+    <h1>📒</h1>
     <div class="telling">{aantalVerzameld()} / {ALLE_STICKERS.length}</div>
-    <button class="winkel" onclick={opWinkel} aria-label="Stickers kopen in de winkel">🎁 Zakjes</button>
+    <button class="winkel" onclick={opWinkel} aria-label="Stickers kopen in de winkel">🎁🛒</button>
     <RingTeller aantal={vg.ringen} />
   </header>
 
@@ -63,7 +63,6 @@
       {@const t = bladzijdeTelling(b.id)}
       <button class="tab" class:aan={blad === b.id} class:vol={t.heeft === t.totaal} style="--kleur:{b.kleur}" onclick={() => kiesBlad(b.id)}>
         <span class="t-icoon">{b.icoon}</span>
-        <span class="t-naam">{namen[b.id]}</span>
         <span class="t-tel">{t.heeft === t.totaal ? '⭐' : `${t.heeft}/${t.totaal}`}</span>
       </button>
     {/each}
@@ -74,7 +73,7 @@
       <div class="spiraal" aria-hidden="true">
         {#each Array.from({ length: 9 }) as _}<i></i>{/each}
       </div>
-      <h2>{huidig.icoon} {namen[huidig.id]}</h2>
+      <h2>{huidig.icoon}</h2>
       <div class="raster">
         {#each huidig.woorden as w, i (w)}
           <button class="plek" class:tik={tik === w} style="animation-delay:{i * 0.03}s" onclick={() => tikSticker(w)} aria-label={heeftSticker(w) ? w : 'lege plek'}>
@@ -148,7 +147,7 @@
     transform: translateY(4px);
   }
   .t-icoon {
-    font-size: 32px;
+    font-size: 40px;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
   }
   .t-tel {

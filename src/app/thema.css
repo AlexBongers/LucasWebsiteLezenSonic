@@ -206,3 +206,15 @@ button {
   color: #fbbf24;
   text-shadow: 0 0 18px rgba(251, 191, 36, 0.9);
 }
+
+/* Grote knoppen met alleen een plaatje: Lucas kan nog niet lezen. */
+.icoonknop {
+  display: inline-grid;
+  place-items: center;
+  min-width: 132px;
+  height: 112px;
+  padding: 0 22px;
+  font-size: 64px;
+  line-height: 1;
+  font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+}

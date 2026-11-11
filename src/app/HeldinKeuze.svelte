@@ -21,6 +21,8 @@
   }: { opKies: (h: HeldinId) => void; opMissie: () => void; opWinkel: () => void; opPlakboek: () => void; opKleedkamer: () => void; opOuder: () => void; opStoppen: () => void } = $props();
 
   const volgorde: HeldinId[] = ['sonic', 'tails', 'knuckles'];
+  /** Wat je bij elke held oefent, als plaatje (Lucas leest nog niet). */
+  const VAK: Record<HeldinId, string> = { sonic: '🔤⚡', tails: '🔢', knuckles: '🧱🔤' };
   let gekozen: HeldinId | null = $state(null);
   let superheld = $derived(vg.kristallen >= AANTAL_KRISTALLEN);
 
@@ -44,7 +46,7 @@
     <h1>Met wie ga je oefenen?</h1>
     <div class="rechts">
       <button class="kleedknop" onclick={() => { speelTik(); opKleedkamer(); }} aria-label="Kleedkamer">
-        <span>👕</span><span class="k-tekst">Aankleden</span>
+        <span>👕</span>
       </button>
       <RingTeller aantal={vg.ringen} />
       <button class="muziek" class:uit={!vg.instellingen.muziek} onclick={wisselMuziek} aria-label="Muziek aan of uit">
@@ -55,7 +57,6 @@
           <path d="M12 3 v8" stroke="#fff" stroke-width="2.8" stroke-linecap="round" />
           <path d="M6.3 6.8 a8 8 0 1 0 11.4 0" stroke="#fff" stroke-width="2.8" fill="none" stroke-linecap="round" />
         </svg>
-        <span>Stoppen</span>
       </button>
     </div>
   </header>
@@ -66,19 +67,16 @@
         <Kristal kleur={k} grootte={28} leeg={i >= vg.kristallen} />
       {/each}
     </div>
-    <div class="tekst">
+    <div class="tekst" aria-label="Dagmissie: drie spelletjes, één kristal">
       {#if superheld}
-        <strong>Superheld!</strong>
-        <span>Alle kristallen zijn van jou</span>
+        <span class="plaatjes">🌟🦸🌟</span>
       {:else}
-        <strong>Dagmissie</strong>
-        <span>Drie spelletjes, één kristal</span>
+        <span class="plaatjes">🎮🎮🎮 <span class="pijl">➜</span> 💎</span>
       {/if}
     </div>
-    <button class="knop-goud missieknop" onclick={opMissie}>🎯 Start de missie!</button>
+    <button class="knop-goud missieknop" onclick={opMissie} aria-label="Start de dagmissie">🎯 ▶️</button>
     <button class="winkelknop" onclick={() => { speelTik(); opWinkel(); }} aria-label="Turbo-winkel">
       <span class="w-icoon">🛒</span>
-      <span class="w-tekst">Winkel</span>
     </button>
     <button class="boekknop" onclick={() => { speelTik(); opPlakboek(); }} aria-label="Plakboek">
       <span class="w-icoon">📒</span>
@@ -103,8 +101,7 @@
         </div>
         <div class="naambord">
           <span class="naam">{c.naam}</span>
-          <span class="vak">{c.vak}</span>
-          <span class="uitleg">{c.uitleg}</span>
+          <span class="vakicoon" aria-label={c.vak}>{VAK[h]}</span>
         </div>
       </button>
     {/each}
@@ -142,10 +139,6 @@
     background: linear-gradient(180deg, #38bdf8, #0369a1);
     border: 3px solid #e0f2fe;
     box-shadow: 0 4px 0 #0c4a6e, 0 0 18px rgba(56, 189, 248, 0.5);
-  }
-  .k-tekst {
-    font-size: 22px;
-    font-weight: 700;
   }
   .muziek {
     width: 60px;
@@ -203,9 +196,19 @@
     flex-direction: column;
     line-height: 1.15;
   }
-  .tekst strong {
-    font-size: 30px;
+  .plaatjes {
+    font-size: 38px;
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+    white-space: nowrap;
+  }
+  .pijl {
+    font-family: var(--font-titel);
     color: #fde68a;
+  }
+  .vakicoon {
+    font-size: 40px;
+    line-height: 1.1;
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
   }
   .tekst span {
     font-size: 20px;
@@ -213,8 +216,9 @@
   }
   .missieknop {
     min-height: 64px;
-    padding: 0 20px;
-    font-size: 26px;
+    padding: 0 26px;
+    font-size: 36px;
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
     white-space: nowrap;
     animation: puls 1.8s ease-in-out infinite;
   }
@@ -321,15 +325,6 @@
     font-weight: 700;
     line-height: 1.05;
     text-shadow: 0 0 18px var(--kleur);
-  }
-  .vak {
-    font-size: 26px;
-    font-weight: 600;
-    color: #fde68a;
-  }
-  .uitleg {
-    font-size: 19px;
-    color: #dbeafe;
   }
   @keyframes kaart-in {
     from { transform: translateY(60px) scale(0.9); opacity: 0; }
