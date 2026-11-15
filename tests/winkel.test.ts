@@ -277,3 +277,63 @@ describe('Kluis-kraker (groep 3)', () => {
     expect(SPEL.kluis.groep3).toBe(true);
   });
 });
+
+describe('Rijm-raket en Getallenbaan', () => {
+  it('rijmparen rijmen echt (één lettergreep, zelfde eind) en het rijmwoord zit bij de drie keuzes', async () => {
+    const { maakRijm, rijmId, rijmUitId, rijmDeel } = await import('../src/engine/rijm');
+    const { ALLE_WOORDEN } = await import('../src/engine/generator-lucas');
+    const info = (w: string) => ALLE_WOORDEN.find((x) => x.woord === w)!;
+    for (let n = 0; n <= 1; n++) {
+      for (const o of maakRijm(n, 12, zaadRnd(40 + n))) {
+        expect(rijmDeel(info(o.woord))).toBe(rijmDeel(info(o.rijm)));
+        expect(o.keuzes.map((k) => k.woord)).toContain(o.rijm);
+        expect(o.keuzes.length).toBe(3);
+        expect(o.keuzes.filter((k) => rijmDeel(info(k.woord)) === rijmDeel(info(o.woord))).length).toBe(1);
+        expect(rijmUitId(rijmId(o), n)?.rijm).toBe(o.rijm);
+      }
+    }
+  });
+
+  it('getallenbaan: het antwoord past in de rij, zit bij de keuzes en blijft tot 20', async () => {
+    const { maakBaan, baanId, baanUitId } = await import('../src/engine/getallenlijn');
+    for (let n = 0; n <= 2; n++) {
+      for (const o of maakBaan(n, 15, zaadRnd(50 + n))) {
+        const stap = o.rij[1] - o.rij[0];
+        o.rij.forEach((x, i) => i && expect(x - o.rij[i - 1]).toBe(stap));
+        expect(o.antwoord).toBe(o.rij[o.gat]);
+        expect(o.keuzes).toContain(o.antwoord);
+        expect(new Set(o.keuzes).size).toBe(3);
+        expect(Math.max(...o.rij)).toBeLessThanOrEqual(n === 0 ? 10 : 20);
+        expect(baanUitId(baanId(o))?.antwoord).toBe(o.antwoord);
+      }
+    }
+  });
+});
+
+describe('samenhang van de spellenlijst', () => {
+  it('elk spel heeft voor elk niveau een uitleg in de ouderhoek', async () => {
+    const { SPELLEN } = await import('../src/games/spellen');
+    const { NIVEAUS } = await import('../src/games/niveaus');
+    for (const s of SPELLEN) expect(NIVEAUS[s.id]?.length, s.id).toBe(s.maxNiveau + 1);
+  });
+
+  it('de lijst met 3D-spellen klopt met de namen (die eindigen op "3D")', async () => {
+    const { SPELLEN, DRIE_D_SPELLEN } = await import('../src/games/spellen');
+    const opNaam = SPELLEN.filter((s) => s.naam.endsWith('3D')).map((s) => s.id).sort();
+    expect([...DRIE_D_SPELLEN].sort()).toEqual(opNaam);
+  });
+
+  it('elk spel heeft een eigen voorvoegsel voor de herhalingsdoosjes', async () => {
+    const { SPELLEN } = await import('../src/games/spellen');
+    const prefixen = SPELLEN.map((s) => s.prefix);
+    expect(new Set(prefixen).size).toBe(prefixen.length);
+  });
+
+  it('elke 2D-tweeling verwijst naar een bestaand 3D-spel', async () => {
+    const { SPEL, VERVANGEN_DOOR_3D, DRIE_D_SPELLEN } = await import('../src/games/spellen');
+    for (const [twee, drie] of Object.entries(VERVANGEN_DOOR_3D)) {
+      expect(SPEL[twee as keyof typeof SPEL]).toBeTruthy();
+      expect(DRIE_D_SPELLEN).toContain(drie);
+    }
+  });
+});

@@ -15,7 +15,8 @@
   import Kleedkamer from './Kleedkamer.svelte';
   import { verdien } from '../store/winkel.svelte';
   import { RINGEN_KRISTAL, type Soort } from '../games/winkel';
-  import { DRIE_D_SPELLEN, SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
+  import { DRIE_D_SPELLEN, SPEL, zichtbareSpellen, type HeldId, type SpelId } from '../games/spellen';
+  import { webglKan } from '../ui/drie-d';
   import { WERELD_VAN } from '../ui/werelden';
   import characters from '../../content/characters.json';
   import teksten from '../../content/teksten.json';
@@ -168,7 +169,7 @@
   function kiesMissieSpellen(): SpelId[] {
     return (['sonic', 'tails', 'knuckles'] as HeldId[]).map((h) => {
       // Groep 3-spellen (met een somslot) doen niet mee in de dagmissie.
-      const van = SPELLEN.filter((x) => x.held === h && !x.groep3);
+      const van = zichtbareSpellen(webglKan()).filter((x) => x.held === h && !x.groep3);
       const gespeeld = (id: SpelId) => vg.sessies.filter((x) => x.spel === id).length + Math.random() * 1.5;
       return van.sort((a, b) => gespeeld(a.id) - gespeeld(b.id))[0].id;
     });

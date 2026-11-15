@@ -22,6 +22,8 @@
   import Jacht3D from '../games/Jacht3D.svelte';
   import WoordRace3D from '../games/WoordRace3D.svelte';
   import Kluis from '../games/Kluis.svelte';
+  import Rijm3D from '../games/Rijm3D.svelte';
+  import Getallenbaan3D from '../games/Getallenbaan3D.svelte';
   import { webglKan } from '../ui/drie-d';
   import SchildBalk from '../ui/SchildBalk.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
@@ -118,9 +120,9 @@
           herbouw: (id) => o.herbouw(id, niveau, kent),
           id: o.id,
           sleutel: o.sleutel,
-          // Voor een kleuter nooit moeilijker dan zijn niveau, wel extra makkelijke opgaven.
-          uitdaging: false,
-          makkelijk: 0.3,
+          // Af en toe iets moeilijkers (in te stellen in de ouderhoek), en een enkele makkelijke opwarmer.
+          uitdaging: vg.instellingen.uitdaging,
+          makkelijk: 0.15,
           recent: new Set(vg.recent?.[spel] ?? []),
         });
   }
@@ -281,6 +283,9 @@
     meer3d: [Meer3D, Meer],
     jacht3d: [Jacht3D, Jacht],
     woordrace3d: [WoordRace3D, Race],
+    // Alleen in 3D: zonder WebGL staan ze niet in het menu (zie ALLEEN_3D)
+    rijm3d: [Rijm3D, Rijm3D],
+    getallenbaan: [Getallenbaan3D, Getallenbaan3D],
   } as const;
   const kan3D = webglKan();
   const SPELCOMP = {

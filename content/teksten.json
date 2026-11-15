@@ -387,7 +387,8 @@
       "natuur": "Natuur",
       "reis": "Op reis",
       "zee": "De zee",
-      "snoep": "Snoep en taart"
+      "snoep": "Snoep en taart",
+      "ruimte": "De ruimte"
     }
   },
   "kleedkamer": {
@@ -433,5 +434,18 @@
     "start": "Deze kluis is extra moeilijk! Los eerst deze som op.",
     "goed": "Goed zo! De kluis mag open.",
     "fout": "Oei, dat klopt niet. Probeer deze maar."
+  },
+  "rijm": {
+    "start": "Rijmen met Knuckles! Ik zeg een woord. Welk plaatje rijmt erop?",
+    "vraag": "Wat rijmt op",
+    "hint": "Luister naar het eind van het woord. Kat en rat, dat rijmt!"
+  },
+  "getallenbaan": {
+    "start": "Help Tails over de getallenbaan! Welk getal hoort op het vraagteken?",
+    "na": "Welk getal komt na",
+    "voor": "Welk getal komt voor",
+    "gat": "Welk getal mist er?",
+    "sprong": "Welk getal komt hierna? We springen steeds met twee.",
+    "hint": "Tel maar mee langs de baan."
   }
 }

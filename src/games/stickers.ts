@@ -31,6 +31,7 @@ const SOORTEN: { soort: string; icoon: string; kleur: string }[] = [
   { soort: 'buiten', icoon: '🌳', kleur: '#3b82f6' },
   { soort: 'natuur', icoon: '⛰️', kleur: '#0ea5e9' },
   { soort: 'reis', icoon: '🚗', kleur: '#64748b' },
+  { soort: 'ruimte', icoon: '🚀', kleur: '#4f46e5' },
 ];
 /** Zoveel stickers passen er op één bladzijde (7 per rij, 3 rijen). */
 export const PER_BLADZIJDE = 21;

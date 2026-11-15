@@ -4,6 +4,8 @@
  */
 import type { Rnd } from '../engine/toeval';
 import { KLUIS_MAX, kluisId, kluisUitId, maakKluis, type KluisOpgave } from '../engine/kluis';
+import { RIJM_MAX, maakRijm, rijmId, rijmUitId, type RijmOpgave } from '../engine/rijm';
+import { BAAN_MAX, baanId, baanUitId, maakBaan, type BaanOpgave } from '../engine/getallenlijn';
 import {
   jachtId, jachtUitId, maakJacht, maakMeer, maakPatronen, maakSplits, meerId, meerUitId, patroonId, patroonUitId, splitsId, splitsUitId,
   MEER_MAX, PATROON_MAX, SPLITS_MAX, JACHT_MAX,
@@ -15,7 +17,7 @@ import {
 
 export type HeldId = 'sonic' | 'tails' | 'knuckles';
 
-export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem' | 'patroonbaan' | 'bouwmuur' | 'bomsplits' | 'meer3d' | 'jacht3d' | 'woordrace3d' | 'kluis';
+export type SpelId = 'ringrace' | 'woordrace' | 'meer' | 'patroon' | 'smash' | 'bouwen' | 'jacht' | 'katapult' | 'telbouw' | 'splits' | 'tunnel' | 'tunnelsom' | 'torensmash' | 'torenboem' | 'patroonbaan' | 'bouwmuur' | 'bomsplits' | 'meer3d' | 'jacht3d' | 'woordrace3d' | 'kluis' | 'rijm3d' | 'getallenbaan';
 
 /** Een spel is ook de vaardigheid waarvan het niveau wordt bijgehouden. */
 export type VaardigheidId = SpelId;
@@ -185,11 +187,42 @@ SPELLEN.push(
   }),
 );
 
+SPELLEN.push(
+  def<RijmOpgave>({
+    id: 'rijm3d', held: 'knuckles', naam: 'Rijm-raket 3D', uitleg: 'Welk plaatje rijmt op het woord?', icoon: '🚀', maxNiveau: RIJM_MAX, prefix: 'rijm.', snel: true,
+    opgaven: { maak: (n, a, _k, rnd) => maakRijm(n, a, rnd), herbouw: (id, n) => rijmUitId(id, n), id: rijmId },
+  }),
+  def<BaanOpgave>({
+    id: 'getallenbaan', held: 'tails', naam: 'Getallenbaan 3D', uitleg: 'Welk getal komt erna, ervoor of mist er?', icoon: '🔢', maxNiveau: BAAN_MAX, rekenen: true, prefix: 'baan.', snel: true,
+    opgaven: { maak: (n, a, _k, rnd) => maakBaan(n, a, rnd), herbouw: (id) => baanUitId(id), id: baanId },
+  }),
+);
+
 /** Spellen met een eigen 3D-wereld: dan pauzeert de 3D-achtergrond. */
-export const DRIE_D_SPELLEN: SpelId[] = ['tunnel', 'tunnelsom', 'torensmash', 'torenboem', 'patroonbaan', 'bouwmuur', 'bomsplits', 'meer3d', 'jacht3d', 'woordrace3d'];
+export const DRIE_D_SPELLEN: SpelId[] = ['tunnel', 'tunnelsom', 'torensmash', 'torenboem', 'patroonbaan', 'bouwmuur', 'bomsplits', 'meer3d', 'jacht3d', 'woordrace3d', 'rijm3d', 'getallenbaan'];
+
+/**
+ * 2D-spellen met een 3D-tweeling die hetzelfde oefent. Kan het apparaat 3D, dan staat alleen de 3D-versie in het menu
+ * (zonder 3D blijft de 2D-versie gewoon zichtbaar). Voortgang en niveaus blijven bewaard.
+ */
+export const VERVANGEN_DOOR_3D: Partial<Record<SpelId, SpelId>> = {
+  woordrace: 'woordrace3d',
+  meer: 'meer3d',
+  patroon: 'patroonbaan',
+  telbouw: 'torenboem',
+  splits: 'bomsplits',
+  bouwen: 'bouwmuur',
+  jacht: 'jacht3d',
+};
+
+/** Spellen die alleen in 3D bestaan (zonder WebGL staan ze niet in het menu). */
+export const ALLEEN_3D: SpelId[] = ['rijm3d', 'getallenbaan'];
+
+/** De spellen die in het menu staan (met of zonder 3D). */
+export const zichtbareSpellen = (kan3D: boolean) =>
+  SPELLEN.filter((s) => (kan3D ? !VERVANGEN_DOOR_3D[s.id] : !ALLEEN_3D.includes(s.id)));
 
 export const SPEL = Object.fromEntries(SPELLEN.map((s) => [s.id, s])) as Record<SpelId, SpelDef<unknown>>;
-export const spellenVan = (h: HeldId) => SPELLEN.filter((s) => s.held === h);
 
 /** Opgaven voor de auditie: 8 stuks die oplopen in moeilijkheid (het niveau per opgave). */
 export function auditieNiveaus(maxNiveau: number): number[] {

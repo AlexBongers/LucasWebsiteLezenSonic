@@ -78,6 +78,8 @@ export type Voortgang = {
     effecten: boolean;
     /** Zachte achtergrondmuziek. */
     muziek: boolean;
+    /** Af en toe een opgave van het volgende niveau (een moeilijk woordje of een lastige som). */
+    uitdaging: boolean;
   };
 };
 
@@ -109,6 +111,7 @@ export function standaardVoortgang(): Voortgang {
       apparaatStem: null,
       effecten: true,
       muziek: true,
+      uitdaging: true,
     },
   };
 }

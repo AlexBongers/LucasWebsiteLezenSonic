@@ -6,7 +6,8 @@
   import Tekstballon from '../ui/Tekstballon.svelte';
   import characters from '../../content/characters.json';
   import teksten from '../../content/teksten.json';
-  import { spellenVan, type SpelId } from '../games/spellen';
+  import { zichtbareSpellen, type SpelId } from '../games/spellen';
+  import { webglKan } from '../ui/drie-d';
   import { vg, type HeldinId } from '../store/voortgang.svelte';
   import { spreek, stopSpreken } from '../audio/stem';
   import { speelTik } from '../audio/geluid';
@@ -16,7 +17,7 @@
   let { heldin, opKies, opTerug }: { heldin: HeldinId; opKies: (s: SpelId) => void; opTerug: () => void } = $props();
 
   // svelte-ignore state_referenced_locally
-  const spellen = spellenVan(heldin);
+  const spellen = zichtbareSpellen(webglKan()).filter((s) => s.held === heldin);
   // svelte-ignore state_referenced_locally
   const c = characters[heldin];
   let gekozen: SpelId | null = $state(null);

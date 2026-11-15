@@ -24,6 +24,7 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | 🏗️ Tel & Bouw | Bouw een toren van n stenen en laat hem ontploffen. Of tel hoeveel stenen er staan. Elke steen wordt hardop geteld. |
 | | 🚀 **Reken-tunnel 3D** | Tails rent door een 3D-wereld naar drie poorten. Ren door de poort met het antwoord van de som. |
 | | 🧨 **Toren-boem 3D** | Blokken vallen op elkaar en de stem telt mee. Hoeveel blokken? Goed antwoord, dan ontploft de toren. |
+| | 🔢 **Getallenbaan 3D** | Getallen op een rij van zwevende tegels: welk getal komt erna, ervoor, of mist er? Later tot 20 en sprongen van 2. Tails vliegt tegel voor tegel naar de plek. |
 | | 🛠️ **Splits-bom 3D** | Een grote bom met een krans van ringplekken. Een deel is gevuld: hoeveel moeten er nog bij? Tails gooit de ringen erin. Een fout getal laat zien waarom het niet past. |
 | | 💣 Splits-bom | Een bom met n ringen is verstopt achter twee deurtjes. Hoeveel zitten er achter het andere deurtje? Maak de bom veilig. |
 | **Knuckles** | 💥 Letter-smash | De stem zegt een woord. Sla de steen met de beginletter kapot. |
@@ -31,10 +32,11 @@ Na het kiezen van een held kiest Lucas een spel (of de **Dagmissie**). De snelle
 | | 🗼 **Toren-smash 3D** | Een draaiende toren van letterblokken. Tik op het blok met de beginletter, Knuckles slaat het eruit. |
 | | 🏰 **Muur-bouwer 3D** | Boven een muur zweeft een plaatje. Tik de grote letterblokken in de goede volgorde: Knuckles slaat ze op hun plek en de muur danst. |
 | | 🥊 **Letter-jacht 3D** | Letterblokken op zuiltjes in een tempel. Sla alle blokken met de gezochte letter kapot. |
+| | 🚀 **Rijm-raket 3D** | De stem zegt een woord; welk plaatje rijmt erop (kat – rat)? De raket vliegt naar de goede planeet. Rijmen is luisteren, dus alle woordjes met een plaatje doen mee. |
 | | 🔐 **Kluis-kraker** 🎓3 | Groep 3-niveau, uitdagend. De stem zegt een woord; in het woord op de kluis mist een letter (eerst de middelste klinker: v?s, later elke plek, ook aa/oo/ie en b/d). Het spel gaat pas open na een moeilijke som over het tiental (bijv. 14 − 9). Het paarse 🎓3-label in het spelmenu betekent: eigenlijk voor groep 3. Doet niet mee in de dagmissie. |
 | | 🔨 Letter-jacht | Een rij stenen met letters. Sla ze allemaal kapot die gelijk zijn aan de letter bovenin. |
 
-De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden: filmisch licht, zachte schaduwen, randlicht, gloed rond ringen en zwevende glitters. De helden zijn in zes 3D-spellen dezelfde getekende figuren als in de menu's (met alles uit de kleedkamer), maar met diepte: een schaduw op de vloer, licht dat over ze heen glijdt, een randgloed en een kanteling als ze rennen of juichen. Alleen in de Turbo-tunnel, waar je de held van achteren ziet, is hij van blokjes gebouwd. Op een trage tablet schakelt de site zelf terug (minder pixels, daarna zonder schaduwen) en onthoudt dat. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
+Kan het apparaat 3D, dan staan 2D-spellen met een 3D-tweeling (Woord-race, Meer-race, Patroon-race, Tel & Bouw, Splits-bom, Woord-bouwen, Letter-jacht) niet meer in het menu; hun voortgang blijft bewaard. De **3D-spellen** gebruiken Three.js met eigen cartoon-figuren en -werelden: filmisch licht, zachte schaduwen, randlicht, gloed rond ringen en zwevende glitters. De helden zijn in zes 3D-spellen dezelfde getekende figuren als in de menu's (met alles uit de kleedkamer), maar met diepte: een schaduw op de vloer, licht dat over ze heen glijdt, een randgloed en een kanteling als ze rennen of juichen. Alleen in de Turbo-tunnel, waar je de held van achteren ziet, is hij van blokjes gebouwd. Op een trage tablet schakelt de site zelf terug (minder pixels, daarna zonder schaduwen) en onthoudt dat. Heeft een apparaat geen WebGL, dan wordt automatisch het 2D-broertje gespeeld. Elk 3D-spel heeft zijn eigen herhalingsdoosjes.
 
 **Eén munt: gouden ringen.** Lucas verdient ringen in elk spel (2 voor meteen goed, 1 na een hint, bonus voor combo's en het einde van een ronde, 40 extra voor een dagmissie en voor een volle plakboekbladzijde) en betaalt er alles mee in de **Turbo-winkel** en de **kleedkamer**. Er wordt nooit echt geld uitgegeven. Alles heeft een stem die vertelt wat het is en wat het kost. (Oude bliksems zijn omgezet: 1 bliksem = 8 ringen.)
 
@@ -62,7 +64,8 @@ Verder:
 - **Alle opnames zijn even hard en gecontroleerd.** Bij het maken worden ze op dezelfde luidheid gebracht (-18 LUFS), en elke opname wordt teruggeluisterd met spraakherkenning. Klinkt een woord of getal niet zoals bedoeld, dan wordt het opnieuw gemaakt (zie "De stem").
 - **Proefrondje:** elk spel begint met 8 opgaven die steeds moeilijker worden. Daarmee kiest de site het startniveau.
 - **Niveau per spel.** Rekenen gaat pas een stapje omhoog bij 9 van de 10 goed. Er zijn nooit moeilijkere opgaven dan zijn niveau, wel extra makkelijke.
-- **Afwisseling:** 222 woordjes met plaatje (67 te lezen met de standaardletters), meer soorten sommen per niveau (tot 6, met 0, dubbelen, samen tien, één of twee terug, alles eraf, tien erbij) en een zesde rekenniveau over het tiental (8 + 5, 13 − 6), meer patroonvormen (ABCD, ABBA) en kleuren, telvoorwerpen die per som wisselen (appels, auto's, eendjes, …), en de site onthoudt per spel de laatste 40 opgaven zodat die niet meteen terugkomen.
+- **Groep 3:** in de ouderhoek staat een knop die alle letters en klanken aanzet (dan zijn 252 woordjes leesbaar), en standaard komt er per ronde af en toe een opgave van het volgende niveau bij (uit te zetten).
+- **Afwisseling:** 283 woordjes met plaatje (67 te lezen met de standaardletters), meer soorten sommen per niveau (tot 6, met 0, dubbelen, samen tien, één of twee terug, alles eraf, tien erbij) en een zesde rekenniveau over het tiental (8 + 5, 13 − 6), meer patroonvormen (ABCD, ABBA) en kleuren, telvoorwerpen die per som wisselen (appels, auto's, eendjes, …), en de site onthoudt per spel de laatste 40 opgaven zodat die niet meteen terugkomen.
 - **Herhalingsdoosjes:** wat niet meteen goed ging, komt later terug (volgende keer, na 1, 3, 7 en 14 dagen).
 - **Hint bij een fout, antwoord bij de tweede fout.** Nooit een straf: de opgave komt later terug.
 - **Gouden ringen** vliegen naar de teller, met "3 op rij!"-combo's, ontploffingen en een schuddend scherm.
@@ -117,7 +120,7 @@ De app draait als Cloudflare Worker met Static Assets (`wrangler.jsonc`). Eenmal
 src/app/      schermen: start, heldenkeuze, spelkeuze, ronde (Level), beloning, kristal, winkel, plakboek, ouderhoek
 src/art/      Held (Sonic, Tails, Knuckles) en Robot
 src/engine/   letters en woorden, sommen, niveau, doosjes, planning
-src/games/    de eenentwintig spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)
+src/games/    de drieëntwintig spellen, de dagmissie, de winkelartikelen en de gemeenschappelijke regels (Ronde)
 src/audio/    stem, geluidseffecten en muziek
 src/ui/       achtergronden, werelden, kristallen, ontploffingen, feest, drie-d.ts (3D-basis) en drie-d-vormen.ts
 tools/audio/  opnames: luidheid, stiltes, MP3 en uitspraakcontrole
