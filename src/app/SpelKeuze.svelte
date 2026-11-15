@@ -174,7 +174,7 @@
     background: linear-gradient(160deg, color-mix(in srgb, var(--kleur) 38%, #0b1640), color-mix(in srgb, var(--kleur) 18%, #0b1640));
     border: 3px solid color-mix(in srgb, var(--kleur) 70%, white);
     backdrop-filter: blur(4px);
-    box-shadow: 0 0 26px color-mix(in srgb, var(--kleur) 45%, transparent), 0 8px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 26px color-mix(in srgb, var(--kleur) 45%, transparent), 0 8px 0 rgba(0, 0, 0, 0.25), 0 9px 0 color-mix(in srgb, var(--kleur) 40%, black), inset 0 2px 0 rgba(255, 255, 255, 0.3);
     transition: transform 0.15s, opacity 0.3s;
   }
   .spellen.drie .spel {
@@ -192,6 +192,8 @@
   }
   .icoon {
     flex: none;
+    transform: perspective(500px) rotateX(10deg) rotateY(-8deg);
+    box-shadow: 0 7px 0 rgba(0, 0, 0, 0.18), 0 12px 16px rgba(0, 0, 0, 0.3), inset 0 -5px 0 rgba(0, 0, 0, 0.12) !important;
     display: grid;
     place-items: center;
     width: 108px;

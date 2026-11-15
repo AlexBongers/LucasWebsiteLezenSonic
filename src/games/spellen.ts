@@ -185,6 +185,9 @@ SPELLEN.push(
   }),
 );
 
+/** Spellen met een eigen 3D-wereld: dan pauzeert de 3D-achtergrond. */
+export const DRIE_D_SPELLEN: SpelId[] = ['tunnel', 'tunnelsom', 'torensmash', 'torenboem', 'patroonbaan', 'bouwmuur', 'bomsplits', 'meer3d', 'jacht3d', 'woordrace3d'];
+
 export const SPEL = Object.fromEntries(SPELLEN.map((s) => [s.id, s])) as Record<SpelId, SpelDef<unknown>>;
 export const spellenVan = (h: HeldId) => SPELLEN.filter((s) => s.held === h);
 

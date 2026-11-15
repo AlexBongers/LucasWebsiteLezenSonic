@@ -15,7 +15,7 @@
   import Kleedkamer from './Kleedkamer.svelte';
   import { verdien } from '../store/winkel.svelte';
   import { RINGEN_KRISTAL, type Soort } from '../games/winkel';
-  import { SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
+  import { DRIE_D_SPELLEN, SPEL, SPELLEN, type HeldId, type SpelId } from '../games/spellen';
   import { WERELD_VAN } from '../ui/werelden';
   import characters from '../../content/characters.json';
   import teksten from '../../content/teksten.json';
@@ -264,7 +264,7 @@
   }
 </script>
 
-<Achtergrond {accent} {wereld} />
+<Achtergrond {accent} {wereld} pauze3d={scherm === 'level' && DRIE_D_SPELLEN.includes(spel)} />
 
 <div class="buhne" style="transform: translate(-50%, -50%) scale({schaal})">
   {#key scherm + (scherm === 'level' ? spel : '')}

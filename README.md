@@ -55,7 +55,7 @@ Papa of mama kan in de ouderhoek ringen geven als beloning, de winkel leegmaken 
 
 **Dagmissie.** Drie spellen achter elkaar, een van elke held, vier opgaven per spel. Gelukt? Dan krijgt Lucas een **turbokristal** (regenboogkleuren). Bij het zevende kristal wordt hij **superheld**.
 
-**Drie werelden** met eigen achtergrond (groene heuvels, stad bij nacht, grot met kristallen), **chiptune-muziek** (aan en uit te zetten; de muziek wordt zachter als de stem praat) en veel geluidseffecten, allemaal zelf gemaakt met Web Audio.
+**Vier werelden in 3D** (groene heuvels met looping, Tails' werkplaats met windmolen en vliegtuigje, jungletempel met gloeiend kristal, en de ruimte uit de winkel) achter alle schermen en 2D-spellen, met een langzaam zwevende camera. Licht gehouden (30 beelden per seconde, geen schaduwen) en gepauzeerd tijdens een 3D-spel; zonder WebGL de getekende versie. Daarvoor gold: **Drie werelden** met eigen achtergrond (groene heuvels, stad bij nacht, grot met kristallen), **chiptune-muziek** (aan en uit te zetten; de muziek wordt zachter als de stem praat) en veel geluidseffecten, allemaal zelf gemaakt met Web Audio.
 
 Verder:
 - **Alles wordt voorgelezen** door een Nederlandse jongensstem (ElevenLabs, Milan). Er is geen tabletstem nodig; de teksten zijn vooraf ingesproken en werken offline.

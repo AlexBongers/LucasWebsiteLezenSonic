@@ -218,3 +218,74 @@ button {
   line-height: 1;
   font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
 }
+
+/* ---------- Diepte: knoppen en kaarten zien eruit als echte 3D-voorwerpen ---------- */
+.knop-goud {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 18%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #fff3b0 0%, #fbbf24 45%, #f59e0b 100%);
+  box-shadow:
+    0 8px 0 #b45309,
+    0 9px 0 #7c2d12,
+    0 16px 26px rgba(0, 0, 0, 0.4),
+    inset 0 -6px 0 rgba(180, 83, 9, 0.35),
+    inset 0 3px 0 rgba(255, 255, 255, 0.9);
+}
+.knop-goud:active {
+  transform: translateY(7px);
+  box-shadow: 0 1px 0 #b45309, 0 2px 0 #7c2d12, 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 -3px 0 rgba(180, 83, 9, 0.35), inset 0 3px 0 rgba(255, 255, 255, 0.9);
+}
+.knop-rond {
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 55%),
+    rgba(255, 255, 255, 0.16);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.35), 0 10px 18px rgba(0, 0, 0, 0.3), inset 0 -4px 0 rgba(0, 0, 0, 0.18);
+}
+.opdrachtkaart {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.25), 0 18px 40px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.35);
+}
+.keuzeknop {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 10%, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #ffffff, #dbeafe);
+  box-shadow: 0 8px 0 #1d4ed8, 0 9px 0 #1e3a8a, 0 16px 26px rgba(0, 0, 0, 0.4), inset 0 -5px 0 rgba(29, 78, 216, 0.18);
+}
+.keuzeknop:active {
+  transform: translateY(7px);
+}
+
+/* Kaarten die zachtjes in de ruimte zweven en kantelen */
+@keyframes zweef3d {
+  0%, 100% { transform: perspective(1100px) rotateX(3deg) rotateY(-3deg) translateY(0); }
+  50% { transform: perspective(1100px) rotateX(1deg) rotateY(3deg) translateY(-6px); }
+}
+.zweeft {
+  animation: zweef3d 7s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Een 3D-podium onder de held in de spellen en het spelmenu */
+.heldin-plek::before,
+.heldin::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 230px;
+  height: 58px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.55), transparent 60%),
+    linear-gradient(180deg, #fde68a, #f59e0b);
+  box-shadow: 0 12px 0 #92400e, 0 24px 28px rgba(0, 0, 0, 0.45), 0 0 36px rgba(251, 191, 36, 0.45);
+  z-index: -1;
+}
+.heldin-plek,
+.heldin {
+  isolation: isolate;
+}

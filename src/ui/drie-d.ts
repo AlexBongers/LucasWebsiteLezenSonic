@@ -272,18 +272,28 @@ export type Toneel = {
   /** Welk van deze objecten zit onder de vinger? */
   raak: (clientX: number, clientY: number, objecten: Object3D[]) => Object3D | null;
   stop: () => void;
+  /** Tijdelijk niet tekenen (bijv. de achtergrond terwijl er een 3D-spel loopt). */
+  pauzeer: (ja: boolean) => void;
 };
 
 export function maakToneel(
   host: HTMLElement,
-  opt: { lucht?: [string, string, string]; mist?: number; mistAfstand?: [number, number]; fov?: number; glitter?: number } = {},
+  opt: {
+    lucht?: [string, string, string];
+    mist?: number;
+    mistAfstand?: [number, number];
+    fov?: number;
+    glitter?: number;
+    /** Lichte stand voor een achtergrond: geen schaduwen, scherpte 1, hooguit dit aantal beelden per seconde. */
+    licht?: { fps: number };
+  } = {},
 ): Toneel {
   let kwaliteit = leesKwaliteit();
   const renderer = new WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, kwaliteit === 'laag' ? 1 : 1.5));
+  renderer.setPixelRatio(opt.licht ? 1 : Math.min(window.devicePixelRatio || 1, kwaliteit === 'laag' ? 1 : 1.5));
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.18;
-  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.enabled = !opt.licht;
   renderer.shadowMap.type = PCFSoftShadowMap;
   const canvas = renderer.domElement;
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;';
@@ -299,7 +309,7 @@ export function maakToneel(
   scene.add(new HemisphereLight(0xffffff, 0x6b7a8f, 1.55));
   const zon = new DirectionalLight(0xfff3d6, 2.4);
   zon.position.set(9, 20, 12);
-  zon.castShadow = kwaliteit !== 'laag';
+  zon.castShadow = !opt.licht && kwaliteit !== 'laag';
   zon.shadow.mapSize.set(1024, 1024);
   const sc = zon.shadow.camera;
   sc.left = -20;
@@ -354,7 +364,7 @@ export function maakToneel(
   let meetSom = 0;
   let meetAantal = 0;
   const meet = (dt: number) => {
-    if (beeldjes < 30 || kwaliteit === 'laag') return;
+    if (opt.licht || beeldjes < 30 || kwaliteit === 'laag') return;
     meetSom += dt;
     meetAantal++;
     if (meetAantal < 90) return;
@@ -381,9 +391,12 @@ export function maakToneel(
   let vorige = performance.now();
   let tijd = 0;
   let gestopt = false;
+  let gepauzeerd = false;
+  const minStap = opt.licht ? 1 / opt.licht.fps - 0.002 : 0;
   const lus = (nu: number) => {
     if (gestopt) return;
     raf = requestAnimationFrame(lus);
+    if (gepauzeerd || (minStap && (nu - vorige) / 1000 < minStap)) return;
     const dt = Math.min(0.05, (nu - vorige) / 1000);
     vorige = nu;
     if (document.hidden) return;
@@ -421,6 +434,10 @@ export function maakToneel(
       straal.setFromCamera(punt, camera);
       const t = straal.intersectObjects(objecten, true)[0];
       return t ? t.object : null;
+    },
+    pauzeer: (ja) => {
+      gepauzeerd = ja;
+      vorige = performance.now();
     },
     stop: () => {
       gestopt = true;

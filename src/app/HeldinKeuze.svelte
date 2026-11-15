@@ -93,9 +93,10 @@
         class:gekozen={gekozen === h}
         class:weg={gekozen !== null && gekozen !== h}
         class:super={superheld}
-        style="--kleur:{c.kleur}; animation-delay:{i * 0.12}s"
+        style="--kleur:{c.kleur}; animation-delay:{i * 0.12}s, {i * -2.3}s"
         onclick={() => kies(h)}
       >
+        <div class="podium" aria-hidden="true"></div>
         <div class="figuur">
           <Heldin wie={h} stemming={gekozen === h ? 'juich' : 'rust'} hoogte={360} />
         </div>
@@ -267,6 +268,7 @@
   }
   .kaart {
     position: relative;
+    transform-style: preserve-3d;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -279,7 +281,7 @@
       linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03));
     border: 3px solid color-mix(in srgb, var(--kleur) 70%, white);
     box-shadow: 0 0 30px color-mix(in srgb, var(--kleur) 50%, transparent), inset 0 0 40px rgba(255, 255, 255, 0.05);
-    animation: kaart-in 0.6s ease-out backwards;
+    animation: kaart-in 0.6s ease-out backwards, zweef3d 7s ease-in-out 0.6s infinite;
     transition: transform 0.3s, opacity 0.3s;
   }
   .kaart::before {
@@ -309,6 +311,21 @@
   .figuur {
     position: relative;
     margin-bottom: -4px;
+    filter: drop-shadow(0 0 16px color-mix(in srgb, var(--kleur) 70%, transparent));
+  }
+  /* Een rond podium in 3D onder de held */
+  .podium {
+    position: absolute;
+    left: 50%;
+    bottom: 96px;
+    width: 250px;
+    height: 70px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background:
+      radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.55), transparent 60%),
+      linear-gradient(180deg, color-mix(in srgb, var(--kleur) 70%, white), var(--kleur));
+    box-shadow: 0 14px 0 color-mix(in srgb, var(--kleur) 55%, black), 0 26px 30px rgba(0, 0, 0, 0.45), 0 0 40px color-mix(in srgb, var(--kleur) 60%, transparent);
   }
   .naambord {
     position: relative;

@@ -7,8 +7,13 @@
    *  ruimte:     sterren, planeten en een maanbodem (uit de winkel, voor alle helden)
    */
   import type { Wereld } from './werelden';
+  import Wereld3D from './Wereld3D.svelte';
+  import { webglKan } from './drie-d';
 
-  let { accent = '#2563eb', wereld = 'heuvel' }: { accent?: string; wereld?: Wereld } = $props();
+  let { accent = '#2563eb', wereld = 'heuvel', pauze3d = false }: { accent?: string; wereld?: Wereld; pauze3d?: boolean } = $props();
+  /** De echte 3D-wereld als het apparaat dat kan; anders (en tijdens het laden) de getekende versie. */
+  const drieD = webglKan();
+  let klaar3d = $state(false);
 
   const ringen = Array.from({ length: 9 }, (_, i) => ({
     x: (i * 53 + 8) % 100,
@@ -53,8 +58,13 @@
 </script>
 
 <div class="achtergrond" style="--accent:{accent}">
+  {#if drieD}
+    {#key wereld}
+      <Wereld3D {wereld} pauze={pauze3d} opKlaar={() => (klaar3d = true)} />
+    {/key}
+  {/if}
   {#key wereld}
-    <div class="scene {wereld}">
+    <div class="scene {wereld}" class:verborgen={klaar3d}>
       {#if wereld === 'heuvel'}
         <div class="lucht heuvel-lucht"></div>
         <div class="zon"></div>
@@ -220,6 +230,9 @@
     z-index: 0;
     pointer-events: none;
     background: #0a3a9e;
+  }
+  .scene.verborgen {
+    display: none;
   }
   .scene {
     position: absolute;
