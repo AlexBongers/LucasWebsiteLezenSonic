@@ -12,6 +12,7 @@
   import characters from '../../content/characters.json';
   import { ARTIKEL } from '../games/winkel';
   import { verdien } from '../store/winkel.svelte';
+  import { ALLE_STICKERS } from '../games/stickers';
 
   let { opSluit }: { opSluit: () => void } = $props();
 
@@ -214,7 +215,7 @@
       <p class="uitleg">
         Lucas betaalt alles met de gouden ringen die hij in de spellen verdient (plus 40 voor een dagmissie en voor een volle plakboekbladzijde). Hij koopt er powerups, stickers, kleding, maatjes en meer mee. Er wordt nooit echt geld uitgegeven.
         Nu: <strong>{vg.ringen}</strong> ringen · uitgegeven: {vg.winkel.uitgegeven}.
-        Plakboek: {Object.keys(vg.plakboek.stickers).length} van 64 stickers, {vg.plakboek.glim.length} glimmend.
+        Plakboek: {Object.keys(vg.plakboek.stickers).length} van {ALLE_STICKERS.length} stickers, {vg.plakboek.glim.length} glimmend.
         {#if vg.winkel.bezit.length}Hij heeft: {vg.winkel.bezit.map((id) => ARTIKEL[id]?.icoon ?? id).join(' ')}{/if}
       </p>
       <div class="rij">

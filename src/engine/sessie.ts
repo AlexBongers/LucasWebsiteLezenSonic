@@ -40,6 +40,8 @@ export function verdeling(
 }
 
 export type PlanOpties<T> = {
+  /** Ids die hij de laatste rondes al zag: die komen zo mogelijk niet opnieuw. */
+  recent?: ReadonlySet<string>;
   aantal: number;
   niveau: number;
   maxNiveau: number;
@@ -82,7 +84,10 @@ export function planSessie<T>(o: PlanOpties<T>): Gepland<T>[] {
   const vul = (niveau: number, n: number, bron: Bron): Gepland<T>[] => {
     const uit: Gepland<T>[] = [];
     if (n <= 0) return uit;
-    for (const t of o.maak(niveau, n + 6)) {
+    // Ruim maken en dan eerst wat hij de laatste rondes niet zag: zo komt niet steeds hetzelfde terug.
+    const kandidaten = o.maak(niveau, n * 3 + 10);
+    const vers = o.recent ? [...kandidaten.filter((t) => !o.recent!.has(o.id(t))), ...kandidaten.filter((t) => o.recent!.has(o.id(t)))] : kandidaten;
+    for (const t of vers) {
       if (uit.length >= n) break;
       const g = neem(t, niveau, bron);
       if (g) uit.push(g);

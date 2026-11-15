@@ -20,6 +20,7 @@
   import { MeshBasicMaterial, PlaneGeometry, BoxGeometry, SphereGeometry, Fog } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { dingVoor } from './dingen';
   import { vg } from '../store/voortgang.svelte';
   import { drieKeuzes } from './keuze';
   import type { SpelProps } from './types';
@@ -393,16 +394,12 @@
         {#if toonRingen}
           <div class="ringrij">
             {#each Array.from({ length: som.a }) as _, i}
-              <svg class="r" class:weg={som.op === '-' && i >= som.a - som.b} viewBox="0 0 40 40" aria-hidden="true">
-                <circle cx="20" cy="20" r="14" fill="none" stroke="#fbbf24" stroke-width="8" />
-              </svg>
+              <span class="r ding" class:weg={som.op === '-' && i >= som.a - som.b} aria-hidden="true">{dingVoor(som.a, som.b, som.op)}</span>
             {/each}
             {#if som.op === '+'}
               <span class="plus">+</span>
               {#each Array.from({ length: som.b }) as _, i}
-                <svg class="r" viewBox="0 0 40 40" aria-hidden="true">
-                  <circle cx="20" cy="20" r="14" fill="none" stroke="#f97316" stroke-width="8" />
-                </svg>
+                <span class="r ding nieuw" aria-hidden="true">{dingVoor(som.a, som.b, som.op)}</span>
               {/each}
             {/if}
           </div>
@@ -488,8 +485,9 @@
     justify-content: center;
   }
   .r {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
+    --ding: 30px;
     filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.8));
   }
   .r.weg {

@@ -15,6 +15,7 @@
   import { boem, werp } from '../ui/boem';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { dingVoor } from './dingen';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [], niveau = 0 }: SpelProps<Som> = $props();
@@ -124,19 +125,13 @@
         {#if toonRingen}
           <div class="ringrij">
             {#each Array.from({ length: som.a }) as _, i}
-              <svg class="r" class:weg={som.op === '-' && i >= som.a - som.b} viewBox="0 0 40 40" aria-hidden="true">
-                <circle cx="20" cy="20" r="14" fill="none" stroke="#fbbf24" stroke-width="8" />
-                <circle cx="20" cy="20" r="14" fill="none" stroke="#fff7c2" stroke-width="1.5" />
-              </svg>
+              <span class="r ding" class:weg={som.op === '-' && i >= som.a - som.b} aria-hidden="true">{dingVoor(som.a, som.b, som.op)}</span>
               {#if i === 9 && som.a > 10}<span class="tiental"></span>{/if}
             {/each}
             {#if som.op === '+'}
               <span class="plus">+</span>
               {#each Array.from({ length: som.b }) as _, i}
-                <svg class="r nieuw" viewBox="0 0 40 40" aria-hidden="true">
-                  <circle cx="20" cy="20" r="14" fill="none" stroke="#f97316" stroke-width="8" />
-                  <circle cx="20" cy="20" r="14" fill="none" stroke="#fed7aa" stroke-width="1.5" />
-                </svg>
+                <span class="r ding nieuw" aria-hidden="true">{dingVoor(som.a, som.b, som.op)}</span>
               {/each}
             {/if}
           </div>
@@ -235,8 +230,9 @@
     max-width: 640px;
   }
   .r {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    --ding: 42px;
     filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.8));
     animation: pop-in 0.3s ease-out backwards;
   }

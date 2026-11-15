@@ -121,6 +121,7 @@
           // Voor een kleuter nooit moeilijker dan zijn niveau, wel extra makkelijke opgaven.
           uitdaging: false,
           makkelijk: 0.3,
+          recent: new Set(vg.recent?.[spel] ?? []),
         });
   }
   plan();
@@ -208,6 +209,8 @@
     for (const r of resultaten) h = verwerkAntwoord(h, r.id, r.goed, r.niveau, nu);
     vg.herhaling = h;
     vg.stats = werkStatsBij(vg.stats, resultaten);
+    // Onthoud wat hij zag (de laatste 40 per spel), zodat de volgende rondes iets anders brengen.
+    vg.recent = { ...(vg.recent ?? {}), [spel]: [...(vg.recent?.[spel] ?? []), ...resultaten.map((r) => r.id)].slice(-40) };
 
     let titel: string | undefined;
     let melding: string | undefined;

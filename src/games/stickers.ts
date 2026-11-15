@@ -7,10 +7,16 @@ import { ALLE_WOORDEN } from '../engine/generator-lucas';
 export type Bladzijde = { id: string; icoon: string; kleur: string; woorden: string[] };
 
 export const BLADZIJDEN: Bladzijde[] = [
-  { id: 'dieren', icoon: '🐾', kleur: '#22c55e', woorden: ['kat', 'kip', 'vis', 'vos', 'lam', 'rat', 'ram', 'krab', 'aap', 'eend', 'muis', 'bij', 'mier', 'koe'] },
-  { id: 'thuis', icoon: '🏠', kleur: '#f59e0b', woorden: ['pan', 'pot', 'kom', 'kaas', 'kers', 'vork', 'mand', 'lamp', 'stoel', 'kaars', 'bed', 'deur', 'raam', 'klok', 'boek', 'pen'] },
-  { id: 'lijf', icoon: '🧢', kleur: '#ec4899', woorden: ['pet', 'rok', 'sok', 'jas', 'tas', 'hoed', 'bril', 'man', 'hand', 'voet', 'lip', 'oog', 'oor', 'neus'] },
-  { id: 'buiten', icoon: '🌳', kleur: '#3b82f6', woorden: ['tak', 'zon', 'bos', 'dak', 'tent', 'post', 'kerk', 'vlag', 'maan', 'roos', 'boom', 'boot', 'vuur', 'bus', 'bal', 'ster', 'pijl', 'trein', 'huis', 'bloem'] },
+  { id: 'dieren', icoon: '🐾', kleur: '#22c55e', woorden: ['kat', 'kip', 'vis', 'vos', 'lam', 'rat', 'ram', 'krab', 'aap', 'eend', 'muis', 'bij', 'mier', 'koe', 'kikker', 'varken', 'paard', 'haas', 'egel', 'slak', 'vogel'] },
+  { id: 'wild', icoon: '🦁', kleur: '#f97316', woorden: ['otter', 'zebra', 'leeuw', 'tijger', 'beer', 'uil', 'slang', 'walvis', 'dolfijn', 'haai', 'kreeft', 'pinguin', 'spin'] },
+  { id: 'eten', icoon: '🍎', kleur: '#ef4444', woorden: ['kaas', 'kers', 'spek', 'ananas', 'paprika', 'tomaat', 'banaan', 'druif', 'peer', 'citroen', 'wortel', 'ui', 'brood', 'ei', 'melk', 'ijs', 'taart', 'soep', 'friet'] },
+  { id: 'thuis', icoon: '🏠', kleur: '#f59e0b', woorden: ['pan', 'pot', 'kom', 'vork', 'mand', 'lamp', 'stoel', 'kaars', 'bed', 'deur', 'raam', 'klok', 'pen', 'mes', 'mok', 'vat', 'spons', 'sleutel', 'lepel', 'schaar', 'krant'] },
+  { id: 'spelen', icoon: '🎈', kleur: '#a855f7', woorden: ['piano', 'trompet', 'trommel', 'bal', 'pop', 'masker', 'ski', 'robot', 'dino', 'monster', 'bel', 'boek'] },
+  { id: 'lijf', icoon: '🧢', kleur: '#ec4899', woorden: ['pet', 'rok', 'sok', 'jas', 'tas', 'hoed', 'bril', 'hand', 'voet', 'lip', 'oog', 'oor', 'neus', 'vest', 'helm', 'sjaal', 'schoen', 'handschoen', 'tand', 'duim'] },
+  { id: 'mensen', icoon: '👑', kleur: '#eab308', woorden: ['man', 'oma', 'opa', 'kok', 'koning', 'prinses', 'heks', 'kroon'] },
+  { id: 'buiten', icoon: '🌳', kleur: '#3b82f6', woorden: ['tak', 'zon', 'bos', 'dak', 'tent', 'post', 'kerk', 'vlag', 'maan', 'roos', 'boom', 'vuur', 'ster', 'pijl', 'huis', 'bloem', 'kasteel'] },
+  { id: 'natuur', icoon: '⛰️', kleur: '#0ea5e9', woorden: ['net', 'rots', 'nest', 'regen', 'sneeuw', 'berg', 'vulkaan', 'eiland', 'regenboog'] },
+  { id: 'reis', icoon: '🚗', kleur: '#64748b', woorden: ['bus', 'trein', 'boot', 'raket', 'motor', 'tram', 'kano', 'auto', 'vliegtuig'] },
 ];
 
 const EMOJI = new Map(ALLE_WOORDEN.map((w) => [w.woord, w.emoji]));

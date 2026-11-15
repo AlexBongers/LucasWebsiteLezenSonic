@@ -215,6 +215,21 @@ const plusTot5: SomType = (r) => {
   const a = getal(1, 4, r);
   return plus(a, getal(1, 5 - a, r));
 };
+/** Tot 6, en soms met een 0 erbij (3 + 0): meer afwisseling op het eerste niveau. */
+const plusTot6: SomType = (r) => {
+  const a = getal(1, 5, r);
+  return plus(a, getal(r() < 0.15 ? 0 : 1, 6 - a, r));
+};
+/** Dubbelen (3 + 3, 4 + 4): leuk om te leren en makkelijk te onthouden. */
+const dubbel: SomType = (r) => {
+  const a = getal(1, 5, r);
+  return plus(a, a);
+};
+/** Eén of twee terug (7 - 1, 9 - 2). */
+const minKlein: SomType = (r) => {
+  const a = getal(3, 10, r);
+  return min(a, getal(1, 2, r));
+};
 const plusTot10: SomType = (r) => {
   const a = getal(1, 9, r);
   return plus(a, getal(1, 10 - a, r));
@@ -234,10 +249,10 @@ const minTot20: SomType = (r) => {
 
 /** Rustige opbouw: eerst plus tot 5, dan tot 10, dan min, dan door elkaar, dan tot 20. */
 export const SOM_TYPES: Record<number, SomType[]> = {
-  0: [plusTot5],
-  1: [plusTot10],
-  2: [minTot10],
-  3: [plusTot10, minTot10],
+  0: [plusTot5, plusTot6],
+  1: [plusTot10, dubbel, plusTot6],
+  2: [minTot10, minKlein],
+  3: [plusTot10, minTot10, dubbel],
   4: [plusTot20, minTot20, plusTot10, minTot10],
 };
 export const REKEN_MAX = 4;
@@ -248,7 +263,7 @@ export function somNiveau(a: number, op: '+' | '-', b: number): number {
   const uitkomst = op === '+' ? a + b : a - b;
   if (Math.max(a, uitkomst) > 10) return 4;
   if (op === '-') return 2;
-  return a + b <= 5 ? 0 : 1;
+  return a + b <= 6 ? 0 : 1;
 }
 
 export function somSoort(a: number, op: '+' | '-', b: number): string {

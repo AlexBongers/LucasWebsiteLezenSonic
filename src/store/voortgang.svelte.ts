@@ -58,6 +58,8 @@ export type Voortgang = {
   /** Voor de flitsspellen: hoe lang het woord of de letter in beeld blijft (milliseconden). */
   flitstijd: number;
   sessies: Sessie[];
+  /** Per spel de laatst geziene opgaven (om afwisseling te houden). */
+  recent?: Partial<Record<SpelId, string[]>>;
   /** Herhalingsdoosjes: sleutel ("som.3+4", "woord.kat", "ring.b") → doos. */
   herhaling: Herhaling;
   /** Is de auditie per spel al gedaan? */

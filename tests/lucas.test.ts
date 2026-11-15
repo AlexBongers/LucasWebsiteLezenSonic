@@ -103,7 +103,7 @@ describe('Letter-smash', () => {
 describe('Katapult-sommen', () => {
   it('blijft binnen het niveau en het goede antwoord staat tussen de keuzes', () => {
     const rnd = zaadRnd(8);
-    const grenzen = [5, 10, 10, 10, 20];
+    const grenzen = [6, 10, 10, 10, 20];
     for (let n = 0; n <= 4; n++) {
       for (const s of maakSommen(n, 30, rnd)) {
         expect(Math.max(s.a, s.antwoord)).toBeLessThanOrEqual(grenzen[n]);

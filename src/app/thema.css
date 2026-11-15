@@ -289,3 +289,19 @@ button {
 .heldin {
   isolation: isolate;
 }
+
+/* Telvoorwerpen bij de sommen (appels, auto's, eendjes): de tweede groep krijgt een oranje gloed */
+.ding {
+  display: inline-grid;
+  place-items: center;
+  font-size: var(--ding, 34px);
+  line-height: 1;
+  font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+  border-radius: 50%;
+}
+.ding.nieuw {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.45), transparent 70%);
+}
+.ding.weg {
+  filter: grayscale(1);
+}

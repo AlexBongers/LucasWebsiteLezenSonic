@@ -8,6 +8,7 @@
  *   npm run audio:proef                 laat zien wat er ingesproken gaat worden (kost niets)
  *   npm run audio                       maakt alle ontbrekende opnames + audio-manifest.json
  *   npm run audio -- --alleen=kat       spreekt alleen teksten opnieuw in die "kat" bevatten
+ *   npm run audio -- --lijst=mes,pop    maakt alleen deze precieze teksten (als ze nog geen opname hebben)
  *   npm run audio -- --opnieuw          spreekt alles opnieuw in
  *   npm run audio -- --proef            maakt proefstemmen in public/audio/proef/
  *
@@ -223,8 +224,14 @@ async function maakAlles() {
   const sleutelStem = stemSleutel(stemInfo);
   const alle = alleTeksten().map((t) => ({ ...t, sleutel: audioSleutel(t.tekst, t.soort, sleutelStem) }));
   const alleen = waarde('alleen');
+  // --lijst=mes,pop,mok: alleen deze precieze teksten (als ze nog geen opname hebben). Handig als het tegoed krap is.
+  const lijst = waarde('lijst')?.split(',').map((x) => x.trim().toLowerCase()).filter(Boolean);
   const gekozen = alle.filter((t) =>
-    alleen ? t.tekst.toLowerCase().includes(alleen.toLowerCase()) : vlag('opnieuw') || !existsSync(join(TTS, `${t.sleutel}.mp3`)),
+    lijst
+      ? lijst.includes(t.tekst.toLowerCase()) && !existsSync(join(TTS, `${t.sleutel}.mp3`))
+      : alleen
+        ? t.tekst.toLowerCase().includes(alleen.toLowerCase())
+        : vlag('opnieuw') || !existsSync(join(TTS, `${t.sleutel}.mp3`)),
   );
   const tekens = gekozen.reduce((n, t) => n + t.tekst.length, 0);
   console.log(`Stem: ${stemInfo.stemNaam ?? stem}. ${alle.length} teksten, waarvan ${gekozen.length} om te maken (${tekens} tekens, de controle kan er meer kosten).`);

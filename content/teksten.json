@@ -88,7 +88,7 @@
   },
   "katapult": {
     "start": "Schiet de robot met het goede antwoord weg!",
-    "hint": "Tel de ringen. Dan weet je het antwoord."
+    "hint": "Tel ze maar. Dan weet je het antwoord."
   },
   "telbouw": {
     "bouw": "Bouw een toren van",
@@ -377,9 +377,15 @@
     "zakje": "Een stickerzakje! Eens kijken wat erin zit.",
     "bladzijden": {
       "dieren": "Dieren",
+      "wild": "Wilde dieren",
+      "eten": "Eten",
       "thuis": "In huis",
+      "spelen": "Spelen",
       "lijf": "Kleren en je lijf",
-      "buiten": "Buiten"
+      "mensen": "Mensen",
+      "buiten": "Buiten",
+      "natuur": "Natuur",
+      "reis": "Op reis"
     }
   },
   "kleedkamer": {
