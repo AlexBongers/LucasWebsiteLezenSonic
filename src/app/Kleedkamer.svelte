@@ -7,7 +7,7 @@
   import Held from '../art/Held.svelte';
   import RingTeller from '../ui/RingTeller.svelte';
   import RingPrijs from '../ui/RingPrijs.svelte';
-  import { spreekbaarBedrag } from '../games/geld';
+  import { zegNogSparen, zegPrijs } from '../games/geld';
   import { spreek, stopSpreken } from '../audio/stem';
   import { speelBijna, speelKoop, speelTik } from '../audio/geluid';
   import { glitterOp } from '../ui/feest';
@@ -58,14 +58,6 @@
     void spreek((kk.plekken as Record<string, string>)[p]);
   }
 
-  async function zegPrijs(prijs: number, mijn: number) {
-    await spreek(w.kost);
-    if (mijn !== beurt) return;
-    await spreek(String(prijs), 'getal');
-    if (mijn !== beurt) return;
-    await spreek(w.ringen);
-  }
-
   async function tik(k: KledingStuk) {
     const mijn = ++beurt;
     speelTik();
@@ -84,7 +76,7 @@
     if (mijn !== beurt) return;
     await spreek(kk.passen);
     if (mijn !== beurt) return;
-    await zegPrijs(k.prijs, mijn);
+    await zegPrijs(k.prijs, () => mijn === beurt);
   }
 
   function vier() {
@@ -100,17 +92,7 @@
     const uit = koopKleding(k.id, wie);
     if (uit === 'te-weinig') {
       speelBijna();
-      const nog = k.prijs - vg.ringen;
-      const bedrag = spreekbaarBedrag(nog);
-      if (nog <= 1) await spreek(w.nogEen);
-      else if (!bedrag) await spreek(w.sparen);
-      else {
-        await spreek(w.nog);
-        if (mijn !== beurt) return;
-        await spreek(bedrag, 'getal');
-        if (mijn !== beurt) return;
-        await spreek(w.nogSparen);
-      }
+      await zegNogSparen(k.prijs - vg.ringen, () => mijn === beurt);
       return;
     }
     pas = null;

@@ -267,11 +267,26 @@
     else opStop();
   }
 
-  const SPELCOMP = { ringrace: Race, woordrace: Race, meer: Meer, patroon: Patroon, smash: Smash, bouwen: Bouwen, jacht: Jacht, katapult: Katapult, telbouw: TelBouw, splits: Splits,
-    // 3D-spellen: zonder WebGL nemen ze hun 2D-broertje
-    tunnel: webglKan() ? Tunnel : Smash, tunnelsom: webglKan() ? Tunnel : Katapult, torensmash: webglKan() ? TorenSmash : Smash, torenboem: webglKan() ? TorenBoem : TelBouw,
-    patroonbaan: webglKan() ? PatroonBaan : Patroon, bouwmuur: webglKan() ? MuurBouwer : Bouwen, bomsplits: webglKan() ? BomSplits : Splits,
-    meer3d: webglKan() ? Meer3D : Meer, jacht3d: webglKan() ? Jacht3D : Jacht, woordrace3d: webglKan() ? WoordRace3D : Race, kluis: Kluis } as const;
+  /** Welk onderdeel bij elk spel hoort. */
+  const TWEE_D = { ringrace: Race, woordrace: Race, meer: Meer, patroon: Patroon, smash: Smash, bouwen: Bouwen, jacht: Jacht, katapult: Katapult, telbouw: TelBouw, splits: Splits, kluis: Kluis };
+  /** De 3D-spellen met hun 2D-broertje voor apparaten zonder WebGL. */
+  const DRIE_D = {
+    tunnel: [Tunnel, Smash],
+    tunnelsom: [Tunnel, Katapult],
+    torensmash: [TorenSmash, Smash],
+    torenboem: [TorenBoem, TelBouw],
+    patroonbaan: [PatroonBaan, Patroon],
+    bouwmuur: [MuurBouwer, Bouwen],
+    bomsplits: [BomSplits, Splits],
+    meer3d: [Meer3D, Meer],
+    jacht3d: [Jacht3D, Jacht],
+    woordrace3d: [WoordRace3D, Race],
+  } as const;
+  const kan3D = webglKan();
+  const SPELCOMP = {
+    ...TWEE_D,
+    ...Object.fromEntries(Object.entries(DRIE_D).map(([id, [drie, twee]]) => [id, kan3D ? drie : twee])),
+  } as Record<SpelId, (typeof TWEE_D)[keyof typeof TWEE_D] | (typeof DRIE_D)[keyof typeof DRIE_D][number]>;
   // svelte-ignore state_referenced_locally
   const Spel = SPELCOMP[spel];
 </script>

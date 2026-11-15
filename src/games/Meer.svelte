@@ -93,7 +93,7 @@
     {#key ronde.nummer}
       <div class="opdrachtkaart vraagkaart">
         <div class="vraag">{vraagTekst}</div>
-        <div class="luid"><Luidspreker opTik={() => spreek(vraagTekst)} /></div>
+        <div class="kaart-luid"><Luidspreker opTik={() => spreek(vraagTekst)} /></div>
       </div>
 
       <div class="eilanden">
@@ -139,12 +139,6 @@
     font-size: 46px;
     font-weight: 700;
     text-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .eilanden {
     display: flex;

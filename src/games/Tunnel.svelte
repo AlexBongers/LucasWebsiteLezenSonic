@@ -13,16 +13,15 @@
   import { speelBijna, speelGoed, speelTik, speelWhoosh } from '../audio/geluid';
   import { boem, schud } from '../ui/boem';
   import {
-    Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, letterTekstuur, maakRenner, maakToneel, ring, ruitTekstuur, toon,
-    type Toneel,
+    Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, letterTekstuur, maakRenner, maakToneel, ring, ruitTekstuur, type Toneel,
   } from '../ui/drie-d';
   import { vloer } from '../ui/drie-d';
-  import { MeshBasicMaterial, PlaneGeometry, BoxGeometry, SphereGeometry, Fog } from 'three';
+  import { MeshBasicMaterial, PlaneGeometry, BoxGeometry, SphereGeometry } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
+  import { mijnRenner } from '../ui/held-3d';
   import { dingVoor } from './dingen';
-  import { vg } from '../store/voortgang.svelte';
-  import { drieKeuzes } from './keuze';
+    import { drieKeuzes } from './keuze';
   import type { SpelProps } from './types';
 
   type Opgave = SmashOpgave | Som;
@@ -163,7 +162,7 @@
     }
 
     // De renner
-    renner = maakRenner(letters ? 'sonic' : 'tails', vg.winkel.gekozen.held === 'super', vg.winkel.kleding[letters ? 'sonic' : 'tails']);
+    renner = mijnRenner(letters ? 'sonic' : 'tails');
     renner.groep.rotation.y = 0;
     scene.add(renner.groep);
 
@@ -379,8 +378,8 @@
 </script>
 
 <div class="tunnel">
-  <div class="toneel" bind:this={hostEl}></div>
-  <span class="merk" bind:this={merkEl}></span>
+  <div class="d3-toneel" bind:this={hostEl}></div>
+  <span class="d3-merk" bind:this={merkEl}></span>
 
   {#key ronde.nummer}
     <div class="opdrachtkaart kaart">
@@ -405,7 +404,7 @@
           </div>
         {/if}
       {/if}
-      <div class="luid"><Luidspreker opTik={vraag} /></div>
+      <div class="d3-luid"><Luidspreker opTik={vraag} /></div>
     </div>
   {/key}
 
@@ -436,16 +435,6 @@
     inset: 0;
     overflow: hidden;
     border-radius: 0;
-  }
-  .toneel {
-    position: absolute;
-    inset: 0;
-  }
-  .merk {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
   }
   .kaart {
     position: absolute;
@@ -498,12 +487,6 @@
     font-size: 30px;
     padding: 0 6px;
     font-weight: 700;
-  }
-  .luid {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .banen {
     position: absolute;

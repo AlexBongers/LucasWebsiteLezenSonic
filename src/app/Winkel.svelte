@@ -6,14 +6,14 @@
   import { onMount } from 'svelte';
   import RingTeller from '../ui/RingTeller.svelte';
   import RingPrijs from '../ui/RingPrijs.svelte';
-  import { spreekbaarBedrag } from '../games/geld';
+  import { zegNogSparen, zegPrijs } from '../games/geld';
   import Maatje from '../ui/Maatje.svelte';
   import NieuweSticker from '../ui/NieuweSticker.svelte';
   import { openZakje, type StickerWinst } from '../store/plakboek.svelte';
   import { spreek, stopSpreken } from '../audio/stem';
   import { speelBijna, speelKoop, speelRing, speelTik } from '../audio/geluid';
   import { glitterOp } from '../ui/feest';
-  import { ARTIKEL, ARTIKELEN, MAX_VOORRAAD, RING_FILTER, SOORTEN, artikelenVan, type Artikel, type Soort } from '../games/winkel';
+  import { ARTIKELEN, MAX_VOORRAAD, RING_FILTER, SOORTEN, artikelenVan, type Artikel, type Soort } from '../games/winkel';
   import { uitZak } from '../games/teksten';
   import { koop, heeft, isAan, voorraad, wissel } from '../store/winkel.svelte';
   import { vg } from '../store/voortgang.svelte';
@@ -38,26 +38,6 @@
   let genoeg = $derived(vg.ringen >= gekozen.prijs);
   let bezit = $derived(gekozen.soort !== 'power' && heeft(gekozen.id));
   let vol = $derived(gekozen.soort === 'power' && voorraad(gekozen.id) >= MAX_VOORRAAD);
-
-  /** "Nog 15 ringen sparen, Lucas!" (afgerond op 5 boven de 20). */
-  async function zegNogSparen(nog: number, mijn: number) {
-    const bedrag = spreekbaarBedrag(nog);
-    if (nog <= 1) return void (await spreek(winkel.nogEen));
-    if (!bedrag) return void (await spreek(winkel.sparen));
-    await spreek(winkel.nog);
-    if (mijn !== beurt) return;
-    await spreek(bedrag, 'getal');
-    if (mijn !== beurt) return;
-    await spreek(winkel.nogSparen);
-  }
-
-  async function zegPrijs(prijs: number, mijn: number) {
-    await spreek(winkel.kost);
-    if (mijn !== beurt) return;
-    await spreek(String(prijs), 'getal');
-    if (mijn !== beurt) return;
-    await spreek(winkel.ringen);
-  }
 
   onMount(() => {
     const mijn = ++beurt;
@@ -89,7 +69,7 @@
     if (mijn !== beurt) return;
     await spreek(t.uitleg);
     if (mijn !== beurt) return;
-    if (a.soort === 'power' ? voorraad(a.id) < MAX_VOORRAAD : !heeft(a.id)) await zegPrijs(a.prijs, mijn);
+    if (a.soort === 'power' ? voorraad(a.id) < MAX_VOORRAAD : !heeft(a.id)) await zegPrijs(a.prijs, () => mijn === beurt);
   }
 
   async function actie() {
@@ -106,7 +86,7 @@
       speelBijna();
       schud = a.id;
       setTimeout(() => (schud = null), 500);
-      await zegNogSparen(a.prijs - vg.ringen, mijn);
+      await zegNogSparen(a.prijs - vg.ringen, () => mijn === beurt);
       return;
     }
     if (uitslag === 'vol') {

@@ -32,7 +32,7 @@
     if (id === blad) return;
     speelTik();
     blad = id;
-    await spreek(namen[id]);
+    await spreek(namen[BLADZIJDEN.find((b) => b.id === id)!.soort]);
   }
 
   async function tikSticker(w: string) {
@@ -62,7 +62,7 @@
     {#each BLADZIJDEN as b (b.id)}
       {@const t = bladzijdeTelling(b.id)}
       <button class="tab" class:aan={blad === b.id} class:vol={t.heeft === t.totaal} style="--kleur:{b.kleur}" onclick={() => kiesBlad(b.id)}>
-        <span class="t-icoon">{b.icoon}</span>
+        <span class="t-icoon">{b.icoon}{#if b.deel > 1}<sup>{b.deel}</sup>{/if}</span>
         <span class="t-tel">{t.heeft === t.totaal ? '⭐' : `${t.heeft}/${t.totaal}`}</span>
       </button>
     {/each}
@@ -126,17 +126,27 @@
   }
   .tabs {
     display: flex;
-    gap: 12px;
+    gap: 10px;
+    padding: 2px 2px 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs::-webkit-scrollbar {
+    display: none;
   }
   .tab {
-    flex: 1;
+    flex: 0 0 auto;
+    min-width: 116px;
+    padding: 0 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     min-height: 64px;
     border-radius: 22px 22px 8px 8px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     background: color-mix(in srgb, var(--kleur) 35%, #0b1a4a);
     border: 3px solid color-mix(in srgb, var(--kleur) 70%, white);
@@ -149,6 +159,13 @@
   .t-icoon {
     font-size: 40px;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+  }
+  .t-icoon sup {
+    margin-left: 2px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--font-titel);
+    color: #fef9c3;
   }
   .t-tel {
     font-size: 20px;

@@ -82,7 +82,7 @@
           {/each}
           <span class="stuk vraag" class:klaar bind:this={vraagEl}>{klaar ? o.antwoord : '?'}</span>
         </div>
-        <div class="luid"><Luidspreker opTik={() => spreek(teksten.patroon.vraag)} /></div>
+        <div class="kaart-luid"><Luidspreker opTik={() => spreek(teksten.patroon.vraag)} /></div>
       </div>
 
       <div class="keuzerij">
@@ -145,12 +145,6 @@
     border-style: solid;
     color: inherit;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .knop {
     width: 190px;

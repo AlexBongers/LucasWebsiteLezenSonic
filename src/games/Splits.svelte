@@ -137,7 +137,7 @@
           </div>
           <div class="regel klein">{o.a} er al · nog <span class="vraag">?</span></div>
         </div>
-        <div class="luid"><Luidspreker opTik={vraag} /></div>
+        <div class="kaart-luid"><Luidspreker opTik={vraag} /></div>
       </div>
 
       <div class="plekken" class:smal={o.totaal > 10}>
@@ -229,12 +229,6 @@
   }
   .vraag {
     color: #fca5a5;
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .plekken {
     display: flex;

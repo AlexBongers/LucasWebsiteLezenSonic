@@ -12,8 +12,7 @@
   import { boem, schud } from '../ui/boem';
   import { Brokken, Group, Mesh, Vector3, cilinder, kubus, maakToneel, ring, ruitTekstuur, type Toneel } from '../ui/drie-d';
   import { vloer } from '../ui/drie-d';
-  import { MeshBasicMaterial, PlaneGeometry } from 'three';
-  import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
+    import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
   import type { SpelProps } from './types';
 
@@ -220,11 +219,11 @@
 </script>
 
 <div class="toren">
-  <div class="toneel" bind:this={hostEl}></div>
-  <span class="merk" bind:this={merkEl}></span>
+  <div class="d3-toneel" bind:this={hostEl}></div>
+  <span class="d3-merk" bind:this={merkEl}></span>
   <div class="vraag opdrachtkaart">
     <span>Hoeveel blokken?</span>
-    <div class="luid"><Luidspreker opTik={() => hertel()} label="Tel nog eens" /></div>
+    <div class="d3-luid"><Luidspreker opTik={() => hertel()} label="Tel nog eens" /></div>
   </div>
   <div class="keuzes">
     {#each keuzes as k, i (k)}
@@ -241,16 +240,6 @@
     inset: 0;
     overflow: hidden;
   }
-  .toneel {
-    position: absolute;
-    inset: 0;
-  }
-  .merk {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-  }
   .vraag {
     position: absolute;
     left: 24px;
@@ -259,12 +248,6 @@
     font-size: 40px;
     font-weight: 700;
     z-index: 4;
-  }
-  .luid {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .keuzes {
     position: absolute;

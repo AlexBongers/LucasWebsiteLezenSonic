@@ -100,7 +100,7 @@
     {#key ronde.nummer}
       <div class="opdrachtkaart plaatje">
         <span class="emoji">{o.emoji}</span>
-        <div class="luid"><Luidspreker opTik={vraag} /></div>
+        <div class="kaart-luid"><Luidspreker opTik={vraag} /></div>
       </div>
 
       <div class="kluis" class:schud class:open bind:this={kluisEl}>
@@ -149,12 +149,6 @@
     font-size: 96px;
     line-height: 1.1;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .kluis {
     position: relative;

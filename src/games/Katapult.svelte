@@ -136,7 +136,7 @@
             {/if}
           </div>
         {/if}
-        <div class="luid"><Luidspreker opTik={zegSom} /></div>
+        <div class="kaart-luid"><Luidspreker opTik={zegSom} /></div>
       </div>
 
       <div class="robots">
@@ -215,12 +215,6 @@
   .antw.onthuld {
     color: #86efac;
     animation: pop-in 0.5s ease-out;
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .ringrij {
     display: flex;

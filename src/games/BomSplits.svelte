@@ -9,19 +9,17 @@
   import type { Gepland } from '../engine/sessie';
   import { spreek } from '../audio/stem';
   import { speelBijna, speelGoed, speelRing, speelTik } from '../audio/geluid';
-  import { boem, schud } from '../ui/boem';
+  import { boem } from '../ui/boem';
   import { glitterOp } from '../ui/feest';
-  import { vg } from '../store/voortgang.svelte';
-  import {
-    Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, maakRenner, maakToneel, ring, ruitTekstuur, toon,
-    type Renner, type Toneel,
+    import {
+    Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, maakToneel, ruitTekstuur, toon, type Renner, type Toneel,
   } from '../ui/drie-d';
   import { vloer } from '../ui/drie-d';
   import { getalPlaat, ruimOp } from '../ui/drie-d-vormen';
-  import { MeshBasicMaterial, PlaneGeometry, TorusGeometry } from 'three';
+  import { MeshBasicMaterial, TorusGeometry } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
-  import { maakHeld3D } from '../ui/held-3d';
+  import { mijnHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [] }: SpelProps<SplitsOpgave> = $props();
@@ -253,7 +251,7 @@
     scene.add(bom);
 
     // Tails zweeft links van de bom
-    tails = maakHeld3D('tails', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.tails);
+    tails = mijnHeld3D('tails');
     tails.groep.scale.setScalar(1.6);
     tails.groep.position.set(-8.5, 1.2, 3.2);
     tails.groep.rotation.y = -Math.PI * 0.72;
@@ -437,11 +435,11 @@
 </script>
 
 <div class="bom">
-  <div class="toneel" bind:this={hostEl}></div>
-  <span class="merk" bind:this={merkEl}></span>
+  <div class="d3-toneel" bind:this={hostEl}></div>
+  <span class="d3-merk" bind:this={merkEl}></span>
   <div class="vraag opdrachtkaart">
     <span>Nog hoeveel ringen?</span>
-    <div class="luid"><Luidspreker opTik={() => vraag()} label="Zeg het nog eens" /></div>
+    <div class="d3-luid"><Luidspreker opTik={() => vraag()} label="Zeg het nog eens" /></div>
   </div>
   <div class="keuzes">
     {#each o.keuzes as k, i (k)}
@@ -458,16 +456,6 @@
     inset: 0;
     overflow: hidden;
   }
-  .toneel {
-    position: absolute;
-    inset: 0;
-  }
-  .merk {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-  }
   .vraag {
     position: absolute;
     left: 24px;
@@ -476,12 +464,6 @@
     font-size: 40px;
     font-weight: 700;
     z-index: 4;
-  }
-  .luid {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .keuzes {
     position: absolute;

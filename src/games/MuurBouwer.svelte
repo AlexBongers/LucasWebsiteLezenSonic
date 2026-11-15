@@ -12,17 +12,15 @@
   import { speelBijna, speelGoed, speelKatapult, speelTik } from '../audio/geluid';
   import { boem, schud } from '../ui/boem';
   import { glitterOp } from '../ui/feest';
-  import { vg } from '../store/voortgang.svelte';
-  import {
-    Brokken, Group, Mesh, Vector3, cilinder, kegel, kubus, letterTekstuur, maakRenner, maakToneel, ring, ruitTekstuur, toon, toonKaart, omlijn,
-    type Renner, type Toneel,
+    import {
+    Brokken, Group, Mesh, Vector3, cilinder, kegel, kubus, letterTekstuur, maakToneel, ring, ruitTekstuur, toon, toonKaart, omlijn, type Renner, type Toneel,
   } from '../ui/drie-d';
   import { vloer } from '../ui/drie-d';
   import { emojiPlaat, ruimOp } from '../ui/drie-d-vormen';
-  import { BoxGeometry, CircleGeometry, MeshBasicMaterial, PlaneGeometry, type MeshToonMaterial } from 'three';
+  import { BoxGeometry, CircleGeometry, MeshBasicMaterial, type MeshToonMaterial } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
-  import { maakHeld3D } from '../ui/held-3d';
+  import { mijnHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [] }: SpelProps<BouwOpgave> = $props();
@@ -194,7 +192,7 @@
     brokken = new Brokken(scene, 0.1);
 
     // Knuckles staat rechts van de muur, kijkt naar de blokken
-    held = maakHeld3D('knuckles', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.knuckles, { podium: true });
+    held = mijnHeld3D('knuckles', { podium: true });
     held.groep.scale.setScalar(1.45);
     held.groep.position.set(8.6, 0.05, 2.2);
     held.groep.rotation.y = Math.PI * 0.72;
@@ -386,11 +384,11 @@
 </script>
 
 <div class="muur">
-  <div class="toneel" bind:this={hostEl}></div>
-  <span class="merk" bind:this={merkEl}></span>
+  <div class="d3-toneel" bind:this={hostEl}></div>
+  <span class="d3-merk" bind:this={merkEl}></span>
   <div class="vraag opdrachtkaart">
     <span>Bouw het woord</span>
-    <div class="luid"><Luidspreker opTik={zegWoord} label="Zeg het woord nog eens" /></div>
+    <div class="d3-luid"><Luidspreker opTik={zegWoord} label="Zeg het woord nog eens" /></div>
   </div>
 </div>
 
@@ -400,16 +398,6 @@
     inset: 0;
     overflow: hidden;
   }
-  .toneel {
-    position: absolute;
-    inset: 0;
-  }
-  .merk {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-  }
   .vraag {
     position: absolute;
     left: 24px;
@@ -418,11 +406,5 @@
     font-size: 40px;
     font-weight: 700;
     z-index: 4;
-  }
-  .luid {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
   }
 </style>

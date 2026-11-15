@@ -101,18 +101,31 @@ describe('Letter-smash', () => {
 });
 
 describe('Katapult-sommen', () => {
+  it('niveau 6 gaat over het tiental heen en blijft tot 20', () => {
+    const rnd = zaadRnd(12);
+    let over = 0;
+    for (const s of maakSommen(5, 40, rnd)) {
+      expect(Math.max(s.a, s.antwoord)).toBeLessThanOrEqual(20);
+      expect(s.keuzes).toContain(s.antwoord);
+      if (somNiveau(s.a, s.op, s.b) === 5) over++;
+    }
+    expect(over).toBeGreaterThan(10);
+  });
+
   it('blijft binnen het niveau en het goede antwoord staat tussen de keuzes', () => {
     const rnd = zaadRnd(8);
     const grenzen = [6, 10, 10, 10, 20];
     for (let n = 0; n <= 4; n++) {
       for (const s of maakSommen(n, 30, rnd)) {
         expect(Math.max(s.a, s.antwoord)).toBeLessThanOrEqual(grenzen[n]);
-        expect(s.antwoord).toBeGreaterThanOrEqual(1 - (n === 0 ? 1 : 0));
+        // 0 mag (6 - 6 = 0): alles eraf hoort erbij.
+        expect(s.antwoord).toBeGreaterThanOrEqual(0);
         expect(s.keuzes).toContain(s.antwoord);
         expect(uniek(s.keuzes)).toBe(true);
         expect(s.keuzes.length).toBe(somNiveau(s.a, s.op, s.b) <= 1 ? 3 : 4);
+        expect(somNiveau(s.a, s.op, s.b)).toBeLessThanOrEqual(Math.max(n, 1));
         for (const k of s.keuzes) expect(k).toBeGreaterThanOrEqual(0);
-        if (n >= 4 && s.a > 10) {
+        if (n === 4 && s.a > 10 && s.b < 10) {
           // Zonder over het tiental: de eenheden passen binnen het tiental.
           const e = s.a % 10;
           expect(s.op === '+' ? e + s.b <= 9 || s.a === 10 : s.b <= e).toBe(true);

@@ -11,11 +11,10 @@
   import { speelBijna, speelGoed, speelKatapult } from '../audio/geluid';
   import { boem, schud } from '../ui/boem';
   import {
-    Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, kubus, letterTekstuur, maakToneel, ring, ruitTekstuur, toonKaart,
-    type Toneel,
+    Brokken, Group, Mesh, Vector3, bol, cilinder, kegel, letterTekstuur, maakToneel, ring, ruitTekstuur, toonKaart, type Toneel,
   } from '../ui/drie-d';
   import { vloer } from '../ui/drie-d';
-  import { BoxGeometry, MeshBasicMaterial, PlaneGeometry, type MeshToonMaterial } from 'three';
+  import { BoxGeometry, MeshBasicMaterial, type MeshToonMaterial } from 'three';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
   import type { SpelProps } from './types';
@@ -268,11 +267,11 @@
 
 <div class="toren">
   <div class="toneel" bind:this={hostEl}></div>
-  <span class="merk" bind:this={merkEl}></span>
+  <span class="d3-merk" bind:this={merkEl}></span>
   {#key ronde.nummer}
     <div class="opdrachtkaart kaart">
       <span class="emoji">{o.emoji}</span>
-      <div class="luid"><Luidspreker opTik={vraag} /></div>
+      <div class="d3-luid"><Luidspreker opTik={vraag} /></div>
     </div>
   {/key}
   <p class="tip">Tik op het blok met de eerste letter!</p>
@@ -289,12 +288,6 @@
     inset: 0;
     touch-action: none;
   }
-  .merk {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-  }
   .kaart {
     position: absolute;
     left: 24px;
@@ -306,12 +299,6 @@
     font-size: 110px;
     line-height: 1.1;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
-  }
-  .luid {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .tip {
     position: absolute;

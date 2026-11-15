@@ -196,7 +196,8 @@ export function auditieNiveaus(maxNiveau: number): number[] {
   if (maxNiveau <= 1) return [0, 0, 0, 0, 1, 1, 1, 1];
   if (maxNiveau === 2) return [0, 0, 0, 1, 1, 2, 2, 2];
   if (maxNiveau === 3) return [0, 0, 1, 1, 2, 2, 3, 3];
-  return [0, 0, 1, 2, 2, 3, 4, 4];
+  if (maxNiveau === 4) return [0, 0, 1, 2, 2, 3, 4, 4];
+  return [0, 1, 1, 2, 3, 4, 5, 5];
 }
 
 export { FLITS_START };

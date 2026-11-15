@@ -13,7 +13,7 @@
   import { speelBijna, speelGoed, speelTik } from '../audio/geluid';
   import { glitterOp } from '../ui/feest';
   import { vg } from '../store/voortgang.svelte';
-  import { teksten, compliment, bijna, wacht } from './teksten';
+  import { teksten, compliment, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
   import { flitsMaal } from './uitrusting.svelte';
   import type { SpelProps } from './types';

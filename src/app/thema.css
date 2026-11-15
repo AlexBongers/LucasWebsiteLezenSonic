@@ -305,3 +305,29 @@ button {
 .ding.weg {
   filter: grayscale(1);
 }
+
+/* ---------- Gedeeld door de 3D-spellen (eerst stond dit in elk spel apart) ---------- */
+.d3-toneel {
+  position: absolute;
+  inset: 0;
+}
+/* Onzichtbaar punt dat met de 3D-wereld meebeweegt: daar vliegen ringen en ontploffingen vandaan */
+.d3-merk {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+}
+.d3-luid {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* De luidspreker rechts in een opdrachtkaart (2D-spellen) */
+.kaart-luid {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -172,7 +172,10 @@ describe('het plakboek', () => {
     const { ALLE_STICKERS, BLADZIJDEN } = await import('../src/games/stickers');
     const woorden = ALLE_WOORDEN.map((w) => w.woord).sort();
     expect([...ALLE_STICKERS].sort()).toEqual(woorden);
-    for (const b of BLADZIJDEN) expect((teksten.plakboek.bladzijden as Record<string, string>)[b.id]).toBeTruthy();
+    for (const b of BLADZIJDEN) {
+      expect((teksten.plakboek.bladzijden as Record<string, string>)[b.soort]).toBeTruthy();
+      expect(b.woorden.length).toBeLessThanOrEqual(21);
+    }
   });
 
   it('een sticker verdienen: eerst vooral nieuwe, een dubbele levert ringen op', async () => {

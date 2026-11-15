@@ -91,7 +91,7 @@ export function klanken(woord: string): string[] {
   return delen;
 }
 
-export const ALLE_WOORDEN: WoordInfo[] = (woordData.woorden as [string, string][]).map(([woord, emoji]) => ({
+export const ALLE_WOORDEN: WoordInfo[] = (woordData.woorden as [string, string, string][]).map(([woord, emoji]) => ({
   woord,
   emoji,
   delen: klanken(woord),
@@ -225,6 +225,41 @@ const dubbel: SomType = (r) => {
   const a = getal(1, 5, r);
   return plus(a, a);
 };
+/** Verliefde harten: samen tien (3 + 7). */
+const tienVrienden: SomType = (r) => {
+  const a = getal(1, 9, r);
+  return plus(a, 10 - a);
+};
+/** Alles eraf of niets eraf (6 - 6, 8 - 0). */
+const minNulOfAlles: SomType = (r) => {
+  const a = getal(2, 10, r);
+  return r() < 0.5 ? min(a, a) : min(a, 0);
+};
+/** Tien erbij of tien eraf (10 + 4, 4 + 10, 17 - 10). */
+const tienErbij: SomType = (r) => {
+  const x = getal(1, 9, r);
+  const k = r();
+  return k < 0.4 ? plus(10, x) : k < 0.7 ? plus(x, 10) : min(10 + x, 10);
+};
+/** Over het tiental heen (8 + 5, 13 - 6): groep 3. */
+const plusOverTien: SomType = (r) => {
+  let a = 0;
+  let b = 0;
+  while (a + b <= 10) {
+    a = getal(5, 9, r);
+    b = getal(2, 9, r);
+  }
+  return plus(a, b);
+};
+const minOverTien: SomType = (r) => {
+  let a = 0;
+  let b = 0;
+  while (!(a - b < 10 && a - b >= 1)) {
+    a = getal(11, 18, r);
+    b = getal(2, 9, r);
+  }
+  return min(a, b);
+};
 /** Eén of twee terug (7 - 1, 9 - 2). */
 const minKlein: SomType = (r) => {
   const a = getal(3, 10, r);
@@ -250,17 +285,21 @@ const minTot20: SomType = (r) => {
 /** Rustige opbouw: eerst plus tot 5, dan tot 10, dan min, dan door elkaar, dan tot 20. */
 export const SOM_TYPES: Record<number, SomType[]> = {
   0: [plusTot5, plusTot6],
-  1: [plusTot10, dubbel, plusTot6],
-  2: [minTot10, minKlein],
-  3: [plusTot10, minTot10, dubbel],
-  4: [plusTot20, minTot20, plusTot10, minTot10],
+  1: [plusTot10, dubbel, plusTot6, tienVrienden],
+  2: [minTot10, minKlein, minNulOfAlles],
+  3: [plusTot10, minTot10, dubbel, tienVrienden, minNulOfAlles],
+  4: [plusTot20, minTot20, plusTot10, minTot10, tienErbij],
+  5: [plusOverTien, minOverTien, plusTot20, minTot20, tienVrienden],
 };
-export const REKEN_MAX = 4;
+export const REKEN_MAX = 5;
 
 export const somId = (s: { a: number; op: '+' | '-'; b: number }) => `som.${s.a}${s.op}${s.b}`;
 
 export function somNiveau(a: number, op: '+' | '-', b: number): number {
   const uitkomst = op === '+' ? a + b : a - b;
+  // Over het tiental heen (8 + 5, 13 - 6): niveau 5
+  if (op === '+' && a < 10 && b < 10 && uitkomst > 10) return 5;
+  if (op === '-' && a > 10 && b < 10 && uitkomst < 10) return 5;
   if (Math.max(a, uitkomst) > 10) return 4;
   if (op === '-') return 2;
   return a + b <= 6 ? 0 : 1;
@@ -382,8 +421,8 @@ export function meerUitId(id: string): MeerOpgave | null {
 }
 
 // ------------------------------------------------------------------ Patroon-race (wat komt hierna?)
-export const PATROON_PLAATJES = ['🔴', '🔵', '🟡', '🟢', '⭐', '💣', '🤖', '⚡'];
-export const PATROON_VORMEN: Record<number, string[]> = { 0: ['AB'], 1: ['AAB', 'ABB', 'ABC'], 2: ['AABB', 'ABAC', 'ABCB', 'AABC'] };
+export const PATROON_PLAATJES = ['🔴', '🔵', '🟡', '🟢', '⭐', '💣', '🤖', '⚡', '🟣', '🟠'];
+export const PATROON_VORMEN: Record<number, string[]> = { 0: ['AB', 'AAB'], 1: ['AAB', 'ABB', 'ABC', 'AABB'], 2: ['AABB', 'ABAC', 'ABCB', 'AABC', 'ABCD', 'ABBA', 'ABBC'] };
 export const PATROON_MAX = 2;
 export type PatroonOpgave = { vorm: string; plaatjes: number[]; reeks: string[]; antwoord: string; keuzes: string[] };
 
@@ -420,7 +459,7 @@ export function maakPatronen(niveau: number, aantal: number, rnd: Rnd = standaar
 }
 
 export function patroonUitId(id: string, rnd: Rnd = standaardRnd): PatroonOpgave | null {
-  const m = /^patroon\.([ABC]+)\.([\d.]+)$/.exec(id);
+  const m = /^patroon\.([A-D]+)\.([\d.]+)$/.exec(id);
   return m ? bouwPatroon(m[1], m[2].split('.').map(Number), rnd) : null;
 }
 

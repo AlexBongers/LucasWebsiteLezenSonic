@@ -11,16 +11,14 @@
   import { speelBijna, speelGoed, speelTik } from '../audio/geluid';
   import { boem } from '../ui/boem';
   import { glitterOp } from '../ui/feest';
-  import { vg } from '../store/voortgang.svelte';
-  import {
-    Brokken, Group, Mesh, Vector3, cilinder, kubus, maakRenner, maakToneel, ring, toon,
-    type Renner, type Toneel,
+    import {
+    Brokken, Group, Mesh, Vector3, cilinder, kubus, maakToneel, ring, toon, type Renner, type Toneel,
   } from '../ui/drie-d';
   import { SphereGeometry, TorusGeometry } from 'three';
   import { patroonSymbool, ruimOp, vraagPlaat, wolkVorm } from '../ui/drie-d-vormen';
   import { teksten, rondeStart, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
-  import { maakHeld3D } from '../ui/held-3d';
+  import { mijnHeld3D } from '../ui/held-3d';
   import type { SpelProps } from './types';
 
   let { opRingen, opVoortgang, opKlaar, opgaven = [] }: SpelProps<PatroonOpgave> = $props();
@@ -172,7 +170,7 @@
       zwevend.push(r);
     }
 
-    sonic = maakHeld3D('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
+    sonic = mijnHeld3D('sonic');
     sonic.groep.rotation.y = -Math.PI / 2;
     scene.add(sonic.groep);
     brokken = new Brokken(scene, -50);
@@ -343,11 +341,11 @@
 </script>
 
 <div class="baan">
-  <div class="toneel" bind:this={hostEl}></div>
-  <span class="merk" bind:this={merkEl}></span>
+  <div class="d3-toneel" bind:this={hostEl}></div>
+  <span class="d3-merk" bind:this={merkEl}></span>
   <div class="vraag opdrachtkaart">
     <span>Wat komt hierna?</span>
-    <div class="luid"><Luidspreker opTik={nogEens} label="Kijk nog eens" /></div>
+    <div class="d3-luid"><Luidspreker opTik={nogEens} label="Kijk nog eens" /></div>
   </div>
   <div class="keuzes">
     {#each o.keuzes as k, i (k)}
@@ -362,16 +360,6 @@
     inset: 0;
     overflow: hidden;
   }
-  .toneel {
-    position: absolute;
-    inset: 0;
-  }
-  .merk {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-  }
   .vraag {
     position: absolute;
     left: 24px;
@@ -380,12 +368,6 @@
     font-size: 40px;
     font-weight: 700;
     z-index: 4;
-  }
-  .luid {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .keuzes {
     position: absolute;

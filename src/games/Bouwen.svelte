@@ -100,7 +100,7 @@
     {#key ronde.nummer}
       <div class="opdrachtkaart plaat">
         <span class="emoji">{o.emoji}</span>
-        <div class="luid"><Luidspreker opTik={zegWoord} /></div>
+        <div class="kaart-luid"><Luidspreker opTik={zegWoord} /></div>
       </div>
 
       <div class="slots" bind:this={rijEl}>
@@ -141,12 +141,6 @@
     font-size: 120px;
     line-height: 1.1;
     font-family: 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .slots {
     display: flex;

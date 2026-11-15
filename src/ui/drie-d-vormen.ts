@@ -131,7 +131,7 @@ export const vraagPlaat = (breed = 1.1) => getalPlaat('?', breed, '#fde68a');
 /** Het 3D-plaatje bij een patroon-emoji. */
 export function patroonSymbool(emoji: string): Group {
   const g = new Group();
-  const kleurbol: Record<string, number> = { '🔴': 0xef4444, '🔵': 0x3b82f6, '🟡': 0xfacc15, '🟢': 0x22c55e };
+  const kleurbol: Record<string, number> = { '🔴': 0xef4444, '🔵': 0x3b82f6, '🟡': 0xfacc15, '🟢': 0x22c55e, '🟣': 0xa855f7, '🟠': 0xf97316 };
   if (kleurbol[emoji] !== undefined) {
     g.add(bol(0.46, kleurbol[emoji]));
     const glans = bol(0.1, 0xffffff, [1, 1, 1], 0);

@@ -105,7 +105,7 @@
         <span class="doelletter">{o.letter}</span>
         <span class="emoji">{o.emoji}</span>
         <span class="over">nog {over}</span>
-        <div class="luid"><Luidspreker opTik={vraag} /></div>
+        <div class="kaart-luid"><Luidspreker opTik={vraag} /></div>
       </div>
 
       <div class="rooster" class:zes={o.tegels.length === 6} bind:this={veldEl}>
@@ -166,12 +166,6 @@
     font-size: 34px;
     font-weight: 700;
     color: #fde68a;
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .rooster {
     display: grid;

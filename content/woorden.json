@@ -1,601 +1,227 @@
 {
-  "_uitleg": "Woordjes met een plaatje. Een woord komt alleen voor als Lucas alle letters (en lange klanken) ervan kent. Elk plaatje mag maar één keer voorkomen.",
+  "_uitleg": "Woordjes met een plaatje en de bladzijde van het plakboek waar de sticker komt. Een woord komt alleen voor als Lucas alle letters (en lange klanken) ervan kent. Elk plaatje mag maar één keer voorkomen.",
   "woorden": [
-    [
-      "kat",
-      "🐱"
-    ],
-    [
-      "kip",
-      "🐔"
-    ],
-    [
-      "vis",
-      "🐟"
-    ],
-    [
-      "pan",
-      "🍳"
-    ],
-    [
-      "pen",
-      "🖊️"
-    ],
-    [
-      "pet",
-      "🧢"
-    ],
-    [
-      "pot",
-      "🍯"
-    ],
-    [
-      "man",
-      "👨"
-    ],
-    [
-      "tak",
-      "🌿"
-    ],
-    [
-      "tas",
-      "👜"
-    ],
-    [
-      "sok",
-      "🧦"
-    ],
-    [
-      "rok",
-      "👗"
-    ],
-    [
-      "kom",
-      "🥣"
-    ],
-    [
-      "bus",
-      "🚌"
-    ],
-    [
-      "zon",
-      "☀️"
-    ],
-    [
-      "vos",
-      "🦊"
-    ],
-    [
-      "bal",
-      "⚽"
-    ],
-    [
-      "bed",
-      "🛏️"
-    ],
-    [
-      "bos",
-      "🌲"
-    ],
-    [
-      "jas",
-      "🧥"
-    ],
-    [
-      "lam",
-      "🐑"
-    ],
-    [
-      "lip",
-      "👄"
-    ],
-    [
-      "rat",
-      "🐀"
-    ],
-    [
-      "ram",
-      "🐏"
-    ],
-    [
-      "dak",
-      "🏠"
-    ],
-    [
-      "tent",
-      "⛺"
-    ],
-    [
-      "post",
-      "📮"
-    ],
-    [
-      "kers",
-      "🍒"
-    ],
-    [
-      "kerk",
-      "⛪"
-    ],
-    [
-      "mand",
-      "🧺"
-    ],
-    [
-      "hand",
-      "✋"
-    ],
-    [
-      "vork",
-      "🍴"
-    ],
-    [
-      "lamp",
-      "💡"
-    ],
-    [
-      "bril",
-      "👓"
-    ],
-    [
-      "krab",
-      "🦀"
-    ],
-    [
-      "ster",
-      "⭐"
-    ],
-    [
-      "klok",
-      "⏰"
-    ],
-    [
-      "vlag",
-      "🚩"
-    ],
-    [
-      "maan",
-      "🌙"
-    ],
-    [
-      "roos",
-      "🌹"
-    ],
-    [
-      "aap",
-      "🐵"
-    ],
-    [
-      "eend",
-      "🦆"
-    ],
-    [
-      "oog",
-      "👁️"
-    ],
-    [
-      "oor",
-      "👂"
-    ],
-    [
-      "kaas",
-      "🧀"
-    ],
-    [
-      "boom",
-      "🌳"
-    ],
-    [
-      "boot",
-      "⛵"
-    ],
-    [
-      "vuur",
-      "🔥"
-    ],
-    [
-      "neus",
-      "👃"
-    ],
-    [
-      "muis",
-      "🐭"
-    ],
-    [
-      "hoed",
-      "🎩"
-    ],
-    [
-      "boek",
-      "📖"
-    ],
-    [
-      "bij",
-      "🐝"
-    ],
-    [
-      "pijl",
-      "🏹"
-    ],
-    [
-      "trein",
-      "🚆"
-    ],
-    [
-      "mier",
-      "🐜"
-    ],
-    [
-      "deur",
-      "🚪"
-    ],
-    [
-      "huis",
-      "🏡"
-    ],
-    [
-      "koe",
-      "🐮"
-    ],
-    [
-      "voet",
-      "🦶"
-    ],
-    [
-      "bloem",
-      "🌷"
-    ],
-    [
-      "stoel",
-      "🪑"
-    ],
-    [
-      "raam",
-      "🪟"
-    ],
-    [
-      "kaars",
-      "🕯️"
-    ],
-    [
-      "mes",
-      "🔪"
-    ],
-    [
-      "pop",
-      "🪆"
-    ],
-    [
-      "mok",
-      "☕"
-    ],
-    [
-      "net",
-      "🥅"
-    ],
-    [
-      "vat",
-      "🛢️"
-    ],
-    [
-      "spin",
-      "🕷️"
-    ],
-    [
-      "rots",
-      "🪨"
-    ],
-    [
-      "vest",
-      "🦺"
-    ],
-    [
-      "nest",
-      "🪺"
-    ],
-    [
-      "spek",
-      "🥓"
-    ],
-    [
-      "raket",
-      "🚀"
-    ],
-    [
-      "kikker",
-      "🐸"
-    ],
-    [
-      "motor",
-      "🏍️"
-    ],
-    [
-      "tram",
-      "🚋"
-    ],
-    [
-      "krant",
-      "📰"
-    ],
-    [
-      "trompet",
-      "🎺"
-    ],
-    [
-      "spons",
-      "🧽"
-    ],
-    [
-      "piano",
-      "🎹"
-    ],
-    [
-      "otter",
-      "🦦"
-    ],
-    [
-      "ananas",
-      "🍍"
-    ],
-    [
-      "kano",
-      "🛶"
-    ],
-    [
-      "ski",
-      "🎿"
-    ],
-    [
-      "paprika",
-      "🫑"
-    ],
-    [
-      "oma",
-      "👵"
-    ],
-    [
-      "opa",
-      "👴"
-    ],
-    [
-      "kok",
-      "🧑‍🍳"
-    ],
-    [
-      "masker",
-      "🎭"
-    ],
-    [
-      "monster",
-      "👾"
-    ],
-    [
-      "tomaat",
-      "🍅"
-    ],
-    [
-      "vogel",
-      "🐦"
-    ],
-    [
-      "zebra",
-      "🦓"
-    ],
-    [
-      "leeuw",
-      "🦁"
-    ],
-    [
-      "tijger",
-      "🐯"
-    ],
-    [
-      "beer",
-      "🐻"
-    ],
-    [
-      "haas",
-      "🐰"
-    ],
-    [
-      "varken",
-      "🐷"
-    ],
-    [
-      "paard",
-      "🐴"
-    ],
-    [
-      "uil",
-      "🦉"
-    ],
-    [
-      "slang",
-      "🐍"
-    ],
-    [
-      "walvis",
-      "🐳"
-    ],
-    [
-      "dolfijn",
-      "🐬"
-    ],
-    [
-      "haai",
-      "🦈"
-    ],
-    [
-      "kreeft",
-      "🦞"
-    ],
-    [
-      "slak",
-      "🐌"
-    ],
-    [
-      "egel",
-      "🦔"
-    ],
-    [
-      "pinguin",
-      "🐧"
-    ],
-    [
-      "banaan",
-      "🍌"
-    ],
-    [
-      "druif",
-      "🍇"
-    ],
-    [
-      "peer",
-      "🍐"
-    ],
-    [
-      "citroen",
-      "🍋"
-    ],
-    [
-      "wortel",
-      "🥕"
-    ],
-    [
-      "ui",
-      "🧅"
-    ],
-    [
-      "brood",
-      "🍞"
-    ],
-    [
-      "ei",
-      "🥚"
-    ],
-    [
-      "melk",
-      "🥛"
-    ],
-    [
-      "ijs",
-      "🍦"
-    ],
-    [
-      "taart",
-      "🎂"
-    ],
-    [
-      "soep",
-      "🍲"
-    ],
-    [
-      "friet",
-      "🍟"
-    ],
-    [
-      "auto",
-      "🚗"
-    ],
-    [
-      "vliegtuig",
-      "✈️"
-    ],
-    [
-      "helm",
-      "⛑️"
-    ],
-    [
-      "sjaal",
-      "🧣"
-    ],
-    [
-      "schoen",
-      "👟"
-    ],
-    [
-      "handschoen",
-      "🧤"
-    ],
-    [
-      "bel",
-      "🔔"
-    ],
-    [
-      "trommel",
-      "🥁"
-    ],
-    [
-      "schaar",
-      "✂️"
-    ],
-    [
-      "lepel",
-      "🥄"
-    ],
-    [
-      "sleutel",
-      "🔑"
-    ],
-    [
-      "tand",
-      "🦷"
-    ],
-    [
-      "duim",
-      "👍"
-    ],
-    [
-      "regen",
-      "🌧️"
-    ],
-    [
-      "sneeuw",
-      "❄️"
-    ],
-    [
-      "berg",
-      "⛰️"
-    ],
-    [
-      "vulkaan",
-      "🌋"
-    ],
-    [
-      "eiland",
-      "🏝️"
-    ],
-    [
-      "regenboog",
-      "🌈"
-    ],
-    [
-      "kasteel",
-      "🏰"
-    ],
-    [
-      "robot",
-      "🤖"
-    ],
-    [
-      "koning",
-      "🤴"
-    ],
-    [
-      "prinses",
-      "👸"
-    ],
-    [
-      "heks",
-      "🧙"
-    ],
-    [
-      "dino",
-      "🦕"
-    ],
-    [
-      "kroon",
-      "👑"
-    ]
+    ["kat", "🐱", "dieren"],
+    ["kip", "🐔", "dieren"],
+    ["vis", "🐟", "dieren"],
+    ["pan", "🍳", "thuis"],
+    ["pen", "🖊️", "thuis"],
+    ["pet", "🧢", "lijf"],
+    ["pot", "🍯", "thuis"],
+    ["man", "👨", "mensen"],
+    ["tak", "🌿", "buiten"],
+    ["tas", "👜", "lijf"],
+    ["sok", "🧦", "lijf"],
+    ["rok", "👗", "lijf"],
+    ["kom", "🥣", "thuis"],
+    ["bus", "🚌", "reis"],
+    ["zon", "☀️", "buiten"],
+    ["vos", "🦊", "dieren"],
+    ["bal", "⚽", "spelen"],
+    ["bed", "🛏️", "thuis"],
+    ["bos", "🌲", "buiten"],
+    ["jas", "🧥", "lijf"],
+    ["lam", "🐑", "dieren"],
+    ["lip", "👄", "lijf"],
+    ["rat", "🐀", "dieren"],
+    ["ram", "🐏", "dieren"],
+    ["dak", "🏠", "buiten"],
+    ["tent", "⛺", "buiten"],
+    ["post", "📮", "buiten"],
+    ["kers", "🍒", "eten"],
+    ["kerk", "⛪", "buiten"],
+    ["mand", "🧺", "thuis"],
+    ["hand", "✋", "lijf"],
+    ["vork", "🍴", "thuis"],
+    ["lamp", "💡", "thuis"],
+    ["bril", "👓", "lijf"],
+    ["krab", "🦀", "dieren"],
+    ["ster", "⭐", "buiten"],
+    ["klok", "⏰", "thuis"],
+    ["vlag", "🚩", "buiten"],
+    ["maan", "🌙", "buiten"],
+    ["roos", "🌹", "buiten"],
+    ["aap", "🐵", "dieren"],
+    ["eend", "🦆", "dieren"],
+    ["oog", "👁️", "lijf"],
+    ["oor", "👂", "lijf"],
+    ["kaas", "🧀", "eten"],
+    ["boom", "🌳", "buiten"],
+    ["boot", "⛵", "reis"],
+    ["vuur", "🔥", "buiten"],
+    ["neus", "👃", "lijf"],
+    ["muis", "🐭", "dieren"],
+    ["hoed", "🎩", "lijf"],
+    ["boek", "📖", "spelen"],
+    ["bij", "🐝", "dieren"],
+    ["pijl", "🏹", "buiten"],
+    ["trein", "🚆", "reis"],
+    ["mier", "🐜", "dieren"],
+    ["deur", "🚪", "thuis"],
+    ["huis", "🏡", "buiten"],
+    ["koe", "🐮", "dieren"],
+    ["voet", "🦶", "lijf"],
+    ["bloem", "🌷", "buiten"],
+    ["stoel", "🪑", "thuis"],
+    ["raam", "🪟", "thuis"],
+    ["kaars", "🕯️", "thuis"],
+    ["mes", "🔪", "thuis"],
+    ["pop", "🪆", "spelen"],
+    ["mok", "☕", "thuis"],
+    ["net", "🥅", "natuur"],
+    ["vat", "🛢️", "thuis"],
+    ["spin", "🕷️", "wild"],
+    ["rots", "🪨", "natuur"],
+    ["vest", "🦺", "lijf"],
+    ["nest", "🪺", "natuur"],
+    ["spek", "🥓", "eten"],
+    ["raket", "🚀", "reis"],
+    ["kikker", "🐸", "dieren"],
+    ["motor", "🏍️", "reis"],
+    ["tram", "🚋", "reis"],
+    ["krant", "📰", "thuis"],
+    ["trompet", "🎺", "spelen"],
+    ["spons", "🧽", "thuis"],
+    ["piano", "🎹", "spelen"],
+    ["otter", "🦦", "wild"],
+    ["ananas", "🍍", "eten"],
+    ["kano", "🛶", "reis"],
+    ["ski", "🎿", "spelen"],
+    ["paprika", "🫑", "eten"],
+    ["oma", "👵", "mensen"],
+    ["opa", "👴", "mensen"],
+    ["kok", "🧑‍🍳", "mensen"],
+    ["masker", "🎭", "spelen"],
+    ["monster", "👾", "spelen"],
+    ["tomaat", "🍅", "eten"],
+    ["vogel", "🐦", "dieren"],
+    ["zebra", "🦓", "wild"],
+    ["leeuw", "🦁", "wild"],
+    ["tijger", "🐯", "wild"],
+    ["beer", "🐻", "wild"],
+    ["haas", "🐰", "dieren"],
+    ["varken", "🐷", "dieren"],
+    ["paard", "🐴", "dieren"],
+    ["uil", "🦉", "wild"],
+    ["slang", "🐍", "wild"],
+    ["walvis", "🐳", "zee"],
+    ["dolfijn", "🐬", "zee"],
+    ["haai", "🦈", "zee"],
+    ["kreeft", "🦞", "zee"],
+    ["slak", "🐌", "dieren"],
+    ["egel", "🦔", "dieren"],
+    ["pinguin", "🐧", "wild"],
+    ["banaan", "🍌", "eten"],
+    ["druif", "🍇", "eten"],
+    ["peer", "🍐", "eten"],
+    ["citroen", "🍋", "eten"],
+    ["wortel", "🥕", "eten"],
+    ["ui", "🧅", "eten"],
+    ["brood", "🍞", "eten"],
+    ["ei", "🥚", "eten"],
+    ["melk", "🥛", "eten"],
+    ["ijs", "🍦", "eten"],
+    ["taart", "🎂", "eten"],
+    ["soep", "🍲", "eten"],
+    ["friet", "🍟", "eten"],
+    ["auto", "🚗", "reis"],
+    ["vliegtuig", "✈️", "reis"],
+    ["helm", "⛑️", "lijf"],
+    ["sjaal", "🧣", "lijf"],
+    ["schoen", "👟", "lijf"],
+    ["handschoen", "🧤", "lijf"],
+    ["bel", "🔔", "spelen"],
+    ["trommel", "🥁", "spelen"],
+    ["schaar", "✂️", "thuis"],
+    ["lepel", "🥄", "thuis"],
+    ["sleutel", "🔑", "thuis"],
+    ["tand", "🦷", "lijf"],
+    ["duim", "👍", "lijf"],
+    ["regen", "🌧️", "natuur"],
+    ["sneeuw", "❄️", "natuur"],
+    ["berg", "⛰️", "natuur"],
+    ["vulkaan", "🌋", "natuur"],
+    ["eiland", "🏝️", "natuur"],
+    ["regenboog", "🌈", "natuur"],
+    ["kasteel", "🏰", "buiten"],
+    ["robot", "🤖", "spelen"],
+    ["koning", "🤴", "mensen"],
+    ["prinses", "👸", "mensen"],
+    ["heks", "🧙", "mensen"],
+    ["dino", "🦕", "spelen"],
+    ["kroon", "👑", "mensen"],
+    ["pakket", "📦", "thuis"],
+    ["park", "🏞️", "natuur"],
+    ["pomp", "⛽", "reis"],
+    ["snor", "🥸", "mensen"],
+    ["step", "🛴", "reis"],
+    ["tennis", "🎾", "spelen"],
+    ["map", "🗂️", "thuis"],
+    ["peper", "🌶️", "eten"],
+    ["storm", "🌪️", "natuur"],
+    ["kokos", "🥥", "eten"],
+    ["pasta", "🍝", "eten"],
+    ["kar", "🛒", "reis"],
+    ["sport", "🏅", "spelen"],
+    ["pinata", "🪅", "spelen"],
+    ["brug", "🌉", "reis"],
+    ["beker", "🥤", "thuis"],
+    ["bord", "🍽️", "thuis"],
+    ["dorp", "🏘️", "buiten"],
+    ["fles", "🍾", "thuis"],
+    ["gras", "🌱", "natuur"],
+    ["hut", "🛖", "buiten"],
+    ["kus", "💋", "mensen"],
+    ["lolly", "🍭", "snoep"],
+    ["blad", "🍁", "natuur"],
+    ["boter", "🧈", "eten"],
+    ["duif", "🕊️", "dieren"],
+    ["fee", "🧚", "mensen"],
+    ["geit", "🐐", "dieren"],
+    ["giraf", "🦒", "wild"],
+    ["hamer", "🔨", "thuis"],
+    ["kerstboom", "🎄", "buiten"],
+    ["lama", "🦙", "wild"],
+    ["neushoorn", "🦏", "wild"],
+    ["nijlpaard", "🦛", "wild"],
+    ["panda", "🐼", "wild"],
+    ["pauw", "🦚", "wild"],
+    ["poes", "🐈", "dieren"],
+    ["schelp", "🐚", "zee"],
+    ["schip", "🚢", "zee"],
+    ["toren", "🗼", "buiten"],
+    ["ufo", "🛸", "spelen"],
+    ["wiel", "🛞", "reis"],
+    ["wolf", "🐺", "wild"],
+    ["worst", "🌭", "eten"],
+    ["zeep", "🧼", "thuis"],
+    ["zwaard", "🗡️", "spelen"],
+    ["cadeau", "🎁", "spelen"],
+    ["koekje", "🍪", "snoep"],
+    ["aardbei", "🍓", "eten"],
+    ["avocado", "🥑", "eten"],
+    ["broccoli", "🥦", "eten"],
+    ["paddenstoel", "🍄", "natuur"],
+    ["chocola", "🍫", "snoep"],
+    ["croissant", "🥐", "eten"],
+    ["donut", "🍩", "snoep"],
+    ["hamburger", "🍔", "eten"],
+    ["mango", "🥭", "eten"],
+    ["meloen", "🍈", "eten"],
+    ["pannenkoek", "🥞", "snoep"],
+    ["popcorn", "🍿", "snoep"],
+    ["snoep", "🍬", "snoep"],
+    ["wafel", "🧇", "snoep"],
+    ["brandweer", "🚒", "reis"],
+    ["politie", "🚓", "reis"],
+    ["ambulance", "🚑", "reis"],
+    ["helikopter", "🚁", "reis"],
+    ["tractor", "🚜", "reis"],
+    ["vrachtwagen", "🚚", "reis"],
+    ["octopus", "🐙", "zee"],
+    ["zeehond", "🦭", "zee"],
+    ["kwal", "🪼", "zee"],
+    ["koraal", "🪸", "zee"],
+    ["golf", "🌊", "zee"]
   ]
 }

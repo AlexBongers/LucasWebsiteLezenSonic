@@ -11,12 +11,12 @@
   import { boem } from '../ui/boem';
   import { glitterOp } from '../ui/feest';
   import { vg } from '../store/voortgang.svelte';
-  import { Brokken, Group, Mesh, Vector3, bol, cilinder, gloed, kubus, maakRenner, maakToneel, ring, ruitTekstuur, toon, vloer, type Renner, type Toneel } from '../ui/drie-d';
+  import { Brokken, Group, Mesh, Vector3, bol, cilinder, gloed, kubus, maakToneel, ring, ruitTekstuur, toon, vloer, type Renner, type Toneel } from '../ui/drie-d';
   import { emojiPlaat, ruimOp, woordPlaat, wolkVorm, zoekMet } from '../ui/drie-d-vormen';
   import { TorusGeometry } from 'three';
   import { teksten, compliment, bijna, wacht } from './teksten';
   import { Ronde } from './ronde.svelte';
-  import { maakHeld3D } from '../ui/held-3d';
+  import { mijnHeld3D } from '../ui/held-3d';
   import { flitsMaal } from './uitrusting.svelte';
   import type { SpelProps } from './types';
 
@@ -123,7 +123,7 @@
       zwevers.push(r);
     }
 
-    sonic = maakHeld3D('sonic', vg.winkel.gekozen.held === 'super', vg.winkel.kleding.sonic);
+    sonic = mijnHeld3D('sonic');
     sonic.groep.position.copy(START);
     sonic.groep.scale.setScalar(0.95);
     sonic.groep.rotation.y = Math.PI;
@@ -270,8 +270,8 @@
 </script>
 
 <div class="race">
-  <div class="toneel" bind:this={hostEl}></div>
-  <span class="merk" bind:this={merkEl}></span>
+  <div class="d3-toneel" bind:this={hostEl}></div>
+  <span class="d3-merk" bind:this={merkEl}></span>
   <div class="vraag opdrachtkaart">
     <span class="oog">{fase === 'klaar' ? '👀' : '🖼️❓'}</span>
   </div>
@@ -285,16 +285,6 @@
     position: absolute;
     inset: 0;
     overflow: hidden;
-  }
-  .toneel {
-    position: absolute;
-    inset: 0;
-  }
-  .merk {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
   }
   .vraag {
     position: absolute;

@@ -32,7 +32,8 @@ import Held from '../art/Held.svelte';
 import type { HeldId } from '../games/spellen';
 import type { Kleding } from '../games/kleding';
 import characters from '../../content/characters.json';
-import { gloed, type Renner, type RennerKleding } from './drie-d';
+import { gloed, maakRenner, type Renner, type RennerKleding } from './drie-d';
+import { vg } from '../store/voortgang.svelte';
 
 const VB_B = 212;
 const VB_H = 282;
@@ -203,4 +204,14 @@ export function maakHeld3D(
       halo.material.opacity = 0.35 + Math.sin(t * 2) * 0.1 + stoot * 0.3;
     },
   };
+}
+
+/** Lucas' eigen held: met zijn kleding uit de kleedkamer en (als hij die kocht) als gouden superheld. */
+export function mijnHeld3D(wie: HeldId, opt: { randKleur?: string | number; podium?: boolean } = {}): Renner {
+  return maakHeld3D(wie, vg.winkel.gekozen.held === 'super', vg.winkel.kleding[wie], opt);
+}
+
+/** Dezelfde held als blokjesfiguur van achteren (voor de rennende tunnelspellen). */
+export function mijnRenner(wie: 'sonic' | 'tails'): Renner {
+  return maakRenner(wie, vg.winkel.gekozen.held === 'super', vg.winkel.kleding[wie]);
 }

@@ -115,12 +115,12 @@
       {#if o.soort === 'bouw'}
         <div class="opdrachtkaart opdracht">
           <div class="doel">Bouw een toren van <span class="hint-goud">{o.n}</span></div>
-          <div class="luid"><Luidspreker opTik={zegOpdracht} /></div>
+          <div class="kaart-luid"><Luidspreker opTik={zegOpdracht} /></div>
         </div>
       {:else}
         <div class="opdrachtkaart opdracht">
           <div class="doel">Hoeveel stenen?</div>
-          <div class="luid"><Luidspreker opTik={zegOpdracht} /></div>
+          <div class="kaart-luid"><Luidspreker opTik={zegOpdracht} /></div>
         </div>
       {/if}
 
@@ -175,12 +175,6 @@
     font-size: 54px;
     font-weight: 700;
     text-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
-  }
-  .luid {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .werkplaats {
     display: flex;

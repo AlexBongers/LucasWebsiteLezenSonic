@@ -5762,5 +5762,27 @@
   "lufs": -18,
   "piek": 0.69,
   "seconden": 0.84
+ },
+ "1cd35880897a25": {
+  "tekst": "Snoep en taart",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "Snoep en taart",
+  "lufs": -18.3,
+  "piek": 0.89,
+  "seconden": 0.95
+ },
+ "1701c6a539bdfe": {
+  "tekst": "De zee",
+  "soort": "instructie",
+  "ok": true,
+  "poging": "multi",
+  "pogingen": 1,
+  "gehoord": "De zee",
+  "lufs": -18,
+  "piek": 0.62,
+  "seconden": 0.74
  }
 }
